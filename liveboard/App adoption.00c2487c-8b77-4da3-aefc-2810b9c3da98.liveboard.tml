@@ -1,0 +1,1029 @@
+guid: 00c2487c-8b77-4da3-aefc-2810b9c3da98
+liveboard:
+  name: App adoption
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: App adoption rate - User logins
+      description: Percentage of total users who logged in during the selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      table_paths:
+      - id: User_1
+        table: User
+      formulas:
+      - id: formula_User Logins
+        name: User Logins
+        expr: "unique_count_if ( [User_1::Has User Logged In?] , [User_1::Interaction User Code] )"
+        was_auto_generated: false
+      - id: formula_Moving Average
+        name: Moving Average
+        expr: "moving_average ( ( group_aggregate ( unique_count_if ( [User_1::Has User Logged In?] , [User_1::Interaction User Code] ) , query_groups ( ) , query_filters ( ) ) / group_aggregate ( unique count ( [User_1::Interaction User Code] ) , { [User_1::Tenant Code] } , query_filters ( ) ) ) , 29 , 0 , [User_1::Reporting Date] )"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "( group_unique_count ( [User_1::Interaction User Code] , [User_1::Tenant Code] ) )"
+        was_auto_generated: false
+      - id: formula_User Adoption Percentage
+        name: User Adoption Percentage
+        expr: "unique_count_if ( [User_1::Has User Logged In?] , [User_1::Interaction User Code] ) / ( group_unique_count ( [User_1::Interaction User Code] , [User_1::Tenant Code] ) )"
+        was_auto_generated: false
+      search_query: "[User_1::Reporting Date] [User_1::Reporting Date].daily [User_1::User Status].active sort by [User_1::Reporting Date] [User_1::Reporting Date].daily [formula_User Logins] [User_1::User Adoption Percentage]"
+      answer_columns:
+      - name: Day(Reporting Date)
+        custom_name: Reporting date
+        dynamic_title: Reporting date
+        sort_info:
+          category: DEFAULT
+      - name: User Adoption Percentage
+        custom_name: Adoption rate
+        dynamic_title: Adoption rate
+      - name: User Logins
+        custom_name: User logins
+        dynamic_title: User logins
+      table:
+        table_columns:
+        - column_id: Day(Reporting Date)
+          show_headline: false
+        - column_id: User Adoption Percentage
+          show_headline: false
+        - column_id: User Logins
+          show_headline: false
+        ordered_column_ids:
+        - Day(Reporting Date)
+        - User Logins
+        - User Adoption Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Day(Reporting Date)
+        - column_id: User Adoption Percentage
+        - column_id: User Logins
+        axis_configs:
+        - x:
+          - Day(Reporting Date)
+          "y":
+          - User Adoption Percentage
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": false,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"AUTO_ON\",\"showLinearRegressionLine\": false,\"chartSpecific\": {\"isStackedAsPercent\": true,\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true}}}\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Day(Reporting Date)\",\"columnProperty\": {}},{\"columnId\": \"0f993c3d-e90b-41e7-a8cb-7f7c5d43195e\",\"columnProperty\": {}},{\"columnId\": \"8ebc5299-deca-442c-9d49-6baa31495f9d\",\"columnProperty\": {}},{\"columnId\": \"User Logins\",\"columnProperty\": {}},{\"columnId\": \"User Adoption Percentage\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"4fa7f72f-1d97-40bd-ba38-3295ef53bdd3\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Adoption Percentage\"],\"format\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 1.0},\"isCategoryEditable\": true},\"yAxisRange\": {\"min\": 0.0,\"max\": 1.0},\"isOpposite\": false}},{\"id\": \"526f7f98-df2a-40eb-b8e0-27c96084860f\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Reporting Date)\"]}}],\"seriesColors\": [{\"serieName\": \"28121014-7757-4bc5-9044-d037f24485e5\",\"color\": \"#FCC838\"},{\"serieName\": \"User Logins\",\"color\": \"#48D1E0\"},{\"serieName\": \"User Adoption Percentage\",\"color\": \"#FCC838\"}],\"systemSeriesColors\": [{\"serieName\": \"28121014-7757-4bc5-9044-d037f24485e5\",\"color\": \"#FCC838\"},{\"serieName\": \"User Logins\",\"color\": \"#48D1E0\"},{\"serieName\": \"User Adoption Percentage\",\"color\": \"#2E75F0\"}],\"tooltipConfig\": {\"columnIds\": [\"Day(Reporting Date)\",\"User Logins\",\"User Adoption Percentage\"]}}"
+      display_mode: CHART_MODE
+      dynamic_name: App adoption rate - User logins
+      dynamic_description: Percentage of total users who logged in during the selected time period
+    viz_guid: f89697a9-c978-4f30-b755-709d48fef40f
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_2
+    answer:
+      name: Logged in users
+      description: Number of users on the platform who logged in at least once
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Benchmark Total User
+        name: Benchmark Total User
+        expr: "sum_if ( [Is Latest Month] = 'yes' , [Latest Monthly Snapshot Total Active Users] )"
+        was_auto_generated: false
+      - id: formula_Benchmark User Login
+        name: Benchmark User Login
+        expr: "sum_if ( [Is Latest Month] = 'yes' , [Latest Monthly Snapshot Unique Logins Overall] )"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "group_unique_count ( [Interaction User Code] , [Tenant Code] )"
+        was_auto_generated: false
+      - id: formula_User Login
+        name: User Login
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      - id: formula_day difference
+        name: day difference
+        expr: "diff_days ( max ( [Reporting Date] ) , min ( [Reporting Date] ) )"
+        was_auto_generated: false
+      - id: formula_max reporting date
+        name: max reporting date
+        expr: "max ( [Reporting Date] )"
+        was_auto_generated: false
+      search_query: "[User Status].active [formula_User Login] [formula_Total User] [formula_Benchmark User Login] [formula_Benchmark Total User] [formula_max reporting date] [formula_max reporting date].daily [formula_day difference]"
+      answer_columns:
+      - name: Benchmark Total User
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Benchmark User Login
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Day(max reporting date)
+      - name: Total User
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User Login
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: day difference
+      table:
+        table_columns:
+        - column_id: Benchmark Total User
+          show_headline: false
+        - column_id: Benchmark User Login
+          show_headline: false
+        - column_id: Day(max reporting date)
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Login
+          show_headline: false
+        - column_id: day difference
+          show_headline: false
+        ordered_column_ids:
+        - Day(max reporting date)
+        - User Login
+        - Total User
+        - Benchmark User Login
+        - Benchmark Total User
+        - day difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"User Login\",\"Total User\",\"Benchmark User Login\",\"Benchmark Total User\",\"Day(max reporting date)\",\"day difference\"]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Benchmark Total User
+        - column_id: Benchmark User Login
+        - column_id: Day(max reporting date)
+        - column_id: Total User
+        - column_id: User Login
+        - column_id: day difference
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"User Login\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}},{\"columnId\": \"Benchmark User Login\",\"columnProperty\": {}},{\"columnId\": \"Benchmark Total User\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"9ef51d1f-6607-4552-b82c-f1cc8b1c8c4a\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Login\"],\"isOpposite\": false}},{\"id\": \"5a12e3da-15cd-466f-883c-e3cc14165f3b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total User\"],\"isOpposite\": true}},{\"id\": \"3ff3db5a-0056-4609-86d0-812e02ef878f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Benchmark User Login\"],\"isOpposite\": true}},{\"id\": \"a96f64ed-f6de-46b5-a1ca-281e2014ca95\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Benchmark Total User\"],\"isOpposite\": true}},{\"id\": \"c4d9056e-eea0-4597-adef-abff88b1112c\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"User Login\",\"color\": \"#2E75F0\"}]}"
+        custom_visual_props: "{\"columnVisualProps\":{},\"axisVisualProps\":{},\"dataLabelVisualProps\":{},\"tooltipVisualProps\":{},\"legendVisualProps\":{},\"displayVisualProps\":{},\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gQ29uZmlndXJhdGlvbiAtIFNldCB5b3VyIHByZWZlcnJlZCBudW1iZXIgZm9ybWF0Ci8vIE9wdGlvbnM6ICdhdXRvJyAoTS9LIGFiYnJldmlhdGlvbnMpLCAnbm9uZScgKGZ1bGwgbnVtYmVycyksICdLJyAodGhvdXNhbmRzIG9ubHkpLCAnTScgKG1pbGxpb25zIG9ubHkpCmNvbnN0IE5VTUJFUl9GT1JNQVQgPSAibm9uZSI7CgovLyBIZWxwZXIgZm9ybWF0dGluZyBmdW5jdGlvbnMKY29uc3QgZm9ybWF0TnVtYmVyID0gKHZhbCkgPT4gewogICAgaWYoIXZhbCB8fCAhTnVtYmVyLmlzRmluaXRlKHZhbCkpewogICAgICAgIHJldHVybiAwOwogICAgfQogIGNvbnN0IG51bSA9ICt2YWw7CgogIHN3aXRjaCAoTlVNQkVSX0ZPUk1BVCkgewogICAgY2FzZSAiYXV0byI6CiAgICAgIGlmIChudW0gPj0gMTAwMDAwMCkgewogICAgICAgIHJldHVybiAobnVtIC8gMTAwMDAwMCkudG9GaXhlZCgyKS5yZXBsYWNlKC9cLj8wKyQvLCAiIikgKyAiTSI7CiAgICAgIH0gZWxzZSBpZiAobnVtID49IDEwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDApLnRvRml4ZWQoMSkucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIksiOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIksiOgogICAgICBpZiAobnVtID49IDEwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDApLnRvRml4ZWQoMSkucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIksiOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIk0iOgogICAgICBpZiAobnVtID49IDEwMDAwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDAwMDApLnRvRml4ZWQoMikucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIk0iOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIm5vbmUiOgogICAgZGVmYXVsdDoKICAgICAgcmV0dXJuIG51bS50b0xvY2FsZVN0cmluZygiZW4tR0IiLCB7CiAgICAgICAgbWluaW11bUZyYWN0aW9uRGlnaXRzOiAwLAogICAgICAgIG1heGltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgfSk7CiAgfQp9OwoKY29uc3QgZm9ybWF0UGVyY2VudCA9ICh2YWwpID0+IHsKICAgIGlmKCF2YWwgfHwgIU51bWJlci5pc0Zpbml0ZSgrdmFsKSl7CiAgICAgICAgcmV0dXJuIDA7CiAgICB9CiAgY29uc3QgcGVyY2VudCA9IE1hdGguYWJzKCt2YWwpOwogIHJldHVybiBwZXJjZW50LnRvTG9jYWxlU3RyaW5nKCJlbi1HQiIsIHsKICAgIHN0eWxlOiAicGVyY2VudCIsCiAgICBtaW5pbXVtRnJhY3Rpb25EaWdpdHM6IDEsCiAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDEsCiAgfSk7Cn07CgovLyBHZXQgcmF3IGRhdGEKY29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7CgovLyBHZW5lcmljIGFwcHJvYWNoIC0gd29ya3Mgd2l0aCBhbnkgdHdvIG1lYXN1cmVzCmNvbnN0IHJlcG9ydGluZ0RhdGUgPSByYXdEYXRhWzBdWzBdOwpjb25zdCBsb2dnZWRJblVzZXIgPSByYXdEYXRhWzBdWzFdOwpjb25zdCB0b3RhbFVzZXIgPSByYXdEYXRhWzBdWzJdOwpjb25zdCBiZW5jaG1hcmtVc2VyID0gcmF3RGF0YVswXVszXTsKY29uc3QgYmVuY2htYXJrVG90YWxVc2VyID0gcmF3RGF0YVswXVs0XTsKY29uc3QgZGlmZmVyZW5jZSA9IHJhd0RhdGFbMF1bNV07CmNvbnN0IGFjdGl2ZVVzZXJQZXJjZW50YWdlID0gbG9nZ2VkSW5Vc2VyIC8gdG90YWxVc2VyOwpjb25zdCBiZW5jaG1hcmtQZXJjZW50YWdlID0gYmVuY2htYXJrVXNlciAvIGJlbmNobWFya1RvdGFsVXNlcjsKCmNvbnN0IGFic29sdXRlRGlmZmVyZW5jZSA9IGFjdGl2ZVVzZXJQZXJjZW50YWdlIC0gYmVuY2htYXJrUGVyY2VudGFnZTsKLy8gRGV0ZXJtaW5lIGRpcmVjdGlvbiBhbmQgY29sb3IgYmFzZWQgb24gdGhlIGRpZmZlcmVuY2UKY29uc3QgZGlyZWN0aW9uID0gYWJzb2x1dGVEaWZmZXJlbmNlID49IDAgPyAi4oaRIiA6ICLihpMiOwpjb25zdCBiZW5jaG1hcmtUZXh0ID0KICBhYnNvbHV0ZURpZmZlcmVuY2UgPj0gMCA/ICJtb3JlIHRoYW4gYmVuY2htYXJrIiA6ICJsZXNzIHRoYW4gYmVuY2htYXJrIjsKY29uc3QgY29sb3JDbGFzcyA9IGFic29sdXRlRGlmZmVyZW5jZSA+PSAwID8gInBvc2l0aXZlIiA6ICJuZWdhdGl2ZSI7Cgpjb25zdCBnZXRVVENTdGFtcCA9IChkKSA9PgogIERhdGUuVVRDKGQuZ2V0VVRDRnVsbFllYXIoKSwgZC5nZXRVVENNb250aCgpLCBkLmdldFVUQ0RhdGUoKSk7Cgpjb25zdCBub3cgPSBuZXcgRGF0ZSgpOwpjb25zdCB0b2RheVVUQyA9IGdldFVUQ1N0YW1wKG5vdyk7CgovLyBwYXNzZWQgcmVwb3J0aW5nIGRhdGUKY29uc3QgcGFzc2VkRGF0ZSA9IG5ldyBEYXRlKHJlcG9ydGluZ0RhdGUpOwpjb25zdCBwYXNzZWREYXRlVVRDID0gZ2V0VVRDU3RhbXAocGFzc2VkRGF0ZSk7CgovLyBEZWNpZGUgY29tcGFyaXNvbiBkYXRlOgovLyBJZiByZXBvcnRpbmcgZGF0ZSA9IHRvZGF5IOKGkiBjb21wYXJlIHdpdGggdG9kYXkKLy8gRWxzZSDihpIgY29tcGFyZSB3aXRoIHllc3RlcmRheQpjb25zdCBjb21wYXJpc29uRGF0ZVVUQyA9CiAgcGFzc2VkRGF0ZVVUQyA9PT0gdG9kYXlVVEMKICAgID8gdG9kYXlVVEMKICAgIDogdG9kYXlVVEMgLSAyNCAqIDYwICogNjAgKiAxMDAwOwoKLy8gRmluYWwgTWF0Y2ggY2hlY2sKY29uc3QgaXNNYXRjaGluZyA9IHBhc3NlZERhdGVVVEMgPT09IGNvbXBhcmlzb25EYXRlVVRDOwpjb25zdCBjb21wYXJpc29uSHRtbCA9IGAKICAgIDxkaXYgY2xhc3M9ImNvbXBhcmlzb24taXRlbSI+CiAgICAgICAgPHNwYW4gY2xhc3M9ImFycm93ICR7Y29sb3JDbGFzc30iPiR7ZGlyZWN0aW9ufTwvc3Bhbj4KICAgICAgICA8c3BhbiBjbGFzcz0icGVyY2VudGFnZSAke2NvbG9yQ2xhc3N9Ij4ke2Zvcm1hdFBlcmNlbnQoCiAgTWF0aC5hYnMoYWJzb2x1dGVEaWZmZXJlbmNlLCA1KS50b0ZpeGVkKDQpCil9ICR7YmVuY2htYXJrVGV4dH0gKCR7Zm9ybWF0UGVyY2VudChiZW5jaG1hcmtQZXJjZW50YWdlKX0pPC9zcGFuPgogICAgPC9kaXY+CmA7CgovLyBVcGRhdGUgZHluYW1pYyBjb250ZW50CmRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJsYXRlc3QtdmFsdWUiKS5pbm5lclRleHQgPSBgJHtmb3JtYXROdW1iZXIoCiAgbG9nZ2VkSW5Vc2VyCil9ICgke2Zvcm1hdFBlcmNlbnQoYWN0aXZlVXNlclBlcmNlbnRhZ2UpfSlgOwppZihhYnNvbHV0ZURpZmZlcmVuY2UgJiYgYWJzb2x1dGVEaWZmZXJlbmNlICE9IDAgJiYgaXNNYXRjaGluZyAmJiBkaWZmZXJlbmNlID49IDI5ICYmIGRpZmZlcmVuY2UgPD0zMCl7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiY29tcGFyaXNvbnMiKS5pbm5lckhUTUwgPSBjb21wYXJpc29uSHRtbDsKfQoK\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7Cn0KCi5rcGktY29tcGFjdCB7CiAgZm9udC1mYW1pbHk6IHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBkaXNwbGF5OiBmbGV4OwogIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47CiAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7CiAgbWFyZ2luOiAwcHg7CiAgcGFkZGluZzogMDsKICBsaW5lLWhlaWdodDogMS4xOwogIGhlaWdodDogMTAwJTsKICB3aWR0aDogMTAwJTsKICBib3gtc2l6aW5nOiBib3JkZXItYm94Owp9Cgoua3BpLWRhdGUgewogIGZvbnQtc2l6ZTogMS4xZW07CiAgY29sb3I6ICM5OTk7CiAgbWFyZ2luOiAwOwp9Cgoua3BpLXZhbHVlIHsKICBmb250LXNpemU6IDI4cHg7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA1MDA7Cn0KCi5rcGktY29tcGFyaXNvbnMgZGl2IHsKICBmb250LXNpemU6IDE4cHg7CiAgbWFyZ2luOiA1cHggMDsKICBjb2xvcjogaW5oZXJpdDsKfQoKLnBvc2l0aXZlLAoubmVnYXRpdmUgewogIGZvbnQtc2l6ZTogMTFweDsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKfQoKLnBvc2l0aXZlIHsKICBjb2xvcjogIzI0ODUyODsKfQoKLm5lZ2F0aXZlIHsKICBjb2xvcjogI2QzMWUzNDsKfQo=\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBpZD0ia3BpIiBjbGFzcz0ia3BpLWNvbXBhY3QiPgogIDxkaXYgaWQ9InRvZGF5LWxhYmVsIiBjbGFzcz0ia3BpLWRhdGUiPjwvZGl2PgogIDxkaXYgaWQ9ImxhdGVzdC12YWx1ZSIgY2xhc3M9ImtwaS12YWx1ZSI+PC9kaXY+CiAgPGRpdiBpZD0iY29tcGFyaXNvbnMiIGNsYXNzPSJrcGktY29tcGFyaXNvbnMiPjwvZGl2Pgo8L2Rpdj4=\\\"},\\\"splitSizes\\\":[35.3327085285848,64.66729147141517]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Select Date
+        value: Custom
+      dynamic_name: Logged in users
+      dynamic_description: Number of users on the platform who logged in at least once
+    viz_guid: 0753bb7e-e994-4973-9778-270e434cf43a
+  - id: Viz_3
+    answer:
+      name: User engagement breakdown
+      description: "Logged in users categorized as contributors, participants, observers and no logins"
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Behaviour
+        name: Adoption Behaviour
+        expr: "( if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 4 ) then 'Contributor' else if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 3 ) then 'Participant' else if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 2 ) then 'Observer' else if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 1 ) then 'No logins' else null )"
+        was_auto_generated: false
+      search_query: "[formula_Adoption Behaviour] count [User Code] [User Status] = 'active'"
+      answer_columns:
+      - name: Adoption Behaviour
+        custom_name: Adoption behaviour
+        dynamic_title: Adoption behaviour
+      - name: Number of User Code
+        custom_name: Total count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total count
+      table:
+        table_columns:
+        - column_id: Adoption Behaviour
+          show_headline: false
+        - column_id: Number of User Code
+          show_headline: false
+        ordered_column_ids:
+        - Adoption Behaviour
+        - Number of User Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Adoption Behaviour\",\"columnProperty\": {}}]}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Adoption Behaviour
+        - column_id: Number of User Code
+        axis_configs:
+        - x:
+          - Adoption Behaviour
+          "y":
+          - Number of User Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":true,\\\"showComparison\\\":true,\\\"showSparkline\\\":true,\\\"showAnalyseChangeCta\\\":true,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"dataFieldArea\": \"column\",\"pivotSummariesState\": {}},\"showStackedLabels\": true,\"allLabels\": true},\"columnProperties\": [{\"columnId\": \"Adoption Behaviour\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Number of User Code\",\"columnProperty\": {\"dataLabels\": true,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"e804ad9a-6944-419f-9b66-8f8c72b97e36\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of User Code\"],\"isOpposite\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}},{\"id\": \"e3c5ae76-8812-4da5-84e5-06885eab1033\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Adoption Behaviour\"],\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}}],\"seriesColors\": [{\"serieName\": \"a0e9a374-17b1-4f25-8588-c671fc148a1e\",\"color\": \"#2E75F0\"},{\"serieName\": \"no login\",\"color\": \"#FCC838\"},{\"serieName\": \"contributor\",\"color\": \"#3a86ff\"},{\"serieName\": \"no logins\",\"color\": \"#8338ec\"},{\"serieName\": \"observer\",\"color\": \"#ffcb3d\"},{\"serieName\": \"participant\",\"color\": \"#FF3D91\"}],\"systemSeriesColors\": [{\"serieName\": \"a0e9a374-17b1-4f25-8588-c671fc148a1e\",\"color\": \"#2E75F0\"},{\"serieName\": \"no login\",\"color\": \"#FCC838\"},{\"serieName\": \"contributor\",\"color\": \"#3a86ff\"},{\"serieName\": \"observer\",\"color\": \"#ff3d91\"},{\"serieName\": \"participant\",\"color\": \"#ffcb3d\"},{\"serieName\": \"no logins\",\"color\": \"#ffcb3d\"}]}"
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Y29uc3QgeyBtdXplLCBnZXREYXRhRnJvbVNlYXJjaFF1ZXJ5IH0gPSB2aXo7Cgpjb25zdCBkYXRhID0gZ2V0RGF0YUZyb21TZWFyY2hRdWVyeSgpOwoKY29uc29sZS5sb2coZGF0YS5nZXREYXRhKCkpCgptdXplCiAgLmNhbnZhcygpCiAgLmNvbmZpZyh7CiAgICBsZWdlbmQ6IHsKICAgICAgcG9zaXRpb246ICJib3R0b20iLAogICAgICBhbGlnbjogImNlbnRlciIsCiAgICB9LAogIH0pCiAgLmxheWVycyhbCiAgICB7CiAgICAgIG1hcms6ICJhcmMiLAogICAgICBlbmNvZGluZzogewogICAgICAgIGFuZ2xlOiAiTnVtYmVyIG9mIFVzZXIgQ29kZSIsCiAgICAgICAgY29sb3I6ICJBZG9wdGlvbiBCZWhhdmlvdXIiLAogICAgICAgIHJhZGl1czogewogICAgICAgICAgcmFuZ2U6IGZ1bmN0aW9uIHJhbmdlKF9yYW5nZSkgewogICAgICAgICAgICByZXR1cm4gW19yYW5nZVswXSArIDcwLCBfcmFuZ2VbMV1dOwogICAgICAgICAgfSwKICAgICAgICB9LAogICAgICB9LAogICAgfSwKICBdKQogIC5kYXRhKGRhdGEpCiAgLmxlZ2VuZCgiYm90dG9tIikKICAubW91bnQoIiNjaGFydCIpOwo=\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwgYm9keSB7CiAgICBtYXJnaW46IDA7CiAgICBwYWRkaW5nOiAwOwp9CgojY2hhcnQgewogICAgd2lkdGg6IDEwMHZ3OwogICAgaGVpZ2h0OiAxMDB2aDsKfQ==\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBpZD0iY2hhcnQiPjwvZGl2Pg==\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      dynamic_name: User engagement breakdown
+      dynamic_description: "Logged in users categorized as contributors, participants, observers and no logins"
+    viz_guid: ea3fcc49-1424-420c-bf64-b3e4b6df781c
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_4
+    answer:
+      name: App web page views
+      description: Top 10 app web pages ranked by total views during the selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      table_paths:
+      - id: User_1
+        table: User
+      formulas:
+      - id: formula_Page feature
+        name: Page feature
+        expr: "if ( [User_1::Page Feature] = 'N/A' ) then 'Undefined' else [User_1::Page Feature]"
+        was_auto_generated: false
+      - id: formula_Page group
+        name: Page group
+        expr: "if ( [User_1::Page Grouping] = 'N/A' ) then 'Undefined' else [User_1::Page Grouping]"
+        was_auto_generated: false
+      - id: formula_Total View Percentage
+        name: Total View Percentage
+        expr: "count ( [User_1::Interaction Code] ) / group_count ( [User_1::Interaction Code] )"
+        was_auto_generated: false
+      - id: formula_User Count
+        name: User Count
+        expr: "unique_count_if ( [User_1::User Status] = 'Active' , [User_1::Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_User Count] [User_1::Interaction Type] = 'view' count [User_1::Interaction Code] [formula_Total View Percentage] top 10 by count [User_1::Interaction Code] sort by count [User_1::Interaction Code] descending [formula_Page group] [formula_Page feature] [User_1::Product]"
+      answer_columns:
+      - name: Number of Interaction Code
+        custom_name: Page view count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Page view count
+        sort_info:
+          category: DEFAULT
+      - name: Page feature
+      - name: Page group
+      - name: Product
+      - name: Total View Percentage
+        custom_name: Percentage contribution to total page views
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+        dynamic_title: Percentage contribution to total page views
+      - name: User Count
+        custom_name: Total people
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total people
+      table:
+        table_columns:
+        - column_id: Number of Interaction Code
+          show_headline: false
+        - column_id: Page feature
+          show_headline: false
+        - column_id: Page group
+          show_headline: false
+        - column_id: Product
+          show_headline: false
+        - column_id: Total View Percentage
+          show_headline: false
+        - column_id: User Count
+          show_headline: false
+        ordered_column_ids:
+        - Page group
+        - Page feature
+        - Product
+        - User Count
+        - Number of Interaction Code
+        - Total View Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Number of Interaction Code\",\"width\": 182.33155822753906},{\"columnId\": \"Total View Percentage\",\"width\": 241.0}],\"wrapTableHeader\": true,\"showTableFooter\": false,\"orderedColumnIds\": [\"Product\",\"Page feature\",\"Page group\",\"User Count\",\"Number of Interaction Code\",\"Total View Percentage\"],\"columnProperties\": [{\"columnId\": \"User Count\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Total View Percentage\",\"columnProperty\": {\"conditionalFormatting\": {}}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Number of Interaction Code
+        - column_id: Page feature
+        - column_id: Page group
+        - column_id: Product
+        - column_id: Total View Percentage
+        - column_id: User Count
+        axis_configs:
+        - x:
+          - Page feature
+          "y":
+          - User Count
+          - Number of Interaction Code
+          - Total View Percentage
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"User Count\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {}},{\"columnId\": \"Total View Percentage\",\"columnProperty\": {}},{\"columnId\": \"Page feature\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"45248005-544d-46fd-9b80-9f270100c31a\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Count\"],\"isOpposite\": false}},{\"id\": \"9269969c-135a-42dd-a3a1-9b372be349b7\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Code\"],\"isOpposite\": true}},{\"id\": \"5b296e01-de50-4115-851c-68825a05c886\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total View Percentage\"],\"isOpposite\": true}},{\"id\": \"8d2100fc-f8d5-43f5-ae09-8852c066e15b\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Page feature\"]}}],\"systemSeriesColors\": [{\"serieName\": \"User Count\",\"color\": \"#747E8C\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: App web page views
+      dynamic_description: Top 10 app web pages ranked by total views during the selected time period
+    viz_guid: f29cb3db-08fc-4983-b975-542b5376d726
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_5
+    answer:
+      name: Total users
+      description: Total users on the platform for the selected time period as on today
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_User Login Percentage
+        name: User Login Percentage
+        expr: "( group_unique_count ( [Interaction User Code] , [Tenant Code] ) )"
+        was_auto_generated: false
+      search_query: "[User Status].active [formula_User Login Percentage]"
+      answer_columns:
+      - name: User Login Percentage
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: AUTO
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: User Login Percentage
+          show_headline: false
+        ordered_column_ids:
+        - User Login Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: User Login Percentage
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"User Login Percentage\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"6164d216-6b0b-4262-8ed9-1a2b1b087135\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Login Percentage\"],\"isOpposite\": false}},{\"id\": \"6aae41d3-a3c7-4ba2-a20d-50e51b9a7d6f\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"User Login Percentage\",\"color\": \"#2E75F0\"}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - User Login Percentage
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gQ29uZmlndXJhdGlvbiAtIFNldCB5b3VyIHByZWZlcnJlZCBudW1iZXIgZm9ybWF0Ci8vIE9wdGlvbnM6ICdhdXRvJyAoTS9LIGFiYnJldmlhdGlvbnMpLCAnbm9uZScgKGZ1bGwgbnVtYmVycyksICdLJyAodGhvdXNhbmRzIG9ubHkpLCAnTScgKG1pbGxpb25zIG9ubHkpCmNvbnN0IE5VTUJFUl9GT1JNQVQgPSAibm9uZSI7CgovLyBIZWxwZXIgZm9ybWF0dGluZyBmdW5jdGlvbnMKY29uc3QgZm9ybWF0TnVtYmVyID0gKHZhbCkgPT4gewogICAgaWYoIXZhbCB8fCAhTnVtYmVyLmlzRmluaXRlKHZhbCkpewogICAgICAgIHJldHVybiAwOwogICAgfQogIGNvbnN0IG51bSA9ICt2YWw7CgogIHN3aXRjaCAoTlVNQkVSX0ZPUk1BVCkgewogICAgY2FzZSAiYXV0byI6CiAgICAgIGlmIChudW0gPj0gMTAwMDAwMCkgewogICAgICAgIHJldHVybiAobnVtIC8gMTAwMDAwMCkudG9GaXhlZCgyKS5yZXBsYWNlKC9cLj8wKyQvLCAiIikgKyAiTSI7CiAgICAgIH0gZWxzZSBpZiAobnVtID49IDEwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDApLnRvRml4ZWQoMSkucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIksiOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIksiOgogICAgICBpZiAobnVtID49IDEwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDApLnRvRml4ZWQoMSkucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIksiOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIk0iOgogICAgICBpZiAobnVtID49IDEwMDAwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDAwMDApLnRvRml4ZWQoMikucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIk0iOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIm5vbmUiOgogICAgZGVmYXVsdDoKICAgICAgcmV0dXJuIG51bS50b0xvY2FsZVN0cmluZygiZW4tR0IiLCB7CiAgICAgICAgbWluaW11bUZyYWN0aW9uRGlnaXRzOiAwLAogICAgICAgIG1heGltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgfSk7CiAgfQp9OwoKLy8gR2V0IHJhdyBkYXRhCmNvbnN0IHJhd0RhdGEgPSB2aXouZ2V0RGF0YUZyb21TZWFyY2hRdWVyeSgpLmdldERhdGEoKS5kYXRhOwoKLy8gR2VuZXJpYyBhcHByb2FjaCAtIHdvcmtzIHdpdGggYW55IHR3byBtZWFzdXJlcwpjb25zdCBsb2dnZWRJblVzZXIgPSByYXdEYXRhWzBdWzBdOwovLyBVcGRhdGUgZHluYW1pYyBjb250ZW50CmRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJsYXRlc3QtdmFsdWUiKS5pbm5lclRleHQgPSBgJHtmb3JtYXROdW1iZXIoCiAgbG9nZ2VkSW5Vc2VyCil9YDsK\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7Cn0KCi5rcGktY29tcGFjdCB7CiAgZm9udC1mYW1pbHk6IHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBkaXNwbGF5OiBmbGV4OwogIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47CiAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7CiAgbWFyZ2luOiAwcHg7CiAgcGFkZGluZzogMDsKICBsaW5lLWhlaWdodDogMS4xOwogIGhlaWdodDogMTAwJTsKICB3aWR0aDogMTAwJTsKICBib3gtc2l6aW5nOiBib3JkZXItYm94Owp9Cgoua3BpLWRhdGUgewogIGZvbnQtc2l6ZTogMS4xZW07CiAgY29sb3I6ICM5OTk7CiAgbWFyZ2luOiAwOwp9Cgoua3BpLXZhbHVlIHsKICBmb250LXNpemU6IDI4cHg7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA1MDA7Cn0KCi5rcGktY29tcGFyaXNvbnMgZGl2IHsKICBmb250LXNpemU6IDE4cHg7CiAgbWFyZ2luOiA1cHggMDsKICBjb2xvcjogaW5oZXJpdDsKfQ==\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBpZD0ia3BpIiBjbGFzcz0ia3BpLWNvbXBhY3QiPgogIDxkaXYgaWQ9ImxhdGVzdC12YWx1ZSIgY2xhc3M9ImtwaS12YWx1ZSI+PC9kaXY+CjwvZGl2Pg==\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Select Date
+        value: Last 7 Days
+      - key: User Parameter
+        value: Location
+      dynamic_name: Total users
+      dynamic_description: Total users on the platform for the selected time period as on today
+    viz_guid: 21c837db-3671-4c98-b510-b957fadfff95
+  - id: Viz_6
+    answer:
+      name: Contributors and participants
+      description: |+
+        Logged in user engagement as contributors and participants
+
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Benchmark Contributor & Participant Count
+        name: Benchmark Contributor & Participant Count
+        expr: "sum_if ( [Is Latest Month] = 'yes' , [Latest Monthly Snapshot Contributors] ) + sum_if ( [Is Latest Month] = 'yes' , [Latest Monthly Snapshot Participants] )"
+        was_auto_generated: false
+      - id: formula_Benchmark User Login
+        name: Benchmark User Login
+        expr: "sum_if ( [Is Latest Month] = 'yes' , [Latest Monthly Snapshot Unique Logins Overall] )"
+        was_auto_generated: false
+      - id: formula_Contributor & Participant Count
+        name: Contributor & Participant Count
+        expr: "unique_count_if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 4 , [User Code] ) + unique_count_if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 3 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Login
+        name: User Login
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      - id: formula_day difference
+        name: day difference
+        expr: "diff_days ( max ( [Reporting Date] ) , min ( [Reporting Date] ) )"
+        was_auto_generated: false
+      - id: formula_max reporting date
+        name: max reporting date
+        expr: "max ( [Reporting Date] )"
+        was_auto_generated: false
+      search_query: "[formula_User Login] [formula_Contributor & Participant Count] [User Status].active [formula_Benchmark Contributor & Participant Count] [formula_Benchmark User Login] [formula_max reporting date] [formula_max reporting date].daily [formula_day difference]"
+      answer_columns:
+      - name: Benchmark Contributor & Participant Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Benchmark User Login
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Contributor & Participant Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Day(max reporting date)
+      - name: User Login
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: day difference
+      table:
+        table_columns:
+        - column_id: Benchmark Contributor & Participant Count
+          show_headline: false
+        - column_id: Benchmark User Login
+          show_headline: false
+        - column_id: Contributor & Participant Count
+          show_headline: false
+        - column_id: Day(max reporting date)
+          show_headline: false
+        - column_id: User Login
+          show_headline: false
+        - column_id: day difference
+          show_headline: false
+        ordered_column_ids:
+        - Day(max reporting date)
+        - User Login
+        - Contributor & Participant Count
+        - Benchmark Contributor & Participant Count
+        - Benchmark User Login
+        - day difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Contributor & Participant Count\",\"User Login\",\"Benchmark Contributor & Participant Count\",\"Benchmark User Login\"],\"columnProperties\": [{\"columnId\": \"User Login\",\"columnProperty\": {\"isHidden\": false}}]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Benchmark Contributor & Participant Count
+        - column_id: Benchmark User Login
+        - column_id: Contributor & Participant Count
+        - column_id: Day(max reporting date)
+        - column_id: User Login
+        - column_id: day difference
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"User Login\",\"columnProperty\": {}},{\"columnId\": \"Contributor & Participant Count\",\"columnProperty\": {}},{\"columnId\": \"Benchmark Contributor & Participant Count\",\"columnProperty\": {}},{\"columnId\": \"Benchmark User Login\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"ff2801de-9357-4b12-abc8-7d00715afcc3\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Login\"],\"isOpposite\": false}},{\"id\": \"56d08e97-d04b-4e1a-9c05-e4349bc27f5a\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Contributor & Participant Count\"],\"isOpposite\": true}},{\"id\": \"59a99e41-be97-4939-bc3e-be2515f696fb\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Benchmark Contributor & Participant Count\"],\"isOpposite\": true}},{\"id\": \"09635156-34c8-4f1d-acde-35d6c97fd772\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Benchmark User Login\"],\"isOpposite\": true}},{\"id\": \"03ef5bf0-3fb3-4714-9547-589d2af5a3d9\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"a0e9a374-17b1-4f25-8588-c671fc148a1e\",\"color\": \"#2E75F0\"},{\"serieName\": \"contributor\",\"color\": \"#06BF7F\"},{\"serieName\": \"no login\",\"color\": \"#FCC838\"},{\"serieName\": \"observer\",\"color\": \"#48D1E0\"},{\"serieName\": \"participant\",\"color\": \"#2E75F0\"}]}"
+        custom_visual_props: "{\"columnVisualProps\":{},\"axisVisualProps\":{},\"dataLabelVisualProps\":{},\"tooltipVisualProps\":{},\"legendVisualProps\":{},\"displayVisualProps\":{},\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gQ29uZmlndXJhdGlvbiAtIFNldCB5b3VyIHByZWZlcnJlZCBudW1iZXIgZm9ybWF0Ci8vIE9wdGlvbnM6ICdhdXRvJyAoTS9LIGFiYnJldmlhdGlvbnMpLCAnbm9uZScgKGZ1bGwgbnVtYmVycyksICdLJyAodGhvdXNhbmRzIG9ubHkpLCAnTScgKG1pbGxpb25zIG9ubHkpCmNvbnN0IE5VTUJFUl9GT1JNQVQgPSAibm9uZSI7CgovLyBIZWxwZXIgZm9ybWF0dGluZyBmdW5jdGlvbnMKY29uc3QgZm9ybWF0TnVtYmVyID0gKHZhbCkgPT4gewogICAgaWYoIXZhbCB8fCAhTnVtYmVyLmlzRmluaXRlKHZhbCkpewogICAgICAgIHJldHVybiAwOwogICAgfQogIGNvbnN0IG51bSA9ICt2YWw7CgogIHN3aXRjaCAoTlVNQkVSX0ZPUk1BVCkgewogICAgY2FzZSAiYXV0byI6CiAgICAgIGlmIChudW0gPj0gMTAwMDAwMCkgewogICAgICAgIHJldHVybiAobnVtIC8gMTAwMDAwMCkudG9GaXhlZCgyKS5yZXBsYWNlKC9cLj8wKyQvLCAiIikgKyAiTSI7CiAgICAgIH0gZWxzZSBpZiAobnVtID49IDEwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDApLnRvRml4ZWQoMSkucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIksiOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIksiOgogICAgICBpZiAobnVtID49IDEwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDApLnRvRml4ZWQoMSkucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIksiOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIk0iOgogICAgICBpZiAobnVtID49IDEwMDAwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDAwMDApLnRvRml4ZWQoMikucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIk0iOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIm5vbmUiOgogICAgZGVmYXVsdDoKICAgICAgcmV0dXJuIG51bS50b0xvY2FsZVN0cmluZygiZW4tR0IiLCB7CiAgICAgICAgbWluaW11bUZyYWN0aW9uRGlnaXRzOiAwLAogICAgICAgIG1heGltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgfSk7CiAgfQp9OwoKY29uc3QgZm9ybWF0UGVyY2VudCA9ICh2YWwpID0+IHsKICAgIGlmKCF2YWwgfHwgIU51bWJlci5pc0Zpbml0ZSgrdmFsKSl7CiAgICAgICAgcmV0dXJuIDA7CiAgICB9CiAgY29uc3QgcGVyY2VudCA9IE1hdGguYWJzKCt2YWwpOwogIHJldHVybiBwZXJjZW50LnRvTG9jYWxlU3RyaW5nKCJlbi1HQiIsIHsKICAgIHN0eWxlOiAicGVyY2VudCIsCiAgICBtaW5pbXVtRnJhY3Rpb25EaWdpdHM6IDEsCiAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDEsCiAgfSk7Cn07CgovLyBHZXQgcmF3IGRhdGEKY29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7Ci8vIEdlbmVyaWMgYXBwcm9hY2ggLSB3b3JrcyB3aXRoIGFueSB0d28gbWVhc3VyZXMKY29uc3QgcmVwb3J0aW5nRGF0ZSA9IHJhd0RhdGFbMF1bMF07CmNvbnN0IHRvdGFsVXNlcj0gcmF3RGF0YVswXVsxXTsKY29uc3QgbG9nZ2VkSW5Vc2VyID0gcmF3RGF0YVswXVsyXTsKY29uc3QgYmVuY2htYXJrVXNlciA9IHJhd0RhdGFbMF1bM107CmNvbnN0IGJlbmNobWFya1RvdGFsVXNlcj0gcmF3RGF0YVswXVs0XTsKY29uc3QgZGlmZmVyZW5jZSA9IHJhd0RhdGFbMF1bNV07CmNvbnN0IGFjdGl2ZVVzZXJQZXJjZW50YWdlID0gbG9nZ2VkSW5Vc2VyIC8gdG90YWxVc2VyOwpjb25zdCBiZW5jaG1hcmtQZXJjZW50YWdlID0gYmVuY2htYXJrVXNlciAvIGJlbmNobWFya1RvdGFsVXNlcjsKY29uc3QgYWJzb2x1dGVEaWZmZXJlbmNlID0gYWN0aXZlVXNlclBlcmNlbnRhZ2UgLSBiZW5jaG1hcmtQZXJjZW50YWdlOwovLyBEZXRlcm1pbmUgZGlyZWN0aW9uIGFuZCBjb2xvciBiYXNlZCBvbiB0aGUgZGlmZmVyZW5jZQpjb25zdCBkaXJlY3Rpb24gPSBhYnNvbHV0ZURpZmZlcmVuY2UgPj0gMCA/ICLihpEiIDogIuKGkyI7CmNvbnN0IGJlbmNobWFya1RleHQgPQogIGFic29sdXRlRGlmZmVyZW5jZSA+PSAwID8gIm1vcmUgdGhhbiBiZW5jaG1hcmsiIDogImxlc3MgdGhhbiBiZW5jaG1hcmsiOwpjb25zdCBjb2xvckNsYXNzID0gYWJzb2x1dGVEaWZmZXJlbmNlID49IDAgPyAicG9zaXRpdmUiIDogIm5lZ2F0aXZlIjsKY29uc3QgZ2V0VVRDU3RhbXAgPSAoZCkgPT4KICBEYXRlLlVUQyhkLmdldFVUQ0Z1bGxZZWFyKCksIGQuZ2V0VVRDTW9udGgoKSwgZC5nZXRVVENEYXRlKCkpOwoKY29uc3Qgbm93ID0gbmV3IERhdGUoKTsKY29uc3QgdG9kYXlVVEMgPSBnZXRVVENTdGFtcChub3cpOwoKLy8gcGFzc2VkIHJlcG9ydGluZyBkYXRlCmNvbnN0IHBhc3NlZERhdGUgPSBuZXcgRGF0ZShyZXBvcnRpbmdEYXRlKTsKY29uc3QgcGFzc2VkRGF0ZVVUQyA9IGdldFVUQ1N0YW1wKHBhc3NlZERhdGUpOwoKLy8gRGVjaWRlIGNvbXBhcmlzb24gZGF0ZToKLy8gSWYgcmVwb3J0aW5nIGRhdGUgPSB0b2RheSDihpIgY29tcGFyZSB3aXRoIHRvZGF5Ci8vIEVsc2Ug4oaSIGNvbXBhcmUgd2l0aCB5ZXN0ZXJkYXkKY29uc3QgY29tcGFyaXNvbkRhdGVVVEMgPQogIHBhc3NlZERhdGVVVEMgPT09IHRvZGF5VVRDCiAgICA/IHRvZGF5VVRDCiAgICA6IHRvZGF5VVRDIC0gMjQgKiA2MCAqIDYwICogMTAwMDsKCi8vIEZpbmFsIE1hdGNoIGNoZWNrCmNvbnN0IGlzTWF0Y2hpbmcgPSBwYXNzZWREYXRlVVRDID09PSBjb21wYXJpc29uRGF0ZVVUQzsKCmNvbnN0IGNvbXBhcmlzb25IdG1sID0gYAogICAgPGRpdiBjbGFzcz0iY29tcGFyaXNvbi1pdGVtIj4KICAgICAgICA8c3BhbiBjbGFzcz0iYXJyb3cgJHtjb2xvckNsYXNzfSI+JHtkaXJlY3Rpb259PC9zcGFuPgogICAgICAgIDxzcGFuIGNsYXNzPSJwZXJjZW50YWdlICR7Y29sb3JDbGFzc30iPiR7Zm9ybWF0UGVyY2VudCgKICBNYXRoLmFicyhhYnNvbHV0ZURpZmZlcmVuY2UsIDUpLnRvRml4ZWQoNCkKKX0gJHtiZW5jaG1hcmtUZXh0fSAoJHtmb3JtYXRQZXJjZW50KGJlbmNobWFya1BlcmNlbnRhZ2UpfSk8L3NwYW4+CiAgICA8L2Rpdj4KYDsKCi8vIFVwZGF0ZSBkeW5hbWljIGNvbnRlbnQKZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImxhdGVzdC12YWx1ZSIpLmlubmVyVGV4dCA9IGAke2Zvcm1hdE51bWJlcigKICBsb2dnZWRJblVzZXIKKX0gKCR7Zm9ybWF0UGVyY2VudChhY3RpdmVVc2VyUGVyY2VudGFnZSl9KWA7CmlmKGFic29sdXRlRGlmZmVyZW5jZSAmJiBhYnNvbHV0ZURpZmZlcmVuY2UgIT0gMCAmJiBpc01hdGNoaW5nICYmIGRpZmZlcmVuY2UgPj0yOSAmJiBkaWZmZXJlbmNlIDw9MzAgKXsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJjb21wYXJpc29ucyIpLmlubmVySFRNTCA9IGNvbXBhcmlzb25IdG1sOwp9Cg==\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7Cn0KCi5rcGktY29tcGFjdCB7CiAgZm9udC1mYW1pbHk6IHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBkaXNwbGF5OiBmbGV4OwogIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47CiAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7CiAgbWFyZ2luOiAwcHg7CiAgcGFkZGluZzogMDsKICBsaW5lLWhlaWdodDogMS4xOwogIGhlaWdodDogMTAwJTsKICB3aWR0aDogMTAwJTsKICBib3gtc2l6aW5nOiBib3JkZXItYm94Owp9Cgoua3BpLWRhdGUgewogIGZvbnQtc2l6ZTogMS4xZW07CiAgY29sb3I6ICM5OTk7CiAgbWFyZ2luOiAwOwp9Cgoua3BpLXZhbHVlIHsKICBmb250LXNpemU6IDI4cHg7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA1MDA7Cn0KCi5rcGktY29tcGFyaXNvbnMgZGl2IHsKICBmb250LXNpemU6IDE4cHg7CiAgbWFyZ2luOiA1cHggMDsKICBjb2xvcjogaW5oZXJpdDsKfQoKLnBvc2l0aXZlLAoubmVnYXRpdmUgewogIGZvbnQtc2l6ZTogMTFweDsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKfQoKLnBvc2l0aXZlIHsKICBjb2xvcjogIzI0ODUyODsKfQoKLm5lZ2F0aXZlIHsKICBjb2xvcjogI2QzMWUzNDsKfQo=\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBpZD0ia3BpIiBjbGFzcz0ia3BpLWNvbXBhY3QiPgogIDxkaXYgaWQ9InRvZGF5LWxhYmVsIiBjbGFzcz0ia3BpLWRhdGUiPjwvZGl2PgogIDxkaXYgaWQ9ImxhdGVzdC12YWx1ZSIgY2xhc3M9ImtwaS12YWx1ZSI+PC9kaXY+CiAgPGRpdiBpZD0iY29tcGFyaXNvbnMiIGNsYXNzPSJrcGktY29tcGFyaXNvbnMiPjwvZGl2Pgo8L2Rpdj4=\\\"},\\\"splitSizes\\\":[19.11916529379462,80.88083470620538]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: User Parameter
+        value: Location
+      dynamic_name: Contributors and participants
+      dynamic_description: |+
+        Logged in user engagement as contributors and participants
+
+    viz_guid: 09f07599-9952-4971-a0b4-c91b0b6c6110
+  - id: Viz_7
+    answer:
+      name: Adoption leaders by @User Parameter
+      description: Highest user adoption (up to 10) based on @User Parameter
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Percentage %
+        name: Adoption Percentage %
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Logged In
+        name: User Logged In
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[User Status].active [formula_User Logged In] [formula_Total User] top 10 by [formula_Adoption Percentage %] sort by [formula_Adoption Percentage %] descending [Parameter]"
+      answer_columns:
+      - name: Adoption Percentage %
+        custom_name: Adoption rate
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+        dynamic_title: Adoption rate
+        sort_info:
+          category: DEFAULT
+      - name: Parameter
+        custom_name: Department
+        dynamic_title: "[${PARAMETER:User Parameter}]"
+      - name: Total User
+        custom_name: Total users
+        dynamic_title: Total users
+      - name: User Logged In
+        custom_name: No. of logged in users
+        dynamic_title: No. of logged in users
+      table:
+        table_columns:
+        - column_id: Adoption Percentage %
+          show_headline: false
+        - column_id: Parameter
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Logged In
+          show_headline: false
+        ordered_column_ids:
+        - Parameter
+        - User Logged In
+        - Total User
+        - Adoption Percentage %
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Adoption Percentage %\",\"width\": 193.0},{\"columnId\": \"Total User\",\"width\": 156.36862182617188},{\"columnId\": \"User Logged In\",\"width\": 195.73939514160156}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Parameter\",\"User Logged In\",\"Total User\",\"Adoption Percentage %\"],\"columnProperties\": [{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"User Logged In\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Total User\",\"columnProperty\": {\"conditionalFormatting\": {}}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Adoption Percentage %
+        - column_id: Parameter
+        - column_id: Total User
+        - column_id: User Logged In
+        axis_configs:
+        - x:
+          - Parameter
+          "y":
+          - User Logged In
+          - Total User
+          - Adoption Percentage %
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {}},{\"columnId\": \"2579b48c-042d-44af-afaf-b8f4d8c5c08f\",\"columnProperty\": {}},{\"columnId\": \"980ce7d6-e726-490c-bfa1-0f1973c8ccbb\",\"columnProperty\": {}},{\"columnId\": \"User Logged In\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}},{\"columnId\": \"Parameter\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"2866731d-6a90-4473-91fc-80d1f6ec3591\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Logged In\"],\"isOpposite\": false}},{\"id\": \"077348fe-966a-4eba-adcf-882fc2ea731b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total User\"],\"isOpposite\": true}},{\"id\": \"d52270d9-a832-4d75-9b5d-84972d8e884d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Adoption Percentage %\"],\"isOpposite\": true}},{\"id\": \"f17f5925-852f-417c-ae04-856ef5f4baff\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Parameter\"]}}],\"systemSeriesColors\": [{\"serieName\": \"User Logged In\",\"color\": \"rgba(6,191,127,0.5)\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: "Adoption leaders by [${PARAMETER:User Parameter}]"
+      dynamic_description: "Highest user adoption (up to 10) based on [${PARAMETER:User Parameter}]"
+    viz_guid: 75393049-0d0b-4b7d-a5d6-d01201033fac
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_8
+    answer:
+      name: User login frequency distribution
+      description: Frequency of logins by users during the selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Login Frequency
+        name: Login Frequency
+        expr: "if ( [formula_No logins] = [formula_No logins] ) then 'No Logins' else if ( [formula_1-3 times] = [formula_1-3 times] ) then '1-3 times' else if ( [formula_4-7 times] = [formula_4-7 times] ) then '4-7 times' else if ( [formula_8-10 times] = [formula_8-10 times] ) then '8-10 times' else if ( [formula_10+ times] = [formula_10+ times] ) then '10+ times' else null"
+        was_auto_generated: false
+      - id: formula_1-3 times
+        name: 1-3 times
+        expr: "unique count ( if ( group_sum ( [Logged In User] , [User Code] ) > 0 and group_sum ( [Logged In User] , [User Code] ) < 4 ) then [User Code] else null )"
+        was_auto_generated: false
+      - id: formula_10+ times
+        name: 10+ times
+        expr: "unique count ( if ( group_sum ( [Logged In User] , [User Code] ) > 10 ) then [User Code] else null )"
+        was_auto_generated: false
+      - id: formula_4-7 times
+        name: 4-7 times
+        expr: "unique count ( if ( group_sum ( [Logged In User] , [User Code] ) > 3 and group_sum ( [Logged In User] , [User Code] ) < 8 ) then [User Code] else null )"
+        was_auto_generated: false
+      - id: formula_8-10 times
+        name: 8-10 times
+        expr: "unique count ( if ( group_sum ( [Logged In User] , [User Code] ) > 7 and group_sum ( [Logged In User] , [User Code] ) < 11 ) then [User Code] else null )"
+        was_auto_generated: false
+      - id: formula_No logins
+        name: No logins
+        expr: "unique count ( if ( group_sum ( [Logged In User] , [User Code] ) < 1 ) then [User Code] else null )"
+        was_auto_generated: false
+      search_query: "[formula_No logins] [formula_1-3 times] [formula_4-7 times] [formula_8-10 times] [formula_10+ times] [formula_Login Frequency] [User Status].active"
+      answer_columns:
+      - name: 1-3 times
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: 10+ times
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: 4-7 times
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: 8-10 times
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Login Frequency
+      - name: No logins
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: 1-3 times
+          show_headline: false
+        - column_id: 10+ times
+          show_headline: false
+        - column_id: 4-7 times
+          show_headline: false
+        - column_id: 8-10 times
+          show_headline: false
+        - column_id: Login Frequency
+          show_headline: false
+        - column_id: No logins
+          show_headline: false
+        ordered_column_ids:
+        - Login Frequency
+        - No logins
+        - 1-3 times
+        - 4-7 times
+        - 8-10 times
+        - 10+ times
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"No logins\",\"columnProperty\": {}},{\"columnId\": \"1-3 times\",\"columnProperty\": {}},{\"columnId\": \"4-7 times\",\"columnProperty\": {}},{\"columnId\": \"8-10 times\",\"columnProperty\": {}},{\"columnId\": \"10+ times\",\"columnProperty\": {}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: 1-3 times
+        - column_id: 10+ times
+        - column_id: 4-7 times
+        - column_id: 8-10 times
+        - column_id: Login Frequency
+        - column_id: No logins
+        axis_configs:
+        - x:
+          - Login Frequency
+          "y":
+          - No logins
+          - 1-3 times
+          - 4-7 times
+          - 8-10 times
+          - 10+ times
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": false,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"100\\\",\\\"label\\\":{\\\"fontSize\\\":\\\"12\\\",\\\"boldFontWeight\\\":false,\\\"underlineTextDecoration\\\":false,\\\"italicFontStyle\\\":false},\\\"value\\\":{\\\"fontSize\\\":\\\"12\\\",\\\"boldFontWeight\\\":false,\\\"underlineTextDecoration\\\":false,\\\"italicFontStyle\\\":false}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"2\\\",\\\"dashStyle\\\":\\\"Solid\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{\\\"gridLineWidth\\\":\\\"2\\\",\\\"gridLineDashStyle\\\":\\\"Solid\\\"},\\\"yAxis\\\":{\\\"gridLineColor\\\":\\\"\\\",\\\"gridLineWidth\\\":\\\"2\\\",\\\"gridLineDashStyle\\\":\\\"Solid\\\"}},\\\"answerLevelSettings\\\":{\\\"padding\\\":\\\"0.08\\\",\\\"paddingCategories\\\":\\\"\\\",\\\"dashStyle\\\":\\\"Solid\\\",\\\"lineWidth\\\":\\\"\\\",\\\"markerType\\\":\\\"Circle\\\",\\\"markerRadius\\\":\\\"\\\",\\\"borderWidth\\\":\\\"0\\\",\\\"connectingLines\\\":false}}}\",\"dataFieldArea\": \"column\"},\"showStackedLabels\": true,\"allLabels\": true,\"legendPosition\": \"BOTTOM_LEGEND\"},\"columnProperties\": [{\"columnId\": \"Login Frequency\",\"columnProperty\": {}},{\"columnId\": \"No logins\",\"columnProperty\": {\"dataLabels\": true}},{\"columnId\": \"1-3 times\",\"columnProperty\": {\"dataLabels\": true}},{\"columnId\": \"4-7 times\",\"columnProperty\": {\"dataLabels\": true}},{\"columnId\": \"8-10 times\",\"columnProperty\": {\"dataLabels\": true}},{\"columnId\": \"10+ times\",\"columnProperty\": {\"dataLabels\": true}}],\"axisProperties\": [{\"id\": \"6cb136dc-8435-4332-9b6a-3ae5695746a6\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Login Frequency\"],\"name\": \"Login Frequency\",\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":false,\\\"axisName\\\":{\\\"isAxisNameVisible\\\":false,\\\"fontSize\\\":\\\"12\\\",\\\"boldFontWeight\\\":false,\\\"underlineTextDecoration\\\":false,\\\"italicFontStyle\\\":false}},\\\"labels\\\":{\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\",\\\"fontSize\\\":\\\"12\\\",\\\"boldFontWeight\\\":false,\\\"underlineTextDecoration\\\":false,\\\"italicFontStyle\\\":false,\\\"wrap\\\":false},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"\\\"}}}\",\"dynamicTitle\": \"Login Frequency\"}},{\"id\": \"05b3a24e-bc6d-431d-99a6-b8f30af35aae\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"No logins\",\"1-3 times\",\"4-7 times\",\"8-10 times\",\"10+ times\"],\"name\": \"No Logins & 1-3 times & 4-7 times & 8-10 times & 10+ times\",\"isOpposite\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isAxisNameVisible\\\":false,\\\"fontSize\\\":\\\"12\\\",\\\"boldFontWeight\\\":false,\\\"underlineTextDecoration\\\":false,\\\"italicFontStyle\\\":false}},\\\"labels\\\":{\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\",\\\"fontSize\\\":\\\"12\\\",\\\"boldFontWeight\\\":false,\\\"underlineTextDecoration\\\":false,\\\"italicFontStyle\\\":false,\\\"wrap\\\":false},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"\\\"}}}\",\"dynamicTitle\": \"No Logins & 1-3 times & 4-7 times & 8-10 times & 10+ times\"}}],\"seriesColors\": [{\"serieName\": \"10+ times\",\"color\": \"#71A1F4\"},{\"serieName\": \"No logins\",\"color\": \"#8338ec\"},{\"serieName\": \"1-3 times\",\"color\": \"#ffcb3d\"},{\"serieName\": \"4-7 times\",\"color\": \"#ff3d91\"},{\"serieName\": \"8-10 times\",\"color\": \"#3a86ff\"}],\"systemSeriesColors\": [{\"serieName\": \"No logins\",\"color\": \"#06BF7F\"},{\"serieName\": \"1-3 times\",\"color\": \"#FCC838\"},{\"serieName\": \"4-7 times\",\"color\": \"#48D1E0\"},{\"serieName\": \"8-10 times\",\"color\": \"#2E75F0\"},{\"serieName\": \"10+ times\",\"color\": \"#71A1F4\"}],\"tooltipConfig\": {\"columnIds\": [\"No logins\",\"1-3 times\",\"4-7 times\",\"8-10 times\",\"10+ times\"]}}"
+        custom_visual_props: "{}"
+      display_mode: CHART_MODE
+      dynamic_name: User login frequency distribution
+      dynamic_description: Frequency of logins by users during the selected time period
+    viz_guid: a3dfda3f-f557-428c-9e62-b931fd686252
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_9
+    answer:
+      name: Adoption laggards by @User Parameter
+      description: Lowest user adoption (up to 10) based on @User Parameter
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Percentage %
+        name: Adoption Percentage %
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Logged In
+        name: User Logged In
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[User Status].active [formula_User Logged In] [formula_Total User] bottom 10 by [formula_Adoption Percentage %] sort by [formula_Adoption Percentage %] [Parameter]"
+      answer_columns:
+      - name: Adoption Percentage %
+        custom_name: Adoption rate
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+        dynamic_title: Adoption rate
+        sort_info:
+          category: DEFAULT
+      - name: Parameter
+        custom_name: Department
+        dynamic_title: "[${PARAMETER:User Parameter}]"
+      - name: Total User
+        custom_name: Total users
+        dynamic_title: Total users
+      - name: User Logged In
+        custom_name: No. of logged in users
+        dynamic_title: No. of logged in users
+      table:
+        table_columns:
+        - column_id: Adoption Percentage %
+          show_headline: false
+        - column_id: Parameter
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Logged In
+          show_headline: false
+        ordered_column_ids:
+        - Parameter
+        - User Logged In
+        - Total User
+        - Adoption Percentage %
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Adoption Percentage %\",\"width\": 193.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Parameter\",\"User Logged In\",\"Total User\",\"Adoption Percentage %\"],\"columnProperties\": [{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"User Logged In\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Total User\",\"columnProperty\": {\"conditionalFormatting\": {}}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Adoption Percentage %
+        - column_id: Parameter
+        - column_id: Total User
+        - column_id: User Logged In
+        axis_configs:
+        - x:
+          - Parameter
+          "y":
+          - User Logged In
+          - Total User
+          - Adoption Percentage %
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {}},{\"columnId\": \"1061ba4c-d0f7-41b5-804f-a5e3501a5da2\",\"columnProperty\": {}},{\"columnId\": \"d55aea02-869f-4b78-8157-545243cccd99\",\"columnProperty\": {}},{\"columnId\": \"User Logged In\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}},{\"columnId\": \"Parameter\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"76e5459f-7cb1-4020-81a0-2a38d4da4208\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Logged In\"],\"isOpposite\": false}},{\"id\": \"476f5dd1-25e9-40cf-9b6a-6734dd1b5196\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total User\"],\"isOpposite\": true}},{\"id\": \"c33d6224-9bfa-4d93-90da-2d88e161ab00\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Adoption Percentage %\"],\"isOpposite\": true}},{\"id\": \"0dd85e4d-a0e1-4f2a-8161-c52dd0ae1f02\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Parameter\"]}}],\"systemSeriesColors\": [{\"serieName\": \"User Logged In\",\"color\": \"rgba(6,191,127,0.5)\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: "Adoption laggards by [${PARAMETER:User Parameter}]"
+      dynamic_description: "Lowest user adoption (up to 10) based on [${PARAMETER:User Parameter}]"
+    viz_guid: 155e8863-f9b1-4cc8-aaac-7bd907c7e079
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  filters:
+  - column:
+    - Reporting Date
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Interaction Datetime
+    excluded_visualizations:
+    - Viz_2
+    - Viz_1
+    - Viz_3
+    - Viz_5
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_9
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Category Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Segment Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Company Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 3
+      height: 6
+      width: 7
+    - visualization_id: Viz_2
+      x: 4
+      "y": 0
+      height: 3
+      width: 4
+    - visualization_id: Viz_3
+      x: 7
+      "y": 3
+      height: 6
+      width: 5
+    - visualization_id: Viz_4
+      x: 0
+      "y": 9
+      height: 10
+      width: 6
+    - visualization_id: Viz_5
+      x: 0
+      "y": 0
+      height: 3
+      width: 4
+    - visualization_id: Viz_6
+      x: 8
+      "y": 0
+      height: 3
+      width: 4
+    - visualization_id: Viz_7
+      x: 0
+      "y": 19
+      height: 10
+      width: 6
+    - visualization_id: Viz_8
+      x: 6
+      "y": 9
+      height: 10
+      width: 6
+    - visualization_id: Viz_9
+      x: 6
+      "y": 19
+      height: 10
+      width: 6
+  parameter_overrides:
+  - key: 5eb9e9e6-e01f-4529-8de1-14ac8af0360c
+    value:
+      name: User::User Parameter
+  ordered_chips:
+  - name: Reporting Date
+    type: FILTER
+  - name: Interaction Datetime
+    type: FILTER
+  - name: Location
+    type: FILTER
+  - name: Department
+    type: FILTER
+  - name: Category Name
+    type: FILTER
+  - name: Segment Name
+    type: FILTER
+  - name: Tenant Code
+    type: FILTER
+  - name: Company Name
+    type: FILTER
+  - name: User::User Parameter
+    type: PARAMETER
+  views:
+  - view_guid: 60c63c6f-0cab-4afb-8386-eaa0f09a353c
+    name: Rishab test
+    view_filters:
+    - column:
+      - Reporting Date
+      date_filter:
+        type: LAST_N_PERIOD
+        number: 90
+        oper: =
+        date_period: DAY
+    - column:
+      - Interaction Datetime
+      date_filter:
+        type: LAST_N_PERIOD
+        number: 30
+        oper: =
+        date_period: DAY
+    - column:
+      - Location
+      oper: =
+    - column:
+      - Department
+      oper: in
+      values:
+      - AWS Migration
+    - column:
+      - Category Name
+      oper: =
+    - column:
+      - Segment Name
+      oper: =
+    - column:
+      - Tenant Code
+      oper: in
+      values:
+      - 191e03de-fb5e-4b01-b9fd-faf1873292a6
+    - column:
+      - Company Name
+      oper: =
+    is_public: false
+    view_parameters:
+    - name: User::User Parameter
+      id: 5eb9e9e6-e01f-4529-8de1-14ac8af0360c
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "false"
+    - name: hide_group_description
+      value: "false"
+    - name: hide_group_tile_description
+      value: "false"
+    - name: hide_tile_description
+      value: "false"
