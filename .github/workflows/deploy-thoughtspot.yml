@@ -3,43 +3,48 @@ name: Deploy ThoughtSpot TMLs
 on:
   workflow_dispatch:
     inputs:
-      deploy_qa:
-        description: "Deploy to QA org"
-        required: false
+      merge_qa:
+        description: "Merge test into qa"
         type: boolean
-      deploy_perf:
-        description: "Deploy to PERF org"
-        required: false
+      merge_perf:
+        description: "Merge test into perf"
         type: boolean
-      deploy_migt:
-        description: "Deploy to MIGT org"
-        required: false
+      merge_migt:
+        description: "Merge test into migt"
         type: boolean
 
 jobs:
-  deploy:
+  merge:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          ref: test
+          fetch-depth: 0   # IMPORTANT for merging
 
-      - name: Deploy to QA
-        if: ${{ inputs.deploy_qa }}
+      - name: Configure git
         run: |
-          echo "Deploying ThoughtSpot TMLs to QA"
-          # curl / ts-cli / python command goes here
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
 
-      - name: Deploy to PERF
-        if: ${{ inputs.deploy_perf }}
+      - name: Merge test into qa
+        if: ${{ inputs.merge_qa }}
         run: |
-          echo "Deploying ThoughtSpot TMLs to PERF"
-          # curl / ts-cli / python command goes here
+          git checkout qa
+          git merge test --no-ff
+          git push origin qa
 
-      - name: Deploy to MIGT
-        if: ${{ inputs.deploy_migt }}
+      - name: Merge test into perf
+        if: ${{ inputs.merge_perf }}
         run: |
-          echo "Deploying ThoughtSpot TMLs to MIGT"
-          # curl / ts-cli / python command goes here
+          git checkout perf
+          git merge test --no-ff
+          git push origin perf
+
+      - name: Merge test into migt
+        if: ${{ inputs.merge_migt }}
+        run: |
+          git checkout migt
+          git merge test --no-ff
+          git push origin migt
