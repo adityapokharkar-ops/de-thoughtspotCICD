@@ -7,12 +7,10 @@ on:
         description: "Deploy to QA org"
         required: false
         type: boolean
-
       deploy_perf:
         description: "Deploy to PERF org"
         required: false
         type: boolean
-
       deploy_migt:
         description: "Deploy to MIGT org"
         required: false
@@ -31,14 +29,17 @@ jobs:
       - name: Deploy to QA
         if: ${{ inputs.deploy_qa }}
         run: |
-          ./deploy.sh qa
+          echo "Deploying ThoughtSpot TMLs to QA"
+          # curl / ts-cli / python command goes here
 
       - name: Deploy to PERF
         if: ${{ inputs.deploy_perf }}
         run: |
-          ./deploy.sh perf
+          echo "Deploying ThoughtSpot TMLs to PERF"
+          # curl / ts-cli / python command goes here
 
       - name: Deploy to MIGT
         if: ${{ inputs.deploy_migt }}
         run: |
-          ./deploy.sh migt
+          echo "Deploying ThoughtSpot TMLs to MIGT"
+          # curl / ts-cli / python command goes here
