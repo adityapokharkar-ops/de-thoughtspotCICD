@@ -1,0 +1,44 @@
+name: Deploy ThoughtSpot TMLs
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_qa:
+        description: "Deploy to QA org"
+        required: false
+        type: boolean
+
+      deploy_perf:
+        description: "Deploy to PERF org"
+        required: false
+        type: boolean
+
+      deploy_migt:
+        description: "Deploy to MIGT org"
+        required: false
+        type: boolean
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: test
+
+      - name: Deploy to QA
+        if: ${{ inputs.deploy_qa }}
+        run: |
+          ./deploy.sh qa
+
+      - name: Deploy to PERF
+        if: ${{ inputs.deploy_perf }}
+        run: |
+          ./deploy.sh perf
+
+      - name: Deploy to MIGT
+        if: ${{ inputs.deploy_migt }}
+        run: |
+          ./deploy.sh migt
