@@ -1,0 +1,260 @@
+guid: dd02e0c5-f962-4b92-bcd3-8a03a7059d03
+liveboard:
+  name: Monthly reports csv
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Monthly Reports
+      tables:
+      - id: Monthly Tenant Adoption Snapshot
+        name: Monthly Tenant Adoption Snapshot
+        fqn: 69bee7f9-19c2-4afb-9b3d-a5fb826a05fd
+      formulas:
+      - id: formula_App adoption rate (as of today)
+        name: App adoption rate (as of today)
+        expr: "( sum ( [Logged In User Count] ) / sum ( [User Count] ) ) * 100"
+        was_auto_generated: false
+      - id: formula_App adoption rate (month end snapshot)
+        name: App adoption rate (month end snapshot)
+        expr: "( sum ( [Unique Logins Overall] ) / sum ( [Total Active Users] ) ) * 100"
+        was_auto_generated: false
+      - id: formula_Avg views per user (month end snapshot)
+        name: Avg views per user (month end snapshot)
+        expr: "sum ( [Total Content Views Overall] ) / sum ( [Total Active Users] )"
+        was_auto_generated: false
+      - id: formula_Posts & replies(month end snapshot)
+        name: Posts & replies(month end snapshot)
+        expr: "sum ( [Total Posts] ) + sum ( [Total Replies] ) + sum ( [Total Comments] )"
+        was_auto_generated: false
+      - id: formula_Reactions (month end snapshot)
+        name: Reactions (month end snapshot)
+        expr: "sum ( [Total Likes] )"
+        was_auto_generated: false
+      - id: formula_Shares (month end snapshot)
+        name: Shares (month end snapshot)
+        expr: "sum ( [Total Shares] )"
+        was_auto_generated: false
+      - id: formula_Total logged in users (month end snapshot)
+        name: Total logged in users (month end snapshot)
+        expr: "sum ( [Unique Logins Overall] )"
+        was_auto_generated: false
+      - id: formula_Total logged in users(as of today)
+        name: Total logged in users(as of today)
+        expr: "sum ( [Logged In User Count] )"
+        was_auto_generated: false
+      - id: formula_Total users (as of today)
+        name: Total users (as of today)
+        expr: "sum ( [User Count] )"
+        was_auto_generated: false
+      - id: formula_Total users (month end snapshot )
+        name: Total users (month end snapshot )
+        expr: "sum ( [Total Active Users] )"
+        was_auto_generated: false
+      - id: formula_Viewed content (month end snapshot)
+        name: Viewed content (month end snapshot)
+        expr: "sum ( [Total Content Views Overall] )"
+        was_auto_generated: false
+      search_query: "[Reporting Month] [Reporting Month].monthly [formula_Total users (month end snapshot )] [formula_Total logged in users (month end snapshot)] [formula_App adoption rate (month end snapshot)] [formula_Viewed content (month end snapshot)] [formula_Avg views per user (month end snapshot)] [formula_Posts & replies(month end snapshot)] [formula_Reactions (month end snapshot)] [formula_Shares (month end snapshot)] sort by [Reporting Month] [Reporting Month].monthly descending top 36 by [Reporting Month] [formula_Total logged in users(as of today)] [formula_Total users (as of today)] [formula_App adoption rate (as of today)]"
+      answer_columns:
+      - name: App adoption rate (as of today)
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: AUTO
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: App adoption rate (month end snapshot)
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+      - name: Avg views per user (month end snapshot)
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: false
+          isCategoryEditable: true
+      - name: Month(Reporting Month)
+        custom_name: Month
+        dynamic_title: Month
+        sort_info:
+          category: DEFAULT
+      - name: Posts & replies(month end snapshot)
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Reactions (month end snapshot)
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Shares (month end snapshot)
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total logged in users (month end snapshot)
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total logged in users(as of today)
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total users (as of today)
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total users (month end snapshot )
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Viewed content (month end snapshot)
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: App adoption rate (as of today)
+          show_headline: false
+        - column_id: App adoption rate (month end snapshot)
+          show_headline: false
+        - column_id: Avg views per user (month end snapshot)
+          show_headline: false
+        - column_id: Month(Reporting Month)
+          show_headline: false
+        - column_id: Posts & replies(month end snapshot)
+          show_headline: false
+        - column_id: Reactions (month end snapshot)
+          show_headline: false
+        - column_id: Shares (month end snapshot)
+          show_headline: false
+        - column_id: Total logged in users (month end snapshot)
+          show_headline: false
+        - column_id: Total logged in users(as of today)
+          show_headline: false
+        - column_id: Total users (as of today)
+          show_headline: false
+        - column_id: Total users (month end snapshot )
+          show_headline: false
+        - column_id: Viewed content (month end snapshot)
+          show_headline: false
+        ordered_column_ids:
+        - Month(Reporting Month)
+        - Total users (month end snapshot )
+        - Total logged in users (month end snapshot)
+        - App adoption rate (month end snapshot)
+        - Viewed content (month end snapshot)
+        - Avg views per user (month end snapshot)
+        - Posts & replies(month end snapshot)
+        - Reactions (month end snapshot)
+        - Shares (month end snapshot)
+        - Total logged in users(as of today)
+        - Total users (as of today)
+        - App adoption rate (as of today)
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"orderedColumnIds\": [\"Month(Reporting Month)\",\"Total users (month end snapshot )\",\"Total logged in users (month end snapshot)\",\"App adoption rate (month end snapshot)\",\"Total users (as of today)\",\"Total logged in users(as of today)\",\"App adoption rate (as of today)\",\"Viewed content (month end snapshot)\",\"Avg views per user (month end snapshot)\",\"Posts & replies(month end snapshot)\",\"Reactions (month end snapshot)\",\"Shares (month end snapshot)\"],\"columnProperties\": [{\"columnId\": \"Month(Reporting Month)\",\"columnProperty\": {}},{\"columnId\": \"Total users (month end snapshot )\",\"columnProperty\": {}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: App adoption rate (as of today)
+        - column_id: App adoption rate (month end snapshot)
+        - column_id: Avg views per user (month end snapshot)
+        - column_id: Month(Reporting Month)
+        - column_id: Posts & replies(month end snapshot)
+        - column_id: Reactions (month end snapshot)
+        - column_id: Shares (month end snapshot)
+        - column_id: Total logged in users (month end snapshot)
+        - column_id: Total logged in users(as of today)
+        - column_id: Total users (as of today)
+        - column_id: Total users (month end snapshot )
+        - column_id: Viewed content (month end snapshot)
+        axis_configs:
+        - x:
+          - Month(Reporting Month)
+          "y":
+          - Total users (month end snapshot )
+          - Total logged in users (month end snapshot)
+          - App adoption rate (month end snapshot)
+          - Viewed content (month end snapshot)
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Month(Reporting Month)\",\"columnProperty\": {}},{\"columnId\": \"Total users (month end snapshot )\",\"columnProperty\": {}},{\"columnId\": \"Total logged in users (month end snapshot)\",\"columnProperty\": {}},{\"columnId\": \"App adoption rate (month end snapshot)\",\"columnProperty\": {}},{\"columnId\": \"Viewed content (month end snapshot)\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"eb27b1d3-799b-4355-83fd-589b77140bd8\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total users (month end snapshot )\"],\"isOpposite\": false}},{\"id\": \"2b436318-5203-4de7-bdcd-e76e7f3430c8\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total logged in users (month end snapshot)\"],\"isOpposite\": true}},{\"id\": \"50e4058a-ad71-42c1-b5a4-a5b8932e57fb\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"App adoption rate (month end snapshot)\"],\"isOpposite\": true}},{\"id\": \"0056be86-6353-4b9c-97a7-b523273e1b15\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Viewed content (month end snapshot)\"],\"isOpposite\": true}},{\"id\": \"5f427695-1370-4fdd-84b0-54e5267ece46\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Month(Reporting Month)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total users (month end snapshot )\",\"color\": \"#8C62F5\"},{\"serieName\": \"Total logged in users (month end snapshot)\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Monthly Reports
+    viz_guid: 53a4c537-dbf4-483b-8fe9-36925bfa0b15
+  filters:
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 8
+      width: 12
+  ordered_chips:
+  - name: Tenant Code
+    type: FILTER
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "false"
+    - name: hide_group_description
+      value: "false"
+    - name: hide_group_tile_description
+      value: "false"
+    - name: hide_tile_description
+      value: "false"
+    - name: kpi_hero_font_size
+      value: M
