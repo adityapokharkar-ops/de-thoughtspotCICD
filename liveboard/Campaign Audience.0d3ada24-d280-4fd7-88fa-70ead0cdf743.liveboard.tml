@@ -1,0 +1,434 @@
+guid: 0d3ada24-d280-4fd7-88fa-70ead0cdf743
+liveboard:
+  name: Campaign Audience
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Campaign content
+      description: "Count of published pages, events, and albums added to campaigns (unpublished content excluded)."
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Content author count
+        name: Content author count
+        expr: "unique count ( [Primary Author Code] )"
+        was_auto_generated: false
+      - id: formula_Content site count
+        name: Content site count
+        expr: "unique count ( [Site Code] )"
+        was_auto_generated: false
+      - id: formula_Content total count
+        name: Content total count
+        expr: "count ( [Content Code] )"
+        was_auto_generated: false
+      search_query: "[Is Content Active?].true [Is Content Site Active?].true [formula_Content total count] [formula_Content site count] [formula_Content author count] [Is Campaign Assets Deleted].false [Is Campaign Deleted].false"
+      answer_columns:
+      - name: Content author count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+      - name: Content site count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+      - name: Content total count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Content author count
+          show_headline: false
+        - column_id: Content site count
+          show_headline: false
+        - column_id: Content total count
+          show_headline: false
+        ordered_column_ids:
+        - Content total count
+        - Content site count
+        - Content author count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true,\"showTableFooter\": false}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Content author count
+        - column_id: Content site count
+        - column_id: Content total count
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Measure names\",\"columnProperty\": {}},{\"columnId\": \"Measure values\",\"columnProperty\": {}},{\"columnId\": \"Content total count\",\"columnProperty\": {}},{\"columnId\": \"Content site count\",\"columnProperty\": {}},{\"columnId\": \"Content author count\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"da0c7882-8198-464e-8502-6628b45e6837\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Content total count\"],\"isOpposite\": false}},{\"id\": \"7c51701b-0e5c-4466-aadf-ce986163b82b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Content site count\"],\"isOpposite\": true}},{\"id\": \"b75f4da5-d18b-47b0-97ee-8a008f7126bd\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Content author count\"],\"isOpposite\": true}},{\"id\": \"811e6ca2-c1f8-49f5-8882-160e28f9f647\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Content total count
+            - Content site count
+            - Content author count
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gSGVscGVyIGZvcm1hdHRpbmcgZnVuY3Rpb25zCmNvbnN0IE5VTUJFUl9GT1JNQVQgPSAibm9uZSI7Cgpjb25zdCBmb3JtYXROdW1iZXIgPSAodmFsKSA9PiB7CiAgICBpZiAoIXZhbCB8fCAhTnVtYmVyLmlzRmluaXRlKHZhbCkpIHsKICAgICAgICByZXR1cm4gMDsKICAgIH0KICAgIGNvbnN0IG51bSA9ICt2YWw7CiAgICBzd2l0Y2ggKE5VTUJFUl9GT1JNQVQpIHsKICAgICAgICBjYXNlICJub25lIjoKICAgICAgICBkZWZhdWx0OgogICAgICAgICAgICByZXR1cm4gbnVtLnRvTG9jYWxlU3RyaW5nKCJlbi1HQiIsIHsKICAgICAgICAgICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICAgICAgICAgIG1heGltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICAgICAgfSk7CiAgICB9Cn07Cgpjb25zdCByYXdEYXRhID0gdml6LmdldERhdGFGcm9tU2VhcmNoUXVlcnkoKS5nZXREYXRhKCkuZGF0YTsKY29uc3QgY3VycmVudFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMF0gPz8gMDsKY29uc3Qgc3VidGV4dEZpcnN0VmFsdWUgPSByYXdEYXRhPy5bMF0/LlsxXSA/PyAwOwpjb25zdCBzdWJ0ZXh0U2Vjb25kVmFsdWUgPSByYXdEYXRhPy5bMF0/LlsyXSA/PyAwOwpjb25zdCB2YWx1ZUVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImtwaS12YWx1ZSIpOwpjb25zdCBjaGFuZ2VFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktc3ViaGVhZGluZyIpOwoKdmFsdWVFbC5pbm5lclRleHQgPSBgJHtmb3JtYXROdW1iZXIoY3VycmVudFZhbHVlKX1gOwoKY2hhbmdlRWwuaW5uZXJIVE1MID0gYAogICAgICAgPHNwYW4gY2xhc3M9ImNvbXBhcmUiPiR7Zm9ybWF0TnVtYmVyKAogICAgc3VidGV4dEZpcnN0VmFsdWUKKX0gc2l0ZSwgJHtmb3JtYXROdW1iZXIoc3VidGV4dFNlY29uZFZhbHVlKX0gYXV0aG9yPC9zcGFuPgogICAKICBgOwoK\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBmb250LWZhbWlseTogIkludGVyIiwgc3lzdGVtLXVpLCBzYW5zLXNlcmlmOwp9Cgoja3BpLXZhbHVlIHsKICBmb250LXNpemU6IDQ4cHg7CiAgZm9udC13ZWlnaHQ6IDcwMDsKICBjb2xvcjogIzAwMDAwMDsKfQoKI2twaS1zdWJoZWFkaW5nIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGNvbG9yOiAjNkI2QjZCCn0\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBpZD0ia3BpLXZhbHVlIj48L2Rpdj4KICA8ZGl2IGlkPSJrcGktc3ViaGVhZGluZyI+PC9kaXY+CjwvZGl2Pgo\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\",\"axisVisualProps\":{},\"columnVisualProps\":{},\"dataLabelVisualProps\":{},\"tooltipVisualProps\":{},\"legendVisualProps\":{},\"displayVisualProps\":{}}"
+      display_mode: CHART_MODE
+      dynamic_name: Campaign content
+      dynamic_description: "Count of published pages, events, and albums added to campaigns (unpublished content excluded)."
+    viz_guid: fd1225aa-7057-4cd5-af02-b1216f568965
+  - id: Viz_2
+    answer:
+      name: Campaign audience
+      description: "Audience of campaign‑targeted site content, including both site members and followers (Inactive users excluded)"
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Audience department count
+        name: Audience department count
+        expr: "unique count ( [Site Member Follower Department]  )"
+        was_auto_generated: false
+      - id: formula_Audience location count
+        name: Audience location count
+        expr: "unique count ( [Site Member Follower Location] )"
+        was_auto_generated: false
+      - id: formula_Total campaign audience count
+        name: Total campaign audience count
+        expr: "unique count ( [Site Member Follower User Code] )"
+        was_auto_generated: false
+      search_query: "[Is Content Active?].true [Is Content Site Active?].true [Is Campaign Assets Deleted].false [Is Campaign Deleted].false [formula_Total campaign audience count] [formula_Audience department count] [formula_Audience location count]"
+      answer_columns:
+      - name: Audience department count
+      - name: Audience location count
+      - name: Total campaign audience count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Audience department count
+          show_headline: false
+        - column_id: Audience location count
+          show_headline: false
+        - column_id: Total campaign audience count
+          show_headline: false
+        ordered_column_ids:
+        - Total campaign audience count
+        - Audience department count
+        - Audience location count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true,\"showTableFooter\": false}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Audience department count
+        - column_id: Audience location count
+        - column_id: Total campaign audience count
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Measure names\",\"columnProperty\": {}},{\"columnId\": \"Measure values\",\"columnProperty\": {}},{\"columnId\": \"Total campaign audience count\",\"columnProperty\": {}},{\"columnId\": \"Audience department count\",\"columnProperty\": {}},{\"columnId\": \"Audience location count\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"1d9ff7a7-d8f4-45ba-b286-8cc931cf1f40\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total campaign audience count\"],\"isOpposite\": false}},{\"id\": \"7462cc73-936d-4652-a76c-6f37e08cb3ae\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Audience department count\"],\"isOpposite\": true}},{\"id\": \"6a60661e-c80d-4c14-80c9-7880ca60b213\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Audience location count\"],\"isOpposite\": true}},{\"id\": \"ca9dc286-5814-4961-b176-f942bb09085d\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Total campaign audience count
+            - Audience department count
+            - Audience location count
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Y29uc3QgTlVNQkVSX0ZPUk1BVCA9ICJub25lIjsKCmNvbnN0IGZvcm1hdE51bWJlciA9ICh2YWwpID0+IHsKICAgIGlmICghdmFsIHx8ICFOdW1iZXIuaXNGaW5pdGUodmFsKSkgewogICAgICAgIHJldHVybiAwOwogICAgfQogICAgY29uc3QgbnVtID0gK3ZhbDsKICAgIHN3aXRjaCAoTlVNQkVSX0ZPUk1BVCkgewogICAgICAgIGNhc2UgIm5vbmUiOgogICAgICAgIGRlZmF1bHQ6CiAgICAgICAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgICAgICAgICAgbWluaW11bUZyYWN0aW9uRGlnaXRzOiAwLAogICAgICAgICAgICAgICAgbWF4aW11bUZyYWN0aW9uRGlnaXRzOiAwLAogICAgICAgICAgICB9KTsKICAgIH0KfTsKY29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7CmNvbnN0IGN1cnJlbnRWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzBdID8/IDA7CmNvbnN0IHN1YnRleHRGaXJzdFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMV0gPz8gMDsKY29uc3Qgc3VidGV4dFNlY29uZFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMl0gPz8gMDsKY29uc3QgdmFsdWVFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktdmFsdWUiKTsKY29uc3QgY2hhbmdlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLXN1YmhlYWRpbmciKTsKCnZhbHVlRWwuaW5uZXJUZXh0ID0gYCR7Zm9ybWF0TnVtYmVyKGN1cnJlbnRWYWx1ZSl9YDsKCmNoYW5nZUVsLmlubmVySFRNTCA9IGAKICAgICAgIDxzcGFuIGNsYXNzPSJjb21wYXJlIj4ke2Zvcm1hdE51bWJlcihzdWJ0ZXh0Rmlyc3RWYWx1ZSl9IGRlcGFydG1lbnQsICR7Zm9ybWF0TnVtYmVyKHN1YnRleHRTZWNvbmRWYWx1ZSl9IGxvY2F0aW9uPC9zcGFuPgogICAKICBgOw\\u003d\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBmb250LWZhbWlseTogIkludGVyIiwgc3lzdGVtLXVpLCBzYW5zLXNlcmlmOwp9Cgoja3BpLXZhbHVlIHsKICBmb250LXNpemU6IDQ4cHg7CiAgZm9udC13ZWlnaHQ6IDcwMDsKICBjb2xvcjogIzAwMDAwMDsKfQoKI2twaS1zdWJoZWFkaW5nIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGNvbG9yOiAjNkI2QjZCCn0\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBpZD0ia3BpLXZhbHVlIj48L2Rpdj4KICA8ZGl2IGlkPSJrcGktc3ViaGVhZGluZyI+PC9kaXY+CjwvZGl2Pgo\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\",\"axisVisualProps\":{},\"columnVisualProps\":{},\"dataLabelVisualProps\":{},\"tooltipVisualProps\":{},\"legendVisualProps\":{},\"displayVisualProps\":{}}"
+      display_mode: CHART_MODE
+      dynamic_name: Campaign audience
+      dynamic_description: "Audience of campaign‑targeted site content, including both site members and followers (Inactive users excluded)"
+    viz_guid: 6e9460f1-6204-443b-932b-4ac84bbc5b2b
+  - id: Viz_3
+    answer:
+      name: Reach
+      description: Campaign audience members who viewed at least one campaign content; Analytics start from the contents' initial publish date.​
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Reach count
+        name: Reach count
+        expr: "unique_count_if ( [Interaction Datetime] >= [Content start date] and [Interaction Datetime] <= [Content end date] , [Interacted Participation User Code] )"
+        was_auto_generated: false
+      - id: formula_Reach count percentage
+        name: Reach count percentage
+        expr: "unique_count_if ( [Interaction Datetime] >= [Content start date] and [Interaction Datetime] <= [Content end date] , [Interacted Participation User Code] ) / unique count ( [Site Member Follower User Code] ) * 100"
+        was_auto_generated: false
+      search_query: "[Is Content Active?].true [Is Content Site Active?].true [Is Campaign Assets Deleted].false [Is Campaign Deleted].false [formula_Reach count] [Site Member Follower User Status Code].US001 [formula_Reach count percentage]"
+      answer_columns:
+      - name: Reach count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+      - name: Reach count percentage
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Reach count
+          show_headline: false
+        - column_id: Reach count percentage
+          show_headline: false
+        ordered_column_ids:
+        - Reach count
+        - Reach count percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true,\"showTableFooter\": false}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Reach count
+        - column_id: Reach count percentage
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Measure names\",\"columnProperty\": {}},{\"columnId\": \"Measure values\",\"columnProperty\": {}},{\"columnId\": \"Reach count\",\"columnProperty\": {}},{\"columnId\": \"Reach count percentage\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"c79aceaa-f72b-4b54-b11e-8fe6b88cdcaf\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reach count\"],\"isOpposite\": false}},{\"id\": \"ad380a1e-0eba-449c-8e62-ba83d73fbd8e\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reach count percentage\"],\"isOpposite\": true}},{\"id\": \"15246533-3226-41b2-bcc0-88ccdbdce77b\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Reach count
+            - Reach count percentage
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"LyoqCiAqIEF2YWlsYWJsZSBDb2x1bW5zOgogKiAiUmVhY2ggY291bnQiCiAqICJSZWFjaCBjb3VudCBwZXJjZW50YWdlIgogKiAiTWVhc3VyZSBuYW1lcyIgLy8gSWYgJ21lYXN1cmVWYWx1ZXMnIGlzIGVuYWJsZWQuCiAqICJNZWFzdXJlIHZhbHVlcyIgLy8gSWYgJ21lYXN1cmVWYWx1ZXMnIGlzIGVuYWJsZWQuCiAqIC0tLSBFTkQgLS0tIAogKi8KCmNvbnN0IE5VTUJFUl9GT1JNQVQgPSAibm9uZSI7Cgpjb25zdCBmb3JtYXROdW1iZXIgPSAodmFsKSA9PiB7CiAgICBjb25zb2xlLmxvZygndmFsJywgdmFsKQogICAgaWYgKCF2YWwgfHwgIU51bWJlci5pc0Zpbml0ZSh2YWwpKSB7CiAgICAgICAgcmV0dXJuIDA7CiAgICB9CiAgICBjb25zdCBudW0gPSArdmFsOwogICAgc3dpdGNoIChOVU1CRVJfRk9STUFUKSB7CiAgICAgICAgY2FzZSAibm9uZSI6CiAgICAgICAgZGVmYXVsdDoKICAgICAgICAgICAgY29uc29sZS5sb2coJ3NzcycsIG51bSkKICAgICAgICAgICAgcmV0dXJuIG51bS50b0xvY2FsZVN0cmluZygiZW4tR0IiLCB7CiAgICAgICAgICAgICAgICBtaW5pbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgICAgICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgICAgICAgIH0pOwogICAgfQp9OwoKY29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7CmNvbnN0IGN1cnJlbnRWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzFdID8/IDA7CmNvbnN0IHN1YnRleHRGaXJzdFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMF0gPz8gMDsKY29uc3QgdmFsdWVFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktdmFsdWUiKTsKY29uc3QgY2hhbmdlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLXN1YmhlYWRpbmciKTsKCnZhbHVlRWwuaW5uZXJUZXh0ID0gY3VycmVudFZhbHVlLnRvRml4ZWQoMikgKyAnJSc7CgpjaGFuZ2VFbC5pbm5lckhUTUwgPSBgCiAgICAgICA8c3BhbiBjbGFzcz0iY29tcGFyZSI+JHtmb3JtYXROdW1iZXIoc3VidGV4dEZpcnN0VmFsdWUpfSBwZW9wbGUgdmlld2VkIGF0IGxlYXN0IG9uZSBjb250ZW50IGl0ZW08L3NwYW4+CiAgIAogIGA7\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzExMTsKfQoKLmtwaS1jb250YWluZXIgewogIC8qIGRpc3BsYXk6IGZsZXg7ICovCiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgYm94LXNpemluZzogYm9yZGVyLWJveDsKfQoKI2twaS12YWx1ZSB7CiAgZm9udC1zaXplOiA0OHB4OwogIGZvbnQtd2VpZ2h0OiA3MDA7CiAgY29sb3I6ICMwMDAwMDA7CiAgbGluZS1oZWlnaHQ6IDEuMTsKICBtYXJnaW4tYm90dG9tOiA0cHg7Cn0KCiNrcGktc3ViaGVhZGluZyBzcGFuewogIGZvbnQtc2l6ZTogMTZweDsKICBsaW5lLWhlaWdodDogMS4zOwogIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgY29sb3I6ICM2QjZCNkIKfQ\\u003d\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBpZD0ia3BpLXZhbHVlIj48L2Rpdj4KICA8ZGl2IGlkPSJrcGktc3ViaGVhZGluZyI+PC9kaXY+CjwvZGl2Pgo\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\",\"axisVisualProps\":{},\"columnVisualProps\":{},\"dataLabelVisualProps\":{},\"tooltipVisualProps\":{},\"legendVisualProps\":{},\"displayVisualProps\":{}}"
+      display_mode: CHART_MODE
+      dynamic_name: Reach
+      dynamic_description: Campaign audience members who viewed at least one campaign content; Analytics start from the contents' initial publish date.​
+    viz_guid: 457eccee-d851-4a93-bae2-dd9eab085cce
+  - id: Viz_4
+    answer:
+      name: Audience
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Content count
+        name: Content count
+        expr: "unique count ( [Content Code] )"
+        was_auto_generated: false
+      - id: formula_Unique view
+        name: Unique view
+        expr: "unique_count_if ( [Interaction Datetime] >= [Content start date] and [Interaction Datetime] <= [Content end date] , concat ( [Interacted Participation User Code] , [Interacted Participation Content Code] ) )"
+        was_auto_generated: false
+      - id: formula_Unique views %
+        name: Unique views %
+        expr: "unique_count_if ( [Interaction Datetime] >= [Content start date] and [Interaction Datetime] <= [Content end date] , concat ( [Interacted Participation User Code] , [Interacted Participation Content Code] ) ) / unique count ( [Content Code] )"
+        was_auto_generated: false
+      - id: formula_Album
+        name: Album
+        expr: "unique_count_if ( [Content Type] = 'album' , [Content Code] )"
+        was_auto_generated: false
+      - id: formula_Audience count
+        name: Audience count
+        expr: "unique_count_if ( ( [Site Member Follower User Status Code] = 'US001' ) , [Site Member Follower User Code] )"
+        was_auto_generated: false
+      - id: formula_Event
+        name: Event
+        expr: "unique_count_if ( [Content Type] = 'event' , [Content Code] )"
+        was_auto_generated: false
+      - id: formula_views
+        name: views
+        expr: "count_if ( [Interaction Type] = 'view' and [Site Participant Role Code] in { 'SPR001' , 'SPR002' , 'SPR003' , 'SPR004' , 'SPR005' , 'SPR006' } and [Site Participant Is Deleted] = false and [Site Participant Active Flag] and [Site Participant Status Code] = 'US001'  , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[Is Content Active?].true [Is Content Site Active?].true [Is Campaign Assets Deleted].false [Is Campaign Deleted].false [formula_Unique view] [formula_Unique views %] [Site Member Follower Full Name] [Site Member Follower User Status Code].US001 [formula_Content count] sort by [formula_Unique views %] descending top 10 [Site Member Follower User Code]"
+      answer_columns:
+      - name: Content count
+        custom_name: Items
+        dynamic_title: Items
+      - name: Site Member Follower Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Site Member Follower User Code
+      - name: Unique view
+      - name: Unique views %
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 2.0
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Content count
+          show_headline: false
+        - column_id: Site Member Follower Full Name
+          show_headline: false
+        - column_id: Site Member Follower User Code
+          show_headline: false
+        - column_id: Unique view
+          show_headline: false
+        - column_id: Unique views %
+          show_headline: false
+        ordered_column_ids:
+        - Site Member Follower Full Name
+        - Site Member Follower User Code
+        - Unique view
+        - Unique views %
+        - Content count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Site Member Follower Full Name\",\"width\": 192.79222106933594},{\"columnId\": \"Unique views %\",\"width\": 167.66677856445312}],\"wrapTableHeader\": true,\"showTableFooter\": false,\"orderedColumnIds\": [\"Site Member Follower Full Name\",\"Content count\",\"Unique view\",\"Unique views %\",\"Site Member Follower User Code\"],\"columnProperties\": [{\"columnId\": \"Site Member Follower User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Content count
+        - column_id: Site Member Follower Full Name
+        - column_id: Site Member Follower User Code
+        - column_id: Unique view
+        - column_id: Unique views %
+        axis_configs:
+        - x:
+          - Unique view
+          "y":
+          - Unique views %
+          size: Content count
+          category:
+          - Site Member Follower Full Name
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Measure names\",\"columnProperty\": {}},{\"columnId\": \"Measure values\",\"columnProperty\": {}},{\"columnId\": \"Unique view\",\"columnProperty\": {}},{\"columnId\": \"Unique views %\",\"columnProperty\": {}},{\"columnId\": \"Site Member Follower Full Name\",\"columnProperty\": {}},{\"columnId\": \"Content count\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"3a33013d-10ae-467b-9b7a-da1f56615e20\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique views %\"],\"isOpposite\": false}},{\"id\": \"5cbd4200-788d-4448-acb4-efce9b44c002\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Unique view\"]}}],\"systemSeriesColors\": [{\"serieName\": \"af2b2971-3bae-4306-be4f-03eac145e5d3\",\"color\": \"#ffcb3d\"},{\"serieName\": \"c4ce33a2-e9a6-446f-a4de-d48032a1bbe3\",\"color\": \"#FF3D91\"},{\"serieName\": \"57726dbe-76d2-4e6c-8091-3b27bc838423\",\"color\": \"#3a86ff\"},{\"serieName\": \"9eaa5612-eac7-4979-87c6-33879f08692c\",\"color\": \"#3a86ff\"},{\"serieName\": \"album\",\"color\": \"#8338ec\"},{\"serieName\": \"event\",\"color\": \"#ffcb3d\"},{\"serieName\": \"blog post\",\"color\": \"#ffcb3d\"},{\"serieName\": \"page\",\"color\": \"#619eff\"},{\"serieName\": \"activity notifications email\",\"color\": \"#c96230\"},{\"serieName\": \"app analytics\",\"color\": \"#fdaf8a\"},{\"serieName\": \"direct/undefined\",\"color\": \"#fb7a3c\"},{\"serieName\": \"email summaries - top stories\",\"color\": \"#1e527a\"},{\"serieName\": \"events listing\",\"color\": \"#7ca4c2\"},{\"serieName\": \"favorites\",\"color\": \"#256799\"},{\"serieName\": \"feed post share\",\"color\": \"#90d65a\"},{\"serieName\": \"feed post timeline\",\"color\": \"#5da327\"},{\"serieName\": \"home carousel\",\"color\": \"#ace083\"},{\"serieName\": \"home dashboard tile\",\"color\": \"#74cc31\"},{\"serieName\": \"home feed\",\"color\": \"#9c60f0\"},{\"serieName\": \"home feed smart post\",\"color\": \"#692dbd\"},{\"serieName\": \"in-app notifications\",\"color\": \"#b588f4\"},{\"serieName\": \"must read listing\",\"color\": \"#8338ec\"},{\"serieName\": \"my content\",\"color\": \"#ffd564\"},{\"serieName\": \"newsletter\",\"color\": \"#cca231\"},{\"serieName\": \"recent searches\",\"color\": \"#ffe08b\"},{\"serieName\": \"related content\",\"color\": \"#ffcb3d\"},{\"serieName\": \"search auto-completion\",\"color\": \"#ff64a7\"},{\"serieName\": \"search results\",\"color\": \"#cc3174\"},{\"serieName\": \"site carousel\",\"color\": \"#ff8bbd\"},{\"serieName\": \"site content tab\",\"color\": \"#FF3D91\"},{\"serieName\": \"site content tabs\",\"color\": \"#619eff\"},{\"serieName\": \"site dashboard tile\",\"color\": \"#2e6bcc\"},{\"serieName\": \"site feed\",\"color\": \"#89b6ff\"},{\"serieName\": \"topic detail page\",\"color\": \"#3a86ff\"},{\"serieName\": \"analytics monthly report\",\"color\": \"#5bced9\"},{\"serieName\": \"content analytics\",\"color\": \"#84dae2\"},{\"serieName\": \"deep link\",\"color\": \"#32c2cf\"},{\"serieName\": \"embedded link\",\"color\": \"#c96230\"},{\"serieName\": \"global search\",\"color\": \"#1e527a\"},{\"serieName\": \"microsoft teams\",\"color\": \"#ace083\"},{\"serieName\": \"monthly report\",\"color\": \"#74cc31\"},{\"serieName\": \"onboarding\",\"color\": \"#b588f4\"},{\"serieName\": \"qr code\",\"color\": \"#8338ec\"},{\"serieName\": \"sms for content notifications\",\"color\": \"#cca231\"},{\"serieName\": \"site content onboarding section\",\"color\": \"#ff64a7\"},{\"serieName\": \"site smart feed onboarding section\",\"color\": \"#619eff\"},{\"serieName\": \"slack\",\"color\": \"#2e6bcc\"},{\"serieName\": \"sms must read\",\"color\": \"#89b6ff\"},{\"serieName\": \"user profile - published content\",\"color\": \"#1e747c\"},{\"serieName\": \"home onboarding smart post\",\"color\": \"#5bced9\"},{\"serieName\": \"others\",\"color\": \"#619eff\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Audience
+    viz_guid: 2dfc83c7-7c54-45e2-9956-f3be442e09f6
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  filters:
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Campaign Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Site Member Follower Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Site Member Follower Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Content Type
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Site Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Primary Author Full Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 3
+      width: 4
+    - visualization_id: Viz_2
+      x: 4
+      "y": 0
+      height: 3
+      width: 4
+    - visualization_id: Viz_3
+      x: 8
+      "y": 0
+      height: 3
+      width: 4
+    - visualization_id: Viz_4
+      x: 0
+      "y": 3
+      height: 7
+      width: 12
+  parameter_overrides:
+  - key: 92b6afbc-5962-4177-a4f5-06ae5eedcf1c
+    value:
+      name: Content::Content start date
+  - key: 6c28f89f-bbee-4f32-b7d2-00b13a9fb105
+    value:
+      name: Content::Content end date
+  ordered_chips:
+  - name: Tenant Code
+    type: FILTER
+  - name: Campaign Code
+    type: FILTER
+  - name: Site Member Follower Department
+    type: FILTER
+  - name: Site Member Follower Location
+    type: FILTER
+  - name: Content Type
+    type: FILTER
+  - name: Site Name
+    type: FILTER
+  - name: Primary Author Full Name
+    type: FILTER
+  - name: Content::Content end date
+    type: PARAMETER
+  - name: Content::Content start date
+    type: PARAMETER
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "true"
+    - name: hide_group_description
+      value: "true"
+    - name: hide_group_divider
+      value: "true"
+    - name: hide_group_tile_description
+      value: "true"
+    - name: hide_tile_description
+      value: "false"
+    - name: kpi_hero_font_size
+      value: M

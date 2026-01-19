@@ -1,0 +1,241 @@
+guid: 765c69ab-55ac-471a-a4a2-4930f1c32900
+liveboard:
+  name: Campaign Audience csv
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Audience
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Content count
+        name: Content count
+        expr: "unique count ( [Content Code] )"
+        was_auto_generated: false
+      - id: formula_Status
+        name: Status
+        expr: "if ( [Site Member Follower User Status Code] = 'US001' ) then 'Active' else 'Inactive' "
+        was_auto_generated: false
+      - id: formula_Unique view
+        name: Unique view
+        expr: "unique_count_if ( [Interaction Datetime] >= [Content start date] and [Interaction Datetime] <= [Content end date] , concat ( [Interacted Participation User Code] , [Interacted Participation Content Code] ) )"
+        was_auto_generated: false
+      - id: formula_Unique views %
+        name: Unique views %
+        expr: "unique_count_if ( [Interaction Datetime] >= [Content start date] and [Interaction Datetime] <= [Content end date] , concat ( [Interacted Participation User Code] , [Interacted Participation Content Code] ) ) / unique count ( [Content Code] )"
+        was_auto_generated: false
+      - id: formula_Album
+        name: Album
+        expr: "unique_count_if ( [Content Type] = 'album' , [Content Code] )"
+        was_auto_generated: false
+      - id: formula_Audience count
+        name: Audience count
+        expr: "unique_count_if ( ( [Site Member Follower User Status Code] = 'US001' ) , [Site Member Follower User Code] )"
+        was_auto_generated: false
+      - id: formula_Event
+        name: Event
+        expr: "unique_count_if ( [Content Type] = 'event' , [Content Code] )"
+        was_auto_generated: false
+      - id: formula_views
+        name: views
+        expr: "count_if ( [Interaction Type] = 'view' and [Site Participant Role Code] in { 'SPR001' , 'SPR002' , 'SPR003' , 'SPR004' , 'SPR005' , 'SPR006' } and [Site Participant Is Deleted] = false and [Site Participant Active Flag] and [Site Participant Status Code] = 'US001'  , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[Is Content Active?].true [Is Content Site Active?].true [Is Campaign Assets Deleted].false [Is Campaign Deleted].false [formula_Unique view] [formula_Unique views %] [Site Member Follower Full Name] [Site Member Follower User Status Code].US001 [formula_Content count] sort by [formula_Unique views %] descending [Site Member Follower User Code] [Site Member Follower Department] [Site Member Follower Email] [Site Member Follower Location] [Site Member Follower Location] [Site Member Follower Title] [Site Member Follower Phone Number] [formula_Status] [Site Member Follower Manager Name]"
+      answer_columns:
+      - name: Content count
+        custom_name: Content items
+        dynamic_title: Content items
+      - name: Site Member Follower Department
+        custom_name: Department
+        dynamic_title: Department
+      - name: Site Member Follower Email
+        custom_name: Email
+        dynamic_title: Email
+      - name: Site Member Follower Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Site Member Follower Location
+        custom_name: Location
+        dynamic_title: Location
+      - name: Site Member Follower Manager Name
+        custom_name: Manager name
+        dynamic_title: Manager name
+      - name: Site Member Follower Phone Number
+        custom_name: Phone number
+        dynamic_title: Phone number
+      - name: Site Member Follower Title
+        custom_name: Job title
+        dynamic_title: Job title
+      - name: Site Member Follower User Code
+      - name: Status
+      - name: Unique view
+        custom_name: Content items viewed
+        dynamic_title: Content items viewed
+      - name: Unique views %
+        custom_name: Content item view rate (%)
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 2.0
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+        dynamic_title: Content item view rate (%)
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Content count
+          show_headline: false
+        - column_id: Site Member Follower Department
+          show_headline: false
+        - column_id: Site Member Follower Email
+          show_headline: false
+        - column_id: Site Member Follower Full Name
+          show_headline: false
+        - column_id: Site Member Follower Location
+          show_headline: false
+        - column_id: Site Member Follower Manager Name
+          show_headline: false
+        - column_id: Site Member Follower Phone Number
+          show_headline: false
+        - column_id: Site Member Follower Title
+          show_headline: false
+        - column_id: Site Member Follower User Code
+          show_headline: false
+        - column_id: Status
+          show_headline: false
+        - column_id: Unique view
+          show_headline: false
+        - column_id: Unique views %
+          show_headline: false
+        ordered_column_ids:
+        - Site Member Follower Full Name
+        - Site Member Follower User Code
+        - Site Member Follower Department
+        - Site Member Follower Email
+        - Site Member Follower Location
+        - Site Member Follower Title
+        - Site Member Follower Phone Number
+        - Status
+        - Site Member Follower Manager Name
+        - Unique view
+        - Unique views %
+        - Content count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Site Member Follower Full Name\",\"width\": 192.79222106933594},{\"columnId\": \"Status\",\"width\": 115.77134704589844}],\"wrapTableHeader\": true,\"showTableFooter\": false,\"orderedColumnIds\": [\"Site Member Follower Full Name\",\"Status\",\"Site Member Follower Title\",\"Site Member Follower Department\",\"Site Member Follower Location\",\"Site Member Follower Manager Name\",\"Site Member Follower Phone Number\",\"Site Member Follower Email\",\"Content count\",\"Unique view\",\"Unique views %\"],\"columnProperties\": [{\"columnId\": \"Site Member Follower User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Content count
+        - column_id: Site Member Follower Department
+        - column_id: Site Member Follower Email
+        - column_id: Site Member Follower Full Name
+        - column_id: Site Member Follower Location
+        - column_id: Site Member Follower Manager Name
+        - column_id: Site Member Follower Phone Number
+        - column_id: Site Member Follower Title
+        - column_id: Site Member Follower User Code
+        - column_id: Status
+        - column_id: Unique view
+        - column_id: Unique views %
+        axis_configs:
+        - x:
+          - Site Member Follower Manager Name
+          "y":
+          - Unique view
+          - Unique views %
+          - Content count
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Measure names\",\"columnProperty\": {}},{\"columnId\": \"Measure values\",\"columnProperty\": {}},{\"columnId\": \"Unique view\",\"columnProperty\": {}},{\"columnId\": \"Unique views %\",\"columnProperty\": {}},{\"columnId\": \"Site Member Follower Full Name\",\"columnProperty\": {}},{\"columnId\": \"Content count\",\"columnProperty\": {}},{\"columnId\": \"Site Member Follower Phone Number\",\"columnProperty\": {}},{\"columnId\": \"Status\",\"columnProperty\": {}},{\"columnId\": \"Site Member Follower Manager Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"cbd0df9b-9496-4562-b99f-9ca8298ad3d4\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique view\"],\"isOpposite\": false}},{\"id\": \"c9de712a-dd55-4620-8a5a-6ab0836183c0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique views %\"],\"isOpposite\": true}},{\"id\": \"119476ab-7a29-4715-937f-e40efaaf21d7\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Content count\"],\"isOpposite\": true}},{\"id\": \"eb4c5a5e-d9fd-4c58-a489-a31f74760be3\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Site Member Follower Manager Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"af2b2971-3bae-4306-be4f-03eac145e5d3\",\"color\": \"#ffcb3d\"},{\"serieName\": \"c4ce33a2-e9a6-446f-a4de-d48032a1bbe3\",\"color\": \"#FF3D91\"},{\"serieName\": \"57726dbe-76d2-4e6c-8091-3b27bc838423\",\"color\": \"#3a86ff\"},{\"serieName\": \"9eaa5612-eac7-4979-87c6-33879f08692c\",\"color\": \"#3a86ff\"},{\"serieName\": \"album\",\"color\": \"#8338ec\"},{\"serieName\": \"event\",\"color\": \"#ffcb3d\"},{\"serieName\": \"blog post\",\"color\": \"#ffcb3d\"},{\"serieName\": \"page\",\"color\": \"#619eff\"},{\"serieName\": \"activity notifications email\",\"color\": \"#c96230\"},{\"serieName\": \"app analytics\",\"color\": \"#fdaf8a\"},{\"serieName\": \"direct/undefined\",\"color\": \"#fb7a3c\"},{\"serieName\": \"email summaries - top stories\",\"color\": \"#1e527a\"},{\"serieName\": \"events listing\",\"color\": \"#7ca4c2\"},{\"serieName\": \"favorites\",\"color\": \"#256799\"},{\"serieName\": \"feed post share\",\"color\": \"#90d65a\"},{\"serieName\": \"feed post timeline\",\"color\": \"#5da327\"},{\"serieName\": \"home carousel\",\"color\": \"#ace083\"},{\"serieName\": \"home dashboard tile\",\"color\": \"#74cc31\"},{\"serieName\": \"home feed\",\"color\": \"#9c60f0\"},{\"serieName\": \"home feed smart post\",\"color\": \"#692dbd\"},{\"serieName\": \"in-app notifications\",\"color\": \"#b588f4\"},{\"serieName\": \"must read listing\",\"color\": \"#8338ec\"},{\"serieName\": \"my content\",\"color\": \"#ffd564\"},{\"serieName\": \"newsletter\",\"color\": \"#cca231\"},{\"serieName\": \"recent searches\",\"color\": \"#ffe08b\"},{\"serieName\": \"related content\",\"color\": \"#ffcb3d\"},{\"serieName\": \"search auto-completion\",\"color\": \"#ff64a7\"},{\"serieName\": \"search results\",\"color\": \"#cc3174\"},{\"serieName\": \"site carousel\",\"color\": \"#ff8bbd\"},{\"serieName\": \"site content tab\",\"color\": \"#FF3D91\"},{\"serieName\": \"site content tabs\",\"color\": \"#619eff\"},{\"serieName\": \"site dashboard tile\",\"color\": \"#2e6bcc\"},{\"serieName\": \"site feed\",\"color\": \"#89b6ff\"},{\"serieName\": \"topic detail page\",\"color\": \"#3a86ff\"},{\"serieName\": \"analytics monthly report\",\"color\": \"#5bced9\"},{\"serieName\": \"content analytics\",\"color\": \"#84dae2\"},{\"serieName\": \"deep link\",\"color\": \"#32c2cf\"},{\"serieName\": \"embedded link\",\"color\": \"#c96230\"},{\"serieName\": \"global search\",\"color\": \"#1e527a\"},{\"serieName\": \"microsoft teams\",\"color\": \"#ace083\"},{\"serieName\": \"monthly report\",\"color\": \"#74cc31\"},{\"serieName\": \"onboarding\",\"color\": \"#b588f4\"},{\"serieName\": \"qr code\",\"color\": \"#8338ec\"},{\"serieName\": \"sms for content notifications\",\"color\": \"#cca231\"},{\"serieName\": \"site content onboarding section\",\"color\": \"#ff64a7\"},{\"serieName\": \"site smart feed onboarding section\",\"color\": \"#619eff\"},{\"serieName\": \"slack\",\"color\": \"#2e6bcc\"},{\"serieName\": \"sms must read\",\"color\": \"#89b6ff\"},{\"serieName\": \"user profile - published content\",\"color\": \"#1e747c\"},{\"serieName\": \"home onboarding smart post\",\"color\": \"#5bced9\"},{\"serieName\": \"others\",\"color\": \"#619eff\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Audience
+    viz_guid: 692a460e-2792-4a43-ad7a-5c716882b1f8
+  filters:
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Campaign Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Site Member Follower Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Site Member Follower Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Content Type
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Site Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Primary Author Full Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 7
+      width: 12
+  parameter_overrides:
+  - key: 92b6afbc-5962-4177-a4f5-06ae5eedcf1c
+    value:
+      name: Content::Content start date
+  - key: 6c28f89f-bbee-4f32-b7d2-00b13a9fb105
+    value:
+      name: Content::Content end date
+  ordered_chips:
+  - name: Tenant Code
+    type: FILTER
+  - name: Campaign Code
+    type: FILTER
+  - name: Site Member Follower Department
+    type: FILTER
+  - name: Site Member Follower Location
+    type: FILTER
+  - name: Content Type
+    type: FILTER
+  - name: Site Name
+    type: FILTER
+  - name: Primary Author Full Name
+    type: FILTER
+  - name: Content::Content end date
+    type: PARAMETER
+  - name: Content::Content start date
+    type: PARAMETER
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "true"
+    - name: hide_group_description
+      value: "true"
+    - name: hide_group_divider
+      value: "true"
+    - name: hide_group_tile_description
+      value: "true"
+    - name: hide_tile_description
+      value: "false"
+    - name: kpi_hero_font_size
+      value: M

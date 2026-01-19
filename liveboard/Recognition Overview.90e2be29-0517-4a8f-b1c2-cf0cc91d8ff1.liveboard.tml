@@ -1,0 +1,1060 @@
+guid: 90e2be29-0517-4a8f-b1c2-cf0cc91d8ff1
+liveboard:
+  name: Recognition Overview
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Manager leaderboard - recognition given
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Percentage
+        name: Percentage
+        expr: "unique_count_if ( [Is Recognition Deleted?] = false and [Award Type] = 'peer' and date ( [Recognition Received Date] ) >= [Recognition start date] and date ( [Recognition Received Date] ) <= [Recognition end date] and [Is Recognised By Manager?] = true , [Recognition Receiver User Code] ) / unique_count_if ( [Reportee Status Code] = 'US001' , [Reportee Code] )"
+        was_auto_generated: false
+      - id: formula_directs
+        name: directs
+        expr: "unique_count_if ( [Reportee Status Code] = 'US001' , [Reportee Code] )"
+        was_auto_generated: false
+      - id: formula_reciever
+        name: reciever
+        expr: "unique_count_if ( [Is Recognition Deleted?] = false and [Award Type] = 'peer' and date ( [Recognition Received Date] ) >= [Recognition start date] and date ( [Recognition Received Date] ) <= [Recognition end date] and [Is Recognised By Manager?] = true , [Recognition Receiver User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_directs] [formula_reciever] [Giver user code] [Giver User Full Name] [Giver User Status].active [Giver User Is Manager].true [formula_Percentage] sort by [formula_reciever] descending top 5 [formula_reciever] > 0"
+      answer_columns:
+      - name: Giver User Full Name
+        custom_name: Manager name
+        dynamic_title: Manager name
+      - name: Giver user code
+      - name: Percentage
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 0.0
+          isCategoryEditable: true
+      - name: directs
+        custom_name: Direct reports
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Direct reports
+      - name: reciever
+        custom_name: Direct reports recognized
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Direct reports recognized
+      table:
+        table_columns:
+        - column_id: Giver User Full Name
+          show_headline: false
+        - column_id: Giver user code
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        - column_id: directs
+          show_headline: false
+        - column_id: reciever
+          show_headline: false
+        ordered_column_ids:
+        - Giver user code
+        - Giver User Full Name
+        - directs
+        - reciever
+        - Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Giver User Full Name\",\"width\": 156.67483520507812},{\"columnId\": \"directs\",\"width\": 135.55218505859375}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Giver User Full Name\",\"reciever\",\"directs\"],\"columnProperties\": [{\"columnId\": \"Giver user code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Giver User Full Name
+        - column_id: Giver user code
+        - column_id: Percentage
+        - column_id: directs
+        - column_id: reciever
+        axis_configs:
+        - x:
+          - directs
+          "y":
+          - reciever
+          size: Percentage
+          category:
+          - Giver user code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"a5a5d015-4b5d-4a8c-87e6-544b969e6cc2\",\"columnProperty\": {}},{\"columnId\": \"ec4086a5-de0e-478a-87dc-d5e25909977b\",\"columnProperty\": {}},{\"columnId\": \"directs\",\"columnProperty\": {}},{\"columnId\": \"reciever\",\"columnProperty\": {}},{\"columnId\": \"Giver user code\",\"columnProperty\": {}},{\"columnId\": \"Percentage\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"b087451d-9320-494c-acd4-0f08dc02c8c9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"reciever\"],\"isOpposite\": false}},{\"id\": \"f42f75db-fc10-4826-94b0-c6756c9c5864\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"directs\"]}}],\"systemSeriesColors\": [{\"serieName\": \"directs\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Recognition start date
+        value: 11/20/2024
+      dynamic_name: Manager leaderboard - recognition given
+    viz_guid: 7ea32407-094e-4ff3-a1ac-e570e6f92b1b
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_2
+    answer:
+      name: Recognition posts
+      description: Count of unique recognition posts (recognizing one or more user)
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "if ( [formula_Recognition post previous period] = 0 and [formula_Total Recognition post] != 0 ) then 100 else ifnull ( ( ( [formula_Total Recognition post] - [formula_Recognition post previous period] ) / [formula_Recognition post previous period] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Recognition post previous period
+        name: Recognition post previous period
+        expr: "unique_count_if ( [Is Recognition Deleted?] = false and date ( [Recognition Received Date] ) >= [Offset Start Date] and date ( [Recognition Received Date] ) <= [Offset End Date] , [Recognition Code] )"
+        was_auto_generated: false
+      - id: formula_Total Recognition post
+        name: Total Recognition post
+        expr: "unique_count_if ( [Is Recognition Deleted?] = false and date ( [Recognition Received Date] ) >= [Recognition start date] and date ( [Recognition Received Date] ) <= [Recognition end date] , [Recognition Code] )"
+        was_auto_generated: false
+      search_query: "[Tenant Code].ea411953-6702-4a01-8b03-b98a172be511 [Award Type].peer [formula_Total Recognition post] [formula_Recognition post previous period] [formula_Difference]"
+      answer_columns:
+      - name: Difference
+      - name: Recognition post previous period
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Recognition post
+      table:
+        table_columns:
+        - column_id: Difference
+          show_headline: false
+        - column_id: Recognition post previous period
+          show_headline: false
+        - column_id: Total Recognition post
+          show_headline: false
+        ordered_column_ids:
+        - Total Recognition post
+        - Difference
+        - Recognition post previous period
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"orderedColumnIds\": [\"Total Recognition post\",\"Recognition post previous period\",\"Difference\"]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Difference
+        - column_id: Recognition post previous period
+        - column_id: Total Recognition post
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Recognition post\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}},{\"columnId\": \"Recognition post previous period\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"0c275429-3ee3-4928-b9ef-834fe37a659e\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Recognition post\"],\"isOpposite\": false}},{\"id\": \"f1ca5b2a-c6c5-4f68-8037-6fbfb507f4a6\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Difference\"],\"isOpposite\": true}},{\"id\": \"202d81da-2cf7-4232-966e-26f8c92b230c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Recognition post previous period\"],\"isOpposite\": true}},{\"id\": \"7c789dc2-13ab-4d19-aa95-500e042695fd\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Total Recognition post
+            - Recognition post previous period
+            - Difference
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gTW9jayBkYXRhIGZvciBsb2NhbCB0ZXN0aW5nCi8vIFJlcGxhY2UgdGhpcyB3aXRoIFRob3VnaHRTcG90IGRhdGEgZXh0cmFjdGlvbiBpbiB5b3VyIGVudmlyb25tZW50Ci8vIGNvbnN0IHJhd0RhdGEgPSBbWzg3LCAyNDEsIC02NF1dOyAvLyBbY3VycmVudFZhbHVlLCBwcmV2aW91c1ZhbHVlLCBwZXJjZW50Q2hhbmdlXQpjb25zdCByYXdEYXRhID0gdml6LmdldERhdGFGcm9tU2VhcmNoUXVlcnkoKS5nZXREYXRhKCkuZGF0YTsKY29uc3QgY3VycmVudFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMF0gPz8gMDsKY29uc3QgcHJldmlvdXNWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzFdID8/IDA7CmNvbnN0IHBlcmNlbnRDaGFuZ2UgPSByYXdEYXRhPy5bMF0/LlsyXSA/PyAwOwoKY29uc3QgdmFsdWVFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktdmFsdWUiKTsKY29uc3QgY2hhbmdlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLWNoYW5nZSIpOwoKdmFsdWVFbC5pbm5lclRleHQgPSBjdXJyZW50VmFsdWUudG9Mb2NhbGVTdHJpbmcoImVuLUdCIik7Cgpjb25zdCBjb2xvckNsYXNzID0gcGVyY2VudENoYW5nZSA+PSAwID8gInBvc2l0aXZlIiA6ICJuZWdhdGl2ZSI7CmNvbnN0IGRpcmVjdGlvbiA9IHBlcmNlbnRDaGFuZ2UgPj0gMCA/ICLihpEiIDogIuKGkyI7CgpjaGFuZ2VFbC5pbm5lckhUTUwgPSBgCiAgICA8ZGl2PgogICAgICA8c3BhbiBjbGFzcz0iYXJyb3cgJHtjb2xvckNsYXNzfSI+JHtkaXJlY3Rpb259PC9zcGFuPgogICAgICAgPHNwYW4gY2xhc3M9InBlcmNlbnQgJHtjb2xvckNsYXNzfSI+ICR7cGVyY2VudENoYW5nZS50b0ZpeGVkKDApfSU8L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0iY29tcGFyZSI+dnMgKCR7cHJldmlvdXNWYWx1ZX0pPC9zcGFuPgogICAgPC9kaXY+CiAgIAogIGA7Cgo\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzExMTsKfQoKLmtwaS1jb250YWluZXIgewogIC8qIGRpc3BsYXk6IGZsZXg7ICovCiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgYm94LXNpemluZzogYm9yZGVyLWJveDsKfQoKI2twaS12YWx1ZSB7CiAgZm9udC1zaXplOiA0OHB4OwogIGZvbnQtd2VpZ2h0OiA3MDA7CiAgY29sb3I6ICMwMDAwMDA7CiAgbGluZS1oZWlnaHQ6IDEuMTsKICBtYXJnaW4tYm90dG9tOiA0cHg7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICBnYXA6IDRweDsKfQoKI2twaS1jaGFuZ2Ugc3ZnIHsKICB3aWR0aDogMTBweDsKICBoZWlnaHQ6IDEwcHg7Cn0KCiNrcGktY2hhbmdlIC51cCB7CiAgY29sb3I6ICMyNDg1Mjg7Cn0KCiNrcGktY2hhbmdlIC5kb3duIHsKICBjb2xvcjogI2QzMWUzNDsKfQoKI2twaS1jaGFuZ2UgLmNvbXBhcmUgewogIGNvbG9yOiAjNmI2YjZiOwp9CgoKLnBvc2l0aXZlLAoubmVnYXRpdmUgewogIGZvbnQtc2l6ZTogMTFweDsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKfQoKLnBvc2l0aXZlIHsKICBjb2xvcjogIzI0ODUyODsKfQoKLm5lZ2F0aXZlIHsKICBjb2xvcjogI2QzMWUzNDsKfQo\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBpZD0ia3BpLXZhbHVlIj48L2Rpdj4KICA8ZGl2IGlkPSJrcGktY2hhbmdlIj48L2Rpdj4KPC9kaXY+Cg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/14/2025
+      - key: Recognition period end date
+        value: 07/01/2025
+      - key: Recognition period start date
+        value: 02/15/2025
+      - key: Recognition start date
+        value: 07/01/2025
+      dynamic_name: Recognition posts
+      dynamic_description: Count of unique recognition posts (recognizing one or more user)
+    viz_guid: fc65e043-b623-4770-839b-0689a182d446
+  - id: Viz_3
+    answer:
+      name: Total recognitions received
+      description: Count of recognitions received across all recognition posts
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_difference
+        name: difference
+        expr: "if ( [formula_Total recognition received previous period] = 0 and [formula_Total recognition recieved] != 0 ) then 100 else ifnull ( ( ( [formula_Total recognition recieved] - [formula_Total recognition received previous period] ) / [formula_Total recognition received previous period] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Total recognition received previous period
+        name: Total recognition received previous period
+        expr: "ifnull ( count_if ( date ( [Recognition Received Date] ) >= [Offset Start Date] and date ( [Recognition Received Date] ) <= [Offset End Date] , [User Award Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total recognition recieved
+        name: Total recognition recieved
+        expr: "ifnull ( count_if ( date ( [Recognition Received Date] ) >= [Recognition start date] and date ( [Recognition Received Date] ) <= [Recognition end date] , [User Award Code] ) , 0 )"
+        was_auto_generated: false
+      search_query: "[Award Type].peer [formula_Total recognition recieved] [formula_Total recognition received previous period] [formula_difference] [Is Recognition Deleted?].false"
+      answer_columns:
+      - name: Total recognition received previous period
+      - name: Total recognition recieved
+      - name: difference
+      table:
+        table_columns:
+        - column_id: Total recognition received previous period
+          show_headline: false
+        - column_id: Total recognition recieved
+          show_headline: false
+        - column_id: difference
+          show_headline: false
+        ordered_column_ids:
+        - Total recognition recieved
+        - Total recognition received previous period
+        - difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Total recognition received previous period
+        - column_id: Total recognition recieved
+        - column_id: difference
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total recognition recieved\",\"columnProperty\": {}},{\"columnId\": \"Total recognition received previous period\",\"columnProperty\": {}},{\"columnId\": \"difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"5f8403a7-02d0-400a-b62e-fe044eb75657\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total recognition recieved\"],\"isOpposite\": false}},{\"id\": \"215ee315-873b-4575-b1df-b12a8d2affcd\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total recognition received previous period\"],\"isOpposite\": true}},{\"id\": \"7894fcd5-a8f1-4d32-b5f8-8cc205dbc7a0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"difference\"],\"isOpposite\": true}},{\"id\": \"2c1c9e4c-763c-41de-997f-7be5ce10def0\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Total recognition recieved
+            - Total recognition received previous period
+            - difference
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gTW9jayBkYXRhIGZvciBsb2NhbCB0ZXN0aW5nCi8vIFJlcGxhY2UgdGhpcyB3aXRoIFRob3VnaHRTcG90IGRhdGEgZXh0cmFjdGlvbiBpbiB5b3VyIGVudmlyb25tZW50CmNvbnN0IHJhd0RhdGEgPSB2aXouZ2V0RGF0YUZyb21TZWFyY2hRdWVyeSgpLmdldERhdGEoKS5kYXRhOwoKY29uc3QgY3VycmVudFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMF0gPz8gMDsKY29uc3QgcHJldmlvdXNWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzFdID8/IDA7CmNvbnN0IHBlcmNlbnRDaGFuZ2UgPSByYXdEYXRhPy5bMF0/LlsyXSA/PyAwOwoKY29uc3QgY29sb3JDbGFzcyA9IHBlcmNlbnRDaGFuZ2UgPj0gMCA/ICJwb3NpdGl2ZSIgOiAibmVnYXRpdmUiOwpjb25zdCBkaXJlY3Rpb24gPSBwZXJjZW50Q2hhbmdlID49IDAgPyAi4oaRIiA6ICLihpMiOwoKY29uc3QgdmFsdWVFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktdmFsdWUiKTsKY29uc3QgY2hhbmdlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLWNoYW5nZSIpOwoKdmFsdWVFbC5pbm5lclRleHQgPSBjdXJyZW50VmFsdWUudG9Mb2NhbGVTdHJpbmcoImVuLUdCIik7CgpjaGFuZ2VFbC5pbm5lckhUTUwgPSBgCiAgICA8ZGl2PgogICAgICA8c3BhbiBjbGFzcz0iYXJyb3cgJHtjb2xvckNsYXNzfSI+JHtkaXJlY3Rpb259PC9zcGFuPgogICAgICAgPHNwYW4gY2xhc3M9InBlcmNlbnQgJHtjb2xvckNsYXNzfSI+ICR7cGVyY2VudENoYW5nZS50b0ZpeGVkKDApfSU8L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0iY29tcGFyZSI+dnMgKCR7cHJldmlvdXNWYWx1ZX0pPC9zcGFuPgogICAgPC9kaXY+CiAgIAogIGA7CiAgICA\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzExMTsKfQoKLmtwaS1jb250YWluZXIgewogIC8qIGRpc3BsYXk6IGZsZXg7ICovCiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgYm94LXNpemluZzogYm9yZGVyLWJveDsKfQoKI2twaS12YWx1ZSB7CiAgZm9udC1zaXplOiA0OHB4OwogIGZvbnQtd2VpZ2h0OiA3MDA7CiAgY29sb3I6ICMwMDAwMDA7CiAgbGluZS1oZWlnaHQ6IDEuMTsKICBtYXJnaW4tYm90dG9tOiA0cHg7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICBnYXA6IDRweDsKfQoKI2twaS1jaGFuZ2Ugc3ZnIHsKICB3aWR0aDogMTBweDsKICBoZWlnaHQ6IDEwcHg7Cn0KCiNrcGktY2hhbmdlIC51cCB7CiAgY29sb3I6ICMyNDg1Mjg7Cn0KCiNrcGktY2hhbmdlIC5kb3duIHsKICBjb2xvcjogI2QzMWUzNDsKfQoKI2twaS1jaGFuZ2UgLmNvbXBhcmUgewogIGNvbG9yOiAjNmI2YjZiOwp9CgoKLnBvc2l0aXZlLAoubmVnYXRpdmUgewogIGZvbnQtc2l6ZTogMTFweDsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKfQoKLnBvc2l0aXZlIHsKICBjb2xvcjogIzI0ODUyODsKfQoKLm5lZ2F0aXZlIHsKICBjb2xvcjogI2QzMWUzNDsKfQo\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBpZD0ia3BpLXZhbHVlIj48L2Rpdj4KICA8ZGl2IGlkPSJrcGktY2hhbmdlIj48L2Rpdj4KPC9kaXY+Cg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/13/2025
+      - key: Recognition period end date
+        value: 11/02/2025
+      - key: Recognition period start date
+        value: 11/01/2025
+      - key: Recognition start date
+        value: 11/12/2025
+      dynamic_name: Total recognitions received
+      dynamic_description: Count of recognitions received across all recognition posts
+    viz_guid: 612ec59a-2641-4517-848b-5a277a08d670
+  - id: Viz_4
+    answer:
+      name: Users recognized
+      description: Percentage of unique active users who received one of more recognitions
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_difference
+        name: difference
+        expr: "ifnull ( if ( [formula_Previous period] = 0 and [formula_Current period] != 0 ) then 1 else ( [formula_Current period] - [formula_Previous period] ) / [formula_Previous period] , 0 )"
+        was_auto_generated: false
+      - id: formula_Current period
+        name: Current period
+        expr: "ifnull ( [formula_Users recognised] / [formula_Active users] , 0 )"
+        was_auto_generated: false
+      - id: formula_Active users
+        name: Active users
+        expr: "unique_count_if ( [Tenant User Status Code] = 'US001' , [Tenant User Code] )"
+        was_auto_generated: false
+      - id: formula_Previous period
+        name: Previous period
+        expr: "safe_divide ( unique_count_if ( date ( [Recognition Received Date] ) >= [Offset Start Date] and date ( [Recognition Received Date] ) <= [Offset End Date] and [Is Recognition Deleted?] = false , [Recognition Receiver User Code] ) , unique_count_if ( [Tenant User Status Code] = 'US001' , [Tenant User Code] ) )"
+        was_auto_generated: false
+      - id: formula_Users recognised
+        name: Users recognised
+        expr: "unique_count_if ( date ( [Recognition Received Date] ) >= [Recognition start date] and date ( [Recognition Received Date] ) <= [Recognition end date] and [Is Recognition Deleted?] = false , [Recognition Receiver User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Users recognised] [Award Type].peer [formula_Active users] [Receiver User Status].active [formula_Current period] [formula_Previous period] [formula_difference]"
+      answer_columns:
+      - name: Active users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Current period
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 0.0
+          isCategoryEditable: true
+      - name: Previous period
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 0.0
+          isCategoryEditable: true
+      - name: Users recognised
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: difference
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 0.0
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Active users
+          show_headline: false
+        - column_id: Current period
+          show_headline: false
+        - column_id: Previous period
+          show_headline: false
+        - column_id: Users recognised
+          show_headline: false
+        - column_id: difference
+          show_headline: false
+        ordered_column_ids:
+        - Users recognised
+        - Active users
+        - Current period
+        - Previous period
+        - difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Active users
+        - column_id: Current period
+        - column_id: Previous period
+        - column_id: Users recognised
+        - column_id: difference
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Users recognised\",\"columnProperty\": {}},{\"columnId\": \"Active users\",\"columnProperty\": {}},{\"columnId\": \"Current period\",\"columnProperty\": {}},{\"columnId\": \"Previous period\",\"columnProperty\": {}},{\"columnId\": \"difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"caa1141e-0da6-4f65-bf6e-6ec0dbbcc146\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Users recognised\"],\"isOpposite\": false}},{\"id\": \"e89e0c38-c46c-4d02-8c1c-7f7df71df69b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active users\"],\"isOpposite\": true}},{\"id\": \"e88f76aa-38f7-44b4-b88e-9df38760fc96\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Current period\"],\"isOpposite\": true}},{\"id\": \"d56dc2ae-ae3c-4525-8c93-d9c066bb29e8\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Previous period\"],\"isOpposite\": true}},{\"id\": \"0c59b010-1c4e-4554-a349-b2e922d385c0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"difference\"],\"isOpposite\": true}},{\"id\": \"8bb16044-d3ae-4da5-b687-477fad6f6d87\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Users recognised
+            - Active users
+            - Current period
+            - Previous period
+            - difference
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Y29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7CmNvbnN0IGN1cnJlbnRWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzJdICogMTAwID8/IDA7CmNvbnN0IHByZXZpb3VzVmFsdWUgPSByYXdEYXRhPy5bMF0/LlszXSAqIDEwMCA/PyAwOwpjb25zdCBwZXJjZW50Q2hhbmdlID0gcmF3RGF0YT8uWzBdPy5bNF0gKiAxMDAgPz8gMDsKY29uc3QgbnVtZXJhdG9yID0gcmF3RGF0YT8uWzBdPy5bMF0gPz8gIiI7CmNvbnN0IGRlbm9taW5hdG9yID0gcmF3RGF0YT8uWzBdPy5bMV0gPz8gIiI7Cgpjb25zdCB2YWx1ZUVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImtwaS12YWx1ZSIpOwpjb25zdCBjaGFuZ2VFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktY2hhbmdlIik7CmNvbnN0IHN1YnRleHRFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktc3VidGV4dCIpOwoKdmFsdWVFbC5pbm5lclRleHQgPSBjdXJyZW50VmFsdWUudG9GaXhlZCgwKSArICclJzsKc3VidGV4dEVsLmlubmVyVGV4dCA9IG51bWVyYXRvciArICIgb2YgIiArIGRlbm9taW5hdG9yICsgIiB1c2VycyI7Cgpjb25zdCBjb2xvckNsYXNzID0gcGVyY2VudENoYW5nZSA+PSAwID8gInBvc2l0aXZlIiA6ICJuZWdhdGl2ZSI7CmNvbnN0IGRpcmVjdGlvbiA9IHBlcmNlbnRDaGFuZ2UgPj0gMCA/ICLihpEiIDogIuKGkyI7CgpjaGFuZ2VFbC5pbm5lckhUTUwgPSBgCiAgICA8ZGl2PgogICAgICA8c3BhbiBjbGFzcz0iYXJyb3cgJHtjb2xvckNsYXNzfSI+JHtkaXJlY3Rpb259PC9zcGFuPgogICAgICAgPHNwYW4gY2xhc3M9InBlcmNlbnQgJHtjb2xvckNsYXNzfSI+ICR7cGVyY2VudENoYW5nZS50b0ZpeGVkKDApfSU8L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0iY29tcGFyZSI+dnMgKCR7cHJldmlvdXNWYWx1ZS50b0ZpeGVkKDApfSUpPC9zcGFuPgogICAgPC9kaXY+CiAgIAogIGA7Cg\\u003d\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwgYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzAwMDsKfQoKLmtwaS1jb250YWluZXIgewogIGRpc3BsYXk6IGZsZXg7CiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKfQoKLmtwaS1tYWluIHsKICBkaXNwbGF5OiBmbGV4OwogIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgZ2FwOiA2cHg7Cn0KCiNrcGktdmFsdWUgewogIGZvbnQtc2l6ZTogNDhweDsKICBmb250LXdlaWdodDogNzAwOwogIGxpbmUtaGVpZ2h0OiAxLjE7CiAgY29sb3I6ICMwMDAwMDA7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgLyogZGlzcGxheTogZmxleDsgKi8KICBhbGlnbi1pdGVtczogY2VudGVyOwogIGdhcDogNHB4OwogIGZvbnQtd2VpZ2h0OiA1MDA7Cn0KCiNrcGktY2hhbmdlIHN2ZyB7CiAgd2lkdGg6IDEwcHg7CiAgaGVpZ2h0OiAxMHB4OwogIG1hcmdpbi10b3A6IDFweDsKfQoKI2twaS1jaGFuZ2UgLnVwIHsKICBjb2xvcjogIzI0ODUyODsKfQoKI2twaS1jaGFuZ2UgLmRvd24gewogIGNvbG9yOiAjZDMxZTM0Owp9Cgoja3BpLWNoYW5nZSAuY29tcGFyZSB7CiAgY29sb3I6ICM2YjZiNmI7Cn0KCiNrcGktc3VidGV4dCB7CiAgZm9udC1zaXplOiAxNnB4OwogIGNvbG9yOiAjNmI2YjZiOwogIG1hcmdpbi10b3A6IDRweDsKfQoKLnBvc2l0aXZlLAoubmVnYXRpdmUgewogIGZvbnQtc2l6ZTogMTFweDsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKfQoKLnBvc2l0aXZlIHsKICBjb2xvcjogIzI0ODUyODsKfQoKLm5lZ2F0aXZlIHsKICBjb2xvcjogI2QzMWUzNDsKfQo\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBjbGFzcz0ia3BpLW1haW4iPgogICAgPHNwYW4gaWQ9ImtwaS12YWx1ZSI+PC9zcGFuPgogICAgPHNwYW4gaWQ9ImtwaS1jaGFuZ2UiPjwvc3Bhbj4KICA8L2Rpdj4KICA8ZGl2IGlkPSJrcGktc3VidGV4dCI+PC9kaXY+CjwvZGl2Pg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/14/2025
+      - key: Recognition start date
+        value: 08/16/2025
+      dynamic_name: Users recognized
+      dynamic_description: Percentage of unique active users who received one of more recognitions
+    viz_guid: 41a73e13-da31-409f-b551-a084a515e03a
+  - id: Viz_5
+    answer:
+      name: Recognition given
+      description: Trend of recognitions awarded by users across all recognition posts
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Recognition given
+        name: Recognition given
+        expr: "ifnull ( count ( [Recognition Code] ) , 0 )"
+        was_auto_generated: false
+      search_query: "[Recognition Received Date] [Recognition Received Date].daily [formula_Recognition given] [Is Recognition Deleted?].false [Award Type].peer"
+      answer_columns:
+      - name: Day(Recognition Received Date)
+        custom_name: Date
+        dynamic_title: Date
+      - name: Recognition given
+        custom_name: Total recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total recognition
+      table:
+        table_columns:
+        - column_id: Day(Recognition Received Date)
+          show_headline: false
+        - column_id: Recognition given
+          show_headline: false
+        ordered_column_ids:
+        - Day(Recognition Received Date)
+        - Recognition given
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: LINE
+        chart_columns:
+        - column_id: Day(Recognition Received Date)
+        - column_id: Recognition given
+        axis_configs:
+        - x:
+          - Day(Recognition Received Date)
+          "y":
+          - Recognition given
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": false,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"markersEnabled\": true,\"pivotSummariesState\": {}},\"showStackedLabels\": false,\"allLabels\": false},\"columnProperties\": [{\"columnId\": \"Day(Recognition Received Date)\",\"columnProperty\": {}},{\"columnId\": \"Recognition given\",\"columnProperty\": {\"dataLabels\": false}}],\"axisProperties\": [{\"id\": \"77a8e2d9-1967-4b6d-8086-5f74e13e640b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Recognition given\"],\"isOpposite\": false}},{\"id\": \"2de35d33-1650-4e16-9680-edc6ebf5e00c\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Recognition Received Date)\"]}}],\"seriesColors\": [{\"serieName\": \"2146e4b0-0138-48ac-9bc2-ae1ef90fb11d\",\"color\": \"#3a86ff\"},{\"serieName\": \"Recognition given\",\"color\": \"#3a86ff\"}],\"systemSeriesColors\": [{\"serieName\": \"2146e4b0-0138-48ac-9bc2-ae1ef90fb11d\",\"color\": \"#3a86ff\"},{\"serieName\": \"Recognition given\",\"color\": \"#06BF7F\"}]}"
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Y29uc3QgeyBtdXplLCBnZXREYXRhRnJvbVNlYXJjaFF1ZXJ5IH0gPSB2aXo7Cgpjb25zdCBvcmlnaW5hbERhdGFNb2RlbCA9IGdldERhdGFGcm9tU2VhcmNoUXVlcnkoKTsKY29uc3QgY2hhcnRDb250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiY2hhcnQiKTsKY29uc3Qgc2xpY2VyRHJvcGRvd24gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic2xpY2VyLWRyb3Bkb3duIik7Cgpjb25zdCBwZXJpb2RDb2x1bW5zID0gewogICJMYXN0IDcgZGF5cyI6ICJMYXN0IDcgZGF5cyIsCiAgIkxhc3QgMzAgZGF5cyI6ICJMYXN0IDMwIGRheXMiLAogICJMYXN0IDkwIGRheXMiOiAiV2VlayhMYXN0IDkwIGRheXMpIiwKICAiTGFzdCAxMiBtb250aHMiOiAiTW9udGgoTGFzdCAxMiBtb250aHMpIiwKICAiTGFzdCAzNiBtb250aHMiOiAiWWVhcihMYXN0IDM2IG1vbnRocykiCn07CgppZiAoY2hhcnRDb250YWluZXIgJiYgc2xpY2VyRHJvcGRvd24pIHsKICBjb25zdCByZW5kZXJDaGFydCA9ICgpID0+IHsKICAgIGNvbnN0IHNlbGVjdGVkT3B0aW9uID0gc2xpY2VyRHJvcGRvd24ub3B0aW9uc1tzbGljZXJEcm9wZG93bi5zZWxlY3RlZEluZGV4XS50ZXh0OwogICAgY29uc3QgeEF4aXMgPSBwZXJpb2RDb2x1bW5zW3NlbGVjdGVkT3B0aW9uXTsKCiAgICAvLyBjbGVhciBvbGQgY2hhcnQKICAgIGNoYXJ0Q29udGFpbmVyLmlubmVySFRNTCA9ICIiOwoKICAgIGxldCBjaGFydCA9IG11emUKICAgICAgLmNhbnZhcygpCiAgICAgIC5sYXllcnMoWwogICAgICAgIHsgbWFyazogImxpbmUiLCBpbnRlcnBvbGF0ZTogImNhdG11bGxSb20iIH0sCiAgICAgICAgeyBtYXJrOiAicG9pbnQiLCBzaXplOiA2IH0KICAgICAgXSkKICAgICAgLnJvd3MoW3sgZmllbGQ6ICJSZWNvZ25pdGlvbiBHaXZlbiIsIGFnZ3JlZ2F0aW9uOiAic3VtIiB9XSkKICAgICAgLmNvbHVtbnMoW3hBeGlzXSkKICAgICAgLmRhdGEob3JpZ2luYWxEYXRhTW9kZWwpOwoKICAgIC8vIENvbmRpdGlvbmFsbHkgYXBwbHkgeC1heGlzIHRpY2tGb3JtYXQgYW5kIHRpY2tJbnRlcnZhbAogICAgY2hhcnQgPSBjaGFydC5jb25maWcoewogICAgICBheGVzOiB7CiAgICAgICAgeDogewogICAgICAgICAgLi4uKHNlbGVjdGVkT3B0aW9uID09PSAiTGFzdCA5MCBkYXlzIiAmJiB7CiAgICAgICAgICAgIHRpY2tJbnRlcnZhbDogewogICAgICAgICAgICAgIHN0ZXA6ICJ3ZWVrIiwKICAgICAgICAgICAgICBtdWx0aXBsaWVyOiAxLAogICAgICAgICAgICAgIHN0YXJ0OiAxIC8vIDEgPSBNb25kYXkKICAgICAgICAgICAgfQogICAgICAgICAgfSksCiAgICAgICAgICB0aWNrRm9ybWF0OiAodmFsKSA9PiB7CiAgICAgICAgICAgIGNvbnN0IGQgPSBuZXcgRGF0ZSh2YWwucmF3VmFsdWUpOwogICAgICAgICAgICBpZiAoaXNOYU4oZC5nZXRUaW1lKCkpKSB7CiAgICAgICAgICAgICAgICByZXR1cm4gdmFsLmZvcm1hdHRlZFZhbHVlIHx8ICcnOwogICAgICAgICAgICB9CiAgICAgICAgICAgIGlmIChzZWxlY3RlZE9wdGlvbiA9PT0gIkxhc3QgMTIgbW9udGhzIikgewogICAgICAgICAgICAgICAgLy8gU2hvdyBtb250aCBhbmQgeWVhciwgZS5nLiwgIlNlcCAyMDI0IgogICAgICAgICAgICAgICAgcmV0dXJuIGQudG9Mb2NhbGVEYXRlU3RyaW5nKCdlbi1VUycsIHsgbW9udGg6ICdzaG9ydCcsIHllYXI6ICdudW1lcmljJyB9KTsKICAgICAgICAgICAgfSBlbHNlIGlmIChzZWxlY3RlZE9wdGlvbiA9PT0gIkxhc3QgMzYgbW9udGhzIikgewogICAgICAgICAgICAgICAgLy8gU2hvdyB5ZWFyIG9ubHkKICAgICAgICAgICAgICAgIHJldHVybiBkLmdldEZ1bGxZZWFyKCk7CiAgICAgICAgICAgIH0gZWxzZSBpZiAoc2VsZWN0ZWRPcHRpb24gPT09ICJMYXN0IDkwIGRheXMiKSB7CiAgICAgICAgICAgICAgICAvLyBTaG93IHdlZWsgc3RhcnQgYXMgIk1NTSBERCIgKG5vIHllYXIpCiAgICAgICAgICAgICAgICByZXR1cm4gZC50b0xvY2FsZURhdGVTdHJpbmcoJ2VuLVVTJywgeyBtb250aDogJ3Nob3J0JywgZGF5OiAnMi1kaWdpdCcgfSk7CiAgICAgICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgICAgICAvLyBEZWZhdWx0OiBzaG93IG1vbnRoIGFuZCBkYXkKICAgICAgICAgICAgICAgIHJldHVybiBkLnRvTG9jYWxlRGF0ZVN0cmluZygnZW4tVVMnLCB7IG1vbnRoOiAnc2hvcnQnLCBkYXk6ICcyLWRpZ2l0JyB9KTsKICAgICAgICAgICAgfQogICAgICAgIH0KICAgICAgICB9CiAgICAgIH0KICAgIH0pOwoKICAgIC8vIGNvbmRpdGlvbmFsIHktYXhpcyBib3VuZHMKICAgIGlmIChzZWxlY3RlZE9wdGlvbiA9PT0gIkxhc3QgNyBkYXlzIiB8fCBzZWxlY3RlZE9wdGlvbiA9PT0gIkxhc3QgMzAgZGF5cyIpIHsKICAgICAgY2hhcnQgPSBjaGFydC5jb25maWcoewogICAgICAgIGF4ZXM6IHsgCiAgICAgICAgICB5OiB7IGRvbWFpbjogWzAsIDMwXSwgbmljZTogZmFsc2UgfQogICAgICAgIH0KICAgICAgfSk7CiAgICB9IGVsc2UgaWYgKHNlbGVjdGVkT3B0aW9uID09PSAiTGFzdCA5MCBkYXlzIikgewogICAgICBjaGFydCA9IGNoYXJ0LmNvbmZpZyh7CiAgICAgICAgYXhlczogeyAKICAgICAgICAgIHk6IHsgZG9tYWluOiBbMCwgMTAwXSwgbmljZTogZmFsc2UgfQogICAgICAgIH0KICAgICAgfSk7CiAgICB9CgogICAgY2hhcnQubW91bnQoY2hhcnRDb250YWluZXIpOwogIH07CgogIHNsaWNlckRyb3Bkb3duLmFkZEV2ZW50TGlzdGVuZXIoImNoYW5nZSIsIHJlbmRlckNoYXJ0KTsKICByZW5kZXJDaGFydCgpOwp9\\\",\\\"cssCodeBase64\\\":\\\"Ym9keSB7CiAgZm9udC1mYW1pbHk6ICJTZWdvZSBVSSIsIFRhaG9tYSwgc2Fucy1zZXJpZjsKICBiYWNrZ3JvdW5kOiAjZjhmYWZjOwogIG1hcmdpbjogMDsKICBwYWRkaW5nOiAzMHB4OwogIGNvbG9yOiAjMzM0MTU1Owp9CgovKiBEcm9wZG93biBzdHlsaW5nICovCiNzbGljZXItZHJvcGRvd24gewogIHBhZGRpbmc6IDhweCAxMnB4OwogIGZvbnQtc2l6ZTogMTRweDsKICBib3JkZXItcmFkaXVzOiA4cHg7CiAgYm9yZGVyOiAxcHggc29saWQgI2NiZDVlMTsKICBiYWNrZ3JvdW5kOiB3aGl0ZTsKICBjb2xvcjogIzFlMjkzYjsKICBjdXJzb3I6IHBvaW50ZXI7CiAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwwLDAsMC4wNSk7CiAgdHJhbnNpdGlvbjogYm9yZGVyIDAuMnMsIGJveC1zaGFkb3cgMC4yczsKfQoKI3NsaWNlci1kcm9wZG93bjpob3ZlciB7CiAgYm9yZGVyOiAxcHggc29saWQgIzNiODJmNjsKICBib3gtc2hhZG93OiAwIDRweCA4cHggcmdiYSgwLDAsMCwwLjA4KTsKfQoKLyogQ2hhcnQgY29udGFpbmVyIGNhcmQgKi8KLmNoYXJ0LWNvbnRhaW5lciB7CiAgbWFyZ2luLXRvcDogMjBweDsKICBiYWNrZ3JvdW5kOiAjZmZmZmZmOwogIGJvcmRlci1yYWRpdXM6IDEycHg7CiAgYm94LXNoYWRvdzogMCA0cHggMTBweCByZ2JhKDAsMCwwLDAuMDgpOwogIHBhZGRpbmc6IDBweDsKICB0cmFuc2l0aW9uOiBib3gtc2hhZG93IDAuMnMgZWFzZTsKfQoKLmNoYXJ0LWNvbnRhaW5lcjpob3ZlciB7CiAgYm94LXNoYWRvdzogMCA2cHggMTZweCByZ2JhKDAsMCwwLDAuMTIpOwp9CgovKiBDaGFydCBzaXppbmcgKi8KI2NoYXJ0IHsKICB3aWR0aDogMTAwJTsKICBoZWlnaHQ6IDc1dmg7ICAgICAgICAvKiByZXNwb25zaXZlIGhlaWdodCAqLwogIG1pbi1oZWlnaHQ6IDQwMHB4OyAgIC8qIHVzYWJsZSBvbiBzbWFsbCBzY3JlZW5zICovCiAgbWF4LWhlaWdodDogNzAwcHg7ICAgLyogcHJldmVudHMgYmVpbmcgdG9vIHRhbGwgKi8KfQo\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdj4KICA8bGFiZWwgZm9yPSJzbGljZXItZHJvcGRvd24iPjxzdHJvbmc+U2VsZWN0IFBlcmlvZDo8L3N0cm9uZz48L2xhYmVsPgogIDxzZWxlY3QgaWQ9InNsaWNlci1kcm9wZG93biI+CiAgICA8b3B0aW9uPkxhc3QgNyBkYXlzPC9vcHRpb24+CiAgICA8b3B0aW9uPkxhc3QgMzAgZGF5czwvb3B0aW9uPgogICAgPG9wdGlvbj5MYXN0IDkwIGRheXM8L29wdGlvbj4KICAgIDxvcHRpb24+TGFzdCAxMiBtb250aHM8L29wdGlvbj4KICAgIDxvcHRpb24+TGFzdCAzNiBtb250aHM8L29wdGlvbj4KICA8L3NlbGVjdD4KPC9kaXY+Cgo8ZGl2IGNsYXNzPSJjaGFydC1jb250YWluZXIiPgogIDxkaXYgaWQ9ImNoYXJ0Ij48L2Rpdj4KPC9kaXY+Cg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[25.71990234313073,74.28009765686927]}}\"}"
+      display_mode: CHART_MODE
+      dynamic_name: Recognition given
+      dynamic_description: Trend of recognitions awarded by users across all recognition posts
+    viz_guid: 37b1cfd7-2c7d-4327-b3eb-d90fd2a28816
+  - id: Viz_6
+    answer:
+      name: People leaderboard - recognitions recieved
+      description: Top users  (up to 5) by total recognitions received during the selected period
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Total recognition
+        name: Total recognition
+        expr: "count ( [Recognition Receiver User Code] )"
+        was_auto_generated: false
+      search_query: "[Is Recognition Deleted?].false [Award Type].peer [Receiver User Full Name] [Receiver User Status].active [formula_Total recognition] sort by [formula_Total recognition] descending top 5 [Recognition Receiver User Code]"
+      answer_columns:
+      - name: Receiver User Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Recognition Receiver User Code
+        custom_name: User code
+        dynamic_title: User code
+      - name: Total recognition
+      table:
+        table_columns:
+        - column_id: Receiver User Full Name
+          show_headline: false
+        - column_id: Recognition Receiver User Code
+          show_headline: false
+        - column_id: Total recognition
+          show_headline: false
+        ordered_column_ids:
+        - Receiver User Full Name
+        - Recognition Receiver User Code
+        - Total recognition
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Receiver User Full Name\",\"width\": 377.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver User Full Name\",\"Total recognition\",\"Recognition Receiver User Code\"],\"columnProperties\": [{\"columnId\": \"Recognition Receiver User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Receiver User Full Name
+        - column_id: Recognition Receiver User Code
+        - column_id: Total recognition
+        axis_configs:
+        - x:
+          - Recognition Receiver User Code
+          "y":
+          - Total recognition
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"c1e0abf6-12da-420a-bead-6464957cabc3\",\"columnProperty\": {}},{\"columnId\": \"fa18085b-9fa7-41e4-9019-37a2e83532e8\",\"columnProperty\": {}},{\"columnId\": \"Receiver User Full Name\",\"columnProperty\": {}},{\"columnId\": \"Recognition Receiver User Code\",\"columnProperty\": {}},{\"columnId\": \"Total recognition\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"7a76ba78-fcbd-4104-9c5e-0093d4fa3227\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total recognition\"],\"isOpposite\": false}},{\"id\": \"ebdb296f-22f8-4582-82d2-dbd09eb43d7b\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Recognition Receiver User Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"547ad65c-03f2-4ed1-a5db-aa0f3b503997\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/12/2025
+      - key: Recognition start date
+        value: 08/14/2025
+      dynamic_name: People leaderboard - recognitions recieved
+      dynamic_description: Top users  (up to 5) by total recognitions received during the selected period
+    viz_guid: 11e6fa7c-147b-4067-a2b5-bbb998fe7220
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_7
+    answer:
+      name: People leaderboard - recognitions given
+      description: Top users  (up to 5) by total recognitions given during the selected period
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      search_query: "[Giver User Status].active count [Recognition Giver User Code] [Is Recognition Deleted?].false [Award Type].peer sort by count [Recognition Giver User Code] descending [Giver User Full Name] top 5 [Giver user code]"
+      answer_columns:
+      - name: Giver User Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Giver user code
+        custom_name: User code
+        dynamic_title: User code
+      - name: Number of Recognition Giver User Code
+        custom_name: Total recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total recognition
+      table:
+        table_columns:
+        - column_id: Giver User Full Name
+          show_headline: false
+        - column_id: Giver user code
+          show_headline: false
+        - column_id: Number of Recognition Giver User Code
+          show_headline: false
+        ordered_column_ids:
+        - Giver User Full Name
+        - Giver user code
+        - Number of Recognition Giver User Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Giver User Full Name\",\"width\": 334.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Giver User Full Name\",\"Number of Recognition Giver User Code\",\"Giver user code\"],\"columnProperties\": [{\"columnId\": \"Giver user code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Giver User Full Name
+        - column_id: Giver user code
+        - column_id: Number of Recognition Giver User Code
+        axis_configs:
+        - x:
+          - Giver user code
+          "y":
+          - Number of Recognition Giver User Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"d148d932-46ed-4dd7-a4bb-f0ed03b00448\",\"columnProperty\": {}},{\"columnId\": \"788b4d30-9fe3-4702-af22-2d8eee08889a\",\"columnProperty\": {}},{\"columnId\": \"Number of Recognition Giver User Code\",\"columnProperty\": {}},{\"columnId\": \"Giver User Full Name\",\"columnProperty\": {}},{\"columnId\": \"Giver user code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"63e6e1d2-37a7-4d5a-ba02-1b419e118658\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Recognition Giver User Code\"],\"isOpposite\": false}},{\"id\": \"ba129d5c-19bf-4769-ae0b-27483be0733f\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Giver user code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"547ad65c-03f2-4ed1-a5db-aa0f3b503997\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/12/2025
+      - key: Recognition start date
+        value: 08/14/2025
+      dynamic_name: People leaderboard - recognitions given
+      dynamic_description: Top users  (up to 5) by total recognitions given during the selected period
+    viz_guid: 726ba864-6d56-4b42-a06c-fa1dd7b567c2
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_8
+    answer:
+      name: Department leaderboard - recognitions recieved
+      description: Top departments (up to 5)  by total recognitions received during the selected period
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Avg recognition per person
+        name: Avg recognition per person
+        expr: "count ( [Recognition Receiver User Code] ) / unique count ( [Recognition Receiver User Code] )"
+        was_auto_generated: false
+      search_query: "count [Recognition Receiver User Code] [Is Recognition Deleted?].false [Award Type].peer [Receiver User Status].active sort by count [Recognition Receiver User Code] descending [Recognition Received Date] between [Recognition Received Date].08/15/2025 and [Recognition Received Date].11/10/2025 [Receiver User Department] [formula_Avg recognition per person] top 5"
+      answer_columns:
+      - name: Avg recognition per person
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Number of Recognition Receiver User Code
+        custom_name: Total recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total recognition
+      - name: Receiver User Department
+        custom_name: Department
+        dynamic_title: Department
+      table:
+        table_columns:
+        - column_id: Avg recognition per person
+          show_headline: false
+        - column_id: Number of Recognition Receiver User Code
+          show_headline: false
+        - column_id: Receiver User Department
+          show_headline: false
+        ordered_column_ids:
+        - Receiver User Department
+        - Number of Recognition Receiver User Code
+        - Avg recognition per person
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Number of Recognition Receiver User Code\",\"width\": 138.0},{\"columnId\": \"Receiver User Department\",\"width\": 323.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver User Department\",\"Avg recognition per person\",\"Number of Recognition Receiver User Code\"]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Avg recognition per person
+        - column_id: Number of Recognition Receiver User Code
+        - column_id: Receiver User Department
+        axis_configs:
+        - x:
+          - Receiver User Department
+          "y":
+          - Number of Recognition Receiver User Code
+          - Avg recognition per person
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"0f969256-5706-4c2f-8644-1e4c8ee2afed\",\"columnProperty\": {}},{\"columnId\": \"85e7f445-d4ab-4331-8da4-08610e43b745\",\"columnProperty\": {}},{\"columnId\": \"Number of Recognition Receiver User Code\",\"columnProperty\": {}},{\"columnId\": \"Receiver User Department\",\"columnProperty\": {}},{\"columnId\": \"Avg recognition per person\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"a6fb349b-2186-4f76-817b-0b1d05a9028c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Recognition Receiver User Code\"],\"isOpposite\": false}},{\"id\": \"25c41683-fad8-4480-ac31-ef93e6b4a776\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Avg recognition per person\"],\"isOpposite\": true}},{\"id\": \"9c5fee99-a638-4969-aed9-7ef9433ba5e8\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver User Department\"]}}],\"systemSeriesColors\": [{\"serieName\": \"547ad65c-03f2-4ed1-a5db-aa0f3b503997\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/12/2025
+      - key: Recognition start date
+        value: 08/14/2025
+      dynamic_name: Department leaderboard - recognitions recieved
+      dynamic_description: Top departments (up to 5)  by total recognitions received during the selected period
+    viz_guid: ba1a152e-4233-4148-9720-415e3d888148
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_9
+    answer:
+      name: Department leaderboard - recognitions given
+      description: Top departments (up to 5) ranked by total recognitions given during the selected period
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Avg recognition per person
+        name: Avg recognition per person
+        expr: "count ( [Recognition Giver User Code] ) / unique count ( [Recognition Giver User Code] )"
+        was_auto_generated: false
+      search_query: "count [Recognition Giver User Code] [Is Recognition Deleted?].false [Award Type].peer [formula_Avg recognition per person] [Giver User Status].active [Giver User Department] sort by count [Recognition Giver User Code] descending top 5"
+      answer_columns:
+      - name: Avg recognition per person
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Giver User Department
+        custom_name: Department
+        dynamic_title: Department
+      - name: Number of Recognition Giver User Code
+        custom_name: Total recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total recognition
+      table:
+        table_columns:
+        - column_id: Avg recognition per person
+          show_headline: false
+        - column_id: Giver User Department
+          show_headline: false
+        - column_id: Number of Recognition Giver User Code
+          show_headline: false
+        ordered_column_ids:
+        - Giver User Department
+        - Number of Recognition Giver User Code
+        - Avg recognition per person
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Avg recognition per person\",\"width\": 217.0},{\"columnId\": \"Number of Recognition Giver User Code\",\"width\": 162.0},{\"columnId\": \"Giver User Department\",\"width\": 252.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Giver User Department\",\"Avg recognition per person\",\"Number of Recognition Giver User Code\"],\"columnProperties\": [{\"columnId\": \"Number of Recognition Giver User Code\",\"columnProperty\": {\"wrapColumnText\": false}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Avg recognition per person
+        - column_id: Giver User Department
+        - column_id: Number of Recognition Giver User Code
+        axis_configs:
+        - x:
+          - Giver User Department
+          "y":
+          - Number of Recognition Giver User Code
+          - Avg recognition per person
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"9d450aaf-34ac-4971-973e-232ccfb41225\",\"columnProperty\": {}},{\"columnId\": \"d176dc1c-70db-4345-ab4f-028e0fbec301\",\"columnProperty\": {}},{\"columnId\": \"Avg recognition per person\",\"columnProperty\": {}},{\"columnId\": \"Giver User Department\",\"columnProperty\": {}},{\"columnId\": \"Number of Recognition Giver User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"32feaa20-9c41-4e68-9c02-ed528c1ab174\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Recognition Giver User Code\"],\"isOpposite\": false}},{\"id\": \"b6cd65a0-4890-4539-9edb-a4f1fb318ca7\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Avg recognition per person\"],\"isOpposite\": true}},{\"id\": \"6e194d19-25d2-43a6-90cb-048ad5720de4\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Giver User Department\"]}}],\"systemSeriesColors\": [{\"serieName\": \"547ad65c-03f2-4ed1-a5db-aa0f3b503997\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/12/2025
+      - key: Recognition start date
+        value: 08/14/2025
+      dynamic_name: Department leaderboard - recognitions given
+      dynamic_description: Top departments (up to 5) ranked by total recognitions given during the selected period
+    viz_guid: b372421e-36cb-47f3-ac86-6ce710b82702
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_10
+    answer:
+      name: Location leaderboard - recognitions recieved
+      description: Top locations (up to 5) ranked by total recognitions received during the selected period
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Avg recognition per person
+        name: Avg recognition per person
+        expr: "count ( [Recognition Receiver User Code] ) / unique count ( [Recognition Receiver User Code] )"
+        was_auto_generated: false
+      search_query: "count [Recognition Receiver User Code] [Is Recognition Deleted?].false [Award Type].peer [Receiver User Status].active sort by count [Recognition Receiver User Code] descending [formula_Avg recognition per person] [Receiver User Location] top 5"
+      answer_columns:
+      - name: Avg recognition per person
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Number of Recognition Receiver User Code
+        custom_name: Total recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total recognition
+      - name: Receiver User Location
+        custom_name: Location
+        dynamic_title: Location
+      table:
+        table_columns:
+        - column_id: Avg recognition per person
+          show_headline: false
+        - column_id: Number of Recognition Receiver User Code
+          show_headline: false
+        - column_id: Receiver User Location
+          show_headline: false
+        ordered_column_ids:
+        - Receiver User Location
+        - Number of Recognition Receiver User Code
+        - Avg recognition per person
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Number of Recognition Receiver User Code\",\"width\": 138.0},{\"columnId\": \"Receiver User Location\",\"width\": 213.27423095703125},{\"columnId\": \"Avg recognition per person\",\"width\": 204.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver User Location\",\"Avg recognition per person\",\"Number of Recognition Receiver User Code\"]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Avg recognition per person
+        - column_id: Number of Recognition Receiver User Code
+        - column_id: Receiver User Location
+        axis_configs:
+        - x:
+          - Receiver User Location
+          "y":
+          - Number of Recognition Receiver User Code
+          - Avg recognition per person
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"259822b2-6f84-4b32-a669-8bffb5d71335\",\"columnProperty\": {}},{\"columnId\": \"898099a8-a6dd-4b78-93ba-f53c307e5103\",\"columnProperty\": {}},{\"columnId\": \"Number of Recognition Receiver User Code\",\"columnProperty\": {}},{\"columnId\": \"Avg recognition per person\",\"columnProperty\": {}},{\"columnId\": \"Receiver User Location\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"630e41ac-bfdc-43b5-9276-52473f5afdba\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Recognition Receiver User Code\"],\"isOpposite\": false}},{\"id\": \"91896a28-e6e1-454b-889d-5a4340bf8324\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Avg recognition per person\"],\"isOpposite\": true}},{\"id\": \"2328353c-5702-476a-aa71-8f7db62766e4\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver User Location\"]}}],\"systemSeriesColors\": [{\"serieName\": \"547ad65c-03f2-4ed1-a5db-aa0f3b503997\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/12/2025
+      - key: Recognition start date
+        value: 08/14/2025
+      dynamic_name: Location leaderboard - recognitions recieved
+      dynamic_description: Top locations (up to 5) ranked by total recognitions received during the selected period
+    viz_guid: 93ebb95b-3ab7-49ed-a0b6-ade772c3571d
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_11
+    answer:
+      name: Location leaderboard - recognitions given
+      description: Top locations (up to 5) ranked by total recognitions received during the selected period
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Avg recognition per person
+        name: Avg recognition per person
+        expr: "count ( [Recognition Giver User Code] ) / unique count ( [Recognition Giver User Code] )"
+        was_auto_generated: false
+      search_query: "count [Recognition Giver User Code] [Is Recognition Deleted?].false [Award Type].peer [formula_Avg recognition per person] [Giver User Status].active sort by count [Recognition Giver User Code] descending [Giver User Location] top 5"
+      answer_columns:
+      - name: Avg recognition per person
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Giver User Location
+        custom_name: Location
+        dynamic_title: Location
+      - name: Number of Recognition Giver User Code
+        custom_name: Total recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total recognition
+      table:
+        table_columns:
+        - column_id: Avg recognition per person
+          show_headline: false
+        - column_id: Giver User Location
+          show_headline: false
+        - column_id: Number of Recognition Giver User Code
+          show_headline: false
+        ordered_column_ids:
+        - Giver User Location
+        - Number of Recognition Giver User Code
+        - Avg recognition per person
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Avg recognition per person\",\"width\": 217.0},{\"columnId\": \"Number of Recognition Giver User Code\",\"width\": 162.0},{\"columnId\": \"Giver User Location\",\"width\": 231.27423095703125}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Giver User Location\",\"Avg recognition per person\",\"Number of Recognition Giver User Code\"],\"columnProperties\": [{\"columnId\": \"Number of Recognition Giver User Code\",\"columnProperty\": {\"wrapColumnText\": false}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Avg recognition per person
+        - column_id: Giver User Location
+        - column_id: Number of Recognition Giver User Code
+        axis_configs:
+        - x:
+          - Giver User Location
+          "y":
+          - Number of Recognition Giver User Code
+          - Avg recognition per person
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"84babc28-e69a-4b12-bd3e-e4cdfab0795b\",\"columnProperty\": {}},{\"columnId\": \"c3f086fa-5d0c-425c-b9a4-46d0689ee773\",\"columnProperty\": {}},{\"columnId\": \"Avg recognition per person\",\"columnProperty\": {}},{\"columnId\": \"Number of Recognition Giver User Code\",\"columnProperty\": {}},{\"columnId\": \"Giver User Location\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"f097a030-7ab9-4109-aa0b-195cd27f91fd\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Recognition Giver User Code\"],\"isOpposite\": false}},{\"id\": \"a0b352d2-0bea-4b79-b54c-ddcfce1a2a34\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Avg recognition per person\"],\"isOpposite\": true}},{\"id\": \"2d3494f7-2b98-4283-9d3c-e4291deeff20\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Giver User Location\"]}}],\"systemSeriesColors\": [{\"serieName\": \"547ad65c-03f2-4ed1-a5db-aa0f3b503997\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/12/2025
+      - key: Recognition start date
+        value: 08/14/2025
+      dynamic_name: Location leaderboard - recognitions given
+      dynamic_description: Top locations (up to 5) ranked by total recognitions received during the selected period
+    viz_guid: fd3ee46d-acfe-427d-993a-a9da22e25ca1
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  filters:
+  - column:
+    - Receiver User Department
+    excluded_visualizations:
+    - Viz_1
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Receiver User Location
+    excluded_visualizations:
+    - Viz_1
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Recognition Received Date
+    excluded_visualizations:
+    - Viz_2
+    - Viz_3
+    - Viz_4
+    - Viz_1
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Giver User Location
+    excluded_visualizations:
+    - Viz_2
+    - Viz_3
+    - Viz_4
+    - Viz_5
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_9
+    - Viz_10
+    - Viz_11
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Giver User Department
+    excluded_visualizations:
+    - Viz_2
+    - Viz_3
+    - Viz_4
+    - Viz_5
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_9
+    - Viz_10
+    - Viz_11
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Tenant User Department
+    excluded_visualizations:
+    - Viz_2
+    - Viz_3
+    - Viz_5
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_9
+    - Viz_10
+    - Viz_11
+    - Viz_1
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Tenant User Location
+    excluded_visualizations:
+    - Viz_2
+    - Viz_3
+    - Viz_5
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_9
+    - Viz_10
+    - Viz_11
+    - Viz_1
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 31
+      height: 6
+      width: 6
+    - visualization_id: Viz_2
+      x: 0
+      "y": 0
+      height: 4
+      width: 4
+    - visualization_id: Viz_3
+      x: 4
+      "y": 0
+      height: 4
+      width: 4
+    - visualization_id: Viz_4
+      x: 8
+      "y": 0
+      height: 4
+      width: 4
+    - visualization_id: Viz_5
+      x: 0
+      "y": 4
+      height: 8
+      width: 12
+    - visualization_id: Viz_6
+      x: 0
+      "y": 12
+      height: 7
+      width: 6
+    - visualization_id: Viz_7
+      x: 6
+      "y": 12
+      height: 7
+      width: 6
+    - visualization_id: Viz_8
+      x: 0
+      "y": 19
+      height: 6
+      width: 6
+    - visualization_id: Viz_9
+      x: 6
+      "y": 19
+      height: 6
+      width: 6
+    - visualization_id: Viz_10
+      x: 0
+      "y": 25
+      height: 6
+      width: 6
+    - visualization_id: Viz_11
+      x: 6
+      "y": 25
+      height: 6
+      width: 6
+  parameter_overrides:
+  - key: a4e6c70d-a279-498b-9e6d-f95df63becee
+    value:
+      name: Recognition::Recognition start date
+      override_value: 11/20/2024
+  - key: fd673a1e-02fa-41c0-a6b5-f4077e09cfcf
+    value:
+      name: Recognition::Recognition end date
+  ordered_chips:
+  - name: Recognition::Recognition end date
+    type: PARAMETER
+  - name: Recognition::Recognition start date
+    type: PARAMETER
+  - name: Receiver User Department
+    type: FILTER
+  - name: Receiver User Location
+    type: FILTER
+  - name: Tenant Code
+    type: FILTER
+  - name: Recognition Received Date
+    type: FILTER
+  - name: Giver User Location
+    type: FILTER
+  - name: Giver User Department
+    type: FILTER
+  - name: Tenant User Department
+    type: FILTER
+  - name: Tenant User Location
+    type: FILTER
