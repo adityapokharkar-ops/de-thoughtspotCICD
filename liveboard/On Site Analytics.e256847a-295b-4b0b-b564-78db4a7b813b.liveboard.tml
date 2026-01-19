@@ -1,0 +1,2078 @@
+guid: e256847a-295b-4b0b-b564-78db4a7b813b
+liveboard:
+  name: On Site Analytics
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Most content published
+      description: Top content creators on site ranked by total number of items published
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      search_query: "[Primary Author Full Name] [Primary Author Code] unique count [Site Content Code] sort by unique count [Site Content Code] descending top 5"
+      answer_columns:
+      - name: Primary Author Code
+      - name: Primary Author Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Unique Number of Site Content Code
+        custom_name: Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Count
+      table:
+        table_columns:
+        - column_id: Primary Author Code
+          show_headline: false
+        - column_id: Primary Author Full Name
+          show_headline: false
+        - column_id: Unique Number of Site Content Code
+          show_headline: false
+        ordered_column_ids:
+        - Primary Author Full Name
+        - Primary Author Code
+        - Unique Number of Site Content Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Primary Author Full Name\",\"width\": 188.6165313720703},{\"columnId\": \"Unique Number of Site Content Code\",\"width\": 157.62120056152344}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Primary Author Full Name\",\"Primary Author Code\"],\"columnProperties\": [{\"columnId\": \"Primary Author Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Primary Author Code
+        - column_id: Primary Author Full Name
+        - column_id: Unique Number of Site Content Code
+        axis_configs:
+        - x:
+          - Primary Author Full Name
+          "y":
+          - Unique Number of Site Content Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Primary Author Full Name\",\"columnProperty\": {}},{\"columnId\": \"Primary Author Code\",\"columnProperty\": {}},{\"columnId\": \"Unique Number of Site Content Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"24c7b581-4b9c-4918-a10e-1226a29333c8\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Site Content Code\"],\"isOpposite\": false}},{\"id\": \"b93b29f8-daff-4e74-8d1f-6044d40a8c2f\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Primary Author Full Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most content published
+      dynamic_description: Top content creators on site ranked by total number of items published
+    viz_guid: e1879b40-652f-4928-9489-aa82e012ddbe
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_2
+    answer:
+      name: Favorites received
+      description: Users (up to 5) ranked by favorites received in the selected period
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      search_query: "[Interaction Receiver User Code] [Receiver Full Name] unique count [Interaction Code] sort by unique count [Interaction Code] descending [Is System Feed?] = false [Is Interaction Deleted?] = false [Interaction Type] = 'favourites' top 5"
+      answer_columns:
+      - name: Interaction Receiver User Code
+      - name: Receiver Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Unique Number of Interaction Code
+        custom_name: Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Count
+      table:
+        table_columns:
+        - column_id: Interaction Receiver User Code
+          show_headline: false
+        - column_id: Receiver Full Name
+          show_headline: false
+        - column_id: Unique Number of Interaction Code
+          show_headline: false
+        ordered_column_ids:
+        - Interaction Receiver User Code
+        - Receiver Full Name
+        - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Receiver Full Name\",\"width\": 241.9922332763672},{\"columnId\": \"Unique Number of Interaction Code\",\"width\": 130.4952392578125}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver Full Name\",\"Unique Number of Interaction Code\",\"Interaction Receiver User Code\"],\"columnProperties\": [{\"columnId\": \"Interaction Receiver User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Interaction Receiver User Code
+        - column_id: Receiver Full Name
+        - column_id: Unique Number of Interaction Code
+        axis_configs:
+        - x:
+          - Receiver Full Name
+          "y":
+          - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Receiver Full Name\",\"columnProperty\": {}},{\"columnId\": \"Unique Number of Interaction Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"a5f4d121-dde3-4eda-be3c-acf59dd5d12d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"b00129ed-d959-40d5-8aa1-7cde175e9670\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver Full Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Favorites received
+      dynamic_description: Users (up to 5) ranked by favorites received in the selected period
+    viz_guid: 65236e8c-d3bc-4020-a970-814cc769c927
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_3
+    answer:
+      name: Reactions received
+      description: Users (up to 5) ranked by the total reactions received in the selected period
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      search_query: "[Interaction Receiver User Code] [Receiver Full Name] unique count [Interaction Code] sort by unique count [Interaction Code] descending [Is System Feed?] = false [Is Interaction Deleted?] = false [Interaction Type] = 'like' top 5"
+      answer_columns:
+      - name: Interaction Receiver User Code
+      - name: Receiver Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Unique Number of Interaction Code
+        custom_name: Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Count
+      table:
+        table_columns:
+        - column_id: Interaction Receiver User Code
+          show_headline: false
+        - column_id: Receiver Full Name
+          show_headline: false
+        - column_id: Unique Number of Interaction Code
+          show_headline: false
+        ordered_column_ids:
+        - Interaction Receiver User Code
+        - Receiver Full Name
+        - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Receiver Full Name\",\"width\": 235.89971923828125},{\"columnId\": \"Unique Number of Interaction Code\",\"width\": 113.48295593261719}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver Full Name\",\"Unique Number of Interaction Code\",\"Interaction Receiver User Code\"],\"columnProperties\": [{\"columnId\": \"Interaction Receiver User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Interaction Receiver User Code
+        - column_id: Receiver Full Name
+        - column_id: Unique Number of Interaction Code
+        axis_configs:
+        - x:
+          - Receiver Full Name
+          "y":
+          - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Receiver Full Name\",\"columnProperty\": {}},{\"columnId\": \"Unique Number of Interaction Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"a5f4d121-dde3-4eda-be3c-acf59dd5d12d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"b00129ed-d959-40d5-8aa1-7cde175e9670\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver Full Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Reactions received
+      dynamic_description: Users (up to 5) ranked by the total reactions received in the selected period
+    viz_guid: 7a225b39-14a8-42c3-8a9c-2381db0d9462
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_4
+    answer:
+      name: Replies from other users
+      description: Users (up to 5) ranked by number of reply interactions they received in the selected period
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      search_query: "[Interaction Receiver User Code] [Receiver Full Name] unique count [Interaction Code] sort by unique count [Interaction Code] descending [Is System Feed?] = false [Is Interaction Deleted?] = false [Interaction Type] = 'reply' top 5"
+      answer_columns:
+      - name: Interaction Receiver User Code
+      - name: Receiver Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Unique Number of Interaction Code
+        custom_name: Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Count
+      table:
+        table_columns:
+        - column_id: Interaction Receiver User Code
+          show_headline: false
+        - column_id: Receiver Full Name
+          show_headline: false
+        - column_id: Unique Number of Interaction Code
+          show_headline: false
+        ordered_column_ids:
+        - Interaction Receiver User Code
+        - Receiver Full Name
+        - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Receiver Full Name\",\"width\": 240.45310974121094},{\"columnId\": \"Unique Number of Interaction Code\",\"width\": 132.6174774169922}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver Full Name\",\"Unique Number of Interaction Code\",\"Interaction Receiver User Code\"],\"columnProperties\": [{\"columnId\": \"Interaction Receiver User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Interaction Receiver User Code
+        - column_id: Receiver Full Name
+        - column_id: Unique Number of Interaction Code
+        axis_configs:
+        - x:
+          - Receiver Full Name
+          "y":
+          - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Receiver Full Name\",\"columnProperty\": {}},{\"columnId\": \"Unique Number of Interaction Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"a5f4d121-dde3-4eda-be3c-acf59dd5d12d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"b00129ed-d959-40d5-8aa1-7cde175e9670\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver Full Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Replies from other users
+      dynamic_description: Users (up to 5) ranked by number of reply interactions they received in the selected period
+    viz_guid: c7f55f7e-5009-4e51-9305-da2d5e8aa5f7
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_5
+    answer:
+      name: Shares received
+      description: Users (up to 5) ranked by shares received in the selected period
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      search_query: "[Interaction Receiver User Code] [Receiver Full Name] unique count [Interaction Code] sort by unique count [Interaction Code] descending [Is System Feed?] = false [Is Interaction Deleted?] = false [Interaction Type] = 'share' top 5"
+      answer_columns:
+      - name: Interaction Receiver User Code
+      - name: Receiver Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Unique Number of Interaction Code
+        custom_name: Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Count
+      table:
+        table_columns:
+        - column_id: Interaction Receiver User Code
+          show_headline: false
+        - column_id: Receiver Full Name
+          show_headline: false
+        - column_id: Unique Number of Interaction Code
+          show_headline: false
+        ordered_column_ids:
+        - Interaction Receiver User Code
+        - Receiver Full Name
+        - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Receiver Full Name\",\"width\": 227.6165313720703},{\"columnId\": \"Unique Number of Interaction Code\",\"width\": 145.9034423828125}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver Full Name\",\"Unique Number of Interaction Code\",\"Interaction Receiver User Code\"],\"columnProperties\": [{\"columnId\": \"Interaction Receiver User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Interaction Receiver User Code
+        - column_id: Receiver Full Name
+        - column_id: Unique Number of Interaction Code
+        axis_configs:
+        - x:
+          - Receiver Full Name
+          "y":
+          - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Receiver Full Name\",\"columnProperty\": {}},{\"columnId\": \"Unique Number of Interaction Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"a5f4d121-dde3-4eda-be3c-acf59dd5d12d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"b00129ed-d959-40d5-8aa1-7cde175e9670\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver Full Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Shares received
+      dynamic_description: Users (up to 5) ranked by shares received in the selected period
+    viz_guid: c7bccb44-f07c-4cd1-87d3-b23e16c03282
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_6
+    answer:
+      name: Reactions made
+      description: Users (up to 5) with the highest number of reaction interactions in the selected period
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      search_query: "unique count [Interaction Code] sort by unique count [Interaction Code] descending [Is System Feed?] = false [Is Interaction Deleted?] = false [Interaction Type] = 'like' [Interaction User Name] [Interacted By User Code] top 5"
+      answer_columns:
+      - name: Interacted By User Code
+      - name: Interaction User Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Unique Number of Interaction Code
+        custom_name: Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Count
+      table:
+        table_columns:
+        - column_id: Interacted By User Code
+          show_headline: false
+        - column_id: Interaction User Name
+          show_headline: false
+        - column_id: Unique Number of Interaction Code
+          show_headline: false
+        ordered_column_ids:
+        - Interaction User Name
+        - Interacted By User Code
+        - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Interaction User Name\",\"width\": 209.6165313720703},{\"columnId\": \"Unique Number of Interaction Code\",\"width\": 159.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Interaction User Name\",\"Unique Number of Interaction Code\",\"Interacted By User Code\"],\"columnProperties\": [{\"columnId\": \"Interacted By User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Interacted By User Code
+        - column_id: Interaction User Name
+        - column_id: Unique Number of Interaction Code
+        axis_configs:
+        - x:
+          - Interaction User Name
+          "y":
+          - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Unique Number of Interaction Code\",\"columnProperty\": {}},{\"columnId\": \"Interaction User Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"db1fc385-5106-43e5-97f3-70024b819be9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"3a2bfb4a-6d3b-459a-ad6f-f7ea2be0d7f1\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Interaction User Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Reactions made
+      dynamic_description: Users (up to 5) with the highest number of reaction interactions in the selected period
+    viz_guid: 75e28a73-bee1-4aa3-8262-46dcb8d41567
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_7
+    answer:
+      name: Replies to others
+      description: Users (up to 5) ranked by number of reply interactions made in the selected period
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      search_query: "sort by unique count [Interaction Code] descending [Is System Feed?] = false [Is Interaction Deleted?] = false [Interaction Type] = 'reply' [Interaction User Name] [Interaction User Code] top 5"
+      answer_columns:
+      - name: Interaction User Code
+      - name: Interaction User Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Unique Number of Interaction Code
+        custom_name: Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Count
+      table:
+        table_columns:
+        - column_id: Interaction User Code
+          show_headline: false
+        - column_id: Interaction User Name
+          show_headline: false
+        - column_id: Unique Number of Interaction Code
+          show_headline: false
+        ordered_column_ids:
+        - Interaction User Name
+        - Interaction User Code
+        - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Interaction User Name\",\"width\": 178.44363403320312},{\"columnId\": \"Unique Number of Interaction Code\",\"width\": 120.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Interaction User Name\",\"Unique Number of Interaction Code\",\"Interaction User Code\"],\"columnProperties\": [{\"columnId\": \"Interaction User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Interaction User Code
+        - column_id: Interaction User Name
+        - column_id: Unique Number of Interaction Code
+        axis_configs:
+        - x:
+          - Interaction User Name
+          "y":
+          - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Unique Number of Interaction Code\",\"columnProperty\": {}},{\"columnId\": \"Interaction User Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"f5fbb186-a23c-49dc-ba5d-ca18e3378521\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"bf17a7d1-917c-45b9-a0c9-d5bb1d485449\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Interaction User Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Replies to others
+      dynamic_description: Users (up to 5) ranked by number of reply interactions made in the selected period
+    viz_guid: 272b714b-af55-4a52-a512-2b18609c5d25
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_8
+    answer:
+      name: Feed posts and content comments
+      description: Users (up to 5) ranked by comments made on feed posts and content in the selected period
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      search_query: "unique count [Interaction Code] sort by unique count [Interaction Code] descending [Is System Feed?] = false [Is Interaction Deleted?] = false [Interaction User Name] [Interacted By User Code] [Interaction Type].comment [Interaction Type].post top 5"
+      answer_columns:
+      - name: Interacted By User Code
+      - name: Interaction User Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Unique Number of Interaction Code
+        custom_name: Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Count
+      table:
+        table_columns:
+        - column_id: Interacted By User Code
+          show_headline: false
+        - column_id: Interaction User Name
+          show_headline: false
+        - column_id: Unique Number of Interaction Code
+          show_headline: false
+        ordered_column_ids:
+        - Interaction User Name
+        - Interacted By User Code
+        - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Interaction User Name\",\"width\": 255.6165313720703},{\"columnId\": \"Unique Number of Interaction Code\",\"width\": 114.60557556152344}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Interaction User Name\",\"Unique Number of Interaction Code\",\"Interacted By User Code\"],\"columnProperties\": [{\"columnId\": \"Interacted By User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Interacted By User Code
+        - column_id: Interaction User Name
+        - column_id: Unique Number of Interaction Code
+        axis_configs:
+        - x:
+          - Interaction User Name
+          "y":
+          - Unique Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Unique Number of Interaction Code\",\"columnProperty\": {}},{\"columnId\": \"Interaction User Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"db1fc385-5106-43e5-97f3-70024b819be9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"3a2bfb4a-6d3b-459a-ad6f-f7ea2be0d7f1\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Interaction User Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Feed posts and content comments
+      dynamic_description: Users (up to 5) ranked by comments made on feed posts and content in the selected period
+    viz_guid: 9d9d2c4b-0708-4704-b1d4-318e25e7bf71
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_9
+    answer:
+      name: Engagement
+      description: Trend of site engagement activity over time
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Favorites
+        name: Favorites
+        expr: "sum ( [Daily Site Total Favourites] )"
+        was_auto_generated: false
+      - id: formula_Feed posts and content comments
+        name: Feed posts and content comments
+        expr: "sum ( [Daily Site Total Posts] ) + sum ( [Daily Site Total Comments] ) "
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "sum ( [Daily Site Total Likes] )"
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "sum ( [Daily Site Total Replies] )"
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "sum ( [Daily Site Total Shares] )"
+        was_auto_generated: false
+      search_query: "[Reporting Date] [Reporting Date].daily [formula_Reactions] [formula_Feed posts and content comments] [formula_Replies] [formula_Shares] [formula_Favorites]"
+      answer_columns:
+      - name: Day(Reporting Date)
+        custom_name: Reporting date
+        dynamic_title: Reporting date
+      - name: Favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Feed posts and content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Day(Reporting Date)
+          show_headline: false
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Feed posts and content comments
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        ordered_column_ids:
+        - Day(Reporting Date)
+        - Reactions
+        - Feed posts and content comments
+        - Replies
+        - Shares
+        - Favorites
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Day(Reporting Date)
+        - column_id: Favorites
+        - column_id: Feed posts and content comments
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Shares
+        axis_configs:
+        - x:
+          - Day(Reporting Date)
+          "y":
+          - Reactions
+          - Feed posts and content comments
+          - Replies
+          - Shares
+          - Favorites
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":true,\\\"showComparison\\\":true,\\\"showSparkline\\\":true,\\\"showAnalyseChangeCta\\\":true,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"pivotSummariesState\": {}},\"showStackedLabels\": false,\"allLabels\": false,\"legendPosition\": \"BOTTOM_LEGEND\"},\"columnProperties\": [{\"columnId\": \"Day(Reporting Date)\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure names\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure values\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Reactions\",\"columnProperty\": {\"dataLabels\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Feed posts and content comments\",\"columnProperty\": {\"dataLabels\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Replies\",\"columnProperty\": {\"dataLabels\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Shares\",\"columnProperty\": {\"dataLabels\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Favorites\",\"columnProperty\": {\"dataLabels\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"8a0a7302-daa2-414e-85c0-aa7c0a82e889\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\",\"Replies\",\"Shares\",\"Feed posts and content comments\",\"Favorites\"],\"format\": {\"category\": \"NUMBER\",\"numberFormatConfig\": {\"unit\": \"NONE\",\"decimals\": 0.0,\"negativeValueFormat\": \"PREFIX_DASH\",\"toSeparateThousands\": true},\"isCategoryEditable\": true},\"name\": \"Engagement value\",\"isOpposite\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\",\"dynamicTitle\": \"Engagement value\"}},{\"id\": \"ed6118a8-fbd8-46b0-b4aa-019cff47985e\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Reporting Date)\"],\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}}],\"seriesColors\": [{\"serieName\": \"Reactions\",\"color\": \"#3a86ff\"},{\"serieName\": \"Feed posts and content comments\",\"color\": \"#FF3D91\"},{\"serieName\": \"Replies\",\"color\": \"#ffcb3d\"},{\"serieName\": \"Shares\",\"color\": \"#8338ec\"},{\"serieName\": \"Favorites\",\"color\": \"#74cc31\"}],\"systemSeriesColors\": [{\"serieName\": \"Reactions\",\"color\": \"#FF3D91\"},{\"serieName\": \"Feed posts and content comments\",\"color\": \"#3a86ff\"},{\"serieName\": \"Replies\",\"color\": \"#3a86ff\"},{\"serieName\": \"Shares\",\"color\": \"#619eff\"},{\"serieName\": \"Favorites\",\"color\": \"#8338ec\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Engagement
+      dynamic_description: Trend of site engagement activity over time
+    viz_guid: 1258bafa-5774-4f89-8bf1-ceafabb56ff0
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_10
+    answer:
+      name: Reactions
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Reactions
+        name: Reactions
+        expr: "sum ( [Daily Site Total Likes]  )"
+        was_auto_generated: false
+      search_query: "[formula_Reactions]"
+      answer_columns:
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Reactions
+          show_headline: false
+        ordered_column_ids:
+        - Reactions
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Reactions\",\"columnProperty\": {}}]}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Reactions
+        axis_configs:
+        - "y":
+          - Reactions
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":false,\\\"showComparison\\\":false,\\\"showSparkline\\\":false,\\\"showAnalyseChangeCta\\\":false,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"dataFieldArea\": \"column\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Reactions\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure names\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure values\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"7235e0b7-bb88-40eb-9996-399667471d6e\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\"],\"isOpposite\": false}},{\"id\": \"f8f6b4e5-5bd2-4c68-9fe5-6695de0b4f4c\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"Reactions\",\"color\": \"#3a86ff\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Reactions
+    viz_guid: b9e8cc2d-8fdc-47df-851d-9352088f7f8a
+  - id: Viz_11
+    answer:
+      name: Feed posts and content comments
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Feed posts and content comments
+        name: Feed posts and content comments
+        expr: "sum ( [Daily Site Total Posts] ) + sum ( [Daily Site Total Comments] )"
+        was_auto_generated: false
+      search_query: "[formula_Feed posts and content comments]"
+      answer_columns:
+      - name: Feed posts and content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Feed posts and content comments
+          show_headline: false
+        ordered_column_ids:
+        - Feed posts and content comments
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Feed posts and content comments\",\"columnProperty\": {}}]}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Feed posts and content comments
+        axis_configs:
+        - "y":
+          - Feed posts and content comments
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":false,\\\"showComparison\\\":false,\\\"showSparkline\\\":false,\\\"showAnalyseChangeCta\\\":false,\\\"showAnomalies\\\":null,\\\"customCompare\\\":\\\"CUSTOM\\\"}\",\"dataFieldArea\": \"column\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Feed posts and content comments\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure names\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure values\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"781c674c-1943-460e-8427-c96b5f8f1117\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Feed posts and content comments\"],\"isOpposite\": false}},{\"id\": \"18f31532-571d-4dce-8bd3-e05f3ad0b36c\",\"properties\": {\"axisType\": \"X\"}}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Feed posts and content comments
+    viz_guid: 867df73b-fd11-4d58-bcb6-054b1b36df91
+  - id: Viz_12
+    answer:
+      name: Replies
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Replies
+        name: Replies
+        expr: "sum ( [Daily Site Total Replies] )"
+        was_auto_generated: false
+      search_query: "[formula_Replies]"
+      answer_columns:
+      - name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Replies
+          show_headline: false
+        ordered_column_ids:
+        - Replies
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Replies\",\"columnProperty\": {}}]}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Replies
+        axis_configs:
+        - "y":
+          - Replies
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":true,\\\"showComparison\\\":false,\\\"showSparkline\\\":true,\\\"showAnalyseChangeCta\\\":true,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"dataFieldArea\": \"column\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Replies\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure names\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure values\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"3d1cb0b6-1bda-41e3-8fb7-e99f3f0b863d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Replies\"],\"isOpposite\": false}},{\"id\": \"7a3f5144-29c9-4f49-b597-6cade9ea4478\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"Replies\",\"color\": \"#3a86ff\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Replies
+    viz_guid: 1fea1259-3ae5-4408-959a-8e3986d7805a
+  - id: Viz_13
+    answer:
+      name: Shares
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Shares
+        name: Shares
+        expr: "sum ( [Daily Site Total Shares]  )"
+        was_auto_generated: false
+      search_query: "[formula_Shares]"
+      answer_columns:
+      - name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Shares
+          show_headline: false
+        ordered_column_ids:
+        - Shares
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Shares\",\"columnProperty\": {}}]}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Shares
+        axis_configs:
+        - "y":
+          - Shares
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":false,\\\"showComparison\\\":false,\\\"showSparkline\\\":false,\\\"showAnalyseChangeCta\\\":false,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"dataFieldArea\": \"column\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Shares\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure names\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure values\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"9e1c8b42-6b43-4e01-8100-ac489d16e967\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Shares\"],\"isOpposite\": false}},{\"id\": \"14e86ac4-ca53-452a-aad1-a9eb74bb7a8e\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"Shares\",\"color\": \"#3a86ff\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Shares
+    viz_guid: c9f9bc7d-4e4a-41ba-a9bf-73fb56c578c2
+  - id: Viz_14
+    answer:
+      name: Favorites
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Favorites
+        name: Favorites
+        expr: "sum ( [Daily Site Total Favourites] )"
+        was_auto_generated: false
+      search_query: "[formula_Favorites]"
+      answer_columns:
+      - name: Favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Favorites
+          show_headline: false
+        ordered_column_ids:
+        - Favorites
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Favorites\",\"columnProperty\": {}}]}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Favorites
+        axis_configs:
+        - "y":
+          - Favorites
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":false,\\\"showComparison\\\":false,\\\"showSparkline\\\":false,\\\"showAnalyseChangeCta\\\":false,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"dataFieldArea\": \"column\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Favorites\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure names\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Measure values\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"8a30f464-7a8b-44bc-bda2-c058ab909ce0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Favorites\"],\"isOpposite\": false}},{\"id\": \"f9cdf959-2c00-492e-aa5f-d158a1c39012\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"Favorites\",\"color\": \"#3a86ff\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Favorites
+    viz_guid: b0ae08d9-ce23-47f9-901e-9ed3c862acf0
+  - id: Viz_15
+    answer:
+      name: Most viewed content
+      description: Top content items ranked by total views in the selected period
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      search_query: "[Content Title] [Content Code] top 5 [Daily Total Views]"
+      answer_columns:
+      - name: Content Code
+      - name: Content Title
+        custom_name: Content
+        dynamic_title: Content
+      - name: Total Daily Total Views
+        custom_name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Views
+      table:
+        table_columns:
+        - column_id: Content Code
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Total Daily Total Views
+          show_headline: false
+        ordered_column_ids:
+        - Content Title
+        - Content Code
+        - Total Daily Total Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Content Title\",\"width\": 206.29481506347656},{\"columnId\": \"Total Daily Total Views\",\"width\": 116.68927001953125}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Content Title\",\"Content Code\"],\"columnProperties\": [{\"columnId\": \"Content Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Content Code
+        - column_id: Content Title
+        - column_id: Total Daily Total Views
+        axis_configs:
+        - x:
+          - Content Code
+          "y":
+          - Total Daily Total Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Content Title\",\"columnProperty\": {}},{\"columnId\": \"Content Code\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Total Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"86efab80-415e-45e8-9969-3e72dde30484\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Total Views\"],\"isOpposite\": false}},{\"id\": \"1533453d-8544-45fd-9392-cceb8b372fd2\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Content Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"2da6478f-b055-4f67-80c4-a8065f0e8776\",\"color\": \"#FCC838\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most viewed content
+      dynamic_description: Top content items ranked by total views in the selected period
+    viz_guid: 558516f8-12c2-4129-868a-d0ca78cbf195
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_16
+    answer:
+      name: Views by type
+      description: "Breakdown of content views, share of total views, and average views by content type"
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Average Content Views
+        name: Average Content Views
+        expr: "[formula_Content Views] / unique count ( [Content Code] ) "
+        was_auto_generated: false
+      - id: formula_Content Views
+        name: Content Views
+        expr: "ifnull ( sum ( [Daily Total Views] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Content Views Contribution
+        name: Content Views Contribution
+        expr: "sum ( [Daily Total Views] ) / group_sum ( [Daily Total Views] )"
+        was_auto_generated: false
+      search_query: "[Content Type] [formula_Content Views] [formula_Content Views Contribution] [formula_Average Content Views] sort by [formula_Content Views] descending [Content Type] != 'N/A'"
+      answer_columns:
+      - name: Average Content Views
+        custom_name: Avg views per content type
+        dynamic_title: Avg views per content type
+      - name: Content Type
+        custom_name: Content type
+      - name: Content Views
+        custom_name: Content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      - name: Content Views Contribution
+        custom_name: Contribution to total content views
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 0.0
+          isCategoryEditable: true
+        dynamic_title: Contribution to total content views
+      table:
+        table_columns:
+        - column_id: Average Content Views
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Content Views
+          show_headline: false
+        - column_id: Content Views Contribution
+          show_headline: false
+        ordered_column_ids:
+        - Content Type
+        - Content Views
+        - Content Views Contribution
+        - Average Content Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Content Type\",\"width\": 137.8863525390625},{\"columnId\": \"Average Content Views\",\"width\": 204.0},{\"columnId\": \"Content Views Contribution\",\"width\": 207.0},{\"columnId\": \"Content Views\",\"width\": 150.39549255371094}],\"wrapTableHeader\": true,\"showTableFooter\": false,\"orderedColumnIds\": [\"Content Type\"]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Average Content Views
+        - column_id: Content Type
+        - column_id: Content Views
+        - column_id: Content Views Contribution
+        axis_configs:
+        - x:
+          - Content Type
+          "y":
+          - Content Views
+          - Content Views Contribution
+          - Average Content Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Content Type\",\"columnProperty\": {}},{\"columnId\": \"Content Views\",\"columnProperty\": {}},{\"columnId\": \"Content Views Contribution\",\"columnProperty\": {}},{\"columnId\": \"Average Content Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"c878d313-b77c-49a2-94cd-367e69ce05f6\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Content Views\"],\"isOpposite\": false}},{\"id\": \"206ddd68-8236-4b5b-9395-b4dcd1e38ee1\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Content Views Contribution\"],\"isOpposite\": true}},{\"id\": \"6704a225-51b7-4bf3-ac0e-5061d03950d4\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Average Content Views\"],\"isOpposite\": true}},{\"id\": \"c40d6f5e-0d20-4e82-8cdb-560aea17159d\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Content Type\"]}}],\"systemSeriesColors\": [{\"serieName\": \"01cea180-2dd7-4b42-a87b-e5bbdbd0e60d\",\"color\": \"#FCC838\"},{\"serieName\": \"Content Views\",\"color\": \"#ffcb3d\"},{\"serieName\": \"Content Views Contribution\",\"color\": \"#FF3D91\"},{\"serieName\": \"Average Content Views\",\"color\": \"#3a86ff\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Views by type
+      dynamic_description: "Breakdown of content views, share of total views, and average views by content type"
+    viz_guid: c8b929f0-db50-4329-b2ab-fce6061f28d6
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_17
+    answer:
+      name: Content published
+      description: "Breakdown of published content by type (pages, events, albums, blog posts)"
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Content Count
+        name: Content Count
+        expr: "unique count ( [Site Content Code] )"
+        was_auto_generated: false
+      search_query: "unique count [Site Content Code] [Content Type] [formula_Content Count] [Content Type].Album [Content Type].'Blog Post' [Content Type].Event [Content Type].Page sort by unique count [Site Content Code] descending"
+      answer_columns:
+      - name: Content Count
+      - name: Content Type
+        sort_info:
+          category: NONE
+      - name: Unique Number of Site Content Code
+        custom_name: Content Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Content Count
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Content Count
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Unique Number of Site Content Code
+          show_headline: false
+        ordered_column_ids:
+        - Content Type
+        - Unique Number of Site Content Code
+        - Content Count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Content Count
+        - column_id: Content Type
+        - column_id: Unique Number of Site Content Code
+        axis_configs:
+        - x:
+          - Content Type
+          "y":
+          - Unique Number of Site Content Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":true,\\\"showComparison\\\":true,\\\"showSparkline\\\":true,\\\"showAnalyseChangeCta\\\":true,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Unique Number of Site Content Code\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Content Type\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"b47b4b6c-9041-474b-8573-115f356bd204\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Site Content Code\"],\"isOpposite\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}},{\"id\": \"9e899452-1dc2-434d-9300-2ba7deaeb88a\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Content Type\"],\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}}],\"seriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"},{\"serieName\": \"n/a\",\"color\": \"#FF3D91\"},{\"serieName\": \"news\",\"color\": \"#3a86ff\"},{\"serieName\": \"page\",\"color\": \"#3a86ff\"},{\"serieName\": \"event\",\"color\": \"#FF3D91\"},{\"serieName\": \"album\",\"color\": \"#ffcb3d\"},{\"serieName\": \"blog post\",\"color\": \"#8338ec\"}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"},{\"serieName\": \"page\",\"color\": \"#747E8C\"},{\"serieName\": \"event\",\"color\": \"#ffcb3d\"},{\"serieName\": \"album\",\"color\": \"#ff64a7\"},{\"serieName\": \"n/a\",\"color\": \"#FF3D91\"},{\"serieName\": \"blog post\",\"color\": \"#619eff\"},{\"serieName\": \"news\",\"color\": \"#3a86ff\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Content published
+      dynamic_description: "Breakdown of published content by type (pages, events, albums, blog posts)"
+    viz_guid: 48f9c3dd-313c-4a89-93fe-09d9c466bc9a
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_18
+    answer:
+      name: Views
+      description: "Trend of dashboard, content, and other tab views over time"
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Content Views
+        name: Content Views
+        expr: "sum ( [Daily Site Total Content Views] ) "
+        was_auto_generated: false
+      - id: formula_Dashboard Views
+        name: Dashboard Views
+        expr: "sum ( [Daily Site Total Dashboard Views] )"
+        was_auto_generated: false
+      - id: formula_Other Tab Views
+        name: Other Tab Views
+        expr: "sum ( [Daily Site Total Other Tab Views] )"
+        was_auto_generated: false
+      search_query: "[formula_Dashboard Views] [formula_Content Views] [formula_Other Tab Views] [Reporting Date] [Reporting Date].daily"
+      answer_columns:
+      - name: Content Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Dashboard Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Day(Reporting Date)
+        custom_name: Reporting Date
+        dynamic_title: Reporting Date
+      - name: Other Tab Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Content Views
+          show_headline: false
+        - column_id: Dashboard Views
+          show_headline: false
+        - column_id: Day(Reporting Date)
+          show_headline: false
+        - column_id: Other Tab Views
+          show_headline: false
+        ordered_column_ids:
+        - Day(Reporting Date)
+        - Dashboard Views
+        - Content Views
+        - Other Tab Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: LINE
+        chart_columns:
+        - column_id: Content Views
+        - column_id: Dashboard Views
+        - column_id: Day(Reporting Date)
+        - column_id: Other Tab Views
+        axis_configs:
+        - x:
+          - Day(Reporting Date)
+          "y":
+          - Dashboard Views
+          - Content Views
+          - Other Tab Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": false,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"markersEnabled\": false,\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":true,\\\"showComparison\\\":true,\\\"showSparkline\\\":true,\\\"showAnalyseChangeCta\\\":true,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"pivotSummariesState\": {}},\"legendPosition\": \"BOTTOM_LEGEND\"},\"columnProperties\": [{\"columnId\": \"Dashboard Views\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Content Views\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Other Tab Views\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Day(Reporting Date)\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"4088ef25-b046-4b6e-9a10-2147e9ca1be1\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Reporting Date)\"],\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}},{\"id\": \"c1da025e-9af7-44b4-b6b0-494f2fade856\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Dashboard Views\",\"Content Views\",\"Other Tab Views\"],\"format\": {\"category\": \"NUMBER\",\"numberFormatConfig\": {\"unit\": \"NONE\",\"decimals\": 0.0,\"negativeValueFormat\": \"PREFIX_DASH\",\"toSeparateThousands\": true},\"isCategoryEditable\": true},\"name\": \"Views\",\"isOpposite\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\",\"dynamicTitle\": \"Views\"}}],\"seriesColors\": [{\"serieName\": \"Dashboard Views\",\"color\": \"#FF3D91\"},{\"serieName\": \"Content Views\",\"color\": \"#2E75F0\"},{\"serieName\": \"Other Tab Views\",\"color\": \"#ffcb3d\"}],\"systemSeriesColors\": [{\"serieName\": \"21bc1322-a987-48d0-b781-b37ff51e8de3\",\"color\": \"#747E8C\"},{\"serieName\": \"comment\",\"color\": \"#06BF7F\"},{\"serieName\": \"download\",\"color\": \"#FCD977\"},{\"serieName\": \"favourites\",\"color\": \"#FCC838\"},{\"serieName\": \"like\",\"color\": \"#82DFE9\"},{\"serieName\": \"post\",\"color\": \"#48D1E0\"},{\"serieName\": \"reply\",\"color\": \"#71A1F4\"},{\"serieName\": \"view\",\"color\": \"#2E75F0\"},{\"serieName\": \"7c4a1233-bcb7-4bd1-952f-99afa9468f26\",\"color\": \"#48D1E0\"},{\"serieName\": \"Dashboard Views\",\"color\": \"#06BF7F\"},{\"serieName\": \"Content Views\",\"color\": \"#48D1E0\"},{\"serieName\": \"Other Tab Views\",\"color\": \"#8C62F5\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Views
+      dynamic_description: "Trend of dashboard, content, and other tab views over time"
+    viz_guid: 8ccc426e-7112-4a77-a611-5751e297b804
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_19
+    answer:
+      name: Content views
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Content Views
+        name: Content Views
+        expr: "sum ( [Daily Site Total Content Views]  )"
+        was_auto_generated: false
+      - id: formula_Dashboard Views
+        name: Dashboard Views
+        expr: "unique_count_if ( [Is Dashboard View?] = true , [Interaction Code] )"
+        was_auto_generated: false
+      - id: formula_Other Tab Views
+        name: Other Tab Views
+        expr: "( unique count ( [Interaction Code] ) ) - ( unique_count_if ( [Is Dashboard View?] = false and [Is Content Post First Published?] = true , [Interaction Code] ) + unique_count_if ( [Is Dashboard View?] = true , [Interaction Code] ) )"
+        was_auto_generated: false
+      search_query: "[formula_Content Views]"
+      answer_columns:
+      - name: Content Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Content Views
+          show_headline: false
+        ordered_column_ids:
+        - Content Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Content Views
+        axis_configs:
+        - "y":
+          - Content Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":false,\\\"showComparison\\\":false,\\\"showSparkline\\\":false,\\\"showAnalyseChangeCta\\\":false,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Content Views\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"3ab87833-b44a-490a-9052-a8217a0b3f4b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Content Views\"],\"isOpposite\": false}},{\"id\": \"6ac05ee9-c5cb-4406-87d1-7688a8d3c06c\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"Content Views\",\"color\": \"#3a86ff\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Content views
+    viz_guid: 5d9b9f00-37f6-41ca-b788-31283b5fa55d
+  - id: Viz_20
+    answer:
+      name: Dashboard views
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Dashboard Views
+        name: Dashboard Views
+        expr: "sum ( [Daily Site Total Dashboard Views] )"
+        was_auto_generated: false
+      - id: formula_Content Views
+        name: Content Views
+        expr: "unique_count_if ( [Is Dashboard View?] = false and [Is Content Post First Published?] = true , [Interaction Code] )"
+        was_auto_generated: false
+      - id: formula_Other Tab Views
+        name: Other Tab Views
+        expr: "( unique count ( [Interaction Code] ) ) - ( unique_count_if ( [Is Dashboard View?] = false and [Is Content Post First Published?] = true , [Interaction Code] ) + unique_count_if ( [Is Dashboard View?] = true , [Interaction Code] ) )"
+        was_auto_generated: false
+      search_query: "[formula_Dashboard Views]"
+      answer_columns:
+      - name: Dashboard Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Dashboard Views
+          show_headline: false
+        ordered_column_ids:
+        - Dashboard Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Dashboard Views
+        axis_configs:
+        - "y":
+          - Dashboard Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":false,\\\"showComparison\\\":false,\\\"showSparkline\\\":false,\\\"showAnalyseChangeCta\\\":false,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Dashboard Views\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"6381189d-71d1-4028-a8d3-77cf9b5c5dd3\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Dashboard Views\"],\"isOpposite\": false}},{\"id\": \"6170cc93-dfc8-4339-bb08-99380721f4e6\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"Dashboard Views\",\"color\": \"#3a86ff\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Dashboard views
+    viz_guid: 7b31e810-9bc6-4bc4-a6f2-b699dce71d6a
+  - id: Viz_21
+    answer:
+      name: Other tab views
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Other Tab Views
+        name: Other Tab Views
+        expr: "sum ( [Daily Site Total Other Tab Views] )"
+        was_auto_generated: false
+      search_query: "[formula_Other Tab Views]"
+      answer_columns:
+      - name: Other Tab Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Other Tab Views
+          show_headline: false
+        ordered_column_ids:
+        - Other Tab Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Other Tab Views
+        axis_configs:
+        - "y":
+          - Other Tab Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":false,\\\"showComparison\\\":false,\\\"showSparkline\\\":false,\\\"showAnalyseChangeCta\\\":false,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Other Tab Views\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"b083d9ef-cf13-4724-953c-c27a24537a3f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Other Tab Views\"],\"isOpposite\": false}},{\"id\": \"6e5c83cb-19e1-4502-adfe-775a19927b1a\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"Other Tab Views\",\"color\": \"#3a86ff\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Other tab views
+    viz_guid: 8e6b7469-d1e7-4b55-8b73-62a3caf2cf4b
+  - id: Viz_22
+    answer:
+      name: Most popular
+      description: Content items (up to 5) ranked by overall popularity score for the selected period
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Popularity
+        name: Popularity
+        expr: "sum ( [Popularity Score]  )"
+        was_auto_generated: false
+      search_query: "[Content Title] [Content Code] top 5 [formula_Popularity]"
+      answer_columns:
+      - name: Content Code
+      - name: Content Title
+        custom_name: Content
+        dynamic_title: Content
+      - name: Popularity
+        custom_name: Popularity score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Popularity score
+      table:
+        table_columns:
+        - column_id: Content Code
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Popularity
+          show_headline: false
+        ordered_column_ids:
+        - Content Title
+        - Content Code
+        - Popularity
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Content Title\",\"width\": 206.29481506347656},{\"columnId\": \"Popularity\",\"width\": 171.72508239746094}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Content Title\",\"Content Code\"],\"columnProperties\": [{\"columnId\": \"Content Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Content Code
+        - column_id: Content Title
+        - column_id: Popularity
+        axis_configs:
+        - x:
+          - Content Code
+          "y":
+          - Popularity
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Content Title\",\"columnProperty\": {}},{\"columnId\": \"Content Code\",\"columnProperty\": {}},{\"columnId\": \"Popularity\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"e313dee5-85bf-4661-96bd-eca3a3957126\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Popularity\"],\"isOpposite\": false}},{\"id\": \"3cc6ff58-791e-47dc-a322-515f17b2b929\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Content Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"01cea180-2dd7-4b42-a87b-e5bbdbd0e60d\",\"color\": \"#FCC838\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most popular
+      dynamic_description: Content items (up to 5) ranked by overall popularity score for the selected period
+    viz_guid: b4b025a3-5a7a-44c2-ba3d-33077e1ce421
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_23
+    answer:
+      name: Currently published
+      description: "Count of currently published content items by type (pages, events, albums)"
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Content Count
+        name: Content Count
+        expr: "unique count ( [Site Content Code] )"
+        was_auto_generated: false
+      search_query: "unique count [Site Content Code] sort by unique count [Site Content Code] descending [Content Type] [formula_Content Count] [Is Content Active?] = true [Is Content Site Active?] = true [Content Type].Album [Content Type].'Blog Post' [Content Type].Event [Content Type].Page"
+      answer_columns:
+      - name: Content Count
+      - name: Content Type
+      - name: Unique Number of Site Content Code
+        custom_name: Content Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Content Count
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Content Count
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Unique Number of Site Content Code
+          show_headline: false
+        ordered_column_ids:
+        - Content Type
+        - Unique Number of Site Content Code
+        - Content Count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Content Count
+        - column_id: Content Type
+        - column_id: Unique Number of Site Content Code
+        axis_configs:
+        - x:
+          - Content Type
+          "y":
+          - Unique Number of Site Content Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":true,\\\"showComparison\\\":true,\\\"showSparkline\\\":true,\\\"showAnalyseChangeCta\\\":true,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Content Type\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Unique Number of Site Content Code\",\"columnProperty\": {\"conditionalFormatting\": {\"rows\": [{\"operator\": \"IS\",\"value\": \"Page\",\"plotAsBand\": false,\"backgroundFormatType\": \"SOLID\",\"solidBackgroundAttrs\": {\"color\": \"#3a86ff\"},\"comparisonType\": \"VALUE_BASED\",\"lhsColumnId\": \"Content Type\"},{\"operator\": \"IS\",\"value\": \"Event\",\"plotAsBand\": false,\"backgroundFormatType\": \"SOLID\",\"solidBackgroundAttrs\": {\"color\": \"#FF3D91\"},\"comparisonType\": \"VALUE_BASED\",\"lhsColumnId\": \"Content Type\"},{\"operator\": \"IS\",\"value\": \"Album\",\"plotAsBand\": false,\"backgroundFormatType\": \"SOLID\",\"solidBackgroundAttrs\": {\"color\": \"#ffcb3d\"},\"comparisonType\": \"VALUE_BASED\",\"lhsColumnId\": \"Content Type\"}]},\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"b47b4b6c-9041-474b-8573-115f356bd204\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Site Content Code\"],\"format\": {\"category\": \"NUMBER\",\"numberFormatConfig\": {\"unit\": \"NONE\",\"decimals\": 0.0,\"negativeValueFormat\": \"PREFIX_DASH\",\"toSeparateThousands\": true,\"removeTrailingZeroes\": false},\"isCategoryEditable\": true},\"isOpposite\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}},{\"id\": \"9e899452-1dc2-434d-9300-2ba7deaeb88a\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Content Type\"],\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"},{\"serieName\": \"page\",\"color\": \"#747E8C\"},{\"serieName\": \"Unique Number of Site Content Code\",\"color\": \"#FCC838\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Currently published
+      dynamic_description: "Count of currently published content items by type (pages, events, albums)"
+    viz_guid: bceb5da1-0244-4dd7-bfda-1f5afc4345a0
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_24
+    answer:
+      name: Site created
+      description: Date of site creation
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Site Created date
+        name: Site Created date
+        expr: "date ( [Site Created Datetime] )"
+        was_auto_generated: false
+      search_query: "[formula_Site Created date] [formula_Site Created date].daily"
+      answer_columns:
+      - name: Day(Site Created date)
+      table:
+        table_columns:
+        - column_id: Day(Site Created date)
+          show_headline: false
+        ordered_column_ids:
+        - Day(Site Created date)
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Day(Site Created date)
+        axis_configs:
+        - "y":
+          - Day(Site Created date)
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Day(Site Created date)\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"defc4f32-5426-4ecc-8805-82f9c07c6fc5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Day(Site Created date)\"],\"isOpposite\": false}},{\"id\": \"e2019e26-e19d-426f-b77e-2d77568de252\",\"properties\": {\"axisType\": \"X\"}}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Site created
+      dynamic_description: Date of site creation
+    viz_guid: 5f4f9d59-186b-483c-a85c-97539463e1c0
+  - id: Viz_25
+    answer:
+      name: Content referrals
+      description: "Referrals by UTM source, with share of total and average referrals per item"
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Avg referrals per item
+        name: Avg referrals per item
+        expr: "round ( count ( [Interaction Content Code] ) / unique count ( [Interaction Content Code] ) , .1 )"
+        was_auto_generated: false
+      - id: formula_Content Items
+        name: Content Items
+        expr: "unique count ( [Interaction Content Code] )"
+        was_auto_generated: false
+      - id: formula_Referrals
+        name: Referrals
+        expr: "count ( [Interaction Content Code] )"
+        was_auto_generated: false
+      - id: formula_Referrals Contribution
+        name: Referrals Contribution
+        expr: "count ( [Interaction Content Code] ) / group_count ( [Interaction Content Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Content Items] [formula_Referrals] [Is Interaction Post First Publish?] = true [Interaction Type] = 'view' [formula_Referrals Contribution] [UTM Source Name] top 5 sort by [formula_Referrals] descending [formula_Avg referrals per item]"
+      answer_columns:
+      - name: Avg referrals per item
+      - name: Content Items
+        custom_name: Content items
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Content items
+      - name: Referrals
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Referrals Contribution
+        custom_name: Referrals contribution
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 2.0
+          isCategoryEditable: true
+        dynamic_title: Referrals contribution
+      - name: UTM Source Name
+        custom_name: UTM source name
+        dynamic_title: UTM source name
+      table:
+        table_columns:
+        - column_id: Avg referrals per item
+          show_headline: false
+        - column_id: Content Items
+          show_headline: false
+        - column_id: Referrals
+          show_headline: false
+        - column_id: Referrals Contribution
+          show_headline: false
+        - column_id: UTM Source Name
+          show_headline: false
+        ordered_column_ids:
+        - UTM Source Name
+        - Content Items
+        - Referrals
+        - Referrals Contribution
+        - Avg referrals per item
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Avg referrals per item
+        - column_id: Content Items
+        - column_id: Referrals
+        - column_id: Referrals Contribution
+        - column_id: UTM Source Name
+        axis_configs:
+        - x:
+          - UTM Source Name
+          "y":
+          - Content Items
+          - Referrals
+          - Referrals Contribution
+          - Avg referrals per item
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Content Items\",\"columnProperty\": {}},{\"columnId\": \"Referrals\",\"columnProperty\": {}},{\"columnId\": \"Referrals Contribution\",\"columnProperty\": {}},{\"columnId\": \"UTM Source Name\",\"columnProperty\": {}},{\"columnId\": \"Avg referrals per item\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"f069ea89-9216-49f6-bdb0-d2d0d9fa8171\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Content Items\"],\"isOpposite\": false}},{\"id\": \"75d1b7fe-0c68-4b8e-82cd-652f5f342667\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Referrals\"],\"isOpposite\": true}},{\"id\": \"f63840bc-8382-42df-9ae0-07fe68fc5898\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Referrals Contribution\"],\"isOpposite\": true}},{\"id\": \"a09218d4-6c8d-43d3-a3a6-36aa3e07ed00\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Avg referrals per item\"],\"isOpposite\": true}},{\"id\": \"44a08df8-2fdf-449b-92ea-8f49b4a766f3\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"UTM Source Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Content Items\",\"color\": \"#747E8C\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Content referrals
+      dynamic_description: "Referrals by UTM source, with share of total and average referrals per item"
+    viz_guid: fb2a0a92-7752-4cff-85b4-096bb1ea3a28
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_26
+    answer:
+      name: Manager
+      description: Total count of site managers
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Content Count
+        name: Content Count
+        expr: "unique count ( [Site Content Code] )"
+        was_auto_generated: false
+      search_query: "unique count [Site Participant User Code] [Is Site Participant Deleted?] = false [Site Participant Active Flag].true [Site Participant Role].'Content Manager' [Site Participant Role].Manager [Site Participant Role].Owner [Relationship Via Code].SPRV001"
+      answer_columns:
+      - name: Unique Number of Site Participant User Code
+        custom_name: Participant Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Participant Count
+      table:
+        table_columns:
+        - column_id: Unique Number of Site Participant User Code
+          show_headline: false
+        ordered_column_ids:
+        - Unique Number of Site Participant User Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Unique Number of Site Participant User Code
+        axis_configs:
+        - "y":
+          - Unique Number of Site Participant User Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":false,\\\"showComparison\\\":false,\\\"showSparkline\\\":false,\\\"showAnalyseChangeCta\\\":false,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Unique Number of Site Participant User Code\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"cf2f8ff1-8255-4e0d-9b39-cb07d4c9f877\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Site Participant User Code\"],\"isOpposite\": false}},{\"id\": \"0378f51b-425a-4871-a55b-6819bd1f1f1f\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"},{\"serieName\": \"page\",\"color\": \"#747E8C\"},{\"serieName\": \"714e611d-6964-4561-8622-5f4e5e36636d\",\"color\": \"#FCC838\"},{\"serieName\": \"Unique Number of Site Participant User Code\",\"color\": \"#2E75F0\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Manager
+      dynamic_description: Total count of site managers
+    viz_guid: 83a7c38d-8210-4071-bc6b-d8524585c7b2
+  - id: Viz_27
+    answer:
+      name: Members
+      description: Total count of active site members
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Content Count
+        name: Content Count
+        expr: "unique count ( [Site Content Code] )"
+        was_auto_generated: false
+      search_query: "unique count [Site Participant User Code] [Is Site Participant Deleted?] = false [Site Participant Role].'Content Manager' [Site Participant Role].Manager [Site Participant Role].Member [Site Participant Role].'Onboarding Content Manager' [Site Participant Role].Owner [Site Participant Active Flag].true [Relationship Via Code].SPRV001"
+      answer_columns:
+      - name: Unique Number of Site Participant User Code
+        custom_name: Participant Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Participant Count
+      table:
+        table_columns:
+        - column_id: Unique Number of Site Participant User Code
+          show_headline: false
+        ordered_column_ids:
+        - Unique Number of Site Participant User Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Unique Number of Site Participant User Code
+        axis_configs:
+        - "y":
+          - Unique Number of Site Participant User Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Unique Number of Site Participant User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"9c0d264b-8c73-4732-a2f4-258136b640e2\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Site Participant User Code\"],\"isOpposite\": false}},{\"id\": \"5ca19d3b-959b-4a0b-9d2f-970c07c24728\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"},{\"serieName\": \"page\",\"color\": \"#747E8C\"},{\"serieName\": \"714e611d-6964-4561-8622-5f4e5e36636d\",\"color\": \"#FCC838\"},{\"serieName\": \"Unique Number of Site Participant User Code\",\"color\": \"#2E75F0\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Members
+      dynamic_description: Total count of active site members
+    viz_guid: 248e884c-fec1-4143-9c52-8719b7867214
+  - id: Viz_28
+    answer:
+      name: Followers
+      description: 'Total count of site followers '
+      tables:
+      - id: Site
+        name: Site
+        fqn: 425e9c20-6924-4bc2-991e-18093935d190
+      formulas:
+      - id: formula_Content Count
+        name: Content Count
+        expr: "unique count ( [Site Content Code] )"
+        was_auto_generated: false
+      search_query: "unique count [Site Participant User Code] [Is Site Participant Deleted?] = false [Site Participant Role].Follower [Site Participant Active Flag].true [Relationship Via Code].SPRV001"
+      answer_columns:
+      - name: Unique Number of Site Participant User Code
+        custom_name: Participant Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Participant Count
+      table:
+        table_columns:
+        - column_id: Unique Number of Site Participant User Code
+          show_headline: false
+        ordered_column_ids:
+        - Unique Number of Site Participant User Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Unique Number of Site Participant User Code
+        axis_configs:
+        - "y":
+          - Unique Number of Site Participant User Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Unique Number of Site Participant User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"9c0d264b-8c73-4732-a2f4-258136b640e2\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Site Participant User Code\"],\"isOpposite\": false}},{\"id\": \"5ca19d3b-959b-4a0b-9d2f-970c07c24728\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"4f780444-49be-4fd6-adb5-f8a6c90c2239\",\"color\": \"#8C62F5\"},{\"serieName\": \"page\",\"color\": \"#747E8C\"},{\"serieName\": \"714e611d-6964-4561-8622-5f4e5e36636d\",\"color\": \"#FCC838\"},{\"serieName\": \"Unique Number of Site Participant User Code\",\"color\": \"#2E75F0\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Followers
+      dynamic_description: 'Total count of site followers '
+    viz_guid: b5bb12f4-1e00-40e1-b730-c7faf001367f
+  - id: Viz_29
+    answer:
+      name: Knowledge pages
+      description: Knowledge pages status details
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Published
+        name: Published
+        expr: "ifnull ( unique_count_if ( [Knowledge Page Content Status] = 'Published' , [Content Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Validated
+        name: Validated
+        expr: "ifnull ( unique_count_if ( [Knowledge Page Content Status] = 'Validated' , [Content Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Validation expired
+        name: Validation expired
+        expr: "ifnull ( unique_count_if ( [Knowledge Page Content Status] = 'Validation Expired' , [Content Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Validation required
+        name: Validation required
+        expr: "ifnull ( unique_count_if ( [Knowledge Page Content Status] = 'Validation Required' , [Content Code] ) , 0 )"
+        was_auto_generated: false
+      search_query: "[formula_Published] [formula_Validated] [formula_Validation required] [formula_Validation expired]"
+      answer_columns:
+      - name: Published
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Validated
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+      - name: Validation expired
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+      - name: Validation required
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Published
+          show_headline: false
+        - column_id: Validated
+          show_headline: false
+        - column_id: Validation expired
+          show_headline: false
+        - column_id: Validation required
+          show_headline: false
+        ordered_column_ids:
+        - Published
+        - Validated
+        - Validation required
+        - Validation expired
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Published
+        - column_id: Validated
+        - column_id: Validation expired
+        - column_id: Validation required
+        axis_configs:
+        - "y":
+          - Published
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Published\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"ac5aa97f-21e9-46f4-8b49-66cff1c398bf\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Published\"],\"isOpposite\": false}},{\"id\": \"1a4c70d0-4d9b-4945-99ac-d9fa6ba90e64\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"01cea180-2dd7-4b42-a87b-e5bbdbd0e60d\",\"color\": \"#FCC838\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Knowledge pages
+      dynamic_description: Knowledge pages status details
+    viz_guid: 43b62708-0bc4-4180-aa58-eaa7c3ae2744
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  filters:
+  - column:
+    - Site::Content First Published Date
+    excluded_visualizations:
+    - Viz_2
+    - Viz_3
+    - Viz_4
+    - Viz_5
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_10
+    - Viz_11
+    - Viz_12
+    - Viz_13
+    - Viz_14
+    - Viz_9
+    - Viz_18
+    - Viz_19
+    - Viz_20
+    - Viz_21
+    - Viz_23
+    - Viz_26
+    - Viz_27
+    - Viz_28
+    - Viz_24
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 90
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Site::Site Code
+    - Content::Site Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Site::Interaction Datetime
+    - Content::Interaction Datetime
+    excluded_visualizations:
+    - Viz_1
+    - Viz_23
+    - Viz_19
+    - Viz_20
+    - Viz_21
+    - Viz_18
+    - Viz_15
+    - Viz_17
+    - Viz_10
+    - Viz_11
+    - Viz_12
+    - Viz_13
+    - Viz_14
+    - Viz_9
+    - Viz_22
+    - Viz_26
+    - Viz_27
+    - Viz_28
+    - Viz_16
+    - Viz_29
+    - Viz_24
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 90
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Site::Tenant Code
+    - Content::Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Site::Reporting Date
+    - Content::Reporting Date
+    excluded_visualizations:
+    - Viz_24
+    - Viz_26
+    - Viz_27
+    - Viz_28
+    - Viz_23
+    - Viz_17
+    - Viz_1
+    - Viz_2
+    - Viz_6
+    - Viz_3
+    - Viz_8
+    - Viz_7
+    - Viz_4
+    - Viz_5
+    - Viz_25
+    - Viz_29
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 90
+      oper: =
+      date_period: DAY
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 23
+      height: 6
+      width: 6
+    - visualization_id: Viz_2
+      x: 0
+      "y": 34
+      height: 6
+      width: 6
+    - visualization_id: Viz_3
+      x: 6
+      "y": 29
+      height: 5
+      width: 6
+    - visualization_id: Viz_4
+      x: 0
+      "y": 46
+      height: 6
+      width: 6
+    - visualization_id: Viz_5
+      x: 6
+      "y": 34
+      height: 6
+      width: 6
+    - visualization_id: Viz_6
+      x: 0
+      "y": 29
+      height: 5
+      width: 6
+    - visualization_id: Viz_7
+      x: 6
+      "y": 40
+      height: 6
+      width: 6
+    - visualization_id: Viz_8
+      x: 0
+      "y": 40
+      height: 6
+      width: 6
+    - visualization_id: Viz_9
+      x: 0
+      "y": 17
+      height: 6
+      width: 12
+    - visualization_id: Viz_10
+      x: 0
+      "y": 15
+      height: 2
+      width: 2
+    - visualization_id: Viz_11
+      x: 2
+      "y": 15
+      height: 2
+      width: 3
+    - visualization_id: Viz_12
+      x: 5
+      "y": 15
+      height: 2
+      width: 2
+    - visualization_id: Viz_13
+      x: 7
+      "y": 15
+      height: 2
+      width: 2
+    - visualization_id: Viz_14
+      x: 9
+      "y": 15
+      height: 2
+      width: 3
+    - visualization_id: Viz_15
+      x: 6
+      "y": 23
+      height: 6
+      width: 6
+    - visualization_id: Viz_16
+      x: 6
+      "y": 10
+      height: 5
+      width: 6
+    - visualization_id: Viz_17
+      x: 0
+      "y": 10
+      height: 5
+      width: 6
+    - visualization_id: Viz_18
+      x: 6
+      "y": 2
+      height: 8
+      width: 6
+    - visualization_id: Viz_19
+      x: 6
+      "y": 0
+      height: 2
+      width: 2
+    - visualization_id: Viz_20
+      x: 8
+      "y": 0
+      height: 2
+      width: 2
+    - visualization_id: Viz_21
+      x: 10
+      "y": 0
+      height: 2
+      width: 2
+    - visualization_id: Viz_22
+      x: 0
+      "y": 52
+      height: 5
+      width: 6
+    - visualization_id: Viz_23
+      x: 0
+      "y": 4
+      height: 6
+      width: 6
+    - visualization_id: Viz_24
+      x: 0
+      "y": 0
+      height: 2
+      width: 6
+    - visualization_id: Viz_25
+      x: 6
+      "y": 46
+      height: 6
+      width: 6
+    - visualization_id: Viz_26
+      x: 0
+      "y": 2
+      height: 2
+      width: 2
+    - visualization_id: Viz_27
+      x: 2
+      "y": 2
+      height: 2
+      width: 2
+    - visualization_id: Viz_28
+      x: 4
+      "y": 2
+      height: 2
+      width: 2
+    - visualization_id: Viz_29
+      x: 6
+      "y": 52
+      height: 5
+      width: 6
+  ordered_chips:
+  - name: Site::Content First Published Date
+    type: FILTER
+  - name: Site::Site Code
+    type: FILTER
+  - name: Site::Interaction Datetime
+    type: FILTER
+  - name: Site::Tenant Code
+    type: FILTER
+  - name: Site::Reporting Date
+    type: FILTER
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "false"
+    - name: hide_group_description
+      value: "false"
+    - name: hide_group_tile_description
+      value: "false"
+    - name: hide_tile_description
+      value: "false"
+    - name: kpi_hero_font_size
+      value: M
