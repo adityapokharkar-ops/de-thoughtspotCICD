@@ -1,0 +1,1730 @@
+guid: 6546c11f-7330-4dbf-a575-ebc7c56451e6
+liveboard:
+  name: Recognition Rewards
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Points given
+      description: Total number of points that have been awarded across the platform
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "if ( [formula_Points given offset] = 0 and [formula_Points given] != 0 ) then 100 else ifnull ( ( ( [formula_Points given] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given
+        name: Points given
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Offset Start Date] and date ( [Transaction Datetime] ) <= [Offset End Date] , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      search_query: "[Transaction Type].'recognition peer gifting' [Transaction Status].fulfilled [formula_Points given] [formula_Points given offset] [formula_Difference] [Transaction Direction].debit"
+      answer_columns:
+      - name: Difference
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Points given
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Points given offset
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Difference
+          show_headline: false
+        - column_id: Points given
+          show_headline: false
+        - column_id: Points given offset
+          show_headline: false
+        ordered_column_ids:
+        - Points given
+        - Points given offset
+        - Difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}},{\"columnId\": \"Points given offset\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}}]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Difference
+        - column_id: Points given
+        - column_id: Points given offset
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}},{\"columnId\": \"Points given offset\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"11c8277e-ed76-4ed3-93f9-63f19d0d251e\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given\"],\"isOpposite\": false}},{\"id\": \"266c81a6-df7f-42eb-8a12-80342cc9a05b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given offset\"],\"isOpposite\": true}},{\"id\": \"63052d78-5885-4976-bcb8-81d3643af2c1\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Difference\"],\"isOpposite\": true}},{\"id\": \"e68bcdfa-67c1-4ce7-b456-928339066ca4\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Points given
+            - Points given offset
+            - Difference
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Y29uc3QgTlVNQkVSX0ZPUk1BVCA9ICJub25lIjsKCmNvbnN0IGZvcm1hdE51bWJlciA9ICh2YWwpID0+IHsKICAgIGlmKCF2YWwgfHwgIU51bWJlci5pc0Zpbml0ZSh2YWwpKXsKICAgICAgICByZXR1cm4gMDsKICAgIH0KICBjb25zdCBudW0gPSArdmFsOwoKICBzd2l0Y2ggKE5VTUJFUl9GT1JNQVQpIHsKICAgIGNhc2UgIm5vbmUiOgogICAgZGVmYXVsdDoKICAgICAgcmV0dXJuIG51bS50b0xvY2FsZVN0cmluZygiZW4tR0IiLCB7CiAgICAgICAgbWluaW11bUZyYWN0aW9uRGlnaXRzOiAwLAogICAgICAgIG1heGltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgfSk7CiAgfQp9OwoKY29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7CmNvbnN0IGN1cnJlbnRWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzBdID8/IDA7CmNvbnN0IHByZXZpb3VzVmFsdWUgPSByYXdEYXRhPy5bMF0/LlsxXSA/PyAwOwpjb25zdCBwZXJjZW50Q2hhbmdlID0gcmF3RGF0YT8uWzBdPy5bMl0gPz8gIiI7Cgpjb25zdCB2YWx1ZUVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImtwaS12YWx1ZSIpOwpjb25zdCBjaGFuZ2VFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktY2hhbmdlIik7Cgp2YWx1ZUVsLmlubmVyVGV4dCA9IGZvcm1hdE51bWJlcihjdXJyZW50VmFsdWUpOwoKY29uc3QgY29sb3JDbGFzcyA9IHBlcmNlbnRDaGFuZ2UgPj0gMCA/ICJwb3NpdGl2ZSIgOiAibmVnYXRpdmUiOwpjb25zdCBkaXJlY3Rpb24gPSBwZXJjZW50Q2hhbmdlID49IDAgPyAi4oaRIiA6ICLihpMiOwoKY2hhbmdlRWwuaW5uZXJIVE1MID0gYAogICAgPGRpdj4KICAgICAgPHNwYW4gY2xhc3M9ImFycm93ICR7Y29sb3JDbGFzc30iPiR7ZGlyZWN0aW9ufTwvc3Bhbj4KICAgICAgIDxzcGFuIGNsYXNzPSJwZXJjZW50ICR7Y29sb3JDbGFzc30iPiAke3BlcmNlbnRDaGFuZ2UudG9GaXhlZCgwKX0lPC9zcGFuPgogICAgICAgPHNwYW4gY2xhc3M9ImNvbXBhcmUiPnZzICgke2Zvcm1hdE51bWJlcihwcmV2aW91c1ZhbHVlKX0pPC9zcGFuPgogICAgPC9kaXY+CiAgIAogIGA7Cg\\u003d\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwgYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzAwMDsKfQoKLmtwaS1jb250YWluZXIgewogIGRpc3BsYXk6IGZsZXg7CiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKfQoKLmtwaS1tYWluIHsKICBkaXNwbGF5OiBmbGV4OwogIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgZ2FwOiA2cHg7Cn0KCiNrcGktdmFsdWUgewogIGZvbnQtc2l6ZTogNDhweDsKICBmb250LXdlaWdodDogNzAwOwogIGxpbmUtaGVpZ2h0OiAxLjE7CiAgY29sb3I6ICMwMDAwMDA7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgLyogZGlzcGxheTogZmxleDsgKi8KICBhbGlnbi1pdGVtczogY2VudGVyOwogIGdhcDogNHB4OwogIGZvbnQtd2VpZ2h0OiA1MDA7Cn0KCiNrcGktY2hhbmdlIHN2ZyB7CiAgd2lkdGg6IDEwcHg7CiAgaGVpZ2h0OiAxMHB4OwogIG1hcmdpbi10b3A6IDFweDsKfQoKI2twaS1jaGFuZ2UgLnVwIHsKICBjb2xvcjogIzI0ODUyODsKfQoKI2twaS1jaGFuZ2UgLmRvd24gewogIGNvbG9yOiAjZDMxZTM0Owp9Cgoja3BpLWNoYW5nZSAuY29tcGFyZSB7CiAgY29sb3I6ICM2YjZiNmI7Cn0KCiNrcGktc3VidGV4dCB7CiAgZm9udC1zaXplOiAxNXB4OwogIGNvbG9yOiAjNmI2YjZiOwogIG1hcmdpbi10b3A6IDRweDsKfQoKLnBvc2l0aXZlLAoubmVnYXRpdmUgewogIGZvbnQtc2l6ZTogMTFweDsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKfQoKLnBvc2l0aXZlIHsKICBjb2xvcjogIzI0ODUyODsKfQoKLm5lZ2F0aXZlIHsKICBjb2xvcjogI2QzMWUzNDsKfQo\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBjbGFzcz0ia3BpLW1haW4iPgogICAgPHNwYW4gaWQ9ImtwaS12YWx1ZSI+PC9zcGFuPgogICAgPHNwYW4gaWQ9ImtwaS1jaGFuZ2UiPjwvc3Bhbj4KICA8L2Rpdj4KPC9kaXY+\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      dynamic_name: Points given
+      dynamic_description: Total number of points that have been awarded across the platform
+    viz_guid: 6b3db4e7-6683-451f-a845-c9d21ce3a916
+  - id: Viz_2
+    answer:
+      name: Points redeemed
+      description: Total awarded points redeemed for rewards
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "if ( [formula_Points redeemed] != 0 and [formula_Points redeemed offset] = 0 ) then 100 else ifnull ( ( ( [formula_Points redeemed] - [formula_Points redeemed offset] ) / [formula_Points redeemed offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points redeemed
+        name: Points redeemed
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Points redeemed offset
+        name: Points redeemed offset
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Offset Start Date] and date ( [Transaction Datetime] ) <= [Offset End Date] , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      search_query: "[Transaction Direction].debit [Transaction Status].fulfilled [formula_Points redeemed] [formula_Points redeemed offset] [formula_Difference] [Transaction Type].redemption"
+      answer_columns:
+      - name: Difference
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Points redeemed
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Points redeemed offset
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Difference
+          show_headline: false
+        - column_id: Points redeemed
+          show_headline: false
+        - column_id: Points redeemed offset
+          show_headline: false
+        ordered_column_ids:
+        - Points redeemed
+        - Points redeemed offset
+        - Difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"columnProperties\": [{\"columnId\": \"Points redeemed\",\"columnProperty\": {}},{\"columnId\": \"Points redeemed offset\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}}]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Difference
+        - column_id: Points redeemed
+        - column_id: Points redeemed offset
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points redeemed\",\"columnProperty\": {}},{\"columnId\": \"Points redeemed offset\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"50f08dad-bfb4-4cb7-ba95-dc7533ab0109\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points redeemed\"],\"isOpposite\": false}},{\"id\": \"16df0af1-0d11-4978-9b6e-3b465afc4f85\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points redeemed offset\"],\"isOpposite\": true}},{\"id\": \"2e3177ea-3e78-42ad-b3b7-6d9d1a378f07\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Difference\"],\"isOpposite\": true}},{\"id\": \"74d3233c-5e62-41b1-9f0d-2d0c19c7e379\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Points redeemed
+            - Points redeemed offset
+            - Difference
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Y29uc3QgTlVNQkVSX0ZPUk1BVCA9ICJub25lIjsKCmNvbnN0IGZvcm1hdE51bWJlciA9ICh2YWwpID0+IHsKICAgIGlmKCF2YWwgfHwgIU51bWJlci5pc0Zpbml0ZSh2YWwpKXsKICAgICAgICByZXR1cm4gMDsKICAgIH0KICBjb25zdCBudW0gPSArdmFsOwoKICBzd2l0Y2ggKE5VTUJFUl9GT1JNQVQpIHsKICAgIGNhc2UgIm5vbmUiOgogICAgZGVmYXVsdDoKICAgICAgcmV0dXJuIG51bS50b0xvY2FsZVN0cmluZygiZW4tR0IiLCB7CiAgICAgICAgbWluaW11bUZyYWN0aW9uRGlnaXRzOiAwLAogICAgICAgIG1heGltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgfSk7CiAgfQp9OwoKY29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7CmNvbnN0IGN1cnJlbnRWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzBdID8/IDA7CmNvbnN0IHByZXZpb3VzVmFsdWUgPSByYXdEYXRhPy5bMF0/LlsxXSA/PyAwOwpjb25zdCBwZXJjZW50Q2hhbmdlID0gcmF3RGF0YT8uWzBdPy5bMl0gPz8gIiI7Cgpjb25zdCB2YWx1ZUVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImtwaS12YWx1ZSIpOwpjb25zdCBjaGFuZ2VFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktY2hhbmdlIik7Cgp2YWx1ZUVsLmlubmVyVGV4dCA9IGZvcm1hdE51bWJlcihjdXJyZW50VmFsdWUpOwoKY29uc3QgY29sb3JDbGFzcyA9IHBlcmNlbnRDaGFuZ2UgPj0gMCA/ICJwb3NpdGl2ZSIgOiAibmVnYXRpdmUiOwpjb25zdCBkaXJlY3Rpb24gPSBwZXJjZW50Q2hhbmdlID49IDAgPyAi4oaRIiA6ICLihpMiOwoKY2hhbmdlRWwuaW5uZXJIVE1MID0gYAogICAgPGRpdj4KICAgICAgPHNwYW4gY2xhc3M9ImFycm93ICR7Y29sb3JDbGFzc30iPiR7ZGlyZWN0aW9ufTwvc3Bhbj4KICAgICAgIDxzcGFuIGNsYXNzPSJwZXJjZW50ICR7Y29sb3JDbGFzc30iPiAke3BlcmNlbnRDaGFuZ2UudG9GaXhlZCgwKX0lPC9zcGFuPgogICAgICAgPHNwYW4gY2xhc3M9ImNvbXBhcmUiPnZzICgke2Zvcm1hdE51bWJlcihwcmV2aW91c1ZhbHVlKX0pPC9zcGFuPgogICAgPC9kaXY+CiAgIAogIGA7Cg\\u003d\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwgYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzAwMDsKfQoKLmtwaS1jb250YWluZXIgewogIGRpc3BsYXk6IGZsZXg7CiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKfQoKLmtwaS1tYWluIHsKICBkaXNwbGF5OiBmbGV4OwogIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgZ2FwOiA2cHg7Cn0KCiNrcGktdmFsdWUgewogIGZvbnQtc2l6ZTogNDhweDsKICBmb250LXdlaWdodDogNzAwOwogIGxpbmUtaGVpZ2h0OiAxLjE7CiAgY29sb3I6ICMwMDAwMDA7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgLyogZGlzcGxheTogZmxleDsgKi8KICBhbGlnbi1pdGVtczogY2VudGVyOwogIGdhcDogNHB4OwogIGZvbnQtd2VpZ2h0OiA1MDA7Cn0KCiNrcGktY2hhbmdlIHN2ZyB7CiAgd2lkdGg6IDEwcHg7CiAgaGVpZ2h0OiAxMHB4OwogIG1hcmdpbi10b3A6IDFweDsKfQoKI2twaS1jaGFuZ2UgLnVwIHsKICBjb2xvcjogIzI0ODUyODsKfQoKI2twaS1jaGFuZ2UgLmRvd24gewogIGNvbG9yOiAjZDMxZTM0Owp9Cgoja3BpLWNoYW5nZSAuY29tcGFyZSB7CiAgY29sb3I6ICM2YjZiNmI7Cn0KCiNrcGktc3VidGV4dCB7CiAgZm9udC1zaXplOiAxNXB4OwogIGNvbG9yOiAjNmI2YjZiOwogIG1hcmdpbi10b3A6IDRweDsKfQoKLnBvc2l0aXZlLAoubmVnYXRpdmUgewogIGZvbnQtc2l6ZTogMTFweDsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKfQoKLnBvc2l0aXZlIHsKICBjb2xvcjogIzI0ODUyODsKfQoKLm5lZ2F0aXZlIHsKICBjb2xvcjogI2QzMWUzNDsKfQo\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBjbGFzcz0ia3BpLW1haW4iPgogICAgPHNwYW4gaWQ9ImtwaS12YWx1ZSI+PC9zcGFuPgogICAgPHNwYW4gaWQ9ImtwaS1jaGFuZ2UiPjwvc3Bhbj4KICA8L2Rpdj4KPC9kaXY+\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Points redeemed
+      dynamic_description: Total awarded points redeemed for rewards
+    viz_guid: 8cac5379-0bce-4874-befc-022e9d7b96c5
+  - id: Viz_3
+    answer:
+      name: Activity points given
+      description: Trend of points awarded over time
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Points given] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given
+        name: Points given
+        expr: "sum ( [Transaction Points] )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "sum_if ( [Transaction Datetime] >= [Offset Start Date] and [Transaction Datetime] <= [Offset End Date] , [Transaction Points] )"
+        was_auto_generated: false
+      search_query: "[Transaction Direction].debit [Transaction Type].'recognition peer gifting' [Transaction Status].fulfilled [formula_Points given] [Transaction Datetime] [Transaction Datetime].daily"
+      answer_columns:
+      - name: Day(Transaction Datetime)
+        custom_name: Transaction datetime
+        dynamic_title: Transaction datetime
+      - name: Points given
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Day(Transaction Datetime)
+          show_headline: false
+        - column_id: Points given
+          show_headline: false
+        ordered_column_ids:
+        - Day(Transaction Datetime)
+        - Points given
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}}]}"
+      chart:
+        type: LINE
+        chart_columns:
+        - column_id: Day(Transaction Datetime)
+        - column_id: Points given
+        axis_configs:
+        - x:
+          - Day(Transaction Datetime)
+          "y":
+          - Points given
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": false,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"markersEnabled\": true,\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"a60b7307-bea3-422e-b7e4-2460583f3ecf\",\"columnProperty\": {}},{\"columnId\": \"61dce566-1a7b-4311-ad13-1cfb9e47936d\",\"columnProperty\": {}},{\"columnId\": \"Day(Transaction Datetime)\",\"columnProperty\": {}},{\"columnId\": \"Points given\",\"columnProperty\": {\"handleMissingValues\": \"DONT_SHOW\"}}],\"axisProperties\": [{\"id\": \"b27b9b10-9867-4681-927a-448ae9f3523b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given\"],\"format\": {\"category\": \"NUMBER\",\"numberFormatConfig\": {\"unit\": \"NONE\",\"decimals\": 0.0,\"negativeValueFormat\": \"PREFIX_DASH\",\"toSeparateThousands\": true},\"isCategoryEditable\": true},\"isOpposite\": false}},{\"id\": \"0d8f8282-ca87-40b9-bd90-5499efec9b6c\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Transaction Datetime)\"]}}],\"seriesColors\": [{\"serieName\": \"Points given\",\"color\": \"#2E75F0\"}],\"systemSeriesColors\": [{\"serieName\": \"Points given\",\"color\": \"#06BF7F\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Activity points given
+      dynamic_description: Trend of points awarded over time
+    viz_guid: 419f4953-ef48-4261-aa33-fbbe2e2cc77b
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_4
+    answer:
+      name: Activity points redeemed
+      description: Trend of points redeemed over time
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Points redeemed] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points redeemed
+        name: Points redeemed
+        expr: "sum ( [Transaction Points] )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "sum_if ( [Transaction Datetime] >= [Offset Start Date] and [Transaction Datetime] <= [Offset End Date] , [Transaction Points] )"
+        was_auto_generated: false
+      search_query: "[Transaction Direction].debit [Transaction Status].fulfilled [formula_Points redeemed] [Transaction Type].redemption [Transaction Datetime] [Transaction Datetime].daily"
+      answer_columns:
+      - name: Day(Transaction Datetime)
+        custom_name: Transaction datetime
+        dynamic_title: Transaction datetime
+      - name: Points redeemed
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Day(Transaction Datetime)
+          show_headline: false
+        - column_id: Points redeemed
+          show_headline: false
+        ordered_column_ids:
+        - Day(Transaction Datetime)
+        - Points redeemed
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"columnProperties\": [{\"columnId\": \"Points redeemed\",\"columnProperty\": {}}]}"
+      chart:
+        type: LINE
+        chart_columns:
+        - column_id: Day(Transaction Datetime)
+        - column_id: Points redeemed
+        axis_configs:
+        - x:
+          - Day(Transaction Datetime)
+          "y":
+          - Points redeemed
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": false,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"markersEnabled\": true,\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"50ff9bfa-2b0d-49ba-87a0-78893e5d18ae\",\"columnProperty\": {}},{\"columnId\": \"728da172-17ec-405d-afad-d6a38f130be0\",\"columnProperty\": {}},{\"columnId\": \"Day(Transaction Datetime)\",\"columnProperty\": {}},{\"columnId\": \"Points redeemed\",\"columnProperty\": {\"handleMissingValues\": \"DONT_SHOW\"}}],\"axisProperties\": [{\"id\": \"23710b79-ea85-4b21-8ea8-995035e767d1\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points redeemed\"],\"format\": {\"category\": \"NUMBER\",\"numberFormatConfig\": {\"unit\": \"NONE\",\"decimals\": 0.0,\"negativeValueFormat\": \"PREFIX_DASH\",\"toSeparateThousands\": true},\"isCategoryEditable\": true},\"isOpposite\": false}},{\"id\": \"7d2e1d6d-12d5-40dc-a250-8260996d59d7\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Transaction Datetime)\"]}}],\"seriesColors\": [{\"serieName\": \"Points redeemed\",\"color\": \"#2E75F0\"}],\"systemSeriesColors\": [{\"serieName\": \"Points redeemed\",\"color\": \"#8C62F5\"}]}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/14/2024
+      dynamic_name: Activity points redeemed
+      dynamic_description: Trend of points redeemed over time
+    viz_guid: f8421304-34e6-48af-96af-3c985f05898f
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_5
+    answer:
+      name: Users that received points
+      description: Users that received points
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "if ( [formula_User received points] != 0 and [formula_User received points offset] = 0 ) then 100 else ifnull ( ( ( [formula_User received points] - [formula_User received points offset] ) / [formula_User received points offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_User received points
+        name: User received points
+        expr: "ifnull ( unique_count_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] ) / unique_count_if ( date ( [Adoption Reporting Date] ) >= [Reward start date] and date ( [Adoption Reporting Date] ) <= [Reward end date] , [Adoption User Code] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_User received points offset
+        name: User received points offset
+        expr: "ifnull ( unique_count_if ( date ( [Transaction Datetime] ) >= [Offset Start Date] and date ( [Transaction Datetime] ) <= [Offset End Date] and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] ) / unique_count_if ( date ( [Adoption Reporting Date] ) >= [Offset Start Date] and date ( [Adoption Reporting Date] ) <= [Offset End Date] , [Adoption User Code] ) * 100 , 0 )"
+        was_auto_generated: false
+      search_query: "[formula_User received points] [formula_User received points offset] [formula_Difference]"
+      answer_columns:
+      - name: Difference
+      - name: User received points
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User received points offset
+      table:
+        table_columns:
+        - column_id: Difference
+          show_headline: false
+        - column_id: User received points
+          show_headline: false
+        - column_id: User received points offset
+          show_headline: false
+        ordered_column_ids:
+        - User received points
+        - User received points offset
+        - Difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"User received points\",\"width\": 150.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"User received points\",\"User received points offset\"],\"columnProperties\": [{\"columnId\": \"User received points\",\"columnProperty\": {}}]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Difference
+        - column_id: User received points
+        - column_id: User received points offset
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"User received points\",\"columnProperty\": {}},{\"columnId\": \"User received points offset\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"2b8fec7c-f9f9-412b-a767-5d8c0f92ac9f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User received points\"],\"isOpposite\": false}},{\"id\": \"0c67c130-03c8-4116-8d4d-9da0a907bc87\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User received points offset\"],\"isOpposite\": true}},{\"id\": \"e494b6c8-c90b-4eb3-a459-65c541837b57\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Difference\"],\"isOpposite\": true}},{\"id\": \"03d9931d-c4da-4b8c-8e27-8540188b45e0\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - User received points
+            - User received points offset
+            - Difference
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Y29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7CmNvbnN0IGN1cnJlbnRWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzBdLnRvRml4ZWQoMSkgPz8gMDsKY29uc3QgcHJldmlvdXNWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzFdLnRvRml4ZWQoMSkgPz8gMDsKY29uc3QgcGVyY2VudENoYW5nZSA9IHJhd0RhdGE/LlswXT8uWzJdID8/ICIiOwoKY29uc3QgdmFsdWVFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktdmFsdWUiKTsKY29uc3QgY2hhbmdlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLWNoYW5nZSIpOwoKdmFsdWVFbC5pbm5lclRleHQgPSBjdXJyZW50VmFsdWUgKyAnJSc7Cgpjb25zdCBjb2xvckNsYXNzID0gcGVyY2VudENoYW5nZSA+PSAwID8gInBvc2l0aXZlIiA6ICJuZWdhdGl2ZSI7CmNvbnN0IGRpcmVjdGlvbiA9IHBlcmNlbnRDaGFuZ2UgPj0gMCA/ICLihpEiIDogIuKGkyI7CgpjaGFuZ2VFbC5pbm5lckhUTUwgPSBgCiAgICA8ZGl2PgogICAgICA8c3BhbiBjbGFzcz0iYXJyb3cgJHtjb2xvckNsYXNzfSI+JHtkaXJlY3Rpb259PC9zcGFuPgogICAgICAgPHNwYW4gY2xhc3M9InBlcmNlbnQgJHtjb2xvckNsYXNzfSI+ICR7cGVyY2VudENoYW5nZS50b0ZpeGVkKDApfSU8L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0iY29tcGFyZSI+dnMgKCR7cHJldmlvdXNWYWx1ZX0lKTwvc3Bhbj4KICAgIDwvZGl2PgogICAKICBgOwo\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwgYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzAwMDsKfQoKLmtwaS1jb250YWluZXIgewogIGRpc3BsYXk6IGZsZXg7CiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKfQoKLmtwaS1tYWluIHsKICBkaXNwbGF5OiBmbGV4OwogIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgZ2FwOiA2cHg7Cn0KCiNrcGktdmFsdWUgewogIGZvbnQtc2l6ZTogNDhweDsKICBmb250LXdlaWdodDogNzAwOwogIGxpbmUtaGVpZ2h0OiAxLjE7CiAgY29sb3I6ICMwMDAwMDA7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgLyogZGlzcGxheTogZmxleDsgKi8KICBhbGlnbi1pdGVtczogY2VudGVyOwogIGdhcDogNHB4OwogIGZvbnQtd2VpZ2h0OiA1MDA7Cn0KCiNrcGktY2hhbmdlIHN2ZyB7CiAgd2lkdGg6IDEwcHg7CiAgaGVpZ2h0OiAxMHB4OwogIG1hcmdpbi10b3A6IDFweDsKfQoKI2twaS1jaGFuZ2UgLnVwIHsKICBjb2xvcjogIzI0ODUyODsKfQoKI2twaS1jaGFuZ2UgLmRvd24gewogIGNvbG9yOiAjZDMxZTM0Owp9Cgoja3BpLWNoYW5nZSAuY29tcGFyZSB7CiAgY29sb3I6ICM2YjZiNmI7Cn0KCiNrcGktc3VidGV4dCB7CiAgZm9udC1zaXplOiAxNXB4OwogIGNvbG9yOiAjNmI2YjZiOwogIG1hcmdpbi10b3A6IDRweDsKfQoKLnBvc2l0aXZlLAoubmVnYXRpdmUgewogIGZvbnQtc2l6ZTogMTFweDsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKfQoKLnBvc2l0aXZlIHsKICBjb2xvcjogIzI0ODUyODsKfQoKLm5lZ2F0aXZlIHsKICBjb2xvcjogI2QzMWUzNDsKfQo\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBjbGFzcz0ia3BpLW1haW4iPgogICAgPHNwYW4gaWQ9ImtwaS12YWx1ZSI+PC9zcGFuPgogICAgPHNwYW4gaWQ9ImtwaS1jaGFuZ2UiPjwvc3Bhbj4KICA8L2Rpdj4KPC9kaXY+\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Users that received points
+      dynamic_description: Percentage of total users who have been awarded points.
+    viz_guid: 2ea55efa-669f-46ae-a427-12f844345507
+  - id: Viz_6
+    answer:
+      name: Users with allowances who gifted points
+      description: Percentage of users with allowances who have gifted points to others
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "if ( [formula_Users with allowances who gifted points] != 0 and [formula_Users with allowances who gifted points offset] = 0 ) then 100 else ifnull ( ( ( [formula_Users with allowances who gifted points] - [formula_Users with allowances who gifted points offset] ) / [formula_Users with allowances who gifted points offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Users with allowances who gifted points
+        name: Users with allowances who gifted points
+        expr: "ifnull ( unique_count_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] ) / unique_count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] and [Allowance Points Balance] > 0 , [Daily Adoption User Code] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Users with allowances who gifted points offset
+        name: Users with allowances who gifted points offset
+        expr: "ifnull ( unique_count_if ( date ( [Transaction Datetime] ) >= [Offset Start Date] and date ( [Transaction Datetime] ) <= [Offset End Date] and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] ) / unique_count_if ( date ( [Daily Adoption Reporting Date] ) >= [Offset Start Date] and date ( [Daily Adoption Reporting Date] ) <= [Offset End Date] and [Allowance Points Balance] > 0 , [Daily Adoption User Code] ) * 100 , 0 )"
+        was_auto_generated: false
+      search_query: "[formula_Users with allowances who gifted points] [formula_Users with allowances who gifted points offset] [formula_Difference]"
+      answer_columns:
+      - name: Difference
+      - name: Users with allowances who gifted points
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Users with allowances who gifted points offset
+      table:
+        table_columns:
+        - column_id: Difference
+          show_headline: false
+        - column_id: Users with allowances who gifted points
+          show_headline: false
+        - column_id: Users with allowances who gifted points offset
+          show_headline: false
+        ordered_column_ids:
+        - Users with allowances who gifted points
+        - Users with allowances who gifted points offset
+        - Difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Users with allowances who gifted points\",\"width\": 150.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Users with allowances who gifted points\",\"Users with allowances who gifted points offset\"],\"columnProperties\": [{\"columnId\": \"Users with allowances who gifted points\",\"columnProperty\": {}}]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Difference
+        - column_id: Users with allowances who gifted points
+        - column_id: Users with allowances who gifted points offset
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Users with allowances who gifted points\",\"columnProperty\": {}},{\"columnId\": \"Users with allowances who gifted points offset\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"3779204b-09b4-422f-8736-787da098e491\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Users with allowances who gifted points\"],\"isOpposite\": false}},{\"id\": \"6ddb3e0b-e9ad-467f-8241-3de29c00fbe1\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Users with allowances who gifted points offset\"],\"isOpposite\": true}},{\"id\": \"a86df952-9fec-4d3d-8761-1a873d38b3de\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Difference\"],\"isOpposite\": true}},{\"id\": \"2aa5bd23-5eff-4291-a7bd-62f6121e30bf\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Users with allowances who gifted points
+            - Users with allowances who gifted points offset
+            - Difference
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Y29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7CmNvbnN0IGN1cnJlbnRWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzBdLnRvRml4ZWQoMCkgPz8gMDsKY29uc3QgcHJldmlvdXNWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzFdLnRvRml4ZWQoMCkgPz8gMDsKY29uc3QgcGVyY2VudENoYW5nZSA9IHJhd0RhdGE/LlswXT8uWzJdID8/ICIiOwoKY29uc3QgdmFsdWVFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktdmFsdWUiKTsKY29uc3QgY2hhbmdlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLWNoYW5nZSIpOwoKdmFsdWVFbC5pbm5lclRleHQgPSBjdXJyZW50VmFsdWUgKyAnJSc7Cgpjb25zdCBjb2xvckNsYXNzID0gcGVyY2VudENoYW5nZSA+PSAwID8gInBvc2l0aXZlIiA6ICJuZWdhdGl2ZSI7CmNvbnN0IGRpcmVjdGlvbiA9IHBlcmNlbnRDaGFuZ2UgPj0gMCA/ICLihpEiIDogIuKGkyI7CgpjaGFuZ2VFbC5pbm5lckhUTUwgPSBgCiAgICA8ZGl2PgogICAgICA8c3BhbiBjbGFzcz0iYXJyb3cgJHtjb2xvckNsYXNzfSI+JHtkaXJlY3Rpb259PC9zcGFuPgogICAgICAgPHNwYW4gY2xhc3M9InBlcmNlbnQgJHtjb2xvckNsYXNzfSI+ICR7cGVyY2VudENoYW5nZS50b0ZpeGVkKDApfSU8L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0iY29tcGFyZSI+dnMgKCR7cHJldmlvdXNWYWx1ZX0lKTwvc3Bhbj4KICAgIDwvZGl2PgogICAKICBgOwo\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwgYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzAwMDsKfQoKLmtwaS1jb250YWluZXIgewogIGRpc3BsYXk6IGZsZXg7CiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKfQoKLmtwaS1tYWluIHsKICBkaXNwbGF5OiBmbGV4OwogIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgZ2FwOiA2cHg7Cn0KCiNrcGktdmFsdWUgewogIGZvbnQtc2l6ZTogNDhweDsKICBmb250LXdlaWdodDogNzAwOwogIGxpbmUtaGVpZ2h0OiAxLjE7CiAgY29sb3I6ICMwMDAwMDA7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgLyogZGlzcGxheTogZmxleDsgKi8KICBhbGlnbi1pdGVtczogY2VudGVyOwogIGdhcDogNHB4OwogIGZvbnQtd2VpZ2h0OiA1MDA7Cn0KCiNrcGktY2hhbmdlIHN2ZyB7CiAgd2lkdGg6IDEwcHg7CiAgaGVpZ2h0OiAxMHB4OwogIG1hcmdpbi10b3A6IDFweDsKfQoKI2twaS1jaGFuZ2UgLnVwIHsKICBjb2xvcjogIzI0ODUyODsKfQoKI2twaS1jaGFuZ2UgLmRvd24gewogIGNvbG9yOiAjZDMxZTM0Owp9Cgoja3BpLWNoYW5nZSAuY29tcGFyZSB7CiAgY29sb3I6ICM2YjZiNmI7Cn0KCiNrcGktc3VidGV4dCB7CiAgZm9udC1zaXplOiAxNXB4OwogIGNvbG9yOiAjNmI2YjZiOwogIG1hcmdpbi10b3A6IDRweDsKfQoKLnBvc2l0aXZlLAoubmVnYXRpdmUgewogIGZvbnQtc2l6ZTogMTFweDsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKfQoKLnBvc2l0aXZlIHsKICBjb2xvcjogIzI0ODUyODsKfQoKLm5lZ2F0aXZlIHsKICBjb2xvcjogI2QzMWUzNDsKfQo\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBjbGFzcz0ia3BpLW1haW4iPgogICAgPHNwYW4gaWQ9ImtwaS12YWx1ZSI+PC9zcGFuPgogICAgPHNwYW4gaWQ9ImtwaS1jaGFuZ2UiPjwvc3Bhbj4KICA8L2Rpdj4KPC9kaXY+\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/14/2024
+      dynamic_name: Users with allowances who gifted points
+      dynamic_description: Percentage of users with allowances who have gifted points to others
+    viz_guid: 58e63627-d446-49af-ab5a-a5478f92e824
+  - id: Viz_7
+    answer:
+      name: People leaderboard - points gifted out
+      description: Top users (up to 5) by total points gifted out during the selected period
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Points given] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given
+        name: Points given
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "sum_if ( [Transaction Datetime] >= [Offset Start Date] and [Transaction Datetime] <= [Offset End Date] , [Transaction Points] )"
+        was_auto_generated: false
+      search_query: "[formula_Points given] [User Name] sort by [formula_Points given] descending top 5 [formula_User check] [formula_User check] > 0 [User Code]"
+      answer_columns:
+      - name: Points given
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User Code
+      - name: User Name
+        custom_name: User name
+        dynamic_title: User name
+      - name: User check
+      table:
+        table_columns:
+        - column_id: Points given
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        - column_id: User Name
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        ordered_column_ids:
+        - User Name
+        - User Code
+        - Points given
+        - User check
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Points given\",\"width\": 181.1865234375},{\"columnId\": \"User Name\",\"width\": 259.05401611328125}],\"showTableFooter\": false,\"orderedColumnIds\": [\"User Name\",\"Points given\",\"User Code\",\"User check\"],\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}},{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Points given
+        - column_id: User Code
+        - column_id: User Name
+        - column_id: User check
+        axis_configs:
+        - x:
+          - User Code
+          "y":
+          - Points given
+          - User check
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}},{\"columnId\": \"17b0c672-ec5b-4fbc-b2f5-b30fd046ff81\",\"columnProperty\": {}},{\"columnId\": \"a8cdc169-27f3-40c7-9a3c-836f03699381\",\"columnProperty\": {}},{\"columnId\": \"User Name\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"756b9d35-761f-4f37-9b81-c497cf250134\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given\"],\"isOpposite\": false}},{\"id\": \"8a163f86-118a-43d2-9a5f-1b3e4a854d75\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"d687362b-c23c-47b3-a5d5-a1d06b2f8297\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Code\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/14/2024
+      dynamic_name: People leaderboard - points gifted out
+      dynamic_description: Top users (up to 5) by total points gifted out during the selected period
+    viz_guid: 56e9b950-3b3b-49eb-b7de-490bb235cfd6
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_8
+    answer:
+      name: People leaderboard - points received
+      description: Top users (up to 5) by total points received during the selected period
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Points received] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points received
+        name: Points received
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "sum_if ( [Transaction Datetime] >= [Offset Start Date] and [Transaction Datetime] <= [Offset End Date] , [Transaction Points] )"
+        was_auto_generated: false
+      search_query: "[formula_Points received] [User Name] sort by [formula_Points received] descending top 5 [formula_User check] [formula_User check] > 0 [User Code]"
+      answer_columns:
+      - name: Points received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User Code
+      - name: User Name
+      - name: User check
+      table:
+        table_columns:
+        - column_id: Points received
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        - column_id: User Name
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        ordered_column_ids:
+        - User Name
+        - User Code
+        - Points received
+        - User check
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Points received\",\"width\": 181.1865234375},{\"columnId\": \"User Name\",\"width\": 263.05401611328125}],\"showTableFooter\": false,\"orderedColumnIds\": [\"User Name\",\"Points received\",\"User Code\",\"User check\"],\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}},{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Points received
+        - column_id: User Code
+        - column_id: User Name
+        - column_id: User check
+        axis_configs:
+        - x:
+          - User Code
+          "y":
+          - Points received
+          - User check
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {}},{\"columnId\": \"053fecae-9ffb-49a1-9479-7e143704f3a5\",\"columnProperty\": {}},{\"columnId\": \"8883d7cd-1503-4168-a7dc-95168311ac3d\",\"columnProperty\": {}},{\"columnId\": \"User Name\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"06fbb372-ddb6-4e7b-968a-db69392d5d80\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points received\"],\"isOpposite\": false}},{\"id\": \"64799bcc-5f6a-411f-9ecc-cf777a576534\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"752127d0-7e7d-44a5-829f-bafb75527782\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Code\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/14/2024
+      dynamic_name: People leaderboard - points received
+      dynamic_description: Top users (up to 5) by total points received during the selected period
+    viz_guid: b4ba825c-3900-4488-bf3a-b08b42d4ff89
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_9
+    answer:
+      name: Peer recognitions gifting points
+      description: Peer recognitions gifting points is calculated based on recognitions given by users entitled to an allowance
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Peer recognitions gifting points] - [formula_Peer recognitions gifting points offset] ) / [formula_Peer recognitions gifting points offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Peer recognitions gifting points
+        name: Peer recognitions gifting points
+        expr: "ifnull ( count_if ( [Transaction Group Code] != 'N/A' and [Is Reward Deleted?] = false and [Award Type] = 'peer' , [Reward Giver User Code] ) / count_if ( [Giver Has Allowance] and [Is user allowance applicable] and [Award Type] = 'peer' , [Reward Giver User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Peer recognitions gifting points offset
+        name: Peer recognitions gifting points offset
+        expr: "ifnull ( count_if ( [Transaction Group Code] != 'N/A' and [Is Reward Deleted?] = false and date ( [Reward Received Datetime] ) >= [Offset Start Date] and date ( [Reward Received Datetime] ) <= [Offset End Date] and [Award Type] = 'peer' , [Reward Giver User Code] ) / count_if ( [Giver Has Allowance] and [Is user allowance applicable] and date ( [Reward Received Datetime] ) >= [Offset Start Date] and date ( [Reward Received Datetime] ) <= [Offset End Date] and [Award Type] = 'peer' , [Reward Giver User Code] ) * 100 , 0 )"
+        was_auto_generated: false
+      search_query: "[formula_Peer recognitions gifting points]"
+      answer_columns:
+      - name: Peer recognitions gifting points
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Peer recognitions gifting points
+          show_headline: false
+        ordered_column_ids:
+        - Peer recognitions gifting points
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Peer recognitions gifting points\",\"width\": 176.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Peer recognitions gifting points\"]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Peer recognitions gifting points
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Peer recognitions gifting points\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"a86a6b15-9dde-4fe6-b0b0-975e690e6c38\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Peer recognitions gifting points\"],\"isOpposite\": false}},{\"id\": \"bf061435-39f8-4807-83be-e3303c5a2912\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"0ccf29d0-defb-46d4-82db-9ba30e693208\",\"color\": \"#747E8C\"}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Peer recognitions gifting points
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gQ29uZmlndXJhdGlvbiAtIFNldCB5b3VyIHByZWZlcnJlZCBudW1iZXIgZm9ybWF0Ci8vIE9wdGlvbnM6ICdhdXRvJyAoTS9LIGFiYnJldmlhdGlvbnMpLCAnbm9uZScgKGZ1bGwgbnVtYmVycyksICdLJyAodGhvdXNhbmRzIG9ubHkpLCAnTScgKG1pbGxpb25zIG9ubHkpCmNvbnN0IE5VTUJFUl9GT1JNQVQgPSAibm9uZSI7CgovLyBIZWxwZXIgZm9ybWF0dGluZyBmdW5jdGlvbnMKY29uc3QgZm9ybWF0TnVtYmVyID0gKHZhbCkgPT4gewogICAgaWYoIXZhbCB8fCAhTnVtYmVyLmlzRmluaXRlKHZhbCkpewogICAgICAgIHJldHVybiAwOwogICAgfQogIGNvbnN0IG51bSA9ICt2YWw7CgogIHN3aXRjaCAoTlVNQkVSX0ZPUk1BVCkgewogICAgY2FzZSAiYXV0byI6CiAgICAgIGlmIChudW0gPj0gMTAwMDAwMCkgewogICAgICAgIHJldHVybiAobnVtIC8gMTAwMDAwMCkudG9GaXhlZCgyKS5yZXBsYWNlKC9cLj8wKyQvLCAiIikgKyAiTSI7CiAgICAgIH0gZWxzZSBpZiAobnVtID49IDEwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDApLnRvRml4ZWQoMSkucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIksiOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIksiOgogICAgICBpZiAobnVtID49IDEwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDApLnRvRml4ZWQoMSkucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIksiOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIk0iOgogICAgICBpZiAobnVtID49IDEwMDAwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDAwMDApLnRvRml4ZWQoMikucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIk0iOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIm5vbmUiOgogICAgZGVmYXVsdDoKICAgICAgcmV0dXJuIG51bS50b0xvY2FsZVN0cmluZygiZW4tR0IiLCB7CiAgICAgICAgbWluaW11bUZyYWN0aW9uRGlnaXRzOiAwLAogICAgICAgIG1heGltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgfSk7CiAgfQp9OwoKY29uc3QgZm9ybWF0UGVyY2VudCA9ICh2YWwpID0+IHsKICAgIGlmKCF2YWwgfHwgIU51bWJlci5pc0Zpbml0ZSgrdmFsKSl7CiAgICAgICAgcmV0dXJuIDA7CiAgICB9CiAgY29uc3QgcGVyY2VudCA9IE1hdGguYWJzKCt2YWwpOwogIHJldHVybiBwZXJjZW50LnRvTG9jYWxlU3RyaW5nKCJlbi1HQiIsIHsKICAgIHN0eWxlOiAicGVyY2VudCIsCiAgICBtaW5pbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDEsCiAgfSk7Cn07CgovLyBHZXQgcmF3IGRhdGEKY29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7CmNvbnNvbGUubG9nKHJhd0RhdGEpCi8vIEdlbmVyaWMgYXBwcm9hY2ggLSB3b3JrcyB3aXRoIGFueSB0d28gbWVhc3VyZXMKY29uc3QgdG90YWxDb250ZW50Vmlld3MgPSByYXdEYXRhWzBdWzBdOwoKCi8vIFVwZGF0ZSBkeW5hbWljIGNvbnRlbnQKZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImxhdGVzdC12YWx1ZSIpLmlubmVyVGV4dCA9IGAke2Zvcm1hdFBlcmNlbnQoCiAgdG90YWxDb250ZW50Vmlld3MKKX1gOwo\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7Cn0KCi5rcGktY29tcGFjdCB7CiAgZm9udC1mYW1pbHk6IHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBkaXNwbGF5OiBmbGV4OwogIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47CiAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7CiAgbWFyZ2luOiAwcHg7CiAgcGFkZGluZzogMDsKICBsaW5lLWhlaWdodDogMS4xOwogIGhlaWdodDogMTAwJTsKICB3aWR0aDogMTAwJTsKICBib3gtc2l6aW5nOiBib3JkZXItYm94Owp9Cgoua3BpLXZhbHVlIHsKICBmb250LXNpemU6IDQ4cHg7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA3MDA7Cn0KCg\\u003d\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBpZD0ia3BpIiBjbGFzcz0ia3BpLWNvbXBhY3QiPgogIDxkaXYgaWQ9ImxhdGVzdC12YWx1ZSIgY2xhc3M9ImtwaS12YWx1ZSI+PC9kaXY+CjwvZGl2Pg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/18/2025
+      - key: Recognition start date
+        value: 11/18/2024
+      dynamic_name: "Peer recognitions gifting points \n"
+      dynamic_description: Peer recognitions gifting points is calculated based on recognitions given by users entitled to an allowance
+    viz_guid: eeb220e9-84df-4c29-9045-ec2ac895aea6
+  - id: Viz_10
+    answer:
+      name: Location leaderboard - points received
+      description: Top locations (up to 5) by total points received during the selected period
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Percentage
+        name: Percentage
+        expr: "round ( ( [formula_User who received points] / [formula_Total user] ) * 100 , 10 )"
+        was_auto_generated: false
+      - id: formula_Points received
+        name: Points received
+        expr: "ifnull ( sum_if ( [Transaction Datetime] >= [Reward start date] and [Transaction Datetime] <= [Reward end date] and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total user
+        name: Total user
+        expr: "unique count ( [Daily Adoption User Code] )"
+        was_auto_generated: false
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( unique_count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_User who received points
+        name: User who received points
+        expr: "unique_count_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Points] > 0 and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Points received] sort by [formula_Points received] descending top 5 [formula_User check] [formula_User check] > 0 [Location] [formula_Total user] [formula_User who received points] [formula_Percentage]"
+      answer_columns:
+      - name: Location
+      - name: Percentage
+      - name: Points received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total user
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User check
+      - name: User who received points
+      table:
+        table_columns:
+        - column_id: Location
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        - column_id: Points received
+          show_headline: false
+        - column_id: Total user
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        - column_id: User who received points
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Points received
+        - User check
+        - Total user
+        - User who received points
+        - Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"User who received points\",\"width\": 189.0},{\"columnId\": \"Location\",\"width\": 240.91603088378906},{\"columnId\": \"Total user\",\"width\": 123.40672302246094},{\"columnId\": \"Percentage\",\"width\": 134.17620849609375},{\"columnId\": \"Points received\",\"width\": 152.1865234375}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Location\",\"User who received points\",\"Total user\",\"Percentage\",\"Points received\"],\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Location
+        - column_id: Percentage
+        - column_id: Points received
+        - column_id: Total user
+        - column_id: User check
+        - column_id: User who received points
+        axis_configs:
+        - x:
+          - Location
+          "y":
+          - Points received
+          - User check
+          - Total user
+          - User who received points
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {}},{\"columnId\": \"4acdaba0-94a6-41fe-8553-818beb2d7768\",\"columnProperty\": {}},{\"columnId\": \"abf33acd-9579-40d1-9c65-6b6b28a6e332\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}},{\"columnId\": \"Total user\",\"columnProperty\": {}},{\"columnId\": \"User who received points\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"cc0e332e-fea3-4c82-9618-a9f10dcd3495\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points received\"],\"isOpposite\": false}},{\"id\": \"02b21649-4420-4a2f-8118-d969b3f50d20\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"c4db33be-8f44-49b7-94ea-8b776aec7a67\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total user\"],\"isOpposite\": true}},{\"id\": \"c412fde7-e7b3-4f3f-b765-92dde470bb47\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User who received points\"],\"isOpposite\": true}},{\"id\": \"90df6966-7614-44fe-be0e-38e074192910\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Location\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Location leaderboard - points received
+      dynamic_description: Top locations (up to 5) by total points received during the selected period
+    viz_guid: 775dfde9-76b3-438e-8f62-963008dbf70e
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_11
+    answer:
+      name: Department leaderboard - points received
+      description: Top departments (up to 5) by total points received during the selected period
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Percentage
+        name: Percentage
+        expr: "round ( ( [formula_User who received points] / [formula_Total users] ) * 100 )"
+        was_auto_generated: false
+      - id: formula_Points received
+        name: Points received
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total users
+        name: Total users
+        expr: "unique count ( [Daily Adoption User Code] )"
+        was_auto_generated: false
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_User who received points
+        name: User who received points
+        expr: "unique_count_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Points] > 0 and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Points received] sort by [formula_Points received] descending top 5 [formula_User check] [formula_User check] > 0 [Department] [formula_User who received points] [formula_Total users] [formula_Percentage]"
+      answer_columns:
+      - name: Department
+      - name: Percentage
+      - name: Points received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User check
+      - name: User who received points
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Department
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        - column_id: Points received
+          show_headline: false
+        - column_id: Total users
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        - column_id: User who received points
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Points received
+        - User check
+        - User who received points
+        - Total users
+        - Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Department\",\"width\": 227.5320281982422},{\"columnId\": \"User who received points\",\"width\": 200.0},{\"columnId\": \"Total users\",\"width\": 152.36862182617188},{\"columnId\": \"Percentage\",\"width\": 142.17620849609375},{\"columnId\": \"Points received\",\"width\": 162.1865234375}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Department\",\"User who received points\",\"Total users\",\"Percentage\",\"Points received\"],\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Department
+        - column_id: Percentage
+        - column_id: Points received
+        - column_id: Total users
+        - column_id: User check
+        - column_id: User who received points
+        axis_configs:
+        - x:
+          - Department
+          "y":
+          - Points received
+          - User check
+          - User who received points
+          - Total users
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {}},{\"columnId\": \"6904ce03-a916-4c32-8612-25073a83838f\",\"columnProperty\": {}},{\"columnId\": \"3ec8e102-76e0-4df5-a18f-6cf5c8c56556\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"User who received points\",\"columnProperty\": {}},{\"columnId\": \"Total users\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"e2fe9ce1-200b-42d3-b912-d4c4ddc2fe1c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points received\"],\"isOpposite\": false}},{\"id\": \"959890da-73ad-4113-afe5-c0d44e8e7537\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"8df42e60-bb14-4c82-b127-4f80abb473b4\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User who received points\"],\"isOpposite\": true}},{\"id\": \"ed841503-36c0-4511-b29c-7fa9a5087a60\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total users\"],\"isOpposite\": true}},{\"id\": \"01cb4bd1-178f-4707-abd2-66ed3c6a535f\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Department\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Department leaderboard - points received
+      dynamic_description: Top departments (up to 5) by total points received during the selected period
+    viz_guid: 89cafb2a-b533-4c90-82e2-63bf17ec22ef
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_12
+    answer:
+      name: Location leaderboard - points gifted out
+      description: Top locations (up to 5) by total points gifted out during the selected period
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Percentage
+        name: Percentage
+        expr: "round ( ( [formula_Users who gifted points] / [formula_Total users] ) * 100 )"
+        was_auto_generated: false
+      - id: formula_Points given
+        name: Points given
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total users
+        name: Total users
+        expr: "unique count ( [Daily Adoption User Code] )"
+        was_auto_generated: false
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Users who gifted points
+        name: Users who gifted points
+        expr: "unique_count_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Points] > 0 and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Points given] sort by [formula_Points given] descending top 5 [formula_User check] [formula_User check] > 0 [Location] [formula_Total users] [formula_Users who gifted points] [formula_Percentage]"
+      answer_columns:
+      - name: Location
+      - name: Percentage
+      - name: Points given
+        custom_name: Points gifted out
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Points gifted out
+      - name: Total users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User check
+      - name: Users who gifted points
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Location
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        - column_id: Points given
+          show_headline: false
+        - column_id: Total users
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        - column_id: Users who gifted points
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Points given
+        - User check
+        - Total users
+        - Users who gifted points
+        - Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Points given\",\"width\": 206.1865234375},{\"columnId\": \"Percentage\",\"width\": 168.17620849609375},{\"columnId\": \"Total users\",\"width\": 182.36862182617188},{\"columnId\": \"Location\",\"width\": 274.91603088378906},{\"columnId\": \"Users who gifted points\",\"width\": 197.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Location\",\"Users who gifted points\",\"Total users\",\"Percentage\",\"Points given\"],\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Location
+        - column_id: Percentage
+        - column_id: Points given
+        - column_id: Total users
+        - column_id: User check
+        - column_id: Users who gifted points
+        axis_configs:
+        - x:
+          - Location
+          "y":
+          - Points given
+          - User check
+          - Total users
+          - Users who gifted points
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}},{\"columnId\": \"315ad6f8-3f25-4e23-b627-9870a6d9be75\",\"columnProperty\": {}},{\"columnId\": \"312517d5-99cb-41bf-a96c-150c90de4ce1\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}},{\"columnId\": \"Total users\",\"columnProperty\": {}},{\"columnId\": \"Users who gifted points\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"872bee76-8311-4cc4-93b6-07727e494490\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given\"],\"isOpposite\": false}},{\"id\": \"91f93df5-b465-4432-9ec6-ce864db7d7fd\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"a8879ad3-b11e-43d4-8943-17f7f8a07200\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total users\"],\"isOpposite\": true}},{\"id\": \"4d1dc206-05ee-4521-9b07-0e4bda29bb8d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Users who gifted points\"],\"isOpposite\": true}},{\"id\": \"6af0d3b1-131a-4340-a227-ad8c845eddf3\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Location\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Location leaderboard - points gifted out
+      dynamic_description: Top locations (up to 5) by total points gifted out during the selected period
+    viz_guid: 352e1b3f-ff6e-43db-8be9-94988a5e8fec
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_13
+    answer:
+      name: Department leaderboard - points gifted out
+      description: Top departments (up to 5) by total points gifted out during the selected period
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Percentage
+        name: Percentage
+        expr: "round ( ( [formula_Users who gifted points] / [formula_Total users] ) * 100 )"
+        was_auto_generated: false
+      - id: formula_Points given
+        name: Points given
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total users
+        name: Total users
+        expr: "unique count ( [Daily Adoption User Code] )"
+        was_auto_generated: false
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Users who gifted points
+        name: Users who gifted points
+        expr: "unique_count_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Points] > 0 and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Points given] top 5 by [formula_Points given] [formula_User check] [formula_User check] > 0 [Department] [formula_Users who gifted points] [formula_Total users] [formula_Percentage] sort by [formula_Points given] descending"
+      answer_columns:
+      - name: Department
+      - name: Percentage
+      - name: Points given
+        custom_name: Points gifted out
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Points gifted out
+        sort_info:
+          category: ALPHA
+      - name: Total users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User check
+      - name: Users who gifted points
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Department
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        - column_id: Points given
+          show_headline: false
+        - column_id: Total users
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        - column_id: Users who gifted points
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Points given
+        - User check
+        - Users who gifted points
+        - Total users
+        - Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Department\",\"width\": 226.5320281982422},{\"columnId\": \"Users who gifted points\",\"width\": 213.0},{\"columnId\": \"Total users\",\"width\": 167.36862182617188},{\"columnId\": \"Percentage\",\"width\": 158.17620849609375},{\"columnId\": \"Points given\",\"width\": 169.1865234375}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Department\",\"Users who gifted points\",\"Total users\",\"Percentage\",\"Points given\"],\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Department
+        - column_id: Percentage
+        - column_id: Points given
+        - column_id: Total users
+        - column_id: User check
+        - column_id: Users who gifted points
+        axis_configs:
+        - x:
+          - Department
+          "y":
+          - Points given
+          - User check
+          - Users who gifted points
+          - Total users
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}},{\"columnId\": \"0d133de9-4f91-4762-887b-ca83c8bed19d\",\"columnProperty\": {}},{\"columnId\": \"5eed747a-d60e-4aaa-94c6-b8a55dcece09\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Users who gifted points\",\"columnProperty\": {}},{\"columnId\": \"Total users\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"f5fbb7ed-99e4-4af1-9e3a-d9c17fb1fb69\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given\"],\"isOpposite\": false}},{\"id\": \"1f99a2c1-21fc-422e-8d0c-d7786ce31742\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"393a3930-47e9-4a85-889c-c4573ba8ec0b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Users who gifted points\"],\"isOpposite\": true}},{\"id\": \"6b405fc3-fd82-4ae4-89aa-78a774845674\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total users\"],\"isOpposite\": true}},{\"id\": \"c6ca06ea-2514-482b-95b8-8a81a4198b6a\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Department\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Department leaderboard - points gifted out
+      dynamic_description: Top departments (up to 5) by total points gifted out during the selected period
+    viz_guid: 97facddd-4b6e-42ce-8138-5e5891ed8039
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_14
+    answer:
+      name: Manager leaderboard - points received
+      description: Top managers (up to 5) by total points received during the selected period
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Points received] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points received
+        name: Points received
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "sum_if ( [Transaction Datetime] >= [Offset Start Date] and [Transaction Datetime] <= [Offset End Date] , [Transaction Points] )"
+        was_auto_generated: false
+      search_query: "[formula_Points received] [User Name] sort by [formula_Points received] descending top 5 [formula_User check] [formula_User check] > 0 [Is Manager].true [User Code]"
+      answer_columns:
+      - name: Points received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User Code
+      - name: User Name
+        custom_name: Manager name
+        dynamic_title: Manager name
+      - name: User check
+      table:
+        table_columns:
+        - column_id: Points received
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        - column_id: User Name
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        ordered_column_ids:
+        - User Name
+        - User Code
+        - Points received
+        - User check
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"User Name\",\"width\": 220.05401611328125},{\"columnId\": \"Points received\",\"width\": 198.1865234375}],\"showTableFooter\": false,\"orderedColumnIds\": [\"User Name\",\"Points received\",\"User Code\",\"User check\"],\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}},{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Points received
+        - column_id: User Code
+        - column_id: User Name
+        - column_id: User check
+        axis_configs:
+        - x:
+          - User Code
+          "y":
+          - Points received
+          - User check
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {}},{\"columnId\": \"afbd72dd-4c5c-4513-8db7-7fa664fa3a41\",\"columnProperty\": {}},{\"columnId\": \"36b69821-a9ee-4ea3-ba51-cec5c1881b44\",\"columnProperty\": {}},{\"columnId\": \"User Name\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"f2be5eff-50b6-4682-9189-2c003aec6ee0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points received\"],\"isOpposite\": false}},{\"id\": \"4afb9bd2-9516-4e7d-a839-6c3e71e12a89\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"5f7f65a0-729e-4f38-90e9-e83d39162e06\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Code\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Manager leaderboard - points received
+      dynamic_description: Top managers (up to 5) by total points received during the selected period
+    viz_guid: 82e38667-e7f3-4598-a295-c5858aae37ed
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_15
+    answer:
+      name: Manager leaderboard - points gifted out
+      description: Top managers (up to 5) by total points gifted out during the selected period
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Points given] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given
+        name: Points given
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "sum_if ( [Transaction Datetime] >= [Offset Start Date] and [Transaction Datetime] <= [Offset End Date] , [Transaction Points] )"
+        was_auto_generated: false
+      search_query: "[formula_Points given] [User Name] sort by [formula_Points given] descending top 5 [formula_User check] [formula_User check] > 0 [Is Manager].true [User Code]"
+      answer_columns:
+      - name: Points given
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User Code
+      - name: User Name
+        custom_name: Manager name
+        dynamic_title: Manager name
+      - name: User check
+      table:
+        table_columns:
+        - column_id: Points given
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        - column_id: User Name
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        ordered_column_ids:
+        - User Name
+        - User Code
+        - Points given
+        - User check
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Points given\",\"width\": 181.1865234375},{\"columnId\": \"User Name\",\"width\": 217.05401611328125}],\"showTableFooter\": false,\"orderedColumnIds\": [\"User Name\",\"Points given\",\"User Code\",\"User check\"],\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}},{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Points given
+        - column_id: User Code
+        - column_id: User Name
+        - column_id: User check
+        axis_configs:
+        - x:
+          - User Code
+          "y":
+          - Points given
+          - User check
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}},{\"columnId\": \"40c52476-8335-46c2-887d-45e59bd6f514\",\"columnProperty\": {}},{\"columnId\": \"bf5428cb-a317-4e8a-ae1a-19b116fad8f4\",\"columnProperty\": {}},{\"columnId\": \"User Name\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"d78d9100-66b5-4073-b166-8f7761f711c9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given\"],\"isOpposite\": false}},{\"id\": \"3ffe4061-9db3-472a-bcf2-949a7a9ed8ff\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"cb9ad537-3bda-461b-a1e3-8ffa9887d027\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Code\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Manager leaderboard - points gifted out
+      dynamic_description: Top managers (up to 5) by total points gifted out during the selected period
+    viz_guid: 58db4a14-0245-48f4-8890-6515ea2b40a5
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_16
+    answer:
+      name: Avg points per peer recognition
+      description: Average gifting points awared with each peer recognition
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Avg points per peer recognition] - [formula_Avg points per peer recognition offset] ) / [formula_Avg points per peer recognition offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Avg points per peer recognition
+        name: Avg points per peer recognition
+        expr: "ifnull ( sum_if ( [Receiver Transaction Direction] = 'credit' and [Receiver Transaction Type] = 'recognition peer gifting' and [Receiver Reward Transaction Status] = 'fulfilled' , [Receiver Transaction Points] ) / unique_count_if ( [Giver Has Allowance] and [Is user allowance applicable] and [Award Type] = 'peer' , [Reward Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Avg points per peer recognition offset
+        name: Avg points per peer recognition offset
+        expr: "ifnull ( sum_if ( [Receiver Transaction Direction] = 'credit' and [Receiver Transaction Transaction Datetime] >= [Offset Start Date] and [Receiver Transaction Transaction Datetime] <= [Offset End Date] and [Receiver Transaction Type] = 'recognition peer gifting' and [Receiver Reward Transaction Status] = 'fulfilled' , [Receiver Transaction Points] ) / unique_count_if ( [Giver Has Allowance] and [Is user allowance applicable] and [Reward Received Datetime] >= [Offset Start Date] and [Reward Received Datetime] <= [Offset End Date] and [Award Type] = 'peer' , [Reward Code] ) , 0 )"
+        was_auto_generated: false
+      search_query: "[formula_Avg points per peer recognition]"
+      answer_columns:
+      - name: Avg points per peer recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Avg points per peer recognition
+          show_headline: false
+        ordered_column_ids:
+        - Avg points per peer recognition
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Avg points per peer recognition\"]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Avg points per peer recognition
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Avg points per peer recognition\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"69869a83-6492-4942-a8b5-e46848e55c19\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Avg points per peer recognition\"],\"isOpposite\": false}},{\"id\": \"2ed48b9b-3590-4742-9346-d8bab316c162\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"0ccf29d0-defb-46d4-82db-9ba30e693208\",\"color\": \"#747E8C\"}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Avg points per peer recognition
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gQ29uZmlndXJhdGlvbiAtIFNldCB5b3VyIHByZWZlcnJlZCBudW1iZXIgZm9ybWF0Ci8vIE9wdGlvbnM6ICdhdXRvJyAoTS9LIGFiYnJldmlhdGlvbnMpLCAnbm9uZScgKGZ1bGwgbnVtYmVycyksICdLJyAodGhvdXNhbmRzIG9ubHkpLCAnTScgKG1pbGxpb25zIG9ubHkpCmNvbnN0IE5VTUJFUl9GT1JNQVQgPSAibm9uZSI7CgovLyBIZWxwZXIgZm9ybWF0dGluZyBmdW5jdGlvbnMKY29uc3QgZm9ybWF0TnVtYmVyID0gKHZhbCkgPT4gewogICAgaWYoIXZhbCB8fCAhTnVtYmVyLmlzRmluaXRlKHZhbCkpewogICAgICAgIHJldHVybiAwOwogICAgfQogIGNvbnN0IG51bSA9ICt2YWw7CgogIHN3aXRjaCAoTlVNQkVSX0ZPUk1BVCkgewogICAgY2FzZSAiYXV0byI6CiAgICAgIGlmIChudW0gPj0gMTAwMDAwMCkgewogICAgICAgIHJldHVybiAobnVtIC8gMTAwMDAwMCkudG9GaXhlZCgyKS5yZXBsYWNlKC9cLj8wKyQvLCAiIikgKyAiTSI7CiAgICAgIH0gZWxzZSBpZiAobnVtID49IDEwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDApLnRvRml4ZWQoMSkucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIksiOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIksiOgogICAgICBpZiAobnVtID49IDEwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDApLnRvRml4ZWQoMSkucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIksiOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIk0iOgogICAgICBpZiAobnVtID49IDEwMDAwMDApIHsKICAgICAgICByZXR1cm4gKG51bSAvIDEwMDAwMDApLnRvRml4ZWQoMikucmVwbGFjZSgvXC4/MCskLywgIiIpICsgIk0iOwogICAgICB9CiAgICAgIHJldHVybiBudW0udG9Mb2NhbGVTdHJpbmcoImVuLUdCIiwgewogICAgICAgIG1pbmltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICAgIH0pOwoKICAgIGNhc2UgIm5vbmUiOgogICAgZGVmYXVsdDoKICAgICAgcmV0dXJuIG51bS50b0xvY2FsZVN0cmluZygiZW4tR0IiLCB7CiAgICAgICAgbWluaW11bUZyYWN0aW9uRGlnaXRzOiAwLAogICAgICAgIG1heGltdW1GcmFjdGlvbkRpZ2l0czogMCwKICAgICAgfSk7CiAgfQp9OwoKY29uc3QgZm9ybWF0UGVyY2VudCA9ICh2YWwpID0+IHsKICAgIGlmKCF2YWwgfHwgIU51bWJlci5pc0Zpbml0ZSgrdmFsKSl7CiAgICAgICAgcmV0dXJuIDA7CiAgICB9CiAgY29uc3QgcGVyY2VudCA9IE1hdGguYWJzKCt2YWwpOwogIHJldHVybiBwZXJjZW50LnRvTG9jYWxlU3RyaW5nKCJlbi1HQiIsIHsKICAgIHN0eWxlOiAicGVyY2VudCIsCiAgICBtaW5pbXVtRnJhY3Rpb25EaWdpdHM6IDAsCiAgICBtYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDEsCiAgfSk7Cn07CgovLyBHZXQgcmF3IGRhdGEKY29uc3QgcmF3RGF0YSA9IHZpei5nZXREYXRhRnJvbVNlYXJjaFF1ZXJ5KCkuZ2V0RGF0YSgpLmRhdGE7CmNvbnNvbGUubG9nKHJhd0RhdGEpCi8vIEdlbmVyaWMgYXBwcm9hY2ggLSB3b3JrcyB3aXRoIGFueSB0d28gbWVhc3VyZXMKY29uc3QgdG90YWxDb250ZW50Vmlld3MgPSByYXdEYXRhWzBdWzBdOwoKCi8vIFVwZGF0ZSBkeW5hbWljIGNvbnRlbnQKZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImxhdGVzdC12YWx1ZSIpLmlubmVyVGV4dCA9IGAke3RvdGFsQ29udGVudFZpZXdzLnRvRml4ZWQoMSl9YDsK\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7Cn0KCi5rcGktY29tcGFjdCB7CiAgZm9udC1mYW1pbHk6IHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBkaXNwbGF5OiBmbGV4OwogIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47CiAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7CiAgbWFyZ2luOiAwcHg7CiAgcGFkZGluZzogMDsKICBsaW5lLWhlaWdodDogMS4xOwogIGZvbnQtc2l6ZTogNDhweDsKICBmb250LXdlaWdodDogNzAwOwogIGhlaWdodDogMTAwJTsKICB3aWR0aDogMTAwJTsKICBib3gtc2l6aW5nOiBib3JkZXItYm94Owp9Cg\\u003d\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBpZD0ia3BpIiBjbGFzcz0ia3BpLWNvbXBhY3QiPgogIDxkaXYgaWQ9ImxhdGVzdC12YWx1ZSIgY2xhc3M9ImtwaS12YWx1ZSI+PC9kaXY+CjwvZGl2Pg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Recognition end date
+        value: 11/18/2025
+      - key: Recognition start date
+        value: 11/18/2024
+      dynamic_name: Avg points per peer recognition
+      dynamic_description: Average gifting points awared with each peer recognition
+    viz_guid: aebfdac0-0607-4b7f-b778-c02bf147f3d2
+  filters:
+  - column:
+    - Reward::Tenant Code
+    - Recognition::Tenant Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Reward::Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Reward::Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Reward::Giver User Department
+    - Recognition::Giver User Department
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    - Viz_5
+    - Viz_6
+    - Viz_3
+    - Viz_4
+    - Viz_8
+    - Viz_7
+    - Viz_10
+    - Viz_12
+    - Viz_11
+    - Viz_13
+    - Viz_14
+    - Viz_15
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Reward::Giver User Location
+    - Recognition::Giver User Location
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    - Viz_5
+    - Viz_6
+    - Viz_3
+    - Viz_4
+    - Viz_8
+    - Viz_7
+    - Viz_10
+    - Viz_12
+    - Viz_11
+    - Viz_13
+    - Viz_14
+    - Viz_15
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Reward::Daily Adoption Reporting Date
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    - Viz_6
+    - Viz_5
+    - Viz_3
+    - Viz_4
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Recognition::Reward Received Datetime
+    - Reward::Reward Received Datetime
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    - Viz_5
+    - Viz_6
+    - Viz_3
+    - Viz_4
+    - Viz_8
+    - Viz_7
+    - Viz_10
+    - Viz_12
+    - Viz_11
+    - Viz_13
+    - Viz_14
+    - Viz_15
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Reward::Transaction Datetime
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    - Viz_5
+    - Viz_6
+    - Viz_8
+    - Viz_7
+    - Viz_10
+    - Viz_12
+    - Viz_11
+    - Viz_13
+    - Viz_14
+    - Viz_15
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Reward::User Adoption Department
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    - Viz_6
+    - Viz_3
+    - Viz_4
+    - Viz_8
+    - Viz_7
+    - Viz_10
+    - Viz_12
+    - Viz_11
+    - Viz_13
+    - Viz_14
+    - Viz_15
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Reward::User Adoption Location
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    - Viz_6
+    - Viz_3
+    - Viz_4
+    - Viz_8
+    - Viz_7
+    - Viz_10
+    - Viz_12
+    - Viz_11
+    - Viz_13
+    - Viz_14
+    - Viz_15
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 4
+      width: 4
+    - visualization_id: Viz_2
+      x: 4
+      "y": 0
+      height: 4
+      width: 4
+    - visualization_id: Viz_3
+      x: 0
+      "y": 8
+      height: 7
+      width: 6
+    - visualization_id: Viz_4
+      x: 6
+      "y": 8
+      height: 7
+      width: 6
+    - visualization_id: Viz_5
+      x: 4
+      "y": 4
+      height: 4
+      width: 4
+    - visualization_id: Viz_6
+      x: 8
+      "y": 4
+      height: 4
+      width: 4
+    - visualization_id: Viz_7
+      x: 6
+      "y": 15
+      height: 6
+      width: 6
+    - visualization_id: Viz_8
+      x: 0
+      "y": 15
+      height: 6
+      width: 6
+    - visualization_id: Viz_9
+      x: 0
+      "y": 4
+      height: 4
+      width: 4
+    - visualization_id: Viz_10
+      x: 0
+      "y": 21
+      height: 6
+      width: 6
+    - visualization_id: Viz_11
+      x: 0
+      "y": 27
+      height: 6
+      width: 6
+    - visualization_id: Viz_12
+      x: 6
+      "y": 21
+      height: 6
+      width: 6
+    - visualization_id: Viz_13
+      x: 6
+      "y": 27
+      height: 6
+      width: 6
+    - visualization_id: Viz_14
+      x: 0
+      "y": 33
+      height: 6
+      width: 6
+    - visualization_id: Viz_15
+      x: 6
+      "y": 33
+      height: 6
+      width: 6
+    - visualization_id: Viz_16
+      x: 8
+      "y": 0
+      height: 4
+      width: 4
+  parameter_overrides:
+  - key: 68e80780-f171-47a7-be87-13dd178086e1
+    value:
+      name: Reward::Reward end date
+      override_value: 11/21/2025
+  - key: 52c6a7ae-ac13-4427-bd20-eb9ff86f5cf6
+    value:
+      name: Reward::Reward start date
+      override_value: 10/23/2025
+  ordered_chips:
+  - name: Reward::Tenant Code
+    type: FILTER
+  - name: Reward::Location
+    type: FILTER
+  - name: Reward::Department
+    type: FILTER
+  - name: Reward::Giver User Department
+    type: FILTER
+  - name: Reward::Giver User Location
+    type: FILTER
+  - name: Reward::Daily Adoption Reporting Date
+    type: FILTER
+  - name: Recognition::Reward Received Datetime
+    type: FILTER
+  - name: Reward::Reward end date
+    type: PARAMETER
+  - name: Reward::Reward start date
+    type: PARAMETER
+  - name: Reward::Transaction Datetime
+    type: FILTER
+  - name: Reward::User Adoption Department
+    type: FILTER
+  - name: Reward::User Adoption Location
+    type: FILTER
+  views:
+  - view_guid: 9c10ed2e-de3d-4847-84c9-996f3b22172d
+    name: Dk
+    view_filters:
+    - column:
+      - Reward::Tenant Code
+      oper: in
+      values:
+      - 26208dad-e974-4193-9889-50370454b39d
+    - column:
+      - Reward::Location
+      oper: =
+    - column:
+      - Reward::Department
+      oper: =
+    - column:
+      - Reward::Giver User Department
+      oper: =
+    - column:
+      - Reward::Giver User Location
+      oper: =
+    - column:
+      - Reward::Daily Adoption Reporting Date
+      date_filter:
+        type: EXACT_DATE_RANGE
+        oper: between
+        date_range:
+          start_date: 01/01/2025
+          end_date: 05/31/2025
+    - column:
+      - Recognition::Reward Received Datetime
+      date_filter:
+        type: EXACT_DATE_RANGE
+        oper: between
+        date_range:
+          start_date: 01/01/2025
+          end_date: 05/31/2025
+    - column:
+      - Reward::Transaction Datetime
+      date_filter:
+        type: EXACT_DATE_RANGE
+        oper: between
+        date_range:
+          start_date: 01/01/2025
+          end_date: 05/31/2025
+    - column:
+      - Reward::User Adoption Department
+      oper: =
+    - column:
+      - Reward::User Adoption Location
+      oper: =
+    is_public: false
+    view_parameters:
+    - name: Reward::Reward end date
+      id: 68e80780-f171-47a7-be87-13dd178086e1
+      override_value: 05/31/2025
+    - name: Reward::Reward start date
+      id: 52c6a7ae-ac13-4427-bd20-eb9ff86f5cf6
+      override_value: 01/01/2025
