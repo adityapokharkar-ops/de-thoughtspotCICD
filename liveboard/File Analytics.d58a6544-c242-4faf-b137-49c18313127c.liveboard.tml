@@ -1,0 +1,1080 @@
+guid: d58a6544-c242-4faf-b137-49c18313127c
+liveboard:
+  name: File Analytics
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Unique views
+      description: Distinct users viewing files
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      search_query: "unique count [Unique Views] sort by count [Unique Views] descending"
+      answer_columns:
+      - name: Number of Unique Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      - name: Unique Number of Unique Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Number of Unique Views
+          show_headline: false
+        - column_id: Unique Number of Unique Views
+          show_headline: false
+        ordered_column_ids:
+        - Unique Number of Unique Views
+        - Number of Unique Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Number of Unique Views
+        - column_id: Unique Number of Unique Views
+        axis_configs:
+        - "y":
+          - Unique Number of Unique Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Number of Unique Views\",\"columnProperty\": {}},{\"columnId\": \"Unique Number of Unique Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"8841446c-2f76-46ef-aebc-46a37efaa6d1\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Unique Views\"],\"isOpposite\": false}},{\"id\": \"5c93b5d2-7c05-46f3-ba53-ad64f3513576\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"8b51d392-b492-4bca-b4b7-ea89823f495f\",\"color\": \"#FF8142\"}]}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 05/28/2025
+      - key: Period
+        value: Last 30 Days
+      dynamic_name: Unique views
+      dynamic_description: Distinct users viewing files
+    viz_guid: 0f4ad4f3-def3-462e-b876-73d511fdbbbe
+  - id: Viz_2
+    answer:
+      name: Most reacted files
+      description: List of files (up to 5) that are most reacted during the selected time period
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Total Likes
+        name: Total Likes
+        expr: "count_if ( [Interaction Type] = 'like' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Total Likes] [formula_Total Likes] [formula_Total Likes] > 0 top 5 [File Modal Url]"
+      answer_columns:
+      - name: File Modal Url
+        custom_name: File name
+        dynamic_title: File name
+      - name: Total Likes
+        custom_name: Total reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total reactions
+      table:
+        table_columns:
+        - column_id: File Modal Url
+          show_headline: false
+        - column_id: Total Likes
+          show_headline: false
+        ordered_column_ids:
+        - File Modal Url
+        - Total Likes
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total Likes\",\"width\": 176.57398986816406},{\"columnId\": \"File Modal Url\",\"width\": 339.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"File Modal Url\",\"Total Likes\"]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: File Modal Url
+        - column_id: Total Likes
+        axis_configs:
+        - x:
+          - File Modal Url
+          "y":
+          - Total Likes
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Likes\",\"columnProperty\": {}},{\"columnId\": \"File Modal Url\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"26764153-97fe-4e94-a874-160ef7414353\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Likes\"],\"isOpposite\": false}},{\"id\": \"97dbcae3-e9fa-4edd-8cc2-0f532b27fd15\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"File Modal Url\"]}}],\"systemSeriesColors\": [{\"serieName\": \"6ac2e109-9d92-4fe7-89d2-71d3e433d332\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 04/01/2025
+      - key: Period
+        value: Custom
+      dynamic_name: Most reacted files
+      dynamic_description: List of files (up to 5) that are most reacted during the selected time period
+    viz_guid: 22d2e781-6c64-447a-a30d-49c5d3294347
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_3
+    answer:
+      name: Most downloaded files
+      description: List of files (up to 5) with the highest downloads from users
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Total Downloads
+        name: Total Downloads
+        expr: "count_if ( [Interaction Type] = 'download' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "top 5 [formula_Total Downloads] > 0 [formula_Total Downloads] [File Modal Url]"
+      answer_columns:
+      - name: File Modal Url
+        custom_name: File name
+        dynamic_title: File name
+      - name: Total Downloads
+        custom_name: Total downloads
+        dynamic_title: Total downloads
+      table:
+        table_columns:
+        - column_id: File Modal Url
+          show_headline: false
+        - column_id: Total Downloads
+          show_headline: false
+        ordered_column_ids:
+        - File Modal Url
+        - Total Downloads
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"File Modal Url\",\"width\": 355.0}],\"showTableFooter\": false}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: File Modal Url
+        - column_id: Total Downloads
+        axis_configs:
+        - x:
+          - File Modal Url
+          "y":
+          - Total Downloads
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Downloads\",\"columnProperty\": {}},{\"columnId\": \"File Modal Url\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"ec47d1d7-dfc7-4c88-bbdb-336a8b041a81\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Downloads\"],\"isOpposite\": false}},{\"id\": \"c8e5675d-68d7-4715-b8bf-c183c544611b\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"File Modal Url\"]}}],\"systemSeriesColors\": [{\"serieName\": \"c012a202-3d51-4f1e-8200-67fae2dcf342\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 04/01/2025
+      - key: Period
+        value: Custom
+      dynamic_name: Most downloaded files
+      dynamic_description: List of files (up to 5) with the highest downloads from users
+    viz_guid: 9b076c11-bf6f-4cae-99b5-de75ea3094d1
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_4
+    answer:
+      name: Most viewed files
+      description: List of files (up to 5) that are most viewed during the selected time period
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Total Views
+        name: Total Views
+        expr: "count_if ( [Interaction Type] = 'view' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Total Views] [File Modal Url] sort by [formula_Total Views] descending top 5 [formula_Total Views] > 0"
+      answer_columns:
+      - name: File Modal Url
+        custom_name: File name
+        dynamic_title: File name
+      - name: Total Views
+        custom_name: Total views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total views
+      table:
+        table_columns:
+        - column_id: File Modal Url
+          show_headline: false
+        - column_id: Total Views
+          show_headline: false
+        ordered_column_ids:
+        - File Modal Url
+        - Total Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total Views\",\"width\": 188.7371063232422},{\"columnId\": \"File Modal Url\",\"width\": 325.1283721923828}],\"showTableFooter\": false,\"orderedColumnIds\": [\"File Modal Url\",\"Total Views\"]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: File Modal Url
+        - column_id: Total Views
+        axis_configs:
+        - x:
+          - File Modal Url
+          "y":
+          - Total Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Views\",\"columnProperty\": {}},{\"columnId\": \"File Modal Url\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"96a3f37f-2bd7-428a-9a34-44c91a2bd517\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Views\"],\"isOpposite\": false}},{\"id\": \"4bd5b1d2-bb84-4154-baf2-df50a898db3b\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"File Modal Url\"]}}],\"systemSeriesColors\": [{\"serieName\": \"ce788917-cace-4a46-ad08-72b037c1a23d\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most viewed files
+      dynamic_description: List of files (up to 5) that are most viewed during the selected time period
+    viz_guid: 563e8dc2-1e6e-4f33-a79c-56c4e374de1b
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_5
+    answer:
+      name: Distrubution of downloads by file category
+      description: Break down of downloads by each file category
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Average File Downloads
+        name: Average File Downloads
+        expr: "ifnull ( ( count ( [File Downloads] ) / unique_count_if ( [Interaction Type] = 'download' , [File Interaction Code] ) ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Download Contribution
+        name: Download Contribution
+        expr: "ifnull ( count ( [File Downloads] ) / group_count ( [File Downloads] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_File Download
+        name: File Download
+        expr: "ifnull ( count ( [File Downloads] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total Downloads
+        name: Total Downloads
+        expr: "count_if ( [Interaction Type] = 'download' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Download Contribution] [File Type Parent Category] [formula_Average File Downloads] [formula_File Download]"
+      answer_columns:
+      - name: Average File Downloads
+        custom_name: Average file downloads
+        dynamic_title: Average file downloads
+      - name: Download Contribution
+        custom_name: Total download percentage
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+        dynamic_title: Total download percentage
+      - name: File Download
+        custom_name: Total downloads
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total downloads
+      - name: File Type Parent Category
+        custom_name: File category
+        dynamic_title: File category
+      table:
+        table_columns:
+        - column_id: Average File Downloads
+          show_headline: false
+        - column_id: Download Contribution
+          show_headline: false
+        - column_id: File Download
+          show_headline: false
+        - column_id: File Type Parent Category
+          show_headline: false
+        ordered_column_ids:
+        - File Type Parent Category
+        - Download Contribution
+        - Average File Downloads
+        - File Download
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"File Type Parent Category\",\"width\": 97.4000015258789},{\"columnId\": \"File Download\",\"width\": 105.57000732421875},{\"columnId\": \"Download Contribution\",\"width\": 118.0},{\"columnId\": \"Average File Downloads\",\"width\": 109.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"File Type Parent Category\",\"File Download\",\"Download Contribution\",\"Average File Downloads\"],\"columnProperties\": [{\"columnId\": \"File Type Parent Category\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}},{\"columnId\": \"Download Contribution\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}},{\"columnId\": \"Average File Downloads\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"File Download\",\"columnProperty\": {\"conditionalFormatting\": {}}}]}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Average File Downloads
+        - column_id: Download Contribution
+        - column_id: File Download
+        - column_id: File Type Parent Category
+        axis_configs:
+        - x:
+          - File Type Parent Category
+          "y":
+          - Download Contribution
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"File Type Parent Category\",\"columnProperty\": {}},{\"columnId\": \"Download Contribution\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"079aaabd-f4e3-4525-9ca2-391ed7a67850\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Download Contribution\"],\"isOpposite\": false}},{\"id\": \"ab6956c8-6a2e-425c-9ac1-bd9f53c2d236\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"File Type Parent Category\"]}}],\"systemSeriesColors\": [{\"serieName\": \"0ca44ae5-eebd-4ef0-8df1-ce6072c07089\",\"color\": \"#8C62F5\"},{\"serieName\": \"document\",\"color\": \"#06BF7F\"},{\"serieName\": \"image\",\"color\": \"#FCC838\"},{\"serieName\": \"other\",\"color\": \"#48D1E0\"},{\"serieName\": \"audio\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 04/01/2025
+      - key: Period
+        value: Custom
+      dynamic_name: Distrubution of downloads by file category
+      dynamic_description: Break down of downloads by each file category
+    viz_guid: 69d71ada-4d0a-4d2b-acb5-6f190e380757
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_6
+    answer:
+      name: Reactions
+      description: Total user reactions on files
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      search_query: "[Interaction Count] [Interaction Type].like"
+      answer_columns:
+      - name: Interaction Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Interaction Count
+          show_headline: false
+        ordered_column_ids:
+        - Interaction Count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Interaction Count
+        axis_configs:
+        - "y":
+          - Interaction Count
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Interaction Count\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"d2d3a15b-cf11-4936-9e6c-901737c7f126\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Interaction Count\"],\"isOpposite\": false}},{\"id\": \"a58272b8-8593-416f-965d-a9b74e307726\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"0ca44ae5-eebd-4ef0-8df1-ce6072c07089\",\"color\": \"#8C62F5\"}]}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 06/01/2025
+      dynamic_name: Reactions
+      dynamic_description: Total user reactions on files
+    viz_guid: 5eaa50fd-90e6-4c65-a73b-63947805031e
+  - id: Viz_7
+    answer:
+      name: Favourites
+      description: Total files marked as favourites
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      search_query: "[Interaction Count] [Interaction Type].favourites"
+      answer_columns:
+      - name: Interaction Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Interaction Count
+          show_headline: false
+        ordered_column_ids:
+        - Interaction Count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Interaction Count
+        axis_configs:
+        - "y":
+          - Interaction Count
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Interaction Count\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"52153d06-1e9b-4b78-9a20-e35b1301a004\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Interaction Count\"],\"isOpposite\": false}},{\"id\": \"2268173b-1ce6-4fec-b7b2-80b432312ddc\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"0ca44ae5-eebd-4ef0-8df1-ce6072c07089\",\"color\": \"#8C62F5\"}]}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/26/2025
+      - key: File start date
+        value: 05/28/2025
+      - key: Period
+        value: Last 30 Days
+      dynamic_name: Favourites
+      dynamic_description: Total files marked as favourites
+    viz_guid: a203d8b1-b7ef-4b77-993c-f96b4e30b58a
+  - id: Viz_8
+    answer:
+      name: Downloads
+      description: Total files downloaded by users
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      search_query: "[Interaction Count] [Interaction Type].download"
+      answer_columns:
+      - name: Interaction Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Interaction Count
+          show_headline: false
+        ordered_column_ids:
+        - Interaction Count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Interaction Count
+        axis_configs:
+        - "y":
+          - Interaction Count
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Interaction Count\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"46bfc4d3-dac7-44bf-a058-6faff98b6e2b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Interaction Count\"],\"isOpposite\": false}},{\"id\": \"dd5c7e5f-a93a-49cb-951b-40c06b44da0d\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"0ca44ae5-eebd-4ef0-8df1-ce6072c07089\",\"color\": \"#8C62F5\"}]}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/26/2025
+      - key: File start date
+        value: 05/28/2025
+      - key: Period
+        value: Last 30 Days
+      dynamic_name: Downloads
+      dynamic_description: Total files downloaded by users
+    viz_guid: 201ebf1e-e1c7-4431-bca3-d4143909d2a8
+  - id: Viz_9
+    answer:
+      name: Distribution of views by file category
+      description: Break down of views by each file category
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Average File Views
+        name: Average File Views
+        expr: "ifnull ( ( count_if ( [Interaction Type] = 'view' , [Interacted By User Code] ) / unique_count_if ( [Interaction Type] = 'view' , [File Interaction Code] ) ) , 0 )"
+        was_auto_generated: false
+      - id: formula_View Contribution
+        name: View Contribution
+        expr: "count ( [Interacted By User Code] ) / group_count ( [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Total Views
+        name: Total Views
+        expr: "group_count ( [Interacted By User Code] , [Interaction Type Code] )"
+        was_auto_generated: false
+      search_query: "[formula_View Contribution] [File Type Parent Category] sort by [formula_View Contribution] descending [Interaction Count] [Interaction Type].view [File Interaction Code] != 'n/a' [formula_Average File Views]"
+      answer_columns:
+      - name: Average File Views
+        custom_name: Average file views
+        dynamic_title: Average file views
+      - name: File Type Parent Category
+        custom_name: File category
+        dynamic_title: File category
+      - name: Interaction Count
+        custom_name: Total views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total views
+      - name: View Contribution
+        custom_name: View contribution
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+        dynamic_title: View contribution
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Average File Views
+          show_headline: false
+        - column_id: File Type Parent Category
+          show_headline: false
+        - column_id: Interaction Count
+          show_headline: false
+        - column_id: View Contribution
+          show_headline: false
+        ordered_column_ids:
+        - File Type Parent Category
+        - View Contribution
+        - Interaction Count
+        - Average File Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Interaction Count\",\"width\": 88.51020812988281},{\"columnId\": \"View Contribution\",\"width\": 136.0},{\"columnId\": \"Average File Views\",\"width\": 114.0},{\"columnId\": \"File Type Parent Category\",\"width\": 108.4000015258789}],\"showTableFooter\": false,\"orderedColumnIds\": [\"File Type Parent Category\",\"Interaction Count\",\"View Contribution\"],\"columnProperties\": [{\"columnId\": \"File Type Parent Category\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"View Contribution\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Interaction Count\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Average File Views\",\"columnProperty\": {\"conditionalFormatting\": {}}}]}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Average File Views
+        - column_id: File Type Parent Category
+        - column_id: Interaction Count
+        - column_id: View Contribution
+        axis_configs:
+        - x:
+          - File Type Parent Category
+          "y":
+          - View Contribution
+          - Interaction Count
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}},\"showStackedLabels\": false,\"allLabels\": false},\"columnProperties\": [{\"columnId\": \"File Type Parent Category\",\"columnProperty\": {}},{\"columnId\": \"View Contribution\",\"columnProperty\": {\"dataLabels\": false}},{\"columnId\": \"Interaction Count\",\"columnProperty\": {\"dataLabels\": false}}],\"axisProperties\": [{\"id\": \"90d1d206-04ca-4ed7-bbf0-0f2664933cfa\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"View Contribution\"],\"isOpposite\": false}},{\"id\": \"b643f7c1-ffc4-4ba8-9f4a-9b2ffc0971e9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Interaction Count\"],\"isOpposite\": true}},{\"id\": \"82752068-c360-4d1b-a94a-e27aebefb0a0\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"File Type Parent Category\"]}}],\"systemSeriesColors\": [{\"serieName\": \"View Contribution\",\"color\": \"#48D1E0\"},{\"serieName\": \"Interaction Count\",\"color\": \"#2E75F0\"},{\"serieName\": \"image\",\"color\": \"#06BF7F\"},{\"serieName\": \"document\",\"color\": \"#FCC838\"},{\"serieName\": \"video\",\"color\": \"#48D1E0\"},{\"serieName\": \"other\",\"color\": \"#71A1F4\"},{\"serieName\": \"audio\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/26/2025
+      - key: File start date
+        value: 05/28/2025
+      - key: Period
+        value: Last 30 Days
+      dynamic_name: Distribution of views by file category
+      dynamic_description: Break down of views by each file category
+    viz_guid: 3f0fa90f-5518-4aac-a53d-fecc8d40ae57
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_10
+    answer:
+      name: Total views
+      description: Total views by all users in the selected time period
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      search_query: "[Interaction Count] [Interaction Type].view"
+      answer_columns:
+      - name: Interaction Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Interaction Count
+          show_headline: false
+        ordered_column_ids:
+        - Interaction Count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Interaction Count
+        axis_configs:
+        - "y":
+          - Interaction Count
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Interaction Count\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"d2d3a15b-cf11-4936-9e6c-901737c7f126\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Interaction Count\"],\"isOpposite\": false}},{\"id\": \"a58272b8-8593-416f-965d-a9b74e307726\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"0ca44ae5-eebd-4ef0-8df1-ce6072c07089\",\"color\": \"#8C62F5\"}]}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 06/01/2025
+      dynamic_name: Total views
+      dynamic_description: Total views by all users in the selected time period
+    viz_guid: 3df71107-ccec-44d0-8373-6d60d09fa87b
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: false
+  - id: Viz_11
+    answer:
+      name: File views and engagement
+      description: Break down of file engagement over the selected time period
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Download
+        name: Download
+        expr: "count_if ( [Interaction Entity type] = 'file' and [Interaction Type] = 'download' , [Interaction Type Code] )"
+        was_auto_generated: false
+      - id: formula_Favourites
+        name: Favourites
+        expr: "count_if ( [Interaction Entity type] = 'file' and [Interaction Type] = 'favourites' , [Interaction Type Code] )"
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "count_if ( [Interaction Entity type] = 'file' and [Interaction Type] = 'like' , [Interaction Type Code] )"
+        was_auto_generated: false
+      - id: formula_Unique file views
+        name: Unique file views
+        expr: "unique_count_if ( [Interaction Entity type] = 'file' and [Interaction Type] = 'view' , concat ( [File Code] , [Interacted By User Code] ) )"
+        was_auto_generated: false
+      search_query: "[Interaction Datetime].daily [Interaction Datetime] [Interaction Datetime].'last 30 days' [formula_Unique file views] [formula_Favourites] [formula_Download] [formula_Reactions]"
+      answer_columns:
+      - name: Day(Interaction Datetime)
+        custom_name: Interaction date
+        dynamic_title: Interaction date
+      - name: Download
+      - name: Favourites
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Unique file views
+      table:
+        table_columns:
+        - column_id: Day(Interaction Datetime)
+          show_headline: false
+        - column_id: Download
+          show_headline: false
+        - column_id: Favourites
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Unique file views
+          show_headline: false
+        ordered_column_ids:
+        - Day(Interaction Datetime)
+        - Unique file views
+        - Favourites
+        - Download
+        - Reactions
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Day(Interaction Datetime)
+        - column_id: Download
+        - column_id: Favourites
+        - column_id: Reactions
+        - column_id: Unique file views
+        axis_configs:
+        - x:
+          - Day(Interaction Datetime)
+          "y":
+          - Unique file views
+          - Reactions
+          - Favourites
+          - Download
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": false,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"isStackedAsPercent\": false,\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"pivotSummariesState\": {}},\"showStackedLabels\": false,\"dataSize\": 30.0,\"legendPosition\": \"BOTTOM_LEGEND\"},\"columnProperties\": [{\"columnId\": \"Day(Interaction Datetime)\",\"columnProperty\": {\"excludeNullValues\": false}},{\"columnId\": \"Unique file views\",\"columnProperty\": {}},{\"columnId\": \"Favourites\",\"columnProperty\": {}},{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Download\",\"columnProperty\": {\"handleMissingValues\": \"SHOW_AS_ZERO\"}}],\"axisProperties\": [{\"id\": \"0142f281-58e0-4146-988a-00675fbc1635\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\",\"Favourites\",\"Download\",\"Unique file views\"],\"format\": {\"category\": \"NUMBER\",\"numberFormatConfig\": {\"unit\": \"NONE\",\"decimals\": 0.0,\"negativeValueFormat\": \"PREFIX_DASH\",\"toSeparateThousands\": true},\"isCategoryEditable\": true},\"name\": \"Total Engagement\",\"isOpposite\": false,\"dynamicTitle\": \"Total Engagement\"}},{\"id\": \"f15c0744-d7b0-4b3a-9ecc-2f1db6df146b\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Interaction Datetime)\"]}}],\"seriesColors\": [{\"serieName\": \"e6075af7-f334-4f9c-af56-e5e16c1c57ed\",\"color\": \"#48D1E0\"},{\"serieName\": \"c3f9442c-d216-4fac-b544-849afdd2daed\",\"color\": \"#2E75F0\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCC838\"},{\"serieName\": \"view\",\"color\": \"#48D1E0\"},{\"serieName\": \"Reactions\",\"color\": \"#ff3d91\"},{\"serieName\": \"Favourites\",\"color\": \"#FCCB3D\"},{\"serieName\": \"Download\",\"color\": \"#8338ec\"},{\"serieName\": \"Unique file views\",\"color\": \"#3a86ff\"}],\"systemSeriesColors\": [{\"serieName\": \"e6075af7-f334-4f9c-af56-e5e16c1c57ed\",\"color\": \"#48D1E0\"},{\"serieName\": \"c3f9442c-d216-4fac-b544-849afdd2daed\",\"color\": \"#2E75F0\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCC838\"},{\"serieName\": \"view\",\"color\": \"#48D1E0\"},{\"serieName\": \"Unique file views\",\"color\": \"#747E8C\"},{\"serieName\": \"Favourites\",\"color\": \"#FCC838\"},{\"serieName\": \"Download\",\"color\": \"#06BF7F\"},{\"serieName\": \"Reactions\",\"color\": \"#2E75F0\"}]}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 06/01/2025
+      dynamic_name: File views and engagement
+      dynamic_description: Break down of file engagement over the selected time period
+    viz_guid: 802458fd-ffd4-4ad5-bdc7-94c062bc9602
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_12
+    answer:
+      name: Least viewed files
+      description: List of files (up to 5) that are least viewed during the selected time period
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Total Views
+        name: Total Views
+        expr: "group_aggregate ( count ( [Interacted By User Code] ) , query_groups ( ) , query_filters ( ) + { [Interaction Datetime] >= [File start date] and [Interaction Datetime] <= [File end date] and [Interaction Type] = 'view' and [Interaction Entity type] = 'file' } )"
+        was_auto_generated: false
+      search_query: "[formula_Total Views] sort by [formula_Total Views] bottom 5 [File Modal Url]"
+      answer_columns:
+      - name: File Modal Url
+        custom_name: File name
+        dynamic_title: File name
+      - name: Total Views
+        custom_name: Total views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total views
+      table:
+        table_columns:
+        - column_id: File Modal Url
+          show_headline: false
+        - column_id: Total Views
+          show_headline: false
+        ordered_column_ids:
+        - File Modal Url
+        - Total Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total Views\",\"width\": 166.5102081298828},{\"columnId\": \"File Modal Url\",\"width\": 324.0}],\"showTableFooter\": false}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: File Modal Url
+        - column_id: Total Views
+        axis_configs:
+        - x:
+          - File Modal Url
+          "y":
+          - Total Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Views\",\"columnProperty\": {}},{\"columnId\": \"File Modal Url\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"3ed11d42-697a-4876-95c5-edf21763928b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Views\"],\"isOpposite\": false}},{\"id\": \"47f4b632-d484-439f-b567-8091a63dfe54\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"File Modal Url\"]}}],\"systemSeriesColors\": [{\"serieName\": \"ce788917-cace-4a46-ad08-72b037c1a23d\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least viewed files
+      dynamic_description: List of files (up to 5) that are least viewed during the selected time period
+    viz_guid: da2aa530-51eb-40ff-b36d-3fb630eefae4
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_13
+    answer:
+      name: Least reacted files
+      description: List of files (up to 5) that are least reacted during the selected time period
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Total Likes
+        name: Total Likes
+        expr: "group_aggregate ( count ( [Interacted By User Code] ) , query_groups ( ) , query_filters ( ) + { [Interaction Datetime] >= [File start date] and [Interaction Datetime] <= [File end date] and [Interaction Type] = 'like' and [Interaction Entity type] = 'file' } )"
+        was_auto_generated: false
+      search_query: "bottom 5 [formula_Total Likes] [File Modal Url]"
+      answer_columns:
+      - name: File Modal Url
+        custom_name: File name
+        dynamic_title: File name
+      - name: Total Likes
+        custom_name: Total reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total reactions
+      table:
+        table_columns:
+        - column_id: File Modal Url
+          show_headline: false
+        - column_id: Total Likes
+          show_headline: false
+        ordered_column_ids:
+        - File Modal Url
+        - Total Likes
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total Likes\",\"width\": 150.55982971191406},{\"columnId\": \"File Modal Url\",\"width\": 363.0}],\"showTableFooter\": false}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: File Modal Url
+        - column_id: Total Likes
+        axis_configs:
+        - x:
+          - File Modal Url
+          "y":
+          - Total Likes
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Likes\",\"columnProperty\": {}},{\"columnId\": \"File Modal Url\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"b762c2f4-7d3c-4dd3-94ea-9c83d7408850\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Likes\"],\"isOpposite\": false}},{\"id\": \"08e66576-86a2-43e7-9bd9-b5ab59e0bbf9\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"File Modal Url\"]}}],\"systemSeriesColors\": [{\"serieName\": \"6ac2e109-9d92-4fe7-89d2-71d3e433d332\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 04/01/2025
+      - key: Period
+        value: Custom
+      dynamic_name: Least reacted files
+      dynamic_description: List of files (up to 5) that are least reacted during the selected time period
+    viz_guid: 66f1aa7b-7b48-4061-a892-36bb601cd6e4
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_14
+    answer:
+      name: Least downloaded files
+      description: List of files (up to 5) with the fewest downloads from users
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Total Downloads
+        name: Total Downloads
+        expr: "group_aggregate ( count ( [Interacted By User Code] ) , query_groups ( ) , query_filters ( ) + { [Interaction Datetime] >= [File start date] and [Interaction Datetime] <= [File end date] and [Interaction Type] = 'download' and [Interaction Entity type] = 'file' } )"
+        was_auto_generated: false
+      search_query: "bottom 5 [formula_Total Downloads] [File Modal Url]"
+      answer_columns:
+      - name: File Modal Url
+        custom_name: File name
+        dynamic_title: File name
+      - name: Total Downloads
+        custom_name: Total downloads
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total downloads
+      table:
+        table_columns:
+        - column_id: File Modal Url
+          show_headline: false
+        - column_id: Total Downloads
+          show_headline: false
+        ordered_column_ids:
+        - File Modal Url
+        - Total Downloads
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"File Modal Url\",\"width\": 355.0},{\"columnId\": \"Total Downloads\",\"width\": 152.53390502929688}],\"showTableFooter\": false}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: File Modal Url
+        - column_id: Total Downloads
+        axis_configs:
+        - x:
+          - File Modal Url
+          "y":
+          - Total Downloads
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Downloads\",\"columnProperty\": {}},{\"columnId\": \"File Modal Url\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"e247e86a-4328-4c59-b7fd-90d1b9f70390\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Downloads\"],\"isOpposite\": false}},{\"id\": \"37397f1c-d30b-4cf4-a612-0905f42c8bd2\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"File Modal Url\"]}}],\"systemSeriesColors\": [{\"serieName\": \"c012a202-3d51-4f1e-8200-67fae2dcf342\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 04/01/2025
+      - key: Period
+        value: Custom
+      dynamic_name: Least downloaded files
+      dynamic_description: List of files (up to 5) with the fewest downloads from users
+    viz_guid: 3c67dccf-81b2-469a-9ba1-8cdf3a25c7e5
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  filters:
+  - column:
+    - Interaction Datetime
+    excluded_visualizations:
+    - Viz_12
+    - Viz_13
+    - Viz_14
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Category Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Segment Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Company Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 4
+      "y": 0
+      height: 3
+      width: 2
+    - visualization_id: Viz_2
+      x: 0
+      "y": 23
+      height: 8
+      width: 6
+    - visualization_id: Viz_3
+      x: 0
+      "y": 31
+      height: 7
+      width: 6
+    - visualization_id: Viz_4
+      x: 0
+      "y": 15
+      height: 8
+      width: 6
+    - visualization_id: Viz_5
+      x: 6
+      "y": 10
+      height: 5
+      width: 6
+    - visualization_id: Viz_6
+      x: 10
+      "y": 0
+      height: 3
+      width: 2
+    - visualization_id: Viz_7
+      x: 8
+      "y": 0
+      height: 3
+      width: 2
+    - visualization_id: Viz_8
+      x: 6
+      "y": 0
+      height: 3
+      width: 2
+    - visualization_id: Viz_9
+      x: 0
+      "y": 10
+      height: 5
+      width: 6
+    - visualization_id: Viz_10
+      x: 0
+      "y": 0
+      height: 3
+      width: 4
+    - visualization_id: Viz_11
+      x: 0
+      "y": 3
+      height: 7
+      width: 12
+    - visualization_id: Viz_12
+      x: 6
+      "y": 15
+      height: 8
+      width: 6
+    - visualization_id: Viz_13
+      x: 6
+      "y": 23
+      height: 8
+      width: 6
+    - visualization_id: Viz_14
+      x: 6
+      "y": 31
+      height: 7
+      width: 6
+  parameter_overrides:
+  - key: b5f1b251-d9ec-47a6-bf15-0913083268f2
+    value:
+      name: File::File start date
+      override_value: 10/03/2025
+  - key: 18559a68-63bd-4986-8f2f-c17015d87d5e
+    value:
+      name: File::File end date
+      override_value: 11/01/2025
+  ordered_chips:
+  - name: Interaction Datetime
+    type: FILTER
+  - name: Department
+    type: FILTER
+  - name: Location
+    type: FILTER
+  - name: Category Name
+    type: FILTER
+  - name: Segment Name
+    type: FILTER
+  - name: Company Name
+    type: FILTER
+  - name: Tenant Code
+    type: FILTER
+  - name: File::File start date
+    type: PARAMETER
+  - name: File::File end date
+    type: PARAMETER
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "false"
+    - name: hide_group_description
+      value: "true"
+    - name: hide_group_tile_description
+      value: "true"
+    - name: hide_tile_description
+      value: "false"
