@@ -1,0 +1,296 @@
+guid: 1f409813-09e2-499e-8cbf-57d258a8cb81
+liveboard:
+  name: Newsletter Activity csv
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Sent newsletters
+      description: Details of newsletter sent in the selected time period
+      tables:
+      - id: Newsletter
+        name: Newsletter
+        fqn: 11a1e30f-da87-4e1d-a81c-d84ec1e715ff
+      table_paths:
+      - id: Newsletter_1
+        table: Newsletter
+      formulas:
+      - id: formula_Average time on Intranet hub per user
+        name: Average time on Intranet hub per user
+        expr: "if ( [Newsletter_1::Average time on Intranet hub per user] > 0 ) then concat ( to_string ( floor ( [Newsletter_1::Average time on Intranet hub per user] / 3600 ) ) , \":\" , to_string ( floor ( ( [Newsletter_1::Average time on Intranet hub per user] - floor ( [Newsletter_1::Average time on Intranet hub per user] / 3600 ) * 3600 ) / 60 ) ) , \":\" , to_string ( floor ( [Newsletter_1::Average time on Intranet hub per user] - floor ( [Newsletter_1::Average time on Intranet hub per user] / 3600 ) * 3600 - floor ( ( [Newsletter_1::Average time on Intranet hub per user] - floor ( [Newsletter_1::Average time on Intranet hub per user] / 3600 ) * 3600 ) / 60 ) * 60 ) ) ) else '00:00:00'"
+        was_auto_generated: false
+      - id: formula_Total time on Intranet hub
+        name: Total time on Intranet hub
+        expr: "if ( [Newsletter_1::Total time on Intranet hub] > 0 ) then concat ( to_string ( floor ( [Newsletter_1::Total time on Intranet hub] / 3600 ) ) , \":\" , to_string ( floor ( mod ( [Newsletter_1::Total time on Intranet hub] , 3600 ) / 60 ) ) , \":\" , to_string ( mod ( [Newsletter_1::Total time on Intranet hub] , 60 ) ) ) else '00:00:00'"
+        was_auto_generated: false
+      search_query: "[Newsletter_1::Newsletter Name] [Newsletter_1::Sent At] [Newsletter_1::Sent At].daily [Newsletter_1::Recipient Audience Type] [Newsletter_1::Open Rate] [Newsletter_1::Click-through Rate] [Newsletter_1::Total Number of Recipients] [Newsletter_1::Newsletter Code] [Newsletter_1::Subject] [Newsletter_1::Newsletter Category] [Newsletter_1::Sender Address] [Newsletter_1::Distribution Mode] [Newsletter_1::Unique Open Count] [Newsletter_1::Total Open Count] [Newsletter_1::Unique Click-though Count] [Newsletter_1::Total Click-through Count] [Newsletter_1::Is Archived?].false [Newsletter_1::Recipient Audiences] [formula_Total time on Intranet hub] [formula_Average time on Intranet hub per user]"
+      answer_columns:
+      - name: Average time on Intranet hub per user
+      - name: Click-through Rate
+        custom_name: Click-through rate
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+        dynamic_title: Click-through rate
+      - name: Day(Sent At)
+        custom_name: Date sent
+        dynamic_title: Date sent
+      - name: Distribution Mode
+        custom_name: Distribution
+        dynamic_title: Distribution
+      - name: Newsletter Category
+        custom_name: Category
+        dynamic_title: Category
+      - name: Newsletter Code
+        custom_name: Newsletter ID
+        dynamic_title: Newsletter ID
+      - name: Newsletter Name
+        custom_name: Newsletter name
+        dynamic_title: Newsletter name
+      - name: Open Rate
+        custom_name: Open rate
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+        dynamic_title: Open rate
+      - name: Recipient Audience Type
+        custom_name: Recipient audience type
+        dynamic_title: Recipient audience type
+      - name: Recipient Audiences
+      - name: Sender Address
+        custom_name: From address
+        dynamic_title: From address
+      - name: Subject
+        custom_name: Subject line
+        dynamic_title: Subject line
+      - name: Total Click-through Count
+        custom_name: Total clicks
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+        dynamic_title: Total clicks
+      - name: Total Number of Recipients
+        custom_name: Number of recipients
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+        dynamic_title: Number of recipients
+      - name: Total Open Count
+        custom_name: Total opens
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+        dynamic_title: Total opens
+      - name: Total time on Intranet hub
+      - name: Unique Click-though Count
+        custom_name: Unique clicks
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+        dynamic_title: Unique clicks
+      - name: Unique Open Count
+        custom_name: Unique opens
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+        dynamic_title: Unique opens
+      table:
+        table_columns:
+        - column_id: Average time on Intranet hub per user
+          show_headline: false
+        - column_id: Click-through Rate
+          show_headline: false
+        - column_id: Day(Sent At)
+          show_headline: false
+        - column_id: Distribution Mode
+          show_headline: false
+        - column_id: Newsletter Category
+          show_headline: false
+        - column_id: Newsletter Code
+          show_headline: false
+        - column_id: Newsletter Name
+          show_headline: false
+        - column_id: Open Rate
+          show_headline: false
+        - column_id: Recipient Audience Type
+          show_headline: false
+        - column_id: Recipient Audiences
+          show_headline: false
+        - column_id: Sender Address
+          show_headline: false
+        - column_id: Subject
+          show_headline: false
+        - column_id: Total Click-through Count
+          show_headline: false
+        - column_id: Total Number of Recipients
+          show_headline: false
+        - column_id: Total Open Count
+          show_headline: false
+        - column_id: Total time on Intranet hub
+          show_headline: false
+        - column_id: Unique Click-though Count
+          show_headline: false
+        - column_id: Unique Open Count
+          show_headline: false
+        ordered_column_ids:
+        - Newsletter Name
+        - Day(Sent At)
+        - Recipient Audience Type
+        - Newsletter Code
+        - Subject
+        - Newsletter Category
+        - Sender Address
+        - Distribution Mode
+        - Recipient Audiences
+        - Total time on Intranet hub
+        - Average time on Intranet hub per user
+        - Open Rate
+        - Click-through Rate
+        - Total Number of Recipients
+        - Unique Open Count
+        - Total Open Count
+        - Unique Click-though Count
+        - Total Click-through Count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true,\"orderedColumnIds\": [\"Newsletter Code\",\"Newsletter Name\",\"Subject\",\"Newsletter Category\",\"Sender Address\",\"Distribution Mode\",\"Day(Sent At)\",\"Recipient Audience Type\",\"Recipient Audiences\",\"Total Number of Recipients\",\"Open Rate\",\"Click-through Rate\",\"Unique Open Count\",\"Total Open Count\",\"Unique Click-though Count\",\"Total Click-through Count\"],\"columnProperties\": [{\"columnId\": \"Newsletter Name\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"Day(Sent At)\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"Recipient Audience Type\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"Open Rate\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"Click-through Rate\",\"columnProperty\": {\"isHidden\": false}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Average time on Intranet hub per user
+        - column_id: Click-through Rate
+        - column_id: Day(Sent At)
+        - column_id: Distribution Mode
+        - column_id: Newsletter Category
+        - column_id: Newsletter Code
+        - column_id: Newsletter Name
+        - column_id: Open Rate
+        - column_id: Recipient Audience Type
+        - column_id: Recipient Audiences
+        - column_id: Sender Address
+        - column_id: Subject
+        - column_id: Total Click-through Count
+        - column_id: Total Number of Recipients
+        - column_id: Total Open Count
+        - column_id: Total time on Intranet hub
+        - column_id: Unique Click-though Count
+        - column_id: Unique Open Count
+        axis_configs:
+        - x:
+          - Day(Sent At)
+          "y":
+          - Open Rate
+          - Click-through Rate
+          - Total Number of Recipients
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Newsletter Name\",\"columnProperty\": {}},{\"columnId\": \"Day(Sent At)\",\"columnProperty\": {}},{\"columnId\": \"Recipient Audience Type\",\"columnProperty\": {}},{\"columnId\": \"Open Rate\",\"columnProperty\": {}},{\"columnId\": \"Click-through Rate\",\"columnProperty\": {}},{\"columnId\": \"Total Number of Recipients\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"18756cd0-ec6f-44c7-9fa8-9821bb90a176\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Open Rate\"],\"isOpposite\": false}},{\"id\": \"b1128bfa-86bb-41bd-bde8-26ee8c8bbf7d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Click-through Rate\"],\"isOpposite\": true}},{\"id\": \"85044f66-ca14-450d-afb2-b8dea4b0d58e\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Number of Recipients\"],\"isOpposite\": true}},{\"id\": \"cc43c595-7f7e-4c5c-b1df-10eda1c1c00f\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Sent At)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Open Rate\",\"color\": \"#48D1E0\"},{\"serieName\": \"Click-through Rate\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Sent newsletters
+      dynamic_description: Details of newsletter sent in the selected time period
+    viz_guid: 6c3c5c6e-921e-4594-9a8a-ccbf4ad8ac3a
+  filters:
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Recipient Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Recipient Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Sent At
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Newsletter Category
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Delivery System Type
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Newsletter Mapping User Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 8
+      width: 12
+  ordered_chips:
+  - name: Tenant Code
+    type: FILTER
+  - name: Recipient Location
+    type: FILTER
+  - name: Recipient Department
+    type: FILTER
+  - name: Sent At
+    type: FILTER
+  - name: Newsletter Category
+    type: FILTER
+  - name: Delivery System Type
+    type: FILTER
+  - name: Newsletter Mapping User Code
+    type: FILTER
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "false"
+    - name: hide_group_description
+      value: "false"
+    - name: hide_group_tile_description
+      value: "false"
+    - name: hide_tile_description
+      value: "false"
+    - name: kpi_hero_font_size
+      value: M

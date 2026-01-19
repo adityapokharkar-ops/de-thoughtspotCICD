@@ -1,0 +1,2153 @@
+guid: 1f32357f-489b-4f9a-bb75-8131531e50c2
+liveboard:
+  name: Mobile analytics csv
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Mobile adoption rate
+      description: Percentage of total users who logged-in during the selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Last Login Date
+        name: Last Login Date
+        expr: "group_max ( [Reporting Date] , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Login User
+        name: Login User
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      - id: formula_Mobile User Adoption Percentage
+        name: Mobile User Adoption Percentage
+        expr: "unique_count_if ( [Has User Logged In?] and [Total Logins Mobile] > 0 , [Interaction User Code] ) / ( group_unique_count ( [Interaction User Code] , [Tenant Code] ) )"
+        was_auto_generated: false
+      - id: formula_Moving Average
+        name: Moving Average
+        expr: "moving_average ( ( group_aggregate ( unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) , query_groups ( ) , query_filters ( ) ) / group_aggregate ( unique count ( [Interaction User Code] ) , { [Tenant Code] } , query_filters ( ) ) ) , 29 , 0 , [Reporting Date] )"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "( group_unique_count ( [Interaction User Code] , [Tenant Code] ) )"
+        was_auto_generated: false
+      search_query: "[User Status].active [User Code] [Full Name] [Email] [Job Title] [Company Name] [Division] [Department] [City] [State] [Country] [Total Logins Mobile] > 0 [formula_Last Login Date] [formula_Last Login Date].daily sort by [formula_Last Login Date] [formula_Last Login Date].daily descending"
+      answer_columns:
+      - name: City
+      - name: Company Name
+      - name: Country
+      - name: Day(Last Login Date)
+        custom_name: Date of last login
+        dynamic_title: Date of last login
+        sort_info:
+          category: DEFAULT
+      - name: Department
+      - name: Division
+      - name: Email
+      - name: Full Name
+        custom_name: User name
+        dynamic_title: User name
+      - name: Job Title
+        custom_name: Designation
+        dynamic_title: Designation
+      - name: State
+      - name: User Code
+      table:
+        table_columns:
+        - column_id: City
+          show_headline: false
+        - column_id: Company Name
+          show_headline: false
+        - column_id: Country
+          show_headline: false
+        - column_id: Day(Last Login Date)
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Division
+          show_headline: false
+        - column_id: Email
+          show_headline: false
+        - column_id: Full Name
+          show_headline: false
+        - column_id: Job Title
+          show_headline: false
+        - column_id: State
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        ordered_column_ids:
+        - User Code
+        - Full Name
+        - Email
+        - Job Title
+        - Company Name
+        - Division
+        - Department
+        - City
+        - State
+        - Country
+        - Day(Last Login Date)
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"orderedColumnIds\": [\"Day(Last Login Date)\",\"Full Name\",\"Email\",\"Job Title\",\"Company Name\",\"Division\",\"Department\",\"City\",\"State\",\"Country\",\"User Code\"],\"columnProperties\": [{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: SCATTER
+        chart_columns:
+        - column_id: City
+        - column_id: Company Name
+        - column_id: Country
+        - column_id: Day(Last Login Date)
+        - column_id: Department
+        - column_id: Division
+        - column_id: Email
+        - column_id: Full Name
+        - column_id: Job Title
+        - column_id: State
+        - column_id: User Code
+        axis_configs:
+        - x:
+          - Day(Last Login Date)
+          "y":
+          - Email
+          category:
+          - Country
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"showLinearRegressionLine\": false,\"chartSpecific\": {\"isStackedAsPercent\": true,\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Day(Last Login Date)\",\"columnProperty\": {}},{\"columnId\": \"Email\",\"columnProperty\": {}},{\"columnId\": \"Country\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"58f292ce-6109-43b5-b831-ff8b275838fe\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Email\"],\"isOpposite\": false}},{\"id\": \"920fa7f1-20f5-4831-8d5a-3ec18a7e18b0\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Last Login Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"28121014-7757-4bc5-9044-d037f24485e5\",\"color\": \"#FCC838\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Mobile adoption rate
+      dynamic_description: Percentage of total users who logged-in during the selected time period
+    viz_guid: 5be92add-acd9-4a8c-b901-67715dfd605d
+  - id: Viz_2
+    answer:
+      name: Mobile device logins
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Platform Visits
+        name: Platform Visits
+        expr: "( if ( group_sum ( [Unique Android Logins] , [Interaction User Code] ) > 0 and group_sum ( [Interaction Unique Ios Logins] , [Interaction User Code] ) = 0 ) then 'Android logins' else if ( group_sum ( [Interaction Unique Ios Logins] , [Interaction User Code] ) > 0 and group_sum ( [Unique Android Logins] , [Interaction User Code] ) = 0 ) then 'iOS logins' else if ( group_sum ( [Interaction Unique Ios Logins] , [Interaction User Code] ) > 0 and group_sum ( [Unique Android Logins] , [Interaction User Code] ) > 0 ) then 'Both iOS and Android logins' else null )"
+        was_auto_generated: false
+      - id: formula_Last Login Date
+        name: Last Login Date
+        expr: "group_max ( [Reporting Date] , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Login User
+        name: Login User
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      - id: formula_Mobile User Adoption Percentage
+        name: Mobile User Adoption Percentage
+        expr: "unique_count_if ( [Has User Logged In?] and [Total Logins Mobile] > 0 , [Interaction User Code] ) / ( group_unique_count ( [Interaction User Code] , [Tenant Code] ) )"
+        was_auto_generated: false
+      - id: formula_Moving Average
+        name: Moving Average
+        expr: "moving_average ( ( group_aggregate ( unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) , query_groups ( ) , query_filters ( ) ) / group_aggregate ( unique count ( [Interaction User Code] ) , { [Tenant Code] } , query_filters ( ) ) ) , 29 , 0 , [Reporting Date] )"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "( group_unique_count ( [Interaction User Code] , [Tenant Code] ) )"
+        was_auto_generated: false
+      search_query: "[User Status].active [User Code] [Full Name] [Email] [Job Title] [Company Name] [Division] [Department] [City] [State] [Country] [Total Logins Mobile] > 0 [formula_Platform Visits] sort by [formula_Platform Visits] descending [formula_Platform Visits] != '{null}'"
+      answer_columns:
+      - name: City
+      - name: Company Name
+        custom_name: Company name
+        dynamic_title: Company name
+      - name: Country
+      - name: Department
+      - name: Division
+      - name: Email
+      - name: Full Name
+        custom_name: User name
+        dynamic_title: User name
+      - name: Job Title
+        custom_name: Designation
+        dynamic_title: Designation
+      - name: Platform Visits
+        custom_name: Platform visits
+        dynamic_title: Platform visits
+        sort_info:
+          category: DEFAULT
+      - name: State
+      - name: User Code
+      table:
+        table_columns:
+        - column_id: City
+          show_headline: false
+        - column_id: Company Name
+          show_headline: false
+        - column_id: Country
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Division
+          show_headline: false
+        - column_id: Email
+          show_headline: false
+        - column_id: Full Name
+          show_headline: false
+        - column_id: Job Title
+          show_headline: false
+        - column_id: Platform Visits
+          show_headline: false
+        - column_id: State
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        ordered_column_ids:
+        - User Code
+        - Full Name
+        - Email
+        - Job Title
+        - Company Name
+        - Division
+        - Department
+        - City
+        - State
+        - Country
+        - Platform Visits
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"orderedColumnIds\": [\"Platform Visits\",\"Full Name\",\"Email\",\"Job Title\",\"Company Name\",\"Division\",\"Department\",\"City\",\"State\",\"Country\"],\"columnProperties\": [{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: SCATTER
+        chart_columns:
+        - column_id: City
+        - column_id: Company Name
+        - column_id: Country
+        - column_id: Department
+        - column_id: Division
+        - column_id: Email
+        - column_id: Full Name
+        - column_id: Job Title
+        - column_id: Platform Visits
+        - column_id: State
+        - column_id: User Code
+        axis_configs:
+        - x:
+          - Email
+          "y":
+          - Platform Visits
+          category:
+          - Country
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"showLinearRegressionLine\": false,\"chartSpecific\": {\"isStackedAsPercent\": true,\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Email\",\"columnProperty\": {}},{\"columnId\": \"Country\",\"columnProperty\": {}},{\"columnId\": \"Platform Visits\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"11c7fd1b-179d-46e1-8b52-7250dad41a17\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Platform Visits\"],\"isOpposite\": false}},{\"id\": \"40a0e569-335a-4313-9d09-ba579890ca48\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Email\"]}}],\"systemSeriesColors\": [{\"serieName\": \"28121014-7757-4bc5-9044-d037f24485e5\",\"color\": \"#FCC838\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Mobile device logins
+    viz_guid: 62125f57-58b0-4462-a184-1586a4652ded
+  - id: Viz_3
+    answer:
+      name: Mobile content views by type
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      table_paths:
+      - id: Content_1
+        table: Content
+      formulas:
+      - id: formula_Mobile album views
+        name: Mobile album views
+        expr: "count_if ( [Content_1::Content Type] = 'album' , [Content_1::Mobile Content Views] )"
+        was_auto_generated: false
+      - id: formula_Mobile content views
+        name: Mobile content views
+        expr: "count ( [Content_1::Mobile Content Views] )"
+        was_auto_generated: false
+      - id: formula_Mobile event views
+        name: Mobile event views
+        expr: "count_if ( [Content_1::Content Type] = 'event' , [Content_1::Mobile Content Views] )"
+        was_auto_generated: false
+      - id: formula_Mobile page views
+        name: Mobile page views
+        expr: "count_if ( [Content_1::Content Type] = 'page' , [Content_1::Mobile Content Views] )"
+        was_auto_generated: false
+      search_query: "[formula_Mobile page views] sort by [formula_Mobile page views] descending [formula_Mobile event views] [formula_Mobile album views] [Content_1::Interaction User Full Name] [Content_1::Interaction User Email] [Content_1::Interaction User Designation] [Content_1::Company Name] [Content_1::Interaction User Division] [Content_1::Department] [Content_1::Interacted User City] [Content_1::Interaction User State] [Content_1::Interaction User Country] [formula_Mobile content views] > 0"
+      answer_columns:
+      - name: Company Name
+        custom_name: Company
+        dynamic_title: Company
+      - name: Department
+      - name: Interacted User City
+        custom_name: City
+        dynamic_title: City
+      - name: Interaction User Country
+        custom_name: Country
+        dynamic_title: Country
+      - name: Interaction User Designation
+        custom_name: Designation
+        dynamic_title: Designation
+      - name: Interaction User Division
+        custom_name: Division
+        dynamic_title: Division
+      - name: Interaction User Email
+        custom_name: Email
+        dynamic_title: Email
+      - name: Interaction User Full Name
+        custom_name: User name
+        dynamic_title: User name
+      - name: Interaction User State
+        custom_name: State
+        dynamic_title: State
+      - name: Mobile album views
+        custom_name: Album views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Album views
+      - name: Mobile event views
+        custom_name: Event views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Event views
+      - name: Mobile page views
+        custom_name: Page views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Page views
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Company Name
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Interacted User City
+          show_headline: false
+        - column_id: Interaction User Country
+          show_headline: false
+        - column_id: Interaction User Designation
+          show_headline: false
+        - column_id: Interaction User Division
+          show_headline: false
+        - column_id: Interaction User Email
+          show_headline: false
+        - column_id: Interaction User Full Name
+          show_headline: false
+        - column_id: Interaction User State
+          show_headline: false
+        - column_id: Mobile album views
+          show_headline: false
+        - column_id: Mobile event views
+          show_headline: false
+        - column_id: Mobile page views
+          show_headline: false
+        ordered_column_ids:
+        - Interaction User Full Name
+        - Interaction User Email
+        - Interaction User Designation
+        - Company Name
+        - Interaction User Division
+        - Department
+        - Interacted User City
+        - Interaction User State
+        - Interaction User Country
+        - Mobile page views
+        - Mobile event views
+        - Mobile album views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Mobile page views\",\"width\": 139.42691040039062}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Mobile page views\",\"Mobile event views\",\"Mobile album views\",\"Interaction User Full Name\",\"Interaction User Email\",\"Interaction User Designation\",\"Company Name\",\"Interaction User Division\",\"Department\",\"Interacted User City\",\"Interaction User State\",\"Interaction User Country\"]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Company Name
+        - column_id: Department
+        - column_id: Interacted User City
+        - column_id: Interaction User Country
+        - column_id: Interaction User Designation
+        - column_id: Interaction User Division
+        - column_id: Interaction User Email
+        - column_id: Interaction User Full Name
+        - column_id: Interaction User State
+        - column_id: Mobile album views
+        - column_id: Mobile event views
+        - column_id: Mobile page views
+        axis_configs:
+        - x:
+          - Interaction User Email
+          "y":
+          - Mobile page views
+          - Mobile event views
+          - Mobile album views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Mobile page views\",\"columnProperty\": {}},{\"columnId\": \"Interaction User Full Name\",\"columnProperty\": {}},{\"columnId\": \"Mobile event views\",\"columnProperty\": {}},{\"columnId\": \"Mobile album views\",\"columnProperty\": {}},{\"columnId\": \"Interaction User Email\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"e4e485fe-d1d5-4779-b9d7-f5b2147c7ce2\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Mobile page views\"],\"isOpposite\": false}},{\"id\": \"ab5c04dd-cca1-42a0-b09a-accd5563912d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Mobile event views\"],\"isOpposite\": true}},{\"id\": \"ea24733e-81ba-48f0-a2e0-5e7b2c4919f1\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Mobile album views\"],\"isOpposite\": true}},{\"id\": \"a8c13aa9-8773-4664-a9dd-9dcd337bc340\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Interaction User Email\"]}}],\"systemSeriesColors\": [{\"serieName\": \"1a68e885-0bb5-40a3-bd08-f903c8e2f5ab\",\"color\": \"#FF8142\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Mobile content views by type
+    viz_guid: ee1c185d-23d5-40d8-8da0-c11741f54623
+  - id: Viz_4
+    answer:
+      name: Content views by Department
+      description: Total users on the platform
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Active mobile content viewers
+        name: Active mobile content viewers
+        expr: "unique_count_if ( [Total Content Views Mobile] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Active web content viewers
+        name: Active web content viewers
+        expr: "unique_count_if ( [Total Content Views Web] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Active web content views
+        name: Active web content views
+        expr: "sum ( [Total Content Views Web] )"
+        was_auto_generated: false
+      - id: formula_Mobile content views
+        name: Mobile content views
+        expr: "sum ( [Total Content Views Mobile] )"
+        was_auto_generated: false
+      - id: formula_Total active content viewers
+        name: Total active content viewers
+        expr: "unique_count_if ( [Total Content Views Overall] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Total content views
+        name: Total content views
+        expr: "sum ( [Total Content Views Overall] )"
+        was_auto_generated: false
+      - id: formula_Active Users
+        name: Active Users
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      search_query: "[Department] [formula_Active web content views] [formula_Mobile content views] [formula_Total content views] [User Status] = 'active' sort by [formula_Total content views] descending [formula_Active web content viewers] [formula_Total active content viewers] [formula_Active mobile content viewers]"
+      answer_columns:
+      - name: Active mobile content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Active web content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Active web content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Department
+      - name: Mobile content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total active content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Active mobile content viewers
+          show_headline: false
+        - column_id: Active web content viewers
+          show_headline: false
+        - column_id: Active web content views
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Mobile content views
+          show_headline: false
+        - column_id: Total active content viewers
+          show_headline: false
+        - column_id: Total content views
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Active web content views
+        - Mobile content views
+        - Total content views
+        - Active web content viewers
+        - Total active content viewers
+        - Active mobile content viewers
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Department\",\"Active web content viewers\",\"Active web content views\",\"Active mobile content viewers\",\"Mobile content views\",\"Total active content viewers\",\"Total content views\"],\"columnProperties\": [{\"columnId\": \"Department\",\"columnProperty\": {}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Active mobile content viewers
+        - column_id: Active web content viewers
+        - column_id: Active web content views
+        - column_id: Department
+        - column_id: Mobile content views
+        - column_id: Total active content viewers
+        - column_id: Total content views
+        axis_configs:
+        - x:
+          - Department
+          "y":
+          - Active web content views
+          - Mobile content views
+          - Total content views
+          - Active web content viewers
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Total content views\",\"columnProperty\": {}},{\"columnId\": \"Active web content views\",\"columnProperty\": {}},{\"columnId\": \"Mobile content views\",\"columnProperty\": {}},{\"columnId\": \"Active web content viewers\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"eb860efa-9858-46a2-8ec8-8a3b7fb3a8a4\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active web content views\"],\"isOpposite\": false}},{\"id\": \"c8a7595a-93b4-48e1-baf8-011f25b987c5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Mobile content views\"],\"isOpposite\": true}},{\"id\": \"fd94f131-6e37-4cd7-9bc8-502baed72805\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total content views\"],\"isOpposite\": true}},{\"id\": \"0b1040c7-dc06-4bc8-a037-2aa916044852\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active web content viewers\"],\"isOpposite\": true}},{\"id\": \"245f7ec3-cfdb-4794-b964-0d8e9b60e190\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Department\"]}}],\"systemSeriesColors\": [{\"serieName\": \"49a1a37d-ffce-49e6-bbb8-6e7f63d5fa8d\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Select Date
+        value: Last 7 Days
+      - key: User Parameter
+        value: Location
+      dynamic_name: Content views by Department
+      dynamic_description: Total users on the platform
+    viz_guid: fc38ba27-ca9c-4406-922d-b1cd80030f3c
+  - id: Viz_5
+    answer:
+      name: Content views by Location
+      description: Total users on the platform
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Active mobile content viewers
+        name: Active mobile content viewers
+        expr: "unique_count_if ( [Total Content Views Mobile] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Active web content viewers
+        name: Active web content viewers
+        expr: "unique_count_if ( [Total Content Views Web] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Active web content views
+        name: Active web content views
+        expr: "sum ( [Total Content Views Web] )"
+        was_auto_generated: false
+      - id: formula_Mobile content views
+        name: Mobile content views
+        expr: "sum ( [Total Content Views Mobile] )"
+        was_auto_generated: false
+      - id: formula_Total active content viewers
+        name: Total active content viewers
+        expr: "unique_count_if ( [Total Content Views Overall] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Total content views
+        name: Total content views
+        expr: "sum ( [Total Content Views Overall] )"
+        was_auto_generated: false
+      - id: formula_Active Users
+        name: Active Users
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      search_query: "[Location] [User Status] = 'active' [formula_Active web content views] [formula_Mobile content views] [formula_Total content views] sort by [formula_Total content views] descending [formula_Active web content viewers] [formula_Total active content viewers] [formula_Active mobile content viewers]"
+      answer_columns:
+      - name: Active mobile content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Active web content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Active web content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Location
+      - name: Mobile content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total active content viewers
+      - name: Total content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Active mobile content viewers
+          show_headline: false
+        - column_id: Active web content viewers
+          show_headline: false
+        - column_id: Active web content views
+          show_headline: false
+        - column_id: Location
+          show_headline: false
+        - column_id: Mobile content views
+          show_headline: false
+        - column_id: Total active content viewers
+          show_headline: false
+        - column_id: Total content views
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Active web content views
+        - Mobile content views
+        - Total content views
+        - Active web content viewers
+        - Total active content viewers
+        - Active mobile content viewers
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Location\",\"Active web content viewers\",\"Active web content views\",\"Active mobile content viewers\",\"Mobile content views\",\"Total active content viewers\",\"Total content views\"]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Active mobile content viewers
+        - column_id: Active web content viewers
+        - column_id: Active web content views
+        - column_id: Location
+        - column_id: Mobile content views
+        - column_id: Total active content viewers
+        - column_id: Total content views
+        axis_configs:
+        - x:
+          - Location
+          "y":
+          - Active web content views
+          - Mobile content views
+          - Total content views
+          - Active web content viewers
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Total content views\",\"columnProperty\": {}},{\"columnId\": \"Active web content views\",\"columnProperty\": {}},{\"columnId\": \"Mobile content views\",\"columnProperty\": {}},{\"columnId\": \"Active web content viewers\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"b1f39b6f-2ef7-414b-a9d9-6dcf77f4efb9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active web content views\"],\"isOpposite\": false}},{\"id\": \"4ffd227a-b10f-4637-bc07-04e34ca89399\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Mobile content views\"],\"isOpposite\": true}},{\"id\": \"e53b5619-5954-4bea-a4b3-bcf265dfe01d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total content views\"],\"isOpposite\": true}},{\"id\": \"cb8c63be-ff4b-4b6b-9603-fbdfac0331c8\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active web content viewers\"],\"isOpposite\": true}},{\"id\": \"2cfaae9f-f9da-43e5-8cbb-137e756d89c5\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Location\"]}}],\"systemSeriesColors\": [{\"serieName\": \"49a1a37d-ffce-49e6-bbb8-6e7f63d5fa8d\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Select Date
+        value: Last 7 Days
+      - key: User Parameter
+        value: Location
+      dynamic_name: Content views by Location
+      dynamic_description: Total users on the platform
+    viz_guid: 6d1f9529-8f6c-454d-afda-41b13e3c5202
+  - id: Viz_6
+    answer:
+      name: Content views by User Category
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Active mobile content viewers
+        name: Active mobile content viewers
+        expr: "unique_count_if ( [Total Content Views Mobile] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Active web content viewers
+        name: Active web content viewers
+        expr: "unique_count_if ( [Total Content Views Web] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Active web content views
+        name: Active web content views
+        expr: "sum ( [Total Content Views Web] )"
+        was_auto_generated: false
+      - id: formula_Mobile content views
+        name: Mobile content views
+        expr: "sum ( [Total Content Views Mobile] )"
+        was_auto_generated: false
+      - id: formula_Total active content viewers
+        name: Total active content viewers
+        expr: "unique_count_if ( [Total Content Views Overall] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Total content views
+        name: Total content views
+        expr: "sum ( [Total Content Views Overall] )"
+        was_auto_generated: false
+      - id: formula_Active Users
+        name: Active Users
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      search_query: "[Category Name] [User Status] = 'active' [formula_Active web content views] [formula_Mobile content views] [formula_Total content views] sort by [formula_Total content views] descending [formula_Active web content viewers] [formula_Total active content viewers] [formula_Active mobile content viewers] [Category Code]"
+      answer_columns:
+      - name: Active mobile content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Active web content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Active web content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Category Code
+      - name: Category Name
+      - name: Mobile content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total active content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Active mobile content viewers
+          show_headline: false
+        - column_id: Active web content viewers
+          show_headline: false
+        - column_id: Active web content views
+          show_headline: false
+        - column_id: Category Code
+          show_headline: false
+        - column_id: Category Name
+          show_headline: false
+        - column_id: Mobile content views
+          show_headline: false
+        - column_id: Total active content viewers
+          show_headline: false
+        - column_id: Total content views
+          show_headline: false
+        ordered_column_ids:
+        - Category Name
+        - Category Code
+        - Active web content views
+        - Mobile content views
+        - Total content views
+        - Active web content viewers
+        - Total active content viewers
+        - Active mobile content viewers
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Category Name\",\"Active web content viewers\",\"Active web content views\",\"Active mobile content viewers\",\"Mobile content views\",\"Total active content viewers\",\"Total content views\",\"Category Code\"],\"columnProperties\": [{\"columnId\": \"Category Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Active mobile content viewers
+        - column_id: Active web content viewers
+        - column_id: Active web content views
+        - column_id: Category Code
+        - column_id: Category Name
+        - column_id: Mobile content views
+        - column_id: Total active content viewers
+        - column_id: Total content views
+        axis_configs:
+        - x:
+          - Category Code
+          "y":
+          - Active web content views
+          - Mobile content views
+          - Total content views
+          - Active web content viewers
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Total content views\",\"columnProperty\": {}},{\"columnId\": \"Active web content views\",\"columnProperty\": {}},{\"columnId\": \"Mobile content views\",\"columnProperty\": {}},{\"columnId\": \"Active web content viewers\",\"columnProperty\": {}},{\"columnId\": \"Category Name\",\"columnProperty\": {}},{\"columnId\": \"Category Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"e2a13d65-5c4c-472b-b458-40c4e238805d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active web content views\"],\"isOpposite\": false}},{\"id\": \"b4acc4d3-1230-43f3-8f16-e6cb8529115d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Mobile content views\"],\"isOpposite\": true}},{\"id\": \"bc4a7484-180b-4805-af94-eaefea5043c8\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total content views\"],\"isOpposite\": true}},{\"id\": \"22821470-b089-4c1d-8782-576673b633c3\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active web content viewers\"],\"isOpposite\": true}},{\"id\": \"e6cd54f0-e495-4eb6-a9ae-c9e28286196a\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Category Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"49a1a37d-ffce-49e6-bbb8-6e7f63d5fa8d\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Select Date
+        value: Last 7 Days
+      - key: User Parameter
+        value: Location
+      dynamic_name: Content views by User Category
+    viz_guid: 382ab05e-729b-44ce-8a63-4c9b72afdb23
+  - id: Viz_7
+    answer:
+      name: Content views by Segment
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Active mobile content viewers
+        name: Active mobile content viewers
+        expr: "unique_count_if ( [Total Content Views Mobile] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Active web content viewers
+        name: Active web content viewers
+        expr: "unique_count_if ( [Total Content Views Web] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Active web content views
+        name: Active web content views
+        expr: "sum ( [Total Content Views Web] )"
+        was_auto_generated: false
+      - id: formula_Mobile content views
+        name: Mobile content views
+        expr: "sum ( [Total Content Views Mobile] )"
+        was_auto_generated: false
+      - id: formula_Total active content viewers
+        name: Total active content viewers
+        expr: "unique_count_if ( [Total Content Views Overall] > 0 , [User Code] )"
+        was_auto_generated: false
+      - id: formula_Total content views
+        name: Total content views
+        expr: "sum ( [Total Content Views Overall] )"
+        was_auto_generated: false
+      - id: formula_Active Users
+        name: Active Users
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      search_query: "[Segment Name] [User Status] = 'active' [formula_Active web content views] [formula_Mobile content views] [formula_Total content views] sort by [formula_Total content views] descending [formula_Active web content viewers] [formula_Total active content viewers] [formula_Active mobile content viewers] [Segment Code]"
+      answer_columns:
+      - name: Active mobile content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Active web content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Active web content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Mobile content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Segment Code
+      - name: Segment Name
+      - name: Total active content viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Active mobile content viewers
+          show_headline: false
+        - column_id: Active web content viewers
+          show_headline: false
+        - column_id: Active web content views
+          show_headline: false
+        - column_id: Mobile content views
+          show_headline: false
+        - column_id: Segment Code
+          show_headline: false
+        - column_id: Segment Name
+          show_headline: false
+        - column_id: Total active content viewers
+          show_headline: false
+        - column_id: Total content views
+          show_headline: false
+        ordered_column_ids:
+        - Segment Name
+        - Segment Code
+        - Active web content views
+        - Mobile content views
+        - Total content views
+        - Active web content viewers
+        - Total active content viewers
+        - Active mobile content viewers
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Segment Name\",\"Active web content viewers\",\"Active web content views\",\"Active mobile content viewers\",\"Mobile content views\",\"Total active content viewers\",\"Total content views\",\"Segment Code\"],\"columnProperties\": [{\"columnId\": \"Segment Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Active mobile content viewers
+        - column_id: Active web content viewers
+        - column_id: Active web content views
+        - column_id: Mobile content views
+        - column_id: Segment Code
+        - column_id: Segment Name
+        - column_id: Total active content viewers
+        - column_id: Total content views
+        axis_configs:
+        - x:
+          - Segment Code
+          "y":
+          - Active web content views
+          - Mobile content views
+          - Total content views
+          - Active web content viewers
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Total content views\",\"columnProperty\": {}},{\"columnId\": \"Active web content views\",\"columnProperty\": {}},{\"columnId\": \"Mobile content views\",\"columnProperty\": {}},{\"columnId\": \"Active web content viewers\",\"columnProperty\": {}},{\"columnId\": \"Segment Name\",\"columnProperty\": {}},{\"columnId\": \"Segment Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"91739dab-1625-40cd-a2d1-d0166ec178e5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active web content views\"],\"isOpposite\": false}},{\"id\": \"2a69e956-1a88-4e61-87df-7e26aafcc485\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Mobile content views\"],\"isOpposite\": true}},{\"id\": \"be0617bc-44f1-48a5-ba1e-0176ff221a9e\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total content views\"],\"isOpposite\": true}},{\"id\": \"b33e6ccf-01e6-46af-b5a2-b5a3f772fcee\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active web content viewers\"],\"isOpposite\": true}},{\"id\": \"20671319-f877-4661-8ee8-82108c2e228e\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Segment Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"49a1a37d-ffce-49e6-bbb8-6e7f63d5fa8d\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Select Date
+        value: Last 7 Days
+      - key: User Parameter
+        value: Location
+      dynamic_name: Content views by Segment
+    viz_guid: 338ec412-db6f-4933-bb08-c754b3ab4ad4
+  - id: Viz_8
+    answer:
+      name: Mobile app adoption by Department
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Active Users
+        name: Active Users
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_Mobile Logins
+        name: Mobile Logins
+        expr: "if ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( [Total Logins Mobile] ) ) , '(' , to_string ( round ( sum ( [Total Logins Mobile] ) / unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Mobile Users
+        name: Mobile Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 )  ) , '%)' )"
+        was_auto_generated: false
+      - id: formula_Total Logins
+        name: Total Logins
+        expr: "if ( unique_count_if ( ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) ) , '(' , to_string ( round ( sum ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) / unique_count_if ( ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Total Users
+        name: Total Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Overall] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Overall] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 )  ) , '%)' )"
+        was_auto_generated: false
+      - id: formula_Web Logins
+        name: Web Logins
+        expr: "if ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( [Total Logins Web] ) ) , '(' , to_string ( round ( sum ( [Total Logins Web] ) / unique_count_if ( [Total Logins Web] > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Web Users
+        name: Web Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 )  ) , '%)' )"
+        was_auto_generated: false
+      search_query: "[Department] [formula_Mobile Users] [formula_Web Users] [User Status] = 'active' [formula_Total Users] [formula_Web Logins] [formula_Mobile Logins] [formula_Total Logins] [formula_Active Users] sort by [formula_Active Users] descending"
+      answer_columns:
+      - name: Active Users
+        custom_name: Active users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Active users
+        sort_info:
+          category: DEFAULT
+      - name: Department
+      - name: Mobile Logins
+        custom_name: Mobile logins
+        dynamic_title: Mobile logins
+      - name: Mobile Users
+        custom_name: Mobile users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Mobile users
+      - name: Total Logins
+        custom_name: Total logins
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total logins
+      - name: Total Users
+        custom_name: Total users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total users
+      - name: Web Logins
+        custom_name: Web logins
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Web logins
+      - name: Web Users
+        custom_name: Web users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Web users
+      table:
+        table_columns:
+        - column_id: Active Users
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Mobile Logins
+          show_headline: false
+        - column_id: Mobile Users
+          show_headline: false
+        - column_id: Total Logins
+          show_headline: false
+        - column_id: Total Users
+          show_headline: false
+        - column_id: Web Logins
+          show_headline: false
+        - column_id: Web Users
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Mobile Users
+        - Web Users
+        - Web Logins
+        - Mobile Logins
+        - Total Logins
+        - Total Users
+        - Active Users
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Web Users\",\"width\": 160.38536071777344},{\"columnId\": \"Mobile Users\",\"width\": 131.38536071777344},{\"columnId\": \"Total Users\",\"width\": 177.38536071777344}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Department\",\"Active Users\",\"Web Users\",\"Mobile Users\",\"Total Users\",\"Web Logins\",\"Mobile Logins\",\"Total Logins\"],\"columnProperties\": [{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Mobile Users\",\"columnProperty\": {}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Active Users
+        - column_id: Department
+        - column_id: Mobile Logins
+        - column_id: Mobile Users
+        - column_id: Total Logins
+        - column_id: Total Users
+        - column_id: Web Logins
+        - column_id: Web Users
+        axis_configs:
+        - x:
+          - Department
+          "y":
+          - Active Users
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Mobile Users\",\"columnProperty\": {}},{\"columnId\": \"Web Users\",\"columnProperty\": {}},{\"columnId\": \"Total Users\",\"columnProperty\": {}},{\"columnId\": \"Active Users\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"6e394d8f-0687-43ee-b5b4-9be360f237eb\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active Users\"],\"isOpposite\": false}},{\"id\": \"5c037693-8aef-4722-8ada-46838dcd4618\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Department\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Mobile Users\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Select Date
+        value: Last 7 Days
+      - key: User Parameter
+        value: Location
+      dynamic_name: Mobile app adoption by Department
+    viz_guid: 89efb214-8f66-473c-8894-5d97e2148486
+  - id: Viz_9
+    answer:
+      name: Mobile app adoption by Location
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Active Users
+        name: Active Users
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_Mobile Logins
+        name: Mobile Logins
+        expr: "if ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( [Total Logins Mobile] ) ) , '(' , to_string ( round ( sum ( [Total Logins Mobile] ) / unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Mobile Users
+        name: Mobile Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 ) ) , '%)' )"
+        was_auto_generated: false
+      - id: formula_Total Logins
+        name: Total Logins
+        expr: "if ( unique_count_if ( ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) ) , '(' , to_string ( round ( sum ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) / unique_count_if ( ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Total Users
+        name: Total Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Overall] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Overall] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 )  ) , '%)' )"
+        was_auto_generated: false
+      - id: formula_Web Logins
+        name: Web Logins
+        expr: "if ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( [Total Logins Web] ) ) , '(' , to_string ( round ( sum ( [Total Logins Web] ) / unique_count_if ( [Total Logins Web] > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Web Users
+        name: Web Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 )  ) , '%)' )"
+        was_auto_generated: false
+      search_query: "[Location] [formula_Mobile Users] [formula_Web Users] [User Status] = 'active' [formula_Total Users] [formula_Web Logins] [formula_Mobile Logins] [formula_Total Logins] [formula_Active Users] sort by [formula_Active Users] descending"
+      answer_columns:
+      - name: Active Users
+        custom_name: Active users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Active users
+        sort_info:
+          category: DEFAULT
+      - name: Location
+      - name: Mobile Logins
+        custom_name: Mobile logins
+        dynamic_title: Mobile logins
+      - name: Mobile Users
+        custom_name: Mobile users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Mobile users
+      - name: Total Logins
+        custom_name: Total logins
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total logins
+      - name: Total Users
+        custom_name: Total users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total users
+      - name: Web Logins
+        custom_name: Web logins
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Web logins
+      - name: Web Users
+        custom_name: Web users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Web users
+      table:
+        table_columns:
+        - column_id: Active Users
+          show_headline: false
+        - column_id: Location
+          show_headline: false
+        - column_id: Mobile Logins
+          show_headline: false
+        - column_id: Mobile Users
+          show_headline: false
+        - column_id: Total Logins
+          show_headline: false
+        - column_id: Total Users
+          show_headline: false
+        - column_id: Web Logins
+          show_headline: false
+        - column_id: Web Users
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Mobile Users
+        - Web Users
+        - Total Users
+        - Web Logins
+        - Mobile Logins
+        - Total Logins
+        - Active Users
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Location\",\"Active Users\",\"Web Users\",\"Mobile Users\",\"Total Users\",\"Web Logins\",\"Mobile Logins\",\"Total Logins\"],\"columnProperties\": [{\"columnId\": \"Mobile Users\",\"columnProperty\": {}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Active Users
+        - column_id: Location
+        - column_id: Mobile Logins
+        - column_id: Mobile Users
+        - column_id: Total Logins
+        - column_id: Total Users
+        - column_id: Web Logins
+        - column_id: Web Users
+        axis_configs:
+        - x:
+          - Location
+          "y":
+          - Active Users
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Mobile Users\",\"columnProperty\": {}},{\"columnId\": \"Web Users\",\"columnProperty\": {}},{\"columnId\": \"Total Users\",\"columnProperty\": {}},{\"columnId\": \"Active Users\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"bf8e8f6f-998f-4f28-a481-622ee287743b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active Users\"],\"isOpposite\": false}},{\"id\": \"3410f06d-9a1b-4ee5-ae7b-417f3da432ed\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Location\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Mobile Users\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Select Date
+        value: Last 7 Days
+      - key: User Parameter
+        value: Location
+      dynamic_name: Mobile app adoption by Location
+    viz_guid: 150a411c-1c31-4cb9-a5eb-d611a7373883
+  - id: Viz_10
+    answer:
+      name: Mobile app adoption by Segment
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Active Users
+        name: Active Users
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_Mobile Logins
+        name: Mobile Logins
+        expr: "if ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( [Total Logins Mobile] ) ) , '(' , to_string ( round ( sum ( [Total Logins Mobile] ) / unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Mobile Users
+        name: Mobile Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 )  ) , '%)' )"
+        was_auto_generated: false
+      - id: formula_Total Logins
+        name: Total Logins
+        expr: "if ( unique_count_if ( ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) ) , '(' , to_string ( round ( sum ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) / unique_count_if ( ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Total Users
+        name: Total Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Overall] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Overall] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 ) ) , '%)' )"
+        was_auto_generated: false
+      - id: formula_Web Logins
+        name: Web Logins
+        expr: "if ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( [Total Logins Web] ) ) , '(' , to_string ( round ( sum ( [Total Logins Web] ) / unique_count_if ( [Total Logins Web] > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Web Users
+        name: Web Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 ) ) , '%)' )"
+        was_auto_generated: false
+      search_query: "[Segment Name] [Segment Code] [formula_Mobile Users] [formula_Web Users] [User Status] = 'active' [formula_Total Users] [formula_Web Logins] [formula_Mobile Logins] [formula_Total Logins] [formula_Active Users] sort by [formula_Active Users] descending"
+      answer_columns:
+      - name: Active Users
+        custom_name: Active users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Active users
+        sort_info:
+          category: DEFAULT
+      - name: Mobile Logins
+        custom_name: Mobile logins
+        dynamic_title: Mobile logins
+      - name: Mobile Users
+        custom_name: Mobile users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Mobile users
+      - name: Segment Code
+      - name: Segment Name
+        custom_name: Segment name
+        dynamic_title: Segment name
+      - name: Total Logins
+        custom_name: Total logins
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total logins
+      - name: Total Users
+        custom_name: Total users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total users
+      - name: Web Logins
+        custom_name: Web logins
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Web logins
+      - name: Web Users
+        custom_name: Web users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Web users
+      table:
+        table_columns:
+        - column_id: Active Users
+          show_headline: false
+        - column_id: Mobile Logins
+          show_headline: false
+        - column_id: Mobile Users
+          show_headline: false
+        - column_id: Segment Code
+          show_headline: false
+        - column_id: Segment Name
+          show_headline: false
+        - column_id: Total Logins
+          show_headline: false
+        - column_id: Total Users
+          show_headline: false
+        - column_id: Web Logins
+          show_headline: false
+        - column_id: Web Users
+          show_headline: false
+        ordered_column_ids:
+        - Segment Name
+        - Segment Code
+        - Mobile Users
+        - Web Users
+        - Total Users
+        - Web Logins
+        - Mobile Logins
+        - Total Logins
+        - Active Users
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Segment Name\",\"Active Users\",\"Web Users\",\"Mobile Users\",\"Total Users\",\"Web Logins\",\"Mobile Logins\",\"Total Logins\"],\"columnProperties\": [{\"columnId\": \"Mobile Users\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"Segment Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Active Users
+        - column_id: Mobile Logins
+        - column_id: Mobile Users
+        - column_id: Segment Code
+        - column_id: Segment Name
+        - column_id: Total Logins
+        - column_id: Total Users
+        - column_id: Web Logins
+        - column_id: Web Users
+        axis_configs:
+        - x:
+          - Segment Code
+          "y":
+          - Active Users
+          color:
+          - Segment Name
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Mobile Users\",\"columnProperty\": {}},{\"columnId\": \"Web Users\",\"columnProperty\": {}},{\"columnId\": \"Total Users\",\"columnProperty\": {}},{\"columnId\": \"Active Users\",\"columnProperty\": {}},{\"columnId\": \"Segment Code\",\"columnProperty\": {}},{\"columnId\": \"Segment Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"12bc3f1f-f420-4a96-9e3c-6830b7a28a8e\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active Users\"],\"isOpposite\": false}},{\"id\": \"3b3dd7e7-3c4a-4c15-9325-818b20c99c4f\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Segment Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Mobile Users\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Select Date
+        value: Last 7 Days
+      - key: User Parameter
+        value: Location
+      dynamic_name: Mobile app adoption by Segment
+    viz_guid: f4cf9606-2e64-49bf-81a9-ed41f0f0e3b7
+  - id: Viz_11
+    answer:
+      name: Mobile app adoption by User Category
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Active Users
+        name: Active Users
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_Mobile Logins
+        name: Mobile Logins
+        expr: "if ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( [Total Logins Mobile] ) ) , '(' , to_string ( round ( sum ( [Total Logins Mobile] ) / unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Mobile Users
+        name: Mobile Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Mobile] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 )  ) , '%)' )"
+        was_auto_generated: false
+      - id: formula_Total Logins
+        name: Total Logins
+        expr: "if ( unique_count_if ( ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) ) , '(' , to_string ( round ( sum ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) / unique_count_if ( ( ( [Total Logins Mobile] ) + ( [Total Logins Web] ) ) > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Total Users
+        name: Total Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Overall] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Overall] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 ) ) , '%)' )"
+        was_auto_generated: false
+      - id: formula_Web Logins
+        name: Web Logins
+        expr: "if ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) > 0 ) then concat ( to_string ( sum ( [Total Logins Web] ) ) , '(' , to_string ( round ( sum ( [Total Logins Web] ) / unique_count_if ( [Total Logins Web] > 0 , [User Code] ) , 0.1 ) ) , '/user)' ) else '(0/user)'"
+        was_auto_generated: false
+      - id: formula_Web Users
+        name: Web Users
+        expr: "concat ( to_string ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) ) , ' (' , to_string ( round ( ( unique_count_if ( [Total Logins Web] > 0 , [User Code] ) / unique count ( [User Code] ) ) * 100 , .1 )  ) , '%)' )"
+        was_auto_generated: false
+      search_query: "[Category Name] [Category Code] [formula_Mobile Users] [formula_Web Users] [User Status] = 'active' [formula_Total Users] [formula_Web Logins] [formula_Mobile Logins] [formula_Total Logins] [formula_Active Users] sort by [formula_Active Users] descending"
+      answer_columns:
+      - name: Active Users
+        custom_name: Active users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Active users
+        sort_info:
+          category: DEFAULT
+      - name: Category Code
+      - name: Category Name
+        custom_name: Category name
+        dynamic_title: Category name
+      - name: Mobile Logins
+        custom_name: Mobile logins
+        dynamic_title: Mobile logins
+      - name: Mobile Users
+        custom_name: Mobile users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Mobile users
+      - name: Total Logins
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Users
+        custom_name: Total users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total users
+      - name: Web Logins
+        custom_name: Web logins
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Web logins
+      - name: Web Users
+        custom_name: Web users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Web users
+      table:
+        table_columns:
+        - column_id: Active Users
+          show_headline: false
+        - column_id: Category Code
+          show_headline: false
+        - column_id: Category Name
+          show_headline: false
+        - column_id: Mobile Logins
+          show_headline: false
+        - column_id: Mobile Users
+          show_headline: false
+        - column_id: Total Logins
+          show_headline: false
+        - column_id: Total Users
+          show_headline: false
+        - column_id: Web Logins
+          show_headline: false
+        - column_id: Web Users
+          show_headline: false
+        ordered_column_ids:
+        - Category Name
+        - Category Code
+        - Mobile Users
+        - Web Users
+        - Total Users
+        - Web Logins
+        - Mobile Logins
+        - Total Logins
+        - Active Users
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Category Name\",\"Active Users\",\"Web Users\",\"Mobile Users\",\"Total Users\",\"Web Logins\",\"Mobile Logins\",\"Total Logins\"],\"columnProperties\": [{\"columnId\": \"Mobile Users\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"Category Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Active Users
+        - column_id: Category Code
+        - column_id: Category Name
+        - column_id: Mobile Logins
+        - column_id: Mobile Users
+        - column_id: Total Logins
+        - column_id: Total Users
+        - column_id: Web Logins
+        - column_id: Web Users
+        axis_configs:
+        - x:
+          - Category Code
+          "y":
+          - Active Users
+          color:
+          - Category Name
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Mobile Users\",\"columnProperty\": {}},{\"columnId\": \"Web Users\",\"columnProperty\": {}},{\"columnId\": \"Total Users\",\"columnProperty\": {}},{\"columnId\": \"Active Users\",\"columnProperty\": {}},{\"columnId\": \"Category Code\",\"columnProperty\": {}},{\"columnId\": \"Category Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"a352ecc9-3dc4-4aa4-bd35-2e6462c49ef9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Active Users\"],\"isOpposite\": false}},{\"id\": \"74df3152-8aa4-461f-bee3-0285d092c7a1\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Category Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Mobile Users\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Select Date
+        value: Last 7 Days
+      - key: User Parameter
+        value: Location
+      dynamic_name: Mobile app adoption by User Category
+    viz_guid: 6dd8649f-d1e6-4a43-83ed-87dcf8702e4d
+  - id: Viz_12
+    answer:
+      name: Mobile content views
+      description: Content views on mobile devices (iOS & Android) for the selected period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[Reporting Date] [Reporting Date].daily [Unique Content Views Mobile] [Total Content Views Mobile] sum [Total Content Views Mobile] > 0 sort by [Reporting Date] [Reporting Date].daily descending"
+      answer_columns:
+      - name: Day(Reporting Date)
+        custom_name: Date
+        dynamic_title: Date
+        sort_info:
+          category: DEFAULT
+      - name: Total Total Content Views Mobile
+        custom_name: Total content views
+        dynamic_title: Total content views
+      - name: Total Unique Content Views Mobile
+        custom_name: Unique content views
+        dynamic_title: Unique content views
+      table:
+        table_columns:
+        - column_id: Day(Reporting Date)
+          show_headline: false
+        - column_id: Total Total Content Views Mobile
+          show_headline: false
+        - column_id: Total Unique Content Views Mobile
+          show_headline: false
+        ordered_column_ids:
+        - Day(Reporting Date)
+        - Total Unique Content Views Mobile
+        - Total Total Content Views Mobile
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"orderedColumnIds\": [\"Day(Reporting Date)\",\"Total Total Content Views Mobile\",\"Total Unique Content Views Mobile\"]}"
+      chart:
+        type: LINE
+        chart_columns:
+        - column_id: Day(Reporting Date)
+        - column_id: Total Total Content Views Mobile
+        - column_id: Total Unique Content Views Mobile
+        axis_configs:
+        - x:
+          - Day(Reporting Date)
+          "y":
+          - Total Unique Content Views Mobile
+          - Total Total Content Views Mobile
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Day(Reporting Date)\",\"columnProperty\": {}},{\"columnId\": \"Total Unique Content Views Mobile\",\"columnProperty\": {}},{\"columnId\": \"Total Total Content Views Mobile\",\"columnProperty\": {}},{\"columnId\": \"7a27994a-1058-4a63-98e8-3d03ab951e4f\",\"columnProperty\": {}},{\"columnId\": \"2220d3b9-9b19-4cc4-aab6-f2a92b1a97a0\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"46c58e6a-3993-4013-bcf5-7666d7ab16b9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Unique Content Views Mobile\"],\"isOpposite\": false}},{\"id\": \"dee1d728-f98b-4e56-ab60-d5f037eff0c0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Total Content Views Mobile\"],\"isOpposite\": true}},{\"id\": \"3280d76f-f51b-465c-9c9e-8fc9e02121df\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Reporting Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Unique Content Views Mobile\",\"color\": \"#2E75F0\"},{\"serieName\": \"Total Total Content Views Mobile\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Mobile content views
+      dynamic_description: Content views on mobile devices (iOS & Android) for the selected period
+    viz_guid: 412f7d1d-f980-427b-bfd9-0199ec49e5c1
+  - id: Viz_13
+    answer:
+      name: Most viewed content
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Mobile view
+        name: Mobile view
+        expr: "count ( [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Site status
+        name: Site status
+        expr: "if ( [Is Site Active] ) then 'Active' else 'Inactive'"
+        was_auto_generated: false
+      - id: formula_Mobile views
+        name: Mobile views
+        expr: "count_if ( [Interaction Type] = 'view' and [Interaction Device Type] in { 'mobile app' , 'native mobile app' } , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Unique Mobile Views
+        name: Unique Mobile Views
+        expr: "unique_count_if ( [Interaction Type] = 'view' and [Interaction Device Type] in { 'mobile app' , 'native mobile app' } , concat ( [Interaction Content Code] , [Interacted By User Code] ) )"
+        was_auto_generated: false
+      search_query: "[Content Title] [Content Type].album [Content Type].'blog post' [Content Type].event [Content Type].page [Content Type] [Content Status] [Primary Author Full Name] [Site Name] [Content First Published Date] [Content First Published Date].daily [Content Url] [formula_Site status] [Is Interaction Post First Publish?].true [Interaction Device Type].'Mobile App' [Interaction Device Type].'Native Mobile App' [Interaction Type].View [formula_Mobile view] sort by [formula_Mobile view] descending [formula_Mobile view] > 0"
+      answer_columns:
+      - name: Content Status
+        custom_name: Status
+        dynamic_title: Status
+      - name: Content Title
+        custom_name: Content title
+        dynamic_title: Content title
+      - name: Content Type
+        custom_name: Content type
+        dynamic_title: Content type
+      - name: Content Url
+        custom_name: URL
+        dynamic_title: URL
+      - name: Day(Content First Published Date)
+        custom_name: Published date
+        dynamic_title: Published date
+      - name: Mobile view
+        custom_name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Views
+        sort_info:
+          category: DEFAULT
+      - name: Primary Author Full Name
+        custom_name: Author
+        dynamic_title: Author
+      - name: Site Name
+        custom_name: Site name
+        dynamic_title: Site name
+      - name: Site status
+      table:
+        table_columns:
+        - column_id: Content Status
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Content Url
+          show_headline: false
+        - column_id: Day(Content First Published Date)
+          show_headline: false
+        - column_id: Mobile view
+          show_headline: false
+        - column_id: Primary Author Full Name
+          show_headline: false
+        - column_id: Site Name
+          show_headline: false
+        - column_id: Site status
+          show_headline: false
+        ordered_column_ids:
+        - Content Title
+        - Content Type
+        - Content Status
+        - Primary Author Full Name
+        - Site Name
+        - Day(Content First Published Date)
+        - Content Url
+        - Site status
+        - Mobile view
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Content Title\",\"width\": 133.0},{\"columnId\": \"Content Type\",\"width\": 125.8863525390625},{\"columnId\": \"Site status\",\"width\": 120.81532287597656}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Content Title\",\"Content Type\",\"Content Status\",\"Primary Author Full Name\",\"Site Name\",\"Site status\",\"Day(Content First Published Date)\",\"Content Url\",\"Mobile view\"]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Content Status
+        - column_id: Content Title
+        - column_id: Content Type
+        - column_id: Content Url
+        - column_id: Day(Content First Published Date)
+        - column_id: Mobile view
+        - column_id: Primary Author Full Name
+        - column_id: Site Name
+        - column_id: Site status
+        axis_configs:
+        - x:
+          - Day(Content First Published Date)
+          "y":
+          - Mobile view
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Content Title\",\"columnProperty\": {}},{\"columnId\": \"Day(Content First Published Date)\",\"columnProperty\": {}},{\"columnId\": \"Mobile view\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"5ba83a61-9c9a-4732-9b9d-b1e647f8d218\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Mobile view\"],\"isOpposite\": false}},{\"id\": \"1848df2b-24c6-45ad-8c5b-86fa2b96b4b2\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Content First Published Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"1a68e885-0bb5-40a3-bd08-f903c8e2f5ab\",\"color\": \"#FF8142\"},{\"serieName\": \"7d685512-5f59-46a1-a48f-dfb79840f2f0\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most viewed content
+    viz_guid: 9f3a06ba-8312-49fb-8f07-6f9a322d4e7c
+  - id: Viz_14
+    answer:
+      name: Least viewed content
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Mobile view
+        name: Mobile view
+        expr: "count ( [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Site status
+        name: Site status
+        expr: "if ( [Is Site Active] ) then 'Active' else 'Inactive'"
+        was_auto_generated: false
+      - id: formula_Mobile views
+        name: Mobile views
+        expr: "count_if ( [Interaction Type] = 'view' and [Interaction Device Type] in { 'mobile app' , 'native mobile app' } , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Unique Mobile Views
+        name: Unique Mobile Views
+        expr: "unique_count_if ( [Interaction Type] = 'view' and [Interaction Device Type] in { 'mobile app' , 'native mobile app' } , concat ( [Interaction Content Code] , [Interacted By User Code] ) )"
+        was_auto_generated: false
+      search_query: "[Content Title] [Content Type].album [Content Type].'blog post' [Content Type].event [Content Type].page [Content Type] [Content Status] [Primary Author Full Name] [Site Name] [Content First Published Date] [Content First Published Date].daily [Content Url] [formula_Site status] [Is Interaction Post First Publish?].true [Interaction Device Type].'Mobile App' [Interaction Device Type].'Native Mobile App' [Interaction Type].View [formula_Mobile view] [formula_Mobile view] > 0 sort by [formula_Mobile view]"
+      answer_columns:
+      - name: Content Status
+        custom_name: Status
+        dynamic_title: Status
+      - name: Content Title
+        custom_name: Content title
+        dynamic_title: Content title
+      - name: Content Type
+        custom_name: Content type
+        dynamic_title: Content type
+      - name: Content Url
+        custom_name: URL
+        dynamic_title: URL
+      - name: Day(Content First Published Date)
+        custom_name: Published date
+        dynamic_title: Published date
+      - name: Mobile view
+        custom_name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Views
+        sort_info:
+          category: ALPHA
+      - name: Primary Author Full Name
+        custom_name: Author
+        dynamic_title: Author
+      - name: Site Name
+        custom_name: Site name
+        dynamic_title: Site name
+      - name: Site status
+      table:
+        table_columns:
+        - column_id: Content Status
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Content Url
+          show_headline: false
+        - column_id: Day(Content First Published Date)
+          show_headline: false
+        - column_id: Mobile view
+          show_headline: false
+        - column_id: Primary Author Full Name
+          show_headline: false
+        - column_id: Site Name
+          show_headline: false
+        - column_id: Site status
+          show_headline: false
+        ordered_column_ids:
+        - Content Title
+        - Content Type
+        - Content Status
+        - Primary Author Full Name
+        - Site Name
+        - Day(Content First Published Date)
+        - Content Url
+        - Site status
+        - Mobile view
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Content Title\",\"width\": 133.0},{\"columnId\": \"Content Type\",\"width\": 125.8863525390625}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Content Title\",\"Content Type\",\"Content Status\",\"Primary Author Full Name\",\"Site Name\",\"Site status\",\"Day(Content First Published Date)\",\"Content Url\",\"Mobile view\"]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Content Status
+        - column_id: Content Title
+        - column_id: Content Type
+        - column_id: Content Url
+        - column_id: Day(Content First Published Date)
+        - column_id: Mobile view
+        - column_id: Primary Author Full Name
+        - column_id: Site Name
+        - column_id: Site status
+        axis_configs:
+        - x:
+          - Day(Content First Published Date)
+          "y":
+          - Mobile view
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Content Title\",\"columnProperty\": {}},{\"columnId\": \"Day(Content First Published Date)\",\"columnProperty\": {}},{\"columnId\": \"Mobile view\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"5ba83a61-9c9a-4732-9b9d-b1e647f8d218\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Mobile view\"],\"isOpposite\": false}},{\"id\": \"1848df2b-24c6-45ad-8c5b-86fa2b96b4b2\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Content First Published Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"1a68e885-0bb5-40a3-bd08-f903c8e2f5ab\",\"color\": \"#FF8142\"},{\"serieName\": \"7d685512-5f59-46a1-a48f-dfb79840f2f0\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least viewed content
+    viz_guid: f78eeb10-55b5-4f1c-a54c-de1271ef1599
+  filters:
+  - column:
+    - User::Reporting Date
+    - Content::Reporting Date
+    excluded_visualizations:
+    - Viz_3
+    - Viz_13
+    - Viz_14
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - User::Location
+    - Content::Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - User::Department
+    - Content::Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - User::Category Name
+    - Content::Category Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - User::Segment Name
+    - Content::Segment Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - User::Tenant Code
+    - Content::Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - User::Company Name
+    - Content::Company Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Content::Interaction Datetime
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 8
+      width: 12
+    - visualization_id: Viz_2
+      x: 0
+      "y": 8
+      height: 8
+      width: 12
+    - visualization_id: Viz_3
+      x: 0
+      "y": 16
+      height: 8
+      width: 12
+    - visualization_id: Viz_4
+      x: 0
+      "y": 24
+      height: 8
+      width: 6
+    - visualization_id: Viz_5
+      x: 6
+      "y": 24
+      height: 8
+      width: 6
+    - visualization_id: Viz_6
+      x: 0
+      "y": 32
+      height: 5
+      width: 6
+    - visualization_id: Viz_7
+      x: 6
+      "y": 32
+      height: 5
+      width: 6
+    - visualization_id: Viz_8
+      x: 0
+      "y": 37
+      height: 6
+      width: 6
+    - visualization_id: Viz_9
+      x: 6
+      "y": 37
+      height: 6
+      width: 6
+    - visualization_id: Viz_10
+      x: 0
+      "y": 43
+      height: 6
+      width: 6
+    - visualization_id: Viz_11
+      x: 6
+      "y": 43
+      height: 6
+      width: 6
+    - visualization_id: Viz_12
+      x: 0
+      "y": 49
+      height: 8
+      width: 12
+    - visualization_id: Viz_13
+      x: 0
+      "y": 57
+      height: 8
+      width: 12
+    - visualization_id: Viz_14
+      x: 0
+      "y": 65
+      height: 8
+      width: 12
+  ordered_chips:
+  - name: User::Reporting Date
+    type: FILTER
+  - name: User::Location
+    type: FILTER
+  - name: User::Department
+    type: FILTER
+  - name: User::Category Name
+    type: FILTER
+  - name: User::Segment Name
+    type: FILTER
+  - name: User::Tenant Code
+    type: FILTER
+  - name: User::Company Name
+    type: FILTER
+  - name: Content::Interaction Datetime
+    type: FILTER
+  views:
+  - view_guid: 14b91f7b-ed2f-4535-b957-ecb2e1c7ec96
+    name: Rishab test
+    view_filters:
+    - column:
+      - User::Reporting Date
+      date_filter:
+        type: LAST_N_PERIOD
+        number: 90
+        oper: =
+        date_period: DAY
+    - column:
+      - User::Location
+      oper: =
+    - column:
+      - User::Department
+      oper: in
+      values:
+      - AWS Migration
+    - column:
+      - User::Category Name
+      oper: =
+    - column:
+      - User::Segment Name
+      oper: =
+    - column:
+      - User::Tenant Code
+      oper: in
+      values:
+      - 191e03de-fb5e-4b01-b9fd-faf1873292a6
+    - column:
+      - User::Company Name
+      oper: =
+    - column:
+      - Content::Interaction Datetime
+      date_filter:
+        type: EXACT_DATE_RANGE
+        oper: between
+        date_range:
+          start_date: 08/22/2022
+          end_date: 08/21/2025
+    is_public: false
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "false"
+    - name: hide_group_description
+      value: "false"
+    - name: hide_group_tile_description
+      value: "false"
+    - name: hide_tile_description
+      value: "false"

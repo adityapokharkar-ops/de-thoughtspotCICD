@@ -1,0 +1,915 @@
+guid: aef6930c-b050-4a67-941a-384263cb32bf
+liveboard:
+  name: People
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Total users
+      description: Total users on the platform
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "count [User Code] [User Status].active"
+      answer_columns:
+      - name: Number of User Code
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Number of User Code
+          show_headline: false
+        ordered_column_ids:
+        - Number of User Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Number of User Code\",\"columnProperty\": {}}]}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Number of User Code
+        axis_configs:
+        - "y":
+          - Number of User Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Number of User Code\",\"columnProperty\": {}},{\"columnId\": \"b706aeff-3007-44e4-ac6e-f82b13dfecc7\",\"columnProperty\": {}},{\"columnId\": \"4f8d74bb-7511-4ed9-8cb5-55e919f4f387\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"904f41b3-e7e9-46ac-bb1b-8a05e571a5bf\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of User Code\"],\"isOpposite\": false}},{\"id\": \"9974f1d1-85e5-4c28-9fbf-9dc4e773c3cc\",\"properties\": {\"axisType\": \"X\"}}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Total users
+      dynamic_description: Total users on the platform
+    viz_guid: 18711378-2384-415a-985e-a0b0b93cb50a
+  - id: Viz_2
+    answer:
+      name: Departments
+      description: Total departments in the organization
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Department Count
+        name: Department Count
+        expr: "unique count ( [Department] )"
+        was_auto_generated: false
+      search_query: "[formula_Department Count] [User Status].active"
+      answer_columns:
+      - name: Department Count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Department Count
+          show_headline: false
+        ordered_column_ids:
+        - Department Count
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Department Count
+        axis_configs:
+        - "y":
+          - Department Count
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"f09442df-f7c8-47d1-bfd7-1daf61b54134\",\"columnProperty\": {}},{\"columnId\": \"5a115327-3148-43bc-8f74-dac0a086e57a\",\"columnProperty\": {}},{\"columnId\": \"Department Count\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"e7bc13b3-a8af-4036-8d17-9f0eafda518a\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Department Count\"],\"isOpposite\": false}},{\"id\": \"3129be99-7c0a-4852-9732-abc73b800412\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"d58ae1de-ef13-5d8c-a318-a1aef9d43d4b\",\"color\": \"#48D1E0\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Departments
+      dynamic_description: Total departments in the organization
+    viz_guid: e9f8bfe5-4493-4e46-8454-6329a683bf8d
+  - id: Viz_3
+    answer:
+      name: Locations
+      description: Total locations in the organization
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Count Location
+        name: Count Location
+        expr: "unique count ( [Location] )"
+        was_auto_generated: false
+      search_query: "[formula_Count Location] [User Status].active"
+      answer_columns:
+      - name: Count Location
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Count Location
+          show_headline: false
+        ordered_column_ids:
+        - Count Location
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Count Location\",\"columnProperty\": {}}]}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Count Location
+        axis_configs:
+        - "y":
+          - Count Location
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Count Location\",\"columnProperty\": {}},{\"columnId\": \"49a0a141-95d6-481b-a8d8-8e17e76ae6ef\",\"columnProperty\": {}},{\"columnId\": \"37db1230-862e-4c6f-8502-c1ba72e13af1\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"93bcfac9-5b4b-4697-bc1b-f09d084a9bce\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Count Location\"],\"isOpposite\": false}},{\"id\": \"2cb6885d-9791-4a81-b94b-1bbeabe4556c\",\"properties\": {\"axisType\": \"X\"}}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Locations
+      dynamic_description: Total locations in the organization
+    viz_guid: fefad07e-6fa1-4893-98b5-f5d3f639edec
+  - id: Viz_4
+    answer:
+      name: User Category
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Count User Category
+        name: Count User Category
+        expr: "unique count ( [Category Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Count User Category] [User Status].active [Category Code] != 'n/a'"
+      answer_columns:
+      - name: Count User Category
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Count User Category
+          show_headline: false
+        ordered_column_ids:
+        - Count User Category
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Count User Category\",\"columnProperty\": {}}]}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: Count User Category
+        axis_configs:
+        - "y":
+          - Count User Category
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Count User Category\",\"columnProperty\": {}},{\"columnId\": \"dd157ac7-7b29-4b57-8aa6-4c70598975a1\",\"columnProperty\": {}},{\"columnId\": \"04e49905-53c2-42f8-8519-9febf3b9bc8e\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"d94cca3e-cc0c-4ba1-ba38-28cd554ddcad\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Count User Category\"],\"isOpposite\": false}},{\"id\": \"0be8659f-5b60-4914-b75b-b963538b8004\",\"properties\": {\"axisType\": \"X\"}}]}"
+      display_mode: CHART_MODE
+      dynamic_name: User Category
+    viz_guid: b7c78b84-49f5-47e6-b843-9332a1945563
+  - id: Viz_5
+    answer:
+      name: Content published
+      description: Top (up to 5) users who published the most content
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[User Code] [Full Name] count [Content Code] count [Content Code] > 0 sort by count [Content Code] descending top 5"
+      answer_columns:
+      - name: Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Number of Content Code
+        custom_name: Published content
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Published content
+      - name: User Code
+      table:
+        table_columns:
+        - column_id: Full Name
+          show_headline: false
+        - column_id: Number of Content Code
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        ordered_column_ids:
+        - User Code
+        - Full Name
+        - Number of Content Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Full Name\",\"width\": 246.0},{\"columnId\": \"Number of Content Code\",\"width\": 198.0},{\"columnId\": \"User Code\",\"width\": 293.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Full Name\",\"Number of Content Code\",\"User Code\"],\"columnProperties\": [{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Full Name
+        - column_id: Number of Content Code
+        - column_id: User Code
+        axis_configs:
+        - x:
+          - Full Name
+          "y":
+          - Number of Content Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"User Code\",\"columnProperty\": {}},{\"columnId\": \"Full Name\",\"columnProperty\": {}},{\"columnId\": \"815cdc48-33f9-4a62-a827-e6cbc90cbf9f\",\"columnProperty\": {}},{\"columnId\": \"7fb07208-3a19-4e84-932c-c1535ad164bb\",\"columnProperty\": {}},{\"columnId\": \"Number of Content Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"6e796b36-9e1c-4498-a871-700e8897e8bb\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Content Code\"],\"isOpposite\": false}},{\"id\": \"658813b9-5761-4889-bd84-8ed4e9327811\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Full Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Number of Content Code\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Content published
+      dynamic_description: Top (up to 5) users who published the most content
+    viz_guid: 76cdaf88-cbba-4434-a18c-9b850d082f1a
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_6
+    answer:
+      name: Reactions made
+      description: |
+        Top (up to 5) users who reacted the most to content/feed posts and content comments/replies
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[User Code] [Full Name] top 5 count [Interaction Code] [Interaction Type].like"
+      answer_columns:
+      - name: Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Number of Interaction Code
+        custom_name: Reactions made
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Reactions made
+      - name: User Code
+      table:
+        table_columns:
+        - column_id: Full Name
+          show_headline: false
+        - column_id: Number of Interaction Code
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        ordered_column_ids:
+        - User Code
+        - Full Name
+        - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Full Name\",\"width\": 246.0},{\"columnId\": \"User Code\",\"width\": 293.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Full Name\",\"User Code\"],\"columnProperties\": [{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Full Name
+        - column_id: Number of Interaction Code
+        - column_id: User Code
+        axis_configs:
+        - x:
+          - Full Name
+          "y":
+          - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"User Code\",\"columnProperty\": {}},{\"columnId\": \"Full Name\",\"columnProperty\": {}},{\"columnId\": \"98e49cd2-7f56-411a-a201-2dec8302079f\",\"columnProperty\": {}},{\"columnId\": \"19172b66-e798-4c0e-ae36-c45eca25498c\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"67a8f686-0c5c-46b9-be0c-96492252fd65\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"509b2e71-55bb-447a-95f3-26f1d4ed0375\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Full Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"3208dc18-4aad-4f68-8ebb-bff5e72201ba\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Reactions made
+      dynamic_description: |
+        Top (up to 5) users who reacted the most to content/feed posts and content comments/replies
+    viz_guid: 14487764-ee4c-429b-820a-004877fc592d
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_7
+    answer:
+      name: Feed posts and content comments
+      description: Top (up to 5) users who made most feed posts and content comments
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[User Code] [Full Name] top 5 count [Interaction Code] [Interaction Type].comment [Interaction Type].post [Is System Feed?].false"
+      answer_columns:
+      - name: Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Number of Interaction Code
+        custom_name: Post and comment
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Post and comment
+      - name: User Code
+      table:
+        table_columns:
+        - column_id: Full Name
+          show_headline: false
+        - column_id: Number of Interaction Code
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        ordered_column_ids:
+        - User Code
+        - Full Name
+        - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Full Name\",\"width\": 246.0},{\"columnId\": \"User Code\",\"width\": 293.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Full Name\",\"User Code\"],\"columnProperties\": [{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Full Name
+        - column_id: Number of Interaction Code
+        - column_id: User Code
+        axis_configs:
+        - x:
+          - Full Name
+          "y":
+          - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"User Code\",\"columnProperty\": {}},{\"columnId\": \"Full Name\",\"columnProperty\": {}},{\"columnId\": \"267f7715-c292-4258-b595-f06601650a2a\",\"columnProperty\": {}},{\"columnId\": \"35dc4fbc-97d4-4edd-841f-f09519bf848c\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"67a8f686-0c5c-46b9-be0c-96492252fd65\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"509b2e71-55bb-447a-95f3-26f1d4ed0375\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Full Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"3208dc18-4aad-4f68-8ebb-bff5e72201ba\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Feed posts and content comments
+      dynamic_description: Top (up to 5) users who made most feed posts and content comments
+    viz_guid: a469df40-5569-4a92-a858-9cf80e165835
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_8
+    answer:
+      name: Replies
+      description: Top (up to 5) users who replied the most in feeds
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[User Code] [Full Name] top 5 count [Interaction Code] [Interaction Type].reply"
+      answer_columns:
+      - name: Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Number of Interaction Code
+        custom_name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Replies
+      - name: User Code
+      table:
+        table_columns:
+        - column_id: Full Name
+          show_headline: false
+        - column_id: Number of Interaction Code
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        ordered_column_ids:
+        - User Code
+        - Full Name
+        - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Full Name\",\"width\": 246.0},{\"columnId\": \"User Code\",\"width\": 293.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Full Name\",\"User Code\"],\"columnProperties\": [{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Full Name
+        - column_id: Number of Interaction Code
+        - column_id: User Code
+        axis_configs:
+        - x:
+          - Full Name
+          "y":
+          - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"User Code\",\"columnProperty\": {}},{\"columnId\": \"Full Name\",\"columnProperty\": {}},{\"columnId\": \"7a057b52-a6a2-4c9f-af2b-7edd94cac08f\",\"columnProperty\": {}},{\"columnId\": \"1ab9e615-841d-4ac8-98a7-f17a2d2875b3\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"67a8f686-0c5c-46b9-be0c-96492252fd65\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"509b2e71-55bb-447a-95f3-26f1d4ed0375\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Full Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"3208dc18-4aad-4f68-8ebb-bff5e72201ba\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Replies
+      dynamic_description: Top (up to 5) users who replied the most in feeds
+    viz_guid: ef64366b-be9c-4a3d-bc20-e76c8e76b8ab
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_9
+    answer:
+      name: Favorites received
+      description: Top (up to 5) users with most favorited profiles/content/feed posts and content comments
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[Receiver Interaction Full Name] [Receiver Interaction User Code] [Interaction Type].favourites [Interaction Entity] != 'n/a' count [Interaction Code] top 5"
+      answer_columns:
+      - name: Number of Interaction Code
+        custom_name: Favorites received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Favorites received
+      - name: Receiver Interaction Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Receiver Interaction User Code
+      table:
+        table_columns:
+        - column_id: Number of Interaction Code
+          show_headline: false
+        - column_id: Receiver Interaction Full Name
+          show_headline: false
+        - column_id: Receiver Interaction User Code
+          show_headline: false
+        ordered_column_ids:
+        - Receiver Interaction Full Name
+        - Receiver Interaction User Code
+        - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Receiver Interaction Full Name\",\"width\": 195.0},{\"columnId\": \"Number of Interaction Code\",\"width\": 224.0}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver Interaction Full Name\",\"Number of Interaction Code\",\"Receiver Interaction User Code\"],\"columnProperties\": [{\"columnId\": \"Receiver Interaction User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Number of Interaction Code
+        - column_id: Receiver Interaction Full Name
+        - column_id: Receiver Interaction User Code
+        axis_configs:
+        - x:
+          - Receiver Interaction Full Name
+          "y":
+          - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Receiver Interaction Full Name\",\"columnProperty\": {}},{\"columnId\": \"Receiver Interaction User Code\",\"columnProperty\": {}},{\"columnId\": \"dc670d0a-88d9-4f39-9819-cbca34dfec23\",\"columnProperty\": {}},{\"columnId\": \"39bf165e-11cf-4e86-9464-afad465c3537\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"d5fb38c4-b8ef-4c68-930f-d17680f2f2a5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"e21fa0f1-62af-4bba-a58b-d51050cff45c\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver Interaction Full Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Number of Interaction Code\",\"color\": \"#FF8142\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_description: Top (up to 5) users with most favorited profiles/content/feed posts and content comments
+    viz_guid: e4ec86f1-3aa7-4cff-848f-590abd59c808
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_10
+    answer:
+      name: Reactions received
+      description: Top (up to 5) users who received the most reactions on content/feed posts and content comments/replies
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "top 5 count [Interaction Code] [Interaction Type].like [Receiver Interaction Full Name] [Receiver Interaction User Code]"
+      answer_columns:
+      - name: Number of Interaction Code
+        custom_name: Reactions received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Reactions received
+      - name: Receiver Interaction Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Receiver Interaction User Code
+      table:
+        table_columns:
+        - column_id: Number of Interaction Code
+          show_headline: false
+        - column_id: Receiver Interaction Full Name
+          show_headline: false
+        - column_id: Receiver Interaction User Code
+          show_headline: false
+        ordered_column_ids:
+        - Receiver Interaction Full Name
+        - Receiver Interaction User Code
+        - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver Interaction Full Name\",\"Number of Interaction Code\",\"Receiver Interaction User Code\"],\"columnProperties\": [{\"columnId\": \"Receiver Interaction User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Number of Interaction Code
+        - column_id: Receiver Interaction Full Name
+        - column_id: Receiver Interaction User Code
+        axis_configs:
+        - x:
+          - Receiver Interaction User Code
+          "y":
+          - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"2e3fd9fc-8198-477f-b5d8-0b3764df820e\",\"columnProperty\": {}},{\"columnId\": \"9de368ec-e277-4ee2-ab89-da8bd7ec4e1a\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {}},{\"columnId\": \"Receiver Interaction User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"d119e00d-f39b-44f2-9813-c3f48b247115\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"46e801d5-27f1-4982-939a-98d57e6ad582\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver Interaction User Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"3208dc18-4aad-4f68-8ebb-bff5e72201ba\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Reactions received
+      dynamic_description: Top (up to 5) users who received the most reactions on content/feed posts and content comments/replies
+    viz_guid: 8e299846-6cde-4d39-aa02-b5e84c15789b
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_11
+    answer:
+      name: Replies from other users
+      description: Top (up to 5) users with most replies on their feed posts and content comments
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "top 5 count [Interaction Code] [Interaction Type].reply [Receiver Interaction Full Name] [Receiver Interaction User Code]"
+      answer_columns:
+      - name: Number of Interaction Code
+        custom_name: Replies received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Replies received
+      - name: Receiver Interaction Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Receiver Interaction User Code
+      table:
+        table_columns:
+        - column_id: Number of Interaction Code
+          show_headline: false
+        - column_id: Receiver Interaction Full Name
+          show_headline: false
+        - column_id: Receiver Interaction User Code
+          show_headline: false
+        ordered_column_ids:
+        - Receiver Interaction Full Name
+        - Receiver Interaction User Code
+        - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver Interaction Full Name\",\"Number of Interaction Code\",\"Receiver Interaction User Code\"],\"columnProperties\": [{\"columnId\": \"Receiver Interaction User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Number of Interaction Code
+        - column_id: Receiver Interaction Full Name
+        - column_id: Receiver Interaction User Code
+        axis_configs:
+        - x:
+          - Receiver Interaction User Code
+          "y":
+          - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"51236495-d4e8-4243-a58f-75693efa32e8\",\"columnProperty\": {}},{\"columnId\": \"a0d89d24-bf20-437a-b6f5-5d234c8972ac\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {}},{\"columnId\": \"Receiver Interaction User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"9a9bcd66-5271-4a26-a661-91c1806aff44\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"eb4c0e6c-fbe7-4fb0-b0ba-cf80172bebff\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver Interaction User Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"3208dc18-4aad-4f68-8ebb-bff5e72201ba\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Replies from other users
+      dynamic_description: Top (up to 5) users with most replies on their feed posts and content comments
+    viz_guid: a2bd694e-f5db-4525-ab15-73b3b30fee80
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_12
+    answer:
+      name: Shares received
+      description: Top (up to 5) users whose content/feed posts and content comments were most shared
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "top 5 count [Interaction Code] [Receiver Interaction Full Name] [Receiver Interaction User Code] [Interaction Type].share"
+      answer_columns:
+      - name: Number of Interaction Code
+        custom_name: Shares received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Shares received
+      - name: Receiver Interaction Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Receiver Interaction User Code
+      table:
+        table_columns:
+        - column_id: Number of Interaction Code
+          show_headline: false
+        - column_id: Receiver Interaction Full Name
+          show_headline: false
+        - column_id: Receiver Interaction User Code
+          show_headline: false
+        ordered_column_ids:
+        - Receiver Interaction Full Name
+        - Receiver Interaction User Code
+        - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver Interaction Full Name\",\"Number of Interaction Code\",\"Receiver Interaction User Code\"],\"columnProperties\": [{\"columnId\": \"Receiver Interaction User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Number of Interaction Code
+        - column_id: Receiver Interaction Full Name
+        - column_id: Receiver Interaction User Code
+        axis_configs:
+        - x:
+          - Receiver Interaction User Code
+          "y":
+          - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"11d5ec14-66a9-4181-b5f1-4cf6d8f91334\",\"columnProperty\": {}},{\"columnId\": \"524645f5-7c4a-45a9-a335-48102360ceda\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {}},{\"columnId\": \"Receiver Interaction User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"493cc2ba-5c9a-4786-8101-33788da8ce39\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"41fd9246-2cd6-4f0b-8d01-a589ed23674b\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver Interaction User Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"3208dc18-4aad-4f68-8ebb-bff5e72201ba\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Shares received
+      dynamic_description: Top (up to 5) users whose content/feed posts and content comments were most shared
+    viz_guid: df88f002-f614-4beb-a751-fe8eadf121fc
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_13
+    answer:
+      name: Profile views
+      description: Top (up to 5) users with most viewed profiles
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "top 5 count [Interaction Code] [Receiver Interaction Full Name] [Receiver Interaction User Code] [Interaction Type].view [Interaction Entity].user"
+      answer_columns:
+      - name: Number of Interaction Code
+        custom_name: Profile views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Profile views
+      - name: Receiver Interaction Full Name
+        custom_name: Name
+        dynamic_title: Name
+      - name: Receiver Interaction User Code
+      table:
+        table_columns:
+        - column_id: Number of Interaction Code
+          show_headline: false
+        - column_id: Receiver Interaction Full Name
+          show_headline: false
+        - column_id: Receiver Interaction User Code
+          show_headline: false
+        ordered_column_ids:
+        - Receiver Interaction Full Name
+        - Receiver Interaction User Code
+        - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Receiver Interaction Full Name\",\"Number of Interaction Code\",\"Receiver Interaction User Code\"],\"columnProperties\": [{\"columnId\": \"Receiver Interaction User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Number of Interaction Code
+        - column_id: Receiver Interaction Full Name
+        - column_id: Receiver Interaction User Code
+        axis_configs:
+        - x:
+          - Receiver Interaction User Code
+          "y":
+          - Number of Interaction Code
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"d11e6393-6ae2-4fac-aefa-0df2830f654e\",\"columnProperty\": {}},{\"columnId\": \"98431ff4-8fca-48a4-8e55-669f9c5a0ee8\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {}},{\"columnId\": \"Receiver Interaction User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"493cc2ba-5c9a-4786-8101-33788da8ce39\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Code\"],\"isOpposite\": false}},{\"id\": \"41fd9246-2cd6-4f0b-8d01-a589ed23674b\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Receiver Interaction User Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"3208dc18-4aad-4f68-8ebb-bff5e72201ba\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Profile views
+      dynamic_description: Top (up to 5) users with most viewed profiles
+    viz_guid: 8da314b4-260f-4ee6-be7e-613127909b91
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_14
+    answer:
+      name: Profile completeness
+      description: Users who have completed each 'Profile completeness' field
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      table_paths:
+      - id: User_1
+        table: User
+      formulas:
+      - id: formula_About text
+        name: About text
+        expr: "concat ( to_string ( unique_count_if ( ( [User_1::Has About?] ) , [User_1::User Code] ) ) , ' (' , to_string ( round ( unique_count_if ( ( [User_1::Has About?] ) , [User_1::User Code] ) / unique count ( [User_1::User Code] ) * 100 , 1 ) ) , '%' , ')' )"
+        was_auto_generated: false
+      - id: formula_Birthday date
+        name: Birthday date
+        expr: "concat ( to_string ( unique_count_if ( ( [User_1::Has Birth Date?] ) , [User_1::User Code] ) ) , ' (' , to_string ( round ( unique_count_if ( ( [User_1::Has Birth Date?] ) , [User_1::User Code] ) / unique count ( [User_1::User Code] ) * 100 , 1 ) ) , '%' , ')' )"
+        was_auto_generated: false
+      - id: formula_Phone number
+        name: Phone number
+        expr: "concat ( to_string ( unique_count_if ( ( [User_1::Has Phone Number?] ) , [User_1::User Code] ) ) , ' (' , to_string ( round ( unique_count_if ( ( [User_1::Has Phone Number?] ) , [User_1::User Code] ) / unique count ( [User_1::User Code] ) * 100 , 1 ) ) , '%' , ')' )"
+        was_auto_generated: false
+      - id: formula_Profile picture
+        name: Profile picture
+        expr: "concat ( to_string ( unique_count_if ( ( [User_1::Has Profile Image?] ) , [User_1::User Code] ) ) , ' (' , to_string ( round ( unique_count_if ( ( [User_1::Has Profile Image?] ) , [User_1::User Code] ) / unique count ( [User_1::User Code] ) * 100 , 1 ) ) , '%' , ')' )"
+        was_auto_generated: false
+      - id: formula_Profile completeness
+        name: Profile completeness
+        expr: "if ( [User_1::Has About?] ) then 'About Text' else if ( ( [User_1::Has Birth Date?] and [User_1::Has About?] ) or [User_1::Has About?] ) then 'Birthdate day' else if ( [User_1::Has Profile Image?] ) then 'Profile picture' else if ( [User_1::Has Phone Number?] ) then 'Phone number' else null"
+        was_auto_generated: false
+      search_query: "[User Status].active [formula_About text] [formula_Birthday date] [formula_Profile picture] [formula_Phone number]"
+      answer_columns:
+      - name: About text
+      - name: Birthday date
+      - name: Phone number
+      - name: Profile picture
+      table:
+        table_columns:
+        - column_id: About text
+          show_headline: false
+        - column_id: Birthday date
+          show_headline: false
+        - column_id: Phone number
+          show_headline: false
+        - column_id: Profile picture
+          show_headline: false
+        ordered_column_ids:
+        - About text
+        - Birthday date
+        - Profile picture
+        - Phone number
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"About text\",\"width\": 112.99826049804688},{\"columnId\": \"Birthday date\",\"width\": 122.89784240722656},{\"columnId\": \"Profile picture\",\"width\": 134.8308563232422},{\"columnId\": \"Phone number\",\"width\": 120.4599609375}],\"showTableFooter\": false}"
+      chart:
+        type: ADVANCED_PIVOT_TABLE
+        chart_columns:
+        - column_id: About text
+        - column_id: Birthday date
+        - column_id: Phone number
+        - column_id: Profile picture
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"7c1b5753-4133-4bd1-89e1-84e5bce1cbba\",\"columnProperty\": {}},{\"columnId\": \"4ba40b00-afa0-4359-a352-a09243525cfe\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"ec3493ce-7e7f-4e94-9673-6f22a7168d33\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_visual_props: "{}"
+      display_mode: TABLE_MODE
+      dynamic_name: Profile completeness
+      dynamic_description: Users who have completed each 'Profile completeness' field
+    viz_guid: abe2fc5a-4d20-4a19-bae7-d6f102365162
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  filters:
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Content First Published Date
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    - Viz_3
+    - Viz_4
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_9
+    - Viz_10
+    - Viz_11
+    - Viz_12
+    - Viz_13
+    - Viz_14
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Interaction Datetime
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    - Viz_3
+    - Viz_4
+    - Viz_5
+    - Viz_14
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 3
+      width: 3
+    - visualization_id: Viz_2
+      x: 3
+      "y": 0
+      height: 3
+      width: 3
+    - visualization_id: Viz_3
+      x: 6
+      "y": 0
+      height: 3
+      width: 3
+    - visualization_id: Viz_4
+      x: 9
+      "y": 0
+      height: 3
+      width: 3
+    - visualization_id: Viz_5
+      x: 0
+      "y": 3
+      height: 6
+      width: 6
+    - visualization_id: Viz_6
+      x: 0
+      "y": 9
+      height: 6
+      width: 6
+    - visualization_id: Viz_7
+      x: 0
+      "y": 15
+      height: 6
+      width: 6
+    - visualization_id: Viz_8
+      x: 6
+      "y": 15
+      height: 6
+      width: 6
+    - visualization_id: Viz_9
+      x: 6
+      "y": 3
+      height: 6
+      width: 6
+    - visualization_id: Viz_10
+      x: 6
+      "y": 9
+      height: 6
+      width: 6
+    - visualization_id: Viz_11
+      x: 0
+      "y": 21
+      height: 6
+      width: 6
+    - visualization_id: Viz_12
+      x: 6
+      "y": 21
+      height: 6
+      width: 6
+    - visualization_id: Viz_13
+      x: 0
+      "y": 27
+      height: 6
+      width: 6
+    - visualization_id: Viz_14
+      x: 6
+      "y": 27
+      height: 6
+      width: 6
+  ordered_chips:
+  - name: Tenant Code
+    type: FILTER
+  - name: Content First Published Date
+    type: FILTER
+  - name: Interaction Datetime
+    type: FILTER

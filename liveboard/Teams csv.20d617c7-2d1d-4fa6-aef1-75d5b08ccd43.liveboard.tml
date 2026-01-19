@@ -1,0 +1,807 @@
+guid: 20d617c7-2d1d-4fa6-aef1-75d5b08ccd43
+liveboard:
+  name: Teams csv
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Team performance by People manager
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Opportunity score
+        name: Opportunity score
+        expr: "( sum ( [Latest Total Direct Reports Somewhat] ) * 1 ) + ( sum ( [Latest Total Direct Reports Inactive]  ) * 2 )"
+        was_auto_generated: false
+      - id: formula_Performance score
+        name: Performance score
+        expr: "( sum ( [Latest Total Direct Reports Somewhat] ) * 1 ) + ( sum ( [Latest Total Direct Reports Active]  ) * 2 )"
+        was_auto_generated: false
+      - id: formula_Team size
+        name: Team size
+        expr: "sum ( [Latest Total Direct Reports]  )"
+        was_auto_generated: false
+      - id: formula_Team status
+        name: Team status
+        expr: "if ( max ( [Latest Sort Weight] ) = 3 ) then 'Inactive' else if ( max ( [Latest Sort Weight] ) = 2 ) then 'Somewhat active' else if ( max ( [Latest Sort Weight]  ) = 1 ) then 'Active' else null"
+        was_auto_generated: false
+      - id: formula_Teams
+        name: Teams
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Performance score] [formula_Opportunity score] [formula_Team status] [formula_Team size] [formula_Teams] [Full Name] sort by [Full Name]"
+      answer_columns:
+      - name: Full Name
+        custom_name: People manager
+        dynamic_title: People manager
+        sort_info:
+          category: DEFAULT
+      - name: Opportunity score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Performance score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team size
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team status
+      - name: Teams
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Full Name
+          show_headline: false
+        - column_id: Opportunity score
+          show_headline: false
+        - column_id: Performance score
+          show_headline: false
+        - column_id: Team size
+          show_headline: false
+        - column_id: Team status
+          show_headline: false
+        - column_id: Teams
+          show_headline: false
+        ordered_column_ids:
+        - Full Name
+        - Team status
+        - Performance score
+        - Opportunity score
+        - Team size
+        - Teams
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Full Name\",\"width\": 182.0},{\"columnId\": \"Teams\",\"width\": 129.49725341796875}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Full Name\",\"Team status\",\"Teams\",\"Team size\",\"Performance score\",\"Opportunity score\"]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Full Name
+        - column_id: Opportunity score
+        - column_id: Performance score
+        - column_id: Team size
+        - column_id: Team status
+        - column_id: Teams
+        axis_configs:
+        - x:
+          - Opportunity score
+          "y":
+          - Team size
+          size: Teams
+          category:
+          - Team status
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Performance score\",\"columnProperty\": {}},{\"columnId\": \"Opportunity score\",\"columnProperty\": {}},{\"columnId\": \"Team status\",\"columnProperty\": {}},{\"columnId\": \"Team size\",\"columnProperty\": {}},{\"columnId\": \"Teams\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"aad3a5b3-32b7-439b-9f95-897915392256\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Team size\"],\"isOpposite\": false}},{\"id\": \"25128f37-18ef-4300-8f0a-5e65e3f6f6e6\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Opportunity score\"]}}],\"systemSeriesColors\": [{\"serieName\": \"86241d0f-ecc5-420d-9790-d7b875a5d720\",\"color\": \"#06BF7F\"},{\"serieName\": \"Performance score\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Team performance by People manager
+    viz_guid: 597636ae-1fcd-4002-83ea-b35d427cc30f
+  - id: Viz_2
+    answer:
+      name: My team dashboard usage by People manager
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_My team views
+        name: My team views
+        expr: "ifnull ( sum ( [Total My Team Views] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Opportunity score
+        name: Opportunity score
+        expr: "( sum ( [Latest Total Direct Reports Somewhat] ) * 1 ) + ( sum ( [Latest Total Direct Reports Inactive]  ) * 2 )"
+        was_auto_generated: false
+      - id: formula_Recommended action sent
+        name: Recommended action sent
+        expr: "ifnull ( sum ( [Total Recommended Action Sent] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Team size
+        name: Team size
+        expr: "sum ( [Latest Total Direct Reports]  )"
+        was_auto_generated: false
+      - id: formula_Team status
+        name: Team status
+        expr: "if ( max ( [Latest Sort Weight] ) = 3 ) then 'Inactive' else if ( max ( [Latest Sort Weight] ) = 2 ) then 'Somewhat active' else if ( max ( [Latest Sort Weight]  ) = 1 ) then 'Active' else null"
+        was_auto_generated: false
+      - id: formula_Teams
+        name: Teams
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Team size] [formula_Opportunity score] [formula_Team status] [formula_My team views] [formula_Recommended action sent] [formula_Team size] > 0 [formula_Teams] [Full Name] sort by [Full Name]"
+      answer_columns:
+      - name: Full Name
+        custom_name: People manager
+        dynamic_title: People manager
+        sort_info:
+          category: DEFAULT
+      - name: My team views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Opportunity score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Recommended action sent
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team size
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team status
+      - name: Teams
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Full Name
+          show_headline: false
+        - column_id: My team views
+          show_headline: false
+        - column_id: Opportunity score
+          show_headline: false
+        - column_id: Recommended action sent
+          show_headline: false
+        - column_id: Team size
+          show_headline: false
+        - column_id: Team status
+          show_headline: false
+        - column_id: Teams
+          show_headline: false
+        ordered_column_ids:
+        - Full Name
+        - Team status
+        - Team size
+        - Opportunity score
+        - My team views
+        - Recommended action sent
+        - Teams
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Team status\",\"width\": 123.81532287597656}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Full Name\",\"Team status\",\"Teams\",\"Team size\",\"My team views\",\"Recommended action sent\",\"Opportunity score\"],\"columnProperties\": [{\"columnId\": \"Team size\",\"columnProperty\": {}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Full Name
+        - column_id: My team views
+        - column_id: Opportunity score
+        - column_id: Recommended action sent
+        - column_id: Team size
+        - column_id: Team status
+        - column_id: Teams
+        axis_configs:
+        - x:
+          - Team status
+          "y":
+          - Team size
+          - Opportunity score
+          - My team views
+          - Recommended action sent
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Team size\",\"columnProperty\": {}},{\"columnId\": \"Opportunity score\",\"columnProperty\": {}},{\"columnId\": \"Team status\",\"columnProperty\": {}},{\"columnId\": \"My team views\",\"columnProperty\": {}},{\"columnId\": \"Recommended action sent\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"c75e1eb7-8323-483f-a123-706d6b040a4c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Team size\"],\"isOpposite\": false}},{\"id\": \"f87856bf-387f-4afb-91a5-9c6b43f8d3af\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Opportunity score\"],\"isOpposite\": true}},{\"id\": \"ae91b135-677c-49d4-a21f-c5668f045ecf\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"My team views\"],\"isOpposite\": true}},{\"id\": \"884d0dc9-2e11-4a9f-b33f-5d37ea940918\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Recommended action sent\"],\"isOpposite\": true}},{\"id\": \"1a2f7164-fee1-436c-9b7f-490109c64bef\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Team status\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Team size\",\"color\": \"#06BF7F\"},{\"serieName\": \"ec088f32-9eb7-4c8e-b035-295807f8b8f0\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: My team dashboard usage by People manager
+    viz_guid: bf7a8fb3-0217-48f4-951c-99da7822387e
+  - id: Viz_3
+    answer:
+      name: Team performance by Department
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Opportunity score
+        name: Opportunity score
+        expr: "( sum ( [Latest Total Direct Reports Somewhat] ) * 1 ) + ( sum ( [Latest Total Direct Reports Inactive]  ) * 2 )"
+        was_auto_generated: false
+      - id: formula_Performance score
+        name: Performance score
+        expr: "( sum ( [Latest Total Direct Reports Somewhat] ) * 1 ) + ( sum ( [Latest Total Direct Reports Active]  ) * 2 )"
+        was_auto_generated: false
+      - id: formula_Team size
+        name: Team size
+        expr: "sum ( [Latest Total Direct Reports]  )"
+        was_auto_generated: false
+      - id: formula_Team status
+        name: Team status
+        expr: "if ( max ( [Latest Sort Weight] ) = 3 ) then 'Inactive' else if ( max ( [Latest Sort Weight] ) = 2 ) then 'Somewhat active' else if ( max ( [Latest Sort Weight]  ) = 1 ) then 'Active' else null"
+        was_auto_generated: false
+      - id: formula_Teams
+        name: Teams
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Performance score] [formula_Opportunity score] [formula_Team status] [formula_Team size] [formula_Teams] [Department] sort by [Department]"
+      answer_columns:
+      - name: Department
+        sort_info:
+          category: DEFAULT
+      - name: Opportunity score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Performance score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team size
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team status
+      - name: Teams
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Department
+          show_headline: false
+        - column_id: Opportunity score
+          show_headline: false
+        - column_id: Performance score
+          show_headline: false
+        - column_id: Team size
+          show_headline: false
+        - column_id: Team status
+          show_headline: false
+        - column_id: Teams
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Team status
+        - Performance score
+        - Opportunity score
+        - Team size
+        - Teams
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Teams\",\"width\": 129.49725341796875}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Department\",\"Team status\",\"Teams\",\"Team size\",\"Performance score\",\"Opportunity score\"]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Department
+        - column_id: Opportunity score
+        - column_id: Performance score
+        - column_id: Team size
+        - column_id: Team status
+        - column_id: Teams
+        axis_configs:
+        - x:
+          - Opportunity score
+          "y":
+          - Team size
+          size: Teams
+          category:
+          - Team status
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Performance score\",\"columnProperty\": {}},{\"columnId\": \"Opportunity score\",\"columnProperty\": {}},{\"columnId\": \"Team status\",\"columnProperty\": {}},{\"columnId\": \"Team size\",\"columnProperty\": {}},{\"columnId\": \"Teams\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"aad3a5b3-32b7-439b-9f95-897915392256\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Team size\"],\"isOpposite\": false}},{\"id\": \"25128f37-18ef-4300-8f0a-5e65e3f6f6e6\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Opportunity score\"]}}],\"systemSeriesColors\": [{\"serieName\": \"86241d0f-ecc5-420d-9790-d7b875a5d720\",\"color\": \"#06BF7F\"},{\"serieName\": \"Performance score\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Teams parameter
+        value: People manager
+      dynamic_name: Team performance by Department
+    viz_guid: f02386a9-cc71-45be-be2a-ea3d85aab8c8
+  - id: Viz_4
+    answer:
+      name: Team performance by Location
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Opportunity score
+        name: Opportunity score
+        expr: "( sum ( [Latest Total Direct Reports Somewhat] ) * 1 ) + ( sum ( [Latest Total Direct Reports Inactive]  ) * 2 )"
+        was_auto_generated: false
+      - id: formula_Performance score
+        name: Performance score
+        expr: "( sum ( [Latest Total Direct Reports Somewhat] ) * 1 ) + ( sum ( [Latest Total Direct Reports Active]  ) * 2 )"
+        was_auto_generated: false
+      - id: formula_Team size
+        name: Team size
+        expr: "sum ( [Latest Total Direct Reports]  )"
+        was_auto_generated: false
+      - id: formula_Team status
+        name: Team status
+        expr: "if ( max ( [Latest Sort Weight] ) = 3 ) then 'Inactive' else if ( max ( [Latest Sort Weight] ) = 2 ) then 'Somewhat active' else if ( max ( [Latest Sort Weight]  ) = 1 ) then 'Active' else null"
+        was_auto_generated: false
+      - id: formula_Teams
+        name: Teams
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Performance score] [formula_Opportunity score] [formula_Team status] [formula_Team size] [formula_Teams] [Location] sort by [Location]"
+      answer_columns:
+      - name: Location
+        sort_info:
+          category: DEFAULT
+      - name: Opportunity score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Performance score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team size
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team status
+      - name: Teams
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Location
+          show_headline: false
+        - column_id: Opportunity score
+          show_headline: false
+        - column_id: Performance score
+          show_headline: false
+        - column_id: Team size
+          show_headline: false
+        - column_id: Team status
+          show_headline: false
+        - column_id: Teams
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Team status
+        - Performance score
+        - Opportunity score
+        - Team size
+        - Teams
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Teams\",\"width\": 129.49725341796875}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Location\",\"Team status\",\"Teams\",\"Team size\",\"Performance score\",\"Opportunity score\"]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Location
+        - column_id: Opportunity score
+        - column_id: Performance score
+        - column_id: Team size
+        - column_id: Team status
+        - column_id: Teams
+        axis_configs:
+        - x:
+          - Opportunity score
+          "y":
+          - Team size
+          size: Teams
+          category:
+          - Team status
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Performance score\",\"columnProperty\": {}},{\"columnId\": \"Opportunity score\",\"columnProperty\": {}},{\"columnId\": \"Team status\",\"columnProperty\": {}},{\"columnId\": \"Team size\",\"columnProperty\": {}},{\"columnId\": \"Teams\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"aad3a5b3-32b7-439b-9f95-897915392256\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Team size\"],\"isOpposite\": false}},{\"id\": \"25128f37-18ef-4300-8f0a-5e65e3f6f6e6\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Opportunity score\"]}}],\"systemSeriesColors\": [{\"serieName\": \"86241d0f-ecc5-420d-9790-d7b875a5d720\",\"color\": \"#06BF7F\"},{\"serieName\": \"Performance score\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Teams parameter
+        value: People manager
+      dynamic_name: Team performance by Location
+    viz_guid: 26aa87bc-79de-44f8-a1f0-d84b15f0a1cc
+  - id: Viz_5
+    answer:
+      name: My team dashboard usage by Department
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_My team views
+        name: My team views
+        expr: "ifnull ( sum ( [Total My Team Views] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Opportunity score
+        name: Opportunity score
+        expr: "( sum ( [Latest Total Direct Reports Somewhat] ) * 1 ) + ( sum ( [Latest Total Direct Reports Inactive]  ) * 2 )"
+        was_auto_generated: false
+      - id: formula_Recommended action sent
+        name: Recommended action sent
+        expr: "ifnull ( sum ( [Total Recommended Action Sent] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Team size
+        name: Team size
+        expr: "sum ( [Latest Total Direct Reports]  )"
+        was_auto_generated: false
+      - id: formula_Team status
+        name: Team status
+        expr: "if ( max ( [Latest Sort Weight] ) = 3 ) then 'Inactive' else if ( max ( [Latest Sort Weight] ) = 2 ) then 'Somewhat active' else if ( max ( [Latest Sort Weight]  ) = 1 ) then 'Active' else null"
+        was_auto_generated: false
+      - id: formula_Teams
+        name: Teams
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Team size] [formula_Opportunity score] [formula_Team status] [formula_My team views] [formula_Recommended action sent] [formula_Team size] > 0 [formula_Teams] [Department] sort by [Department]"
+      answer_columns:
+      - name: Department
+        sort_info:
+          category: DEFAULT
+      - name: My team views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Opportunity score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Recommended action sent
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team size
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team status
+      - name: Teams
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Department
+          show_headline: false
+        - column_id: My team views
+          show_headline: false
+        - column_id: Opportunity score
+          show_headline: false
+        - column_id: Recommended action sent
+          show_headline: false
+        - column_id: Team size
+          show_headline: false
+        - column_id: Team status
+          show_headline: false
+        - column_id: Teams
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Team status
+        - Team size
+        - Opportunity score
+        - My team views
+        - Recommended action sent
+        - Teams
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Team status\",\"width\": 123.81532287597656}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Department\",\"Team status\",\"Teams\",\"Team size\",\"My team views\",\"Recommended action sent\",\"Opportunity score\"],\"columnProperties\": [{\"columnId\": \"Team size\",\"columnProperty\": {}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Department
+        - column_id: My team views
+        - column_id: Opportunity score
+        - column_id: Recommended action sent
+        - column_id: Team size
+        - column_id: Team status
+        - column_id: Teams
+        axis_configs:
+        - x:
+          - Team status
+          "y":
+          - Team size
+          - Opportunity score
+          - My team views
+          - Recommended action sent
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Team size\",\"columnProperty\": {}},{\"columnId\": \"Opportunity score\",\"columnProperty\": {}},{\"columnId\": \"Team status\",\"columnProperty\": {}},{\"columnId\": \"My team views\",\"columnProperty\": {}},{\"columnId\": \"Recommended action sent\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"c75e1eb7-8323-483f-a123-706d6b040a4c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Team size\"],\"isOpposite\": false}},{\"id\": \"f87856bf-387f-4afb-91a5-9c6b43f8d3af\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Opportunity score\"],\"isOpposite\": true}},{\"id\": \"ae91b135-677c-49d4-a21f-c5668f045ecf\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"My team views\"],\"isOpposite\": true}},{\"id\": \"884d0dc9-2e11-4a9f-b33f-5d37ea940918\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Recommended action sent\"],\"isOpposite\": true}},{\"id\": \"1a2f7164-fee1-436c-9b7f-490109c64bef\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Team status\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Team size\",\"color\": \"#06BF7F\"},{\"serieName\": \"ec088f32-9eb7-4c8e-b035-295807f8b8f0\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: My team dashboard usage by Department
+    viz_guid: 586e4cdb-99b8-4713-bbcf-f96ab1bdfed5
+  - id: Viz_6
+    answer:
+      name: My team dashboard usage by Location
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_My team views
+        name: My team views
+        expr: "ifnull ( sum ( [Total My Team Views] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Opportunity score
+        name: Opportunity score
+        expr: "( sum ( [Latest Total Direct Reports Somewhat] ) * 1 ) + ( sum ( [Latest Total Direct Reports Inactive]  ) * 2 )"
+        was_auto_generated: false
+      - id: formula_Recommended action sent
+        name: Recommended action sent
+        expr: "ifnull ( sum ( [Total Recommended Action Sent] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Team size
+        name: Team size
+        expr: "sum ( [Latest Total Direct Reports]  )"
+        was_auto_generated: false
+      - id: formula_Team status
+        name: Team status
+        expr: "if ( max ( [Latest Sort Weight] ) = 3 ) then 'Inactive' else if ( max ( [Latest Sort Weight] ) = 2 ) then 'Somewhat active' else if ( max ( [Latest Sort Weight]  ) = 1 ) then 'Active' else null"
+        was_auto_generated: false
+      - id: formula_Teams
+        name: Teams
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Team size] [formula_Opportunity score] [formula_Team status] [formula_My team views] [formula_Recommended action sent] [formula_Team size] > 0 [formula_Teams] [Location] sort by [Location]"
+      answer_columns:
+      - name: Location
+        sort_info:
+          category: DEFAULT
+      - name: My team views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Opportunity score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Recommended action sent
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team size
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Team status
+      - name: Teams
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Location
+          show_headline: false
+        - column_id: My team views
+          show_headline: false
+        - column_id: Opportunity score
+          show_headline: false
+        - column_id: Recommended action sent
+          show_headline: false
+        - column_id: Team size
+          show_headline: false
+        - column_id: Team status
+          show_headline: false
+        - column_id: Teams
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Team status
+        - Team size
+        - Opportunity score
+        - My team views
+        - Recommended action sent
+        - Teams
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Team status\",\"width\": 123.81532287597656}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Location\",\"Team status\",\"Teams\",\"Team size\",\"My team views\",\"Recommended action sent\",\"Opportunity score\"],\"columnProperties\": [{\"columnId\": \"Team size\",\"columnProperty\": {}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Location
+        - column_id: My team views
+        - column_id: Opportunity score
+        - column_id: Recommended action sent
+        - column_id: Team size
+        - column_id: Team status
+        - column_id: Teams
+        axis_configs:
+        - x:
+          - Team status
+          "y":
+          - Team size
+          - Opportunity score
+          - My team views
+          - Recommended action sent
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Team size\",\"columnProperty\": {}},{\"columnId\": \"Opportunity score\",\"columnProperty\": {}},{\"columnId\": \"Team status\",\"columnProperty\": {}},{\"columnId\": \"My team views\",\"columnProperty\": {}},{\"columnId\": \"Recommended action sent\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"c75e1eb7-8323-483f-a123-706d6b040a4c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Team size\"],\"isOpposite\": false}},{\"id\": \"f87856bf-387f-4afb-91a5-9c6b43f8d3af\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Opportunity score\"],\"isOpposite\": true}},{\"id\": \"ae91b135-677c-49d4-a21f-c5668f045ecf\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"My team views\"],\"isOpposite\": true}},{\"id\": \"884d0dc9-2e11-4a9f-b33f-5d37ea940918\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Recommended action sent\"],\"isOpposite\": true}},{\"id\": \"1a2f7164-fee1-436c-9b7f-490109c64bef\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Team status\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Team size\",\"color\": \"#06BF7F\"},{\"serieName\": \"ec088f32-9eb7-4c8e-b035-295807f8b8f0\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: My team dashboard usage by Location
+    viz_guid: a01080af-e3e9-4bb6-84d4-841cb1064194
+  filters:
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Daily Manager Adoption Reporting Date
+    excluded_visualizations:
+    - Viz_1
+    - Viz_3
+    - Viz_4
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 7
+      width: 6
+    - visualization_id: Viz_2
+      x: 6
+      "y": 0
+      height: 7
+      width: 6
+    - visualization_id: Viz_3
+      x: 0
+      "y": 7
+      height: 8
+      width: 6
+    - visualization_id: Viz_4
+      x: 0
+      "y": 15
+      height: 8
+      width: 6
+    - visualization_id: Viz_5
+      x: 6
+      "y": 7
+      height: 8
+      width: 6
+    - visualization_id: Viz_6
+      x: 6
+      "y": 15
+      height: 8
+      width: 6
+  ordered_chips:
+  - name: Tenant Code
+    type: FILTER
+  - name: Daily Manager Adoption Reporting Date
+    type: FILTER

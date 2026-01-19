@@ -1,0 +1,217 @@
+guid: fab32284-4a0f-4246-a647-35517fc28d67
+model:
+  name: Moderation
+  model_tables:
+  - name: VW_USER_AS_IS
+    fqn: 38306036-94a8-4c22-a7f8-64d6c854732e
+  - name: VW_TENANT_DETAILS_AS_IS
+    fqn: 65fb81cb-a0c0-4a36-a972-9308693f7b1a
+    joins:
+    - with: Moderation Author Details
+      'on': '[VW_TENANT_DETAILS_AS_IS::TENANT_CODE] = [Moderation Author Details::TENANT_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_REF_CONTENT_MODERATION_ENTITY_AS_IS
+    fqn: 2db09930-cfc9-4d26-854b-07bba1605d74
+  - name: VW_REF_MODERATION_STATUS_AS_IS
+    fqn: e7334d61-b564-4e1e-bf15-b2fb9766822c
+  - name: Moderation Details
+    fqn: 45012374-c57b-4054-987d-5d435d871ade
+    joins:
+    - with: VW_FEED_AS_IS
+      'on': '[Moderation Details::TENANT_CODE] = [VW_FEED_AS_IS::TENANT_CODE] AND [Moderation Details::COMMENT_FEED_CODE] = [VW_FEED_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: VW_REF_CONTENT_MODERATION_ENTITY_AS_IS
+      'on': '[Moderation Details::ENTITY_TYPE_CODE] = [VW_REF_CONTENT_MODERATION_ENTITY_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: VW_REF_MODERATION_STATUS_AS_IS
+      'on': '[Moderation Details::MODERATION_STATUS_CODE] = [VW_REF_MODERATION_STATUS_AS_IS::CODE]'
+      type: LEFT_OUTER
+      cardinality: MANY_TO_ONE
+    - with: VW_USER_AS_IS
+      'on': '[Moderation Details::MODERATED_BY_CODE] = [VW_USER_AS_IS::CODE] AND [Moderation Details::TENANT_CODE] = [VW_USER_AS_IS::TENANT_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: Moderation Author Details
+    fqn: adc7c29a-98ef-460e-86a9-1f814b8f6ffa
+    joins:
+    - with: Moderation Details
+      'on': '[Moderation Author Details::SOURCE_RECORD_CODE] = [Moderation Details::SOURCE_RECORD_CODE] AND [Moderation Author Details::TENANT_CODE] = [Moderation Details::TENANT_CODE]'
+      type: LEFT_OUTER
+      cardinality: ONE_TO_MANY
+  - name: VW_FEED_AS_IS
+    fqn: 3d1523cc-a10e-4e12-8b90-d591192727ce
+    joins:
+    - with: VW_CONTENT_AS_IS
+      'on': '[VW_FEED_AS_IS::TENANT_CODE] = [VW_CONTENT_AS_IS::TENANT_CODE] AND [VW_FEED_AS_IS::CONTENT_CODE] = [VW_CONTENT_AS_IS::CODE]'
+      type: LEFT_OUTER
+      cardinality: MANY_TO_ONE
+    - with: VW_SITE_AS_IS
+      'on': '[VW_FEED_AS_IS::SITE_CODE] = [VW_SITE_AS_IS::CODE] AND [VW_FEED_AS_IS::TENANT_CODE] = [VW_SITE_AS_IS::TENANT_CODE]'
+      type: LEFT_OUTER
+      cardinality: MANY_TO_ONE
+  - name: VW_SITE_AS_IS
+    fqn: 6d6e115b-0c82-4e62-9118-fc190203d1e9
+  - name: VW_CONTENT_AS_IS
+    fqn: 74c0f308-e28b-4239-8834-1c9ba1b404e5
+  formulas:
+  - id: formula_Author Profile Url
+    name: Author Profile Url
+    expr: concat ( "{caption}" , [Moderation Author Details::FULL_NAME]  , "{/caption}" , [VW_TENANT_DETAILS_AS_IS::DOMAIN_URL] , '/people/' , [Moderation Author Details::AUTHOR_CODE] )
+  - id: formula_Content Url
+    name: Content Url
+    expr: concat ( "{caption}" , [VW_CONTENT_AS_IS::TITLE] , "{/caption}" , [VW_CONTENT_AS_IS::CONTENT_URL]  )
+  - id: formula_Moderator Profile Url
+    name: Moderator Profile Url
+    expr: concat ( "{caption}" , [VW_USER_AS_IS::FULL_NAME] , "{/caption}" , [VW_TENANT_DETAILS_AS_IS::DOMAIN_URL] , '/people/' , [VW_USER_AS_IS::CODE]  )
+  - id: formula_Site Url
+    name: Site Url
+    expr: concat ( "{caption}" , [VW_SITE_AS_IS::SITE_NAME] , "{/caption}" , [VW_SITE_AS_IS::SITE_URL]  )
+  columns:
+  - name: Moderator Full Name
+    column_id: VW_USER_AS_IS::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Author Code
+    column_id: Moderation Author Details::AUTHOR_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Site Code
+    column_id: VW_SITE_AS_IS::CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Content Code
+    column_id: VW_CONTENT_AS_IS::CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Author Profile Url
+    formula_id: formula_Author Profile Url
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Moderation Source Record Identifier
+    column_id: Moderation Details::SOURCE_RECORD_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Site Name
+    column_id: VW_SITE_AS_IS::SITE_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Content Title
+    column_id: VW_CONTENT_AS_IS::TITLE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Tenant Code
+    column_id: VW_TENANT_DETAILS_AS_IS::TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Author Full Name
+    column_id: Moderation Author Details::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Author Title
+    column_id: Moderation Author Details::TITLE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Author Location
+    column_id: Moderation Author Details::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Report Reason
+    column_id: Moderation Details::REPORT_REASON
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Reported Datetime
+    column_id: Moderation Details::REPORTED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Moderation Datetime
+    column_id: Moderation Details::MODERATION_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Is System Reported
+    column_id: Moderation Details::IS_SYSTEM_REPORTED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Is Feed Or Comment Deleted
+    column_id: Moderation Details::IS_FEED_OR_COMMENT_DELETED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Moderation Entity
+    column_id: VW_REF_CONTENT_MODERATION_ENTITY_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Moderation Status
+    column_id: VW_REF_MODERATION_STATUS_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Moderator Title
+    column_id: VW_USER_AS_IS::TITLE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Moderator Location
+    column_id: VW_USER_AS_IS::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Moderation Identifier
+    column_id: Moderation Details::CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Source Record Code
+    column_id: Moderation Author Details::SOURCE_RECORD_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Source Record Created Datetime
+    column_id: Moderation Author Details::SOURCE_RECORD_CREATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Site Url
+    formula_id: formula_Site Url
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Content Url
+    formula_id: formula_Content Url
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Moderator Profile Url
+    formula_id: formula_Moderator Profile Url
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Domain Url
+    column_id: VW_TENANT_DETAILS_AS_IS::DOMAIN_URL
+    properties:
+      column_type: ATTRIBUTE
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
+    spotter_config:
+      is_spotter_enabled: false
+  parameters:
+  - id: 0ab64720-c93b-4ee3-a8e9-da7f7c8441e7
+    name: Reporting end date
+    data_type: DATE
+    default_value: 12/31/2025
+    description: ''
+  - id: 11baf45d-ba77-48a6-a7e0-58ec90c0e531
+    name: Reporting start date
+    data_type: DATE
+    default_value: 01/01/2025
+    description: ''
