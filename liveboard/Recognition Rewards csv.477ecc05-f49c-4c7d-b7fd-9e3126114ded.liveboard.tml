@@ -1,0 +1,1340 @@
+guid: 477ecc05-f49c-4c7d-b7fd-9e3126114ded
+liveboard:
+  name: Recognition Rewards csv
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: People leaderboard - points gifted out
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Points given] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given
+        name: Points given
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "sum_if ( [Transaction Datetime] >= [Offset Start Date] and [Transaction Datetime] <= [Offset End Date] , [Transaction Points] )"
+        was_auto_generated: false
+      search_query: "[formula_Points given] [User Name] sort by [formula_Points given] descending [formula_User check] [formula_User check] > 0 [User Code]"
+      answer_columns:
+      - name: Points given
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      - name: User Code
+      - name: User Name
+        custom_name: User name
+        dynamic_title: User name
+      - name: User check
+      table:
+        table_columns:
+        - column_id: Points given
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        - column_id: User Name
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        ordered_column_ids:
+        - User Name
+        - User Code
+        - Points given
+        - User check
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"User Name\",\"width\": 168.05401611328125},{\"columnId\": \"Points given\",\"width\": 181.1865234375}],\"showTableFooter\": true,\"orderedColumnIds\": [\"User Name\",\"Points given\",\"User Code\",\"User check\"],\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}},{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Points given
+        - column_id: User Code
+        - column_id: User Name
+        - column_id: User check
+        axis_configs:
+        - x:
+          - User Code
+          "y":
+          - Points given
+          - User check
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}},{\"columnId\": \"b06cf38a-7140-41a4-93e1-cc43c83375eb\",\"columnProperty\": {}},{\"columnId\": \"4000f98f-61d6-4c1e-a8db-5fced3baedb1\",\"columnProperty\": {}},{\"columnId\": \"User Name\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"3009cf10-2f89-4584-99aa-e1fac0733d53\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given\"],\"isOpposite\": false}},{\"id\": \"26daf053-b4e7-446e-be5a-52b7c5d12f17\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"8a0dfe23-455a-43ee-affb-edee78dc676e\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Code\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/14/2024
+      dynamic_name: People leaderboard - points gifted out
+    viz_guid: f1bd8774-9f6d-4b10-8ea1-47af44e4b844
+  - id: Viz_2
+    answer:
+      name: People leaderboard - points received
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Points received] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points received
+        name: Points received
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "sum_if ( [Transaction Datetime] >= [Offset Start Date] and [Transaction Datetime] <= [Offset End Date] , [Transaction Points] )"
+        was_auto_generated: false
+      search_query: "[formula_Points received] [User Name] sort by [formula_Points received] descending [formula_User check] [formula_User check] > 0 [User Code]"
+      answer_columns:
+      - name: Points received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      - name: User Code
+      - name: User Name
+      - name: User check
+      table:
+        table_columns:
+        - column_id: Points received
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        - column_id: User Name
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        ordered_column_ids:
+        - User Name
+        - User Code
+        - Points received
+        - User check
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"User Name\",\"width\": 168.05401611328125},{\"columnId\": \"Points received\",\"width\": 181.1865234375}],\"showTableFooter\": true,\"orderedColumnIds\": [\"User Name\",\"Points received\",\"User Code\",\"User check\"],\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}},{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Points received
+        - column_id: User Code
+        - column_id: User Name
+        - column_id: User check
+        axis_configs:
+        - x:
+          - User Code
+          "y":
+          - Points received
+          - User check
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {}},{\"columnId\": \"74e9b82f-9ef7-4538-9883-81ae5a341b05\",\"columnProperty\": {}},{\"columnId\": \"dfcfcec6-b146-4da3-ae66-f18055fdd083\",\"columnProperty\": {}},{\"columnId\": \"User Name\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"3ab25a84-0257-4302-abc2-3169e2b8253c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points received\"],\"isOpposite\": false}},{\"id\": \"7f6da6ed-96d0-4de2-83f4-76eaf4ea8752\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"87981642-c489-4528-9197-5a3b0a96f545\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Code\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/14/2024
+      dynamic_name: People leaderboard - points received
+    viz_guid: dc095c04-f421-4e7b-97fa-53fcf2bd9ef3
+  - id: Viz_3
+    answer:
+      name: Location leaderboard - points received
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Percentage
+        name: Percentage
+        expr: "round ( ( [formula_User who received points] / [formula_Total user] ) * 100 , 10 )"
+        was_auto_generated: false
+      - id: formula_Points received
+        name: Points received
+        expr: "ifnull ( sum_if ( [Transaction Datetime] >= [Reward start date] and [Transaction Datetime] <= [Reward end date] and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total user
+        name: Total user
+        expr: "unique count ( [Daily Adoption User Code] )"
+        was_auto_generated: false
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( unique_count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_User who received points
+        name: User who received points
+        expr: "unique_count_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Points] > 0 and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Points received] sort by [formula_Points received] descending [formula_User check] [formula_User check] > 0 [Location] [formula_Total user] [formula_User who received points] [formula_Percentage]"
+      answer_columns:
+      - name: Location
+      - name: Percentage
+      - name: Points received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      - name: Total user
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User check
+      - name: User who received points
+      table:
+        table_columns:
+        - column_id: Location
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        - column_id: Points received
+          show_headline: false
+        - column_id: Total user
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        - column_id: User who received points
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Points received
+        - User check
+        - Total user
+        - User who received points
+        - Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Points received\",\"width\": 114.1865234375},{\"columnId\": \"Location\",\"width\": 225.91603088378906},{\"columnId\": \"User who received points\",\"width\": 123.0}],\"showTableFooter\": true,\"orderedColumnIds\": [\"Location\",\"User who received points\",\"Total user\",\"Percentage\",\"Points received\"],\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Location
+        - column_id: Percentage
+        - column_id: Points received
+        - column_id: Total user
+        - column_id: User check
+        - column_id: User who received points
+        axis_configs:
+        - x:
+          - Location
+          "y":
+          - Points received
+          - User check
+          - Total user
+          - User who received points
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {}},{\"columnId\": \"f61702d0-f638-4042-a0cd-1bc543508281\",\"columnProperty\": {}},{\"columnId\": \"01cd104b-cdc5-4e47-b479-fe4f3c96a15d\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}},{\"columnId\": \"Total user\",\"columnProperty\": {}},{\"columnId\": \"User who received points\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"cc0e332e-fea3-4c82-9618-a9f10dcd3495\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points received\"],\"isOpposite\": false}},{\"id\": \"02b21649-4420-4a2f-8118-d969b3f50d20\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"c4db33be-8f44-49b7-94ea-8b776aec7a67\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total user\"],\"isOpposite\": true}},{\"id\": \"c412fde7-e7b3-4f3f-b765-92dde470bb47\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User who received points\"],\"isOpposite\": true}},{\"id\": \"90df6966-7614-44fe-be0e-38e074192910\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Location\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Location leaderboard - points received
+    viz_guid: 781e6ddd-a19e-4456-a785-f3a88f357f30
+  - id: Viz_4
+    answer:
+      name: Department leaderboard - points received
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Percentage
+        name: Percentage
+        expr: "round ( ( [formula_User who received points] / [formula_Total users] ) * 100 )"
+        was_auto_generated: false
+      - id: formula_Points received
+        name: Points received
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total users
+        name: Total users
+        expr: "unique count ( [Daily Adoption User Code] )"
+        was_auto_generated: false
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_User who received points
+        name: User who received points
+        expr: "unique_count_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Points] > 0 and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Points received] sort by [formula_Points received] descending [formula_User check] [formula_User check] > 0 [Department] [formula_User who received points] [formula_Total users] [formula_Percentage]"
+      answer_columns:
+      - name: Department
+      - name: Percentage
+      - name: Points received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      - name: Total users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User check
+      - name: User who received points
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Department
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        - column_id: Points received
+          show_headline: false
+        - column_id: Total users
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        - column_id: User who received points
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Points received
+        - User check
+        - User who received points
+        - Total users
+        - Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Department\",\"width\": 142.5320281982422},{\"columnId\": \"User who received points\",\"width\": 127.0},{\"columnId\": \"Points received\",\"width\": 142.1865234375}],\"showTableFooter\": true,\"orderedColumnIds\": [\"Department\",\"User who received points\",\"Total users\",\"Percentage\",\"Points received\"],\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Department
+        - column_id: Percentage
+        - column_id: Points received
+        - column_id: Total users
+        - column_id: User check
+        - column_id: User who received points
+        axis_configs:
+        - x:
+          - Department
+          "y":
+          - Points received
+          - User check
+          - User who received points
+          - Total users
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {}},{\"columnId\": \"a3026729-34f5-4083-811f-0dbce155ea01\",\"columnProperty\": {}},{\"columnId\": \"58e449ff-7d22-4232-8677-4efa8d6d068f\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"User who received points\",\"columnProperty\": {}},{\"columnId\": \"Total users\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"e2fe9ce1-200b-42d3-b912-d4c4ddc2fe1c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points received\"],\"isOpposite\": false}},{\"id\": \"959890da-73ad-4113-afe5-c0d44e8e7537\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"8df42e60-bb14-4c82-b127-4f80abb473b4\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User who received points\"],\"isOpposite\": true}},{\"id\": \"ed841503-36c0-4511-b29c-7fa9a5087a60\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total users\"],\"isOpposite\": true}},{\"id\": \"01cb4bd1-178f-4707-abd2-66ed3c6a535f\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Department\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Department leaderboard - points received
+    viz_guid: c010b596-7023-4629-abef-992134b38969
+  - id: Viz_5
+    answer:
+      name: Location leaderboard - points gifted out
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Percentage
+        name: Percentage
+        expr: "round ( ( [formula_Users who gifted points] / [formula_Total users] ) * 100 )"
+        was_auto_generated: false
+      - id: formula_Points given
+        name: Points given
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total users
+        name: Total users
+        expr: "unique count ( [Daily Adoption User Code] )"
+        was_auto_generated: false
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Users who gifted points
+        name: Users who gifted points
+        expr: "unique_count_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Points] > 0 and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Points given] sort by [formula_Points given] descending [formula_User check] [formula_User check] > 0 [Location] [formula_Total users] [formula_Users who gifted points] [formula_Percentage]"
+      answer_columns:
+      - name: Location
+      - name: Percentage
+      - name: Points given
+        custom_name: Points gifted out
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Points gifted out
+        sort_info:
+          category: DEFAULT
+      - name: Total users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User check
+      - name: Users who gifted points
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Location
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        - column_id: Points given
+          show_headline: false
+        - column_id: Total users
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        - column_id: Users who gifted points
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Points given
+        - User check
+        - Total users
+        - Users who gifted points
+        - Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Location\",\"width\": 187.91603088378906},{\"columnId\": \"Points given\",\"width\": 206.1865234375},{\"columnId\": \"Percentage\",\"width\": 168.17620849609375},{\"columnId\": \"Total users\",\"width\": 182.36862182617188},{\"columnId\": \"Users who gifted points\",\"width\": 185.0}],\"showTableFooter\": true,\"orderedColumnIds\": [\"Location\",\"Users who gifted points\",\"Total users\",\"Percentage\",\"Points given\"],\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Location
+        - column_id: Percentage
+        - column_id: Points given
+        - column_id: Total users
+        - column_id: User check
+        - column_id: Users who gifted points
+        axis_configs:
+        - x:
+          - Location
+          "y":
+          - Points given
+          - User check
+          - Total users
+          - Users who gifted points
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}},{\"columnId\": \"88cf6fdf-8d08-46d7-af2b-ea4fc3c4cc15\",\"columnProperty\": {}},{\"columnId\": \"b4d318b2-1433-4bf3-a5d3-e85403704967\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}},{\"columnId\": \"Total users\",\"columnProperty\": {}},{\"columnId\": \"Users who gifted points\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"872bee76-8311-4cc4-93b6-07727e494490\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given\"],\"isOpposite\": false}},{\"id\": \"91f93df5-b465-4432-9ec6-ce864db7d7fd\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"a8879ad3-b11e-43d4-8943-17f7f8a07200\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total users\"],\"isOpposite\": true}},{\"id\": \"4d1dc206-05ee-4521-9b07-0e4bda29bb8d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Users who gifted points\"],\"isOpposite\": true}},{\"id\": \"6af0d3b1-131a-4340-a227-ad8c845eddf3\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Location\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Location leaderboard - points gifted out
+    viz_guid: 4878bf1b-e43b-4ac5-ba06-9bda25096984
+  - id: Viz_6
+    answer:
+      name: Department leaderboard - points gifted out
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Percentage
+        name: Percentage
+        expr: "round ( ( [formula_Users who gifted points] / [formula_Total users] ) * 100 )"
+        was_auto_generated: false
+      - id: formula_Points given
+        name: Points given
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total users
+        name: Total users
+        expr: "unique count ( [Daily Adoption User Code] )"
+        was_auto_generated: false
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Users who gifted points
+        name: Users who gifted points
+        expr: "unique_count_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Points] > 0 and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Points given] [formula_User check] [formula_User check] > 0 [Department] [formula_Users who gifted points] [formula_Total users] [formula_Percentage] sort by [formula_Points given]"
+      answer_columns:
+      - name: Department
+      - name: Percentage
+      - name: Points given
+        custom_name: Points gifted out
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Points gifted out
+        sort_info:
+          category: DEFAULT
+      - name: Total users
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: User check
+      - name: Users who gifted points
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Department
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        - column_id: Points given
+          show_headline: false
+        - column_id: Total users
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        - column_id: Users who gifted points
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Points given
+        - User check
+        - Users who gifted points
+        - Total users
+        - Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Department\",\"width\": 208.5320281982422},{\"columnId\": \"Users who gifted points\",\"width\": 127.0},{\"columnId\": \"Points given\",\"width\": 207.1865234375}],\"showTableFooter\": true,\"orderedColumnIds\": [\"Department\",\"Users who gifted points\",\"Total users\",\"Percentage\",\"Points given\"],\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Department
+        - column_id: Percentage
+        - column_id: Points given
+        - column_id: Total users
+        - column_id: User check
+        - column_id: Users who gifted points
+        axis_configs:
+        - x:
+          - Department
+          "y":
+          - Points given
+          - User check
+          - Users who gifted points
+          - Total users
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}},{\"columnId\": \"a75c8bb7-6a86-4e70-8e7a-13c4dd9fe278\",\"columnProperty\": {}},{\"columnId\": \"a36c8e07-bcdc-44d5-9795-1535d0e8d921\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Users who gifted points\",\"columnProperty\": {}},{\"columnId\": \"Total users\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"f5fbb7ed-99e4-4af1-9e3a-d9c17fb1fb69\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given\"],\"isOpposite\": false}},{\"id\": \"1f99a2c1-21fc-422e-8d0c-d7786ce31742\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"393a3930-47e9-4a85-889c-c4573ba8ec0b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Users who gifted points\"],\"isOpposite\": true}},{\"id\": \"6b405fc3-fd82-4ae4-89aa-78a774845674\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total users\"],\"isOpposite\": true}},{\"id\": \"c6ca06ea-2514-482b-95b8-8a81a4198b6a\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Department\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Department leaderboard - points gifted out
+    viz_guid: 59823604-d818-4120-990a-97c13d58af2c
+  - id: Viz_7
+    answer:
+      name: Manager leaderboard - points received
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Points received] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points received
+        name: Points received
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'credit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "sum_if ( [Transaction Datetime] >= [Offset Start Date] and [Transaction Datetime] <= [Offset End Date] , [Transaction Points] )"
+        was_auto_generated: false
+      search_query: "[formula_Points received] [User Name] sort by [formula_Points received] descending [formula_User check] [formula_User check] > 0 [Is Manager].true [User Code]"
+      answer_columns:
+      - name: Points received
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      - name: User Code
+      - name: User Name
+        custom_name: Manager name
+        dynamic_title: Manager name
+      - name: User check
+      table:
+        table_columns:
+        - column_id: Points received
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        - column_id: User Name
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        ordered_column_ids:
+        - User Name
+        - User Code
+        - Points received
+        - User check
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"User Name\",\"width\": 168.05401611328125},{\"columnId\": \"Points received\",\"width\": 181.1865234375}],\"showTableFooter\": true,\"orderedColumnIds\": [\"User Name\",\"Points received\",\"User Code\",\"User check\"],\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}},{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Points received
+        - column_id: User Code
+        - column_id: User Name
+        - column_id: User check
+        axis_configs:
+        - x:
+          - User Code
+          "y":
+          - Points received
+          - User check
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points received\",\"columnProperty\": {}},{\"columnId\": \"d3e68718-6adc-4b5d-87d4-99a94ac421b2\",\"columnProperty\": {}},{\"columnId\": \"9d6a62f0-76ff-487e-b7f1-f5f1740be1a2\",\"columnProperty\": {}},{\"columnId\": \"User Name\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"60b18ec1-5c4f-4f71-a049-6ee5c82db72b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points received\"],\"isOpposite\": false}},{\"id\": \"38bf2058-2543-4106-94fa-1aa17e89790b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"11044d3e-e961-4563-ad7a-a6a0cfc1776c\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Code\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Manager leaderboard - points received
+    viz_guid: d3331d0e-b7b2-4846-a5d6-3723b4dece29
+  - id: Viz_8
+    answer:
+      name: Manager leaderboard - points gifted out
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_User check
+        name: User check
+        expr: "ifnull ( count_if ( date ( [Daily Adoption Reporting Date] ) >= [Reward start date] and date ( [Daily Adoption Reporting Date] ) <= [Reward end date] , [Daily Adoption User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Difference
+        name: Difference
+        expr: "ifnull ( ( ( [formula_Points given] - [formula_Points given offset] ) / [formula_Points given offset] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given
+        name: Points given
+        expr: "ifnull ( sum_if ( date ( [Transaction Datetime] ) >= [Reward start date] and date ( [Transaction Datetime] ) <= [Reward end date] and [Transaction Direction] = 'debit' and [Transaction Type] = 'recognition peer gifting' and [Transaction Status] = 'fulfilled' , [Transaction Points] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Points given offset
+        name: Points given offset
+        expr: "sum_if ( [Transaction Datetime] >= [Offset Start Date] and [Transaction Datetime] <= [Offset End Date] , [Transaction Points] )"
+        was_auto_generated: false
+      search_query: "[formula_Points given] [User Name] sort by [formula_Points given] descending [formula_User check] [formula_User check] > 0 [Is Manager].true [User Code]"
+      answer_columns:
+      - name: Points given
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      - name: User Code
+      - name: User Name
+        custom_name: Manager name
+        dynamic_title: Manager name
+      - name: User check
+      table:
+        table_columns:
+        - column_id: Points given
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        - column_id: User Name
+          show_headline: false
+        - column_id: User check
+          show_headline: false
+        ordered_column_ids:
+        - User Name
+        - User Code
+        - Points given
+        - User check
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"User Name\",\"width\": 168.05401611328125},{\"columnId\": \"Points given\",\"width\": 181.1865234375}],\"showTableFooter\": true,\"orderedColumnIds\": [\"User Name\",\"Points given\",\"User Code\",\"User check\"],\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"User check\",\"columnProperty\": {\"isHidden\": true}},{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Points given
+        - column_id: User Code
+        - column_id: User Name
+        - column_id: User check
+        axis_configs:
+        - x:
+          - User Code
+          "y":
+          - Points given
+          - User check
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Points given\",\"columnProperty\": {}},{\"columnId\": \"be80cbbd-9ed4-4ea3-9ebf-b2c92c1d9b41\",\"columnProperty\": {}},{\"columnId\": \"1ac7ca61-d60f-4711-bcf5-a75d3a5c54b1\",\"columnProperty\": {}},{\"columnId\": \"User Name\",\"columnProperty\": {}},{\"columnId\": \"User check\",\"columnProperty\": {}},{\"columnId\": \"User Code\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"003273f9-ac84-4f3c-a258-2c7b7932226b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Points given\"],\"isOpposite\": false}},{\"id\": \"6814d6ea-e483-44bd-863e-45b6c7e71f34\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User check\"],\"isOpposite\": true}},{\"id\": \"6ecc2a88-1cab-4370-8bfe-b18fb2737744\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Code\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/17/2025
+      - key: Reward start date
+        value: 11/18/2024
+      dynamic_name: Manager leaderboard - points gifted out
+    viz_guid: 2a702f00-f84c-49ad-8c4e-a7e311d9d07d
+  - id: Viz_9
+    answer:
+      name: Activity points given
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_Gifted user is manager
+        name: Gifted user is manager
+        expr: "if ( [Is Manager] ) then 'Yes' else 'No'"
+        was_auto_generated: false
+      - id: formula_User is manager
+        name: User is manager
+        expr: "if ( [Giver User Is Manager] ) then 'Yes' else 'No'"
+        was_auto_generated: false
+      search_query: "[User Name] [Transaction Datetime] [Transaction Datetime].daily [Email] [Location] [Division] [Department] [Manager Name] [Pay Currency] [Transaction Type] [Giver User Email] [Giver User Name] [Giver User Location] [Giver User Division] [Giver User Department] [Giver User Pay Currency] [Transaction Points] [Transaction Direction].credit [Transaction Status].fulfilled [Transaction Type].'recognition peer gifting' [Giver Manager Profile Url] [User Manager Profile Url] [Giver Manager Email] [User Manager Email] [Transaction Amount Usd] [Giver User Manager Name] [Giver User Status] [User Status] [Giver User Profile Url] [formula_User is manager] [formula_Gifted user is manager]"
+      answer_columns:
+      - name: Day(Transaction Datetime)
+        custom_name: Transaction date
+        dynamic_title: Transaction date
+      - name: Department
+        custom_name: Gifted user department
+        dynamic_title: Gifted user department
+      - name: Division
+        custom_name: Gifted user division
+        dynamic_title: Gifted user division
+      - name: Email
+        custom_name: Gifted to user email
+        dynamic_title: Gifted to user email
+      - name: Gifted user is manager
+      - name: Giver Manager Email
+        custom_name: User manager email
+        dynamic_title: User manager email
+      - name: Giver Manager Profile Url
+        custom_name: User manager profile url
+        dynamic_title: User manager profile url
+      - name: Giver User Department
+        custom_name: User department
+        dynamic_title: User department
+      - name: Giver User Division
+        custom_name: User division
+        dynamic_title: User division
+      - name: Giver User Email
+        custom_name: User email
+        dynamic_title: User email
+      - name: Giver User Location
+        custom_name: User location
+        dynamic_title: User location
+      - name: Giver User Manager Name
+        custom_name: User manager name
+        dynamic_title: User manager name
+      - name: Giver User Name
+        custom_name: User name
+        dynamic_title: User name
+      - name: Giver User Pay Currency
+        custom_name: User payroll currency
+        dynamic_title: User payroll currency
+      - name: Giver User Profile Url
+        custom_name: User profile url
+        dynamic_title: User profile url
+      - name: Giver User Status
+        custom_name: User status
+        dynamic_title: User status
+      - name: Location
+        custom_name: Gifted user location
+        dynamic_title: Gifted user location
+      - name: Manager Name
+        custom_name: Gifted user manager name
+        dynamic_title: Gifted user manager name
+      - name: Pay Currency
+        custom_name: Gifted user payroll currency
+        dynamic_title: Gifted user payroll currency
+      - name: Total Transaction Amount Usd
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Transaction Points
+        custom_name: Gifted point amount
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Gifted point amount
+      - name: Transaction Type
+        custom_name: Transaction type
+        dynamic_title: Transaction type
+      - name: User Manager Email
+        custom_name: Gifted user manager email
+        dynamic_title: Gifted user manager email
+      - name: User Manager Profile Url
+        custom_name: Gifted user manager profile url
+        dynamic_title: Gifted user manager profile url
+      - name: User Name
+        custom_name: Gifted to user name
+        dynamic_title: Gifted to user name
+      - name: User Status
+        custom_name: Gifted user status
+        dynamic_title: Gifted user status
+      - name: User is manager
+      table:
+        table_columns:
+        - column_id: Day(Transaction Datetime)
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Division
+          show_headline: false
+        - column_id: Email
+          show_headline: false
+        - column_id: Gifted user is manager
+          show_headline: false
+        - column_id: Giver Manager Email
+          show_headline: false
+        - column_id: Giver Manager Profile Url
+          show_headline: false
+        - column_id: Giver User Department
+          show_headline: false
+        - column_id: Giver User Division
+          show_headline: false
+        - column_id: Giver User Email
+          show_headline: false
+        - column_id: Giver User Location
+          show_headline: false
+        - column_id: Giver User Manager Name
+          show_headline: false
+        - column_id: Giver User Name
+          show_headline: false
+        - column_id: Giver User Pay Currency
+          show_headline: false
+        - column_id: Giver User Profile Url
+          show_headline: false
+        - column_id: Giver User Status
+          show_headline: false
+        - column_id: Location
+          show_headline: false
+        - column_id: Manager Name
+          show_headline: false
+        - column_id: Pay Currency
+          show_headline: false
+        - column_id: Total Transaction Amount Usd
+          show_headline: false
+        - column_id: Total Transaction Points
+          show_headline: false
+        - column_id: Transaction Type
+          show_headline: false
+        - column_id: User Manager Email
+          show_headline: false
+        - column_id: User Manager Profile Url
+          show_headline: false
+        - column_id: User Name
+          show_headline: false
+        - column_id: User Status
+          show_headline: false
+        - column_id: User is manager
+          show_headline: false
+        ordered_column_ids:
+        - User Name
+        - Day(Transaction Datetime)
+        - Email
+        - Location
+        - Division
+        - Department
+        - Manager Name
+        - Pay Currency
+        - Transaction Type
+        - Giver User Email
+        - Giver User Name
+        - Giver User Location
+        - Giver User Division
+        - Giver User Department
+        - Giver User Pay Currency
+        - Giver Manager Profile Url
+        - User Manager Profile Url
+        - Giver Manager Email
+        - User Manager Email
+        - Giver User Manager Name
+        - Giver User Status
+        - User Status
+        - Giver User Profile Url
+        - User is manager
+        - Gifted user is manager
+        - Total Transaction Points
+        - Total Transaction Amount Usd
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"orderedColumnIds\": [\"Day(Transaction Datetime)\",\"Giver User Name\",\"Giver User Email\",\"Giver User Profile Url\",\"Giver User Location\",\"Giver User Division\",\"Giver User Department\",\"Giver User Status\",\"Giver User Manager Name\",\"Giver Manager Email\",\"Giver Manager Profile Url\",\"Giver User Pay Currency\",\"Transaction Type\",\"User Name\",\"Email\",\"User Status\",\"Location\",\"Division\",\"Department\",\"Pay Currency\",\"Total Transaction Points\",\"Total Transaction Amount Usd\",\"Gifted user is manager\",\"User is manager\",\"Manager Name\",\"User Manager Email\",\"User Manager Profile Url\"]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Day(Transaction Datetime)
+        - column_id: Department
+        - column_id: Division
+        - column_id: Email
+        - column_id: Gifted user is manager
+        - column_id: Giver Manager Email
+        - column_id: Giver Manager Profile Url
+        - column_id: Giver User Department
+        - column_id: Giver User Division
+        - column_id: Giver User Email
+        - column_id: Giver User Location
+        - column_id: Giver User Manager Name
+        - column_id: Giver User Name
+        - column_id: Giver User Pay Currency
+        - column_id: Giver User Profile Url
+        - column_id: Giver User Status
+        - column_id: Location
+        - column_id: Manager Name
+        - column_id: Pay Currency
+        - column_id: Total Transaction Amount Usd
+        - column_id: Total Transaction Points
+        - column_id: Transaction Type
+        - column_id: User Manager Email
+        - column_id: User Manager Profile Url
+        - column_id: User Name
+        - column_id: User Status
+        - column_id: User is manager
+        axis_configs:
+        - x:
+          - Day(Transaction Datetime)
+          "y":
+          - Total Transaction Points
+          - Total Transaction Amount Usd
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"User Name\",\"columnProperty\": {}},{\"columnId\": \"Day(Transaction Datetime)\",\"columnProperty\": {}},{\"columnId\": \"Email\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}},{\"columnId\": \"Division\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Manager Name\",\"columnProperty\": {}},{\"columnId\": \"Pay Currency\",\"columnProperty\": {}},{\"columnId\": \"Transaction Type\",\"columnProperty\": {}},{\"columnId\": \"Giver User Email\",\"columnProperty\": {}},{\"columnId\": \"Giver User Name\",\"columnProperty\": {}},{\"columnId\": \"Giver User Location\",\"columnProperty\": {}},{\"columnId\": \"Giver User Division\",\"columnProperty\": {}},{\"columnId\": \"Giver User Department\",\"columnProperty\": {}},{\"columnId\": \"Giver User Pay Currency\",\"columnProperty\": {}},{\"columnId\": \"Total Transaction Points\",\"columnProperty\": {}},{\"columnId\": \"Total Transaction Amount Usd\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"fd7037d8-2640-41d0-9b57-cf35efa200e0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Transaction Points\"],\"isOpposite\": false}},{\"id\": \"90dbb0b6-03a8-4aab-83dc-ff198981f119\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Transaction Amount Usd\"],\"isOpposite\": true}},{\"id\": \"3029fa45-ce3a-4129-a65f-12e808bdf4d8\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Transaction Datetime)\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Activity points given
+    viz_guid: 9f6629c3-35b9-4f47-b61c-d8d8f7840870
+  - id: Viz_10
+    answer:
+      name: Activity points redeemed
+      tables:
+      - id: Reward
+        name: Reward
+        fqn: 2d280252-1974-4b1b-988b-13bee25f7974
+      formulas:
+      - id: formula_User is manager
+        name: User is manager
+        expr: "if ( [Is Manager] ) then 'Yes' else 'No'"
+        was_auto_generated: false
+      search_query: "[User Name] [Transaction Datetime] [Transaction Datetime].daily [Email] [Location] [Division] [Department] [Manager Name] [Pay Currency] [Transaction Type] [Transaction Points] [Transaction Status].fulfilled [User Manager Profile Url] [User Manager Email] [Transaction Amount Usd] [User Status] [Transaction Direction].debit [Transaction Type].redemption [Base Currency] [Transaction Amount Base Currency] [formula_User is manager]"
+      answer_columns:
+      - name: Base Currency
+        custom_name: Redemption currency
+        dynamic_title: Redemption currency
+      - name: Day(Transaction Datetime)
+        custom_name: Transaction date
+        dynamic_title: Transaction date
+      - name: Department
+        custom_name: User department
+        dynamic_title: User department
+      - name: Division
+        custom_name: User division
+        dynamic_title: User division
+      - name: Email
+        custom_name: User email
+        dynamic_title: User email
+      - name: Location
+        custom_name: User location
+        dynamic_title: User location
+      - name: Manager Name
+        custom_name: User manager name
+        dynamic_title: User manager name
+      - name: Pay Currency
+        custom_name: User payroll currency
+        dynamic_title: User payroll currency
+      - name: Total Transaction Amount Base Currency
+        custom_name: Redemption currency amount
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Redemption currency amount
+      - name: Total Transaction Amount Usd
+        custom_name: Redemption USD amount
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Redemption USD amount
+      - name: Total Transaction Points
+        custom_name: Redemption point amount
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Redemption point amount
+      - name: Transaction Type
+        custom_name: Transaction type
+        dynamic_title: Transaction type
+      - name: User Manager Email
+        custom_name: User manager email
+        dynamic_title: User manager email
+      - name: User Manager Profile Url
+        custom_name: User manager profile url
+        dynamic_title: User manager profile url
+      - name: User Name
+        custom_name: User name
+        dynamic_title: User name
+      - name: User Status
+        custom_name: User status
+        dynamic_title: User status
+      - name: User is manager
+      table:
+        table_columns:
+        - column_id: Base Currency
+          show_headline: false
+        - column_id: Day(Transaction Datetime)
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Division
+          show_headline: false
+        - column_id: Email
+          show_headline: false
+        - column_id: Location
+          show_headline: false
+        - column_id: Manager Name
+          show_headline: false
+        - column_id: Pay Currency
+          show_headline: false
+        - column_id: Total Transaction Amount Base Currency
+          show_headline: false
+        - column_id: Total Transaction Amount Usd
+          show_headline: false
+        - column_id: Total Transaction Points
+          show_headline: false
+        - column_id: Transaction Type
+          show_headline: false
+        - column_id: User Manager Email
+          show_headline: false
+        - column_id: User Manager Profile Url
+          show_headline: false
+        - column_id: User Name
+          show_headline: false
+        - column_id: User Status
+          show_headline: false
+        - column_id: User is manager
+          show_headline: false
+        ordered_column_ids:
+        - User Name
+        - Day(Transaction Datetime)
+        - Email
+        - Location
+        - Division
+        - Department
+        - Manager Name
+        - Pay Currency
+        - Transaction Type
+        - User Manager Profile Url
+        - User Manager Email
+        - User Status
+        - Base Currency
+        - User is manager
+        - Total Transaction Points
+        - Total Transaction Amount Usd
+        - Total Transaction Amount Base Currency
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"orderedColumnIds\": [\"Day(Transaction Datetime)\",\"User Name\",\"Email\",\"Location\",\"Division\",\"Department\",\"User Status\",\"User is manager\",\"Manager Name\",\"User Manager Email\",\"User Manager Profile Url\",\"Pay Currency\",\"Transaction Type\",\"Total Transaction Points\",\"Total Transaction Amount Usd\",\"Base Currency\",\"Total Transaction Amount Base Currency\"]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Base Currency
+        - column_id: Day(Transaction Datetime)
+        - column_id: Department
+        - column_id: Division
+        - column_id: Email
+        - column_id: Location
+        - column_id: Manager Name
+        - column_id: Pay Currency
+        - column_id: Total Transaction Amount Base Currency
+        - column_id: Total Transaction Amount Usd
+        - column_id: Total Transaction Points
+        - column_id: Transaction Type
+        - column_id: User Manager Email
+        - column_id: User Manager Profile Url
+        - column_id: User Name
+        - column_id: User Status
+        - column_id: User is manager
+        axis_configs:
+        - x:
+          - Day(Transaction Datetime)
+          "y":
+          - Total Transaction Points
+          - Total Transaction Amount Usd
+          - Total Transaction Amount Base Currency
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"User Name\",\"columnProperty\": {}},{\"columnId\": \"Day(Transaction Datetime)\",\"columnProperty\": {}},{\"columnId\": \"Email\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}},{\"columnId\": \"Division\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Manager Name\",\"columnProperty\": {}},{\"columnId\": \"Pay Currency\",\"columnProperty\": {}},{\"columnId\": \"Transaction Type\",\"columnProperty\": {}},{\"columnId\": \"Total Transaction Points\",\"columnProperty\": {}},{\"columnId\": \"Total Transaction Amount Usd\",\"columnProperty\": {}},{\"columnId\": \"Total Transaction Amount Base Currency\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"178f8296-3f1c-41c4-9c30-fb356d4676fb\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Transaction Points\"],\"isOpposite\": false}},{\"id\": \"7a24f75e-e3b5-497f-981a-ba2d68fac359\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Transaction Amount Usd\"],\"isOpposite\": true}},{\"id\": \"10c6a0da-9cc8-485d-84b2-a3dbf3f88752\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Transaction Amount Base Currency\"],\"isOpposite\": true}},{\"id\": \"8b0b2c51-8e8b-41d5-9f69-bcd8efff8c09\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Transaction Datetime)\"]}}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Reward end date
+        value: 11/13/2025
+      - key: Reward start date
+        value: 11/01/2025
+      dynamic_name: Activity points redeemed
+    viz_guid: 83e6ca8c-0ec2-47f0-8650-f78eacea9219
+  filters:
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Location
+    excluded_visualizations:
+    - Viz_9
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Department
+    excluded_visualizations:
+    - Viz_9
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Giver User Department
+    excluded_visualizations:
+    - Viz_2
+    - Viz_1
+    - Viz_3
+    - Viz_5
+    - Viz_4
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_10
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Giver User Location
+    excluded_visualizations:
+    - Viz_2
+    - Viz_1
+    - Viz_3
+    - Viz_5
+    - Viz_4
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_10
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Daily Adoption Reporting Date
+    excluded_visualizations:
+    - Viz_9
+    - Viz_10
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Transaction Datetime
+    excluded_visualizations:
+    - Viz_2
+    - Viz_1
+    - Viz_3
+    - Viz_5
+    - Viz_4
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 6
+      "y": 0
+      height: 5
+      width: 6
+    - visualization_id: Viz_2
+      x: 0
+      "y": 0
+      height: 5
+      width: 6
+    - visualization_id: Viz_3
+      x: 0
+      "y": 5
+      height: 5
+      width: 6
+    - visualization_id: Viz_4
+      x: 0
+      "y": 10
+      height: 5
+      width: 6
+    - visualization_id: Viz_5
+      x: 6
+      "y": 5
+      height: 5
+      width: 6
+    - visualization_id: Viz_6
+      x: 6
+      "y": 10
+      height: 5
+      width: 6
+    - visualization_id: Viz_7
+      x: 0
+      "y": 15
+      height: 5
+      width: 6
+    - visualization_id: Viz_8
+      x: 6
+      "y": 15
+      height: 5
+      width: 6
+    - visualization_id: Viz_9
+      x: 0
+      "y": 20
+      height: 8
+      width: 12
+    - visualization_id: Viz_10
+      x: 0
+      "y": 28
+      height: 8
+      width: 12
+  parameter_overrides:
+  - key: 68e80780-f171-47a7-be87-13dd178086e1
+    value:
+      name: Reward::Reward end date
+  - key: 52c6a7ae-ac13-4427-bd20-eb9ff86f5cf6
+    value:
+      name: Reward::Reward start date
+  ordered_chips:
+  - name: Reward::Reward start date
+    type: PARAMETER
+  - name: Reward::Reward end date
+    type: PARAMETER
+  - name: Tenant Code
+    type: FILTER
+  - name: Location
+    type: FILTER
+  - name: Department
+    type: FILTER
+  - name: Giver User Department
+    type: FILTER
+  - name: Giver User Location
+    type: FILTER
+  - name: Daily Adoption Reporting Date
+    type: FILTER
+  - name: Transaction Datetime
+    type: FILTER

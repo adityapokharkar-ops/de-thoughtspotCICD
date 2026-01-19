@@ -1,0 +1,2527 @@
+guid: 9e2bb1ae-6b22-4bc8-9359-be4db7e4a178
+liveboard:
+  name: Content Analytics csv
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Engagement graph
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      search_query: "[Reporting Date] [Reporting Date].daily [Daily Total Shares] [Daily Total Favourites] [Daily Total Replies] [Daily Total Comments] sort by [Reporting Date] [Reporting Date].daily descending [Total Likes]"
+      answer_columns:
+      - name: Day(Reporting Date)
+        custom_name: Date
+        dynamic_title: Date
+        sort_info:
+          category: DEFAULT
+      - name: Total Daily Total Comments
+        custom_name: Content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Content comments
+      - name: Total Daily Total Favourites
+        custom_name: Content favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Content favorites
+      - name: Total Daily Total Replies
+        custom_name: Comment replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Comment replies
+      - name: Total Daily Total Shares
+        custom_name: Content shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Content shares
+      - name: Total Total Likes
+        custom_name: Content reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Content reactions
+      table:
+        table_columns:
+        - column_id: Day(Reporting Date)
+          show_headline: false
+        - column_id: Total Daily Total Comments
+          show_headline: false
+        - column_id: Total Daily Total Favourites
+          show_headline: false
+        - column_id: Total Daily Total Replies
+          show_headline: false
+        - column_id: Total Daily Total Shares
+          show_headline: false
+        - column_id: Total Total Likes
+          show_headline: false
+        ordered_column_ids:
+        - Day(Reporting Date)
+        - Total Daily Total Shares
+        - Total Daily Total Favourites
+        - Total Daily Total Replies
+        - Total Daily Total Comments
+        - Total Total Likes
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"orderedColumnIds\": [\"Day(Reporting Date)\",\"Total Total Likes\",\"Total Daily Total Comments\",\"Total Daily Total Replies\",\"Total Daily Total Shares\",\"Total Daily Total Favourites\"]}"
+      chart:
+        type: LINE_STACKED_COLUMN
+        chart_columns:
+        - column_id: Day(Reporting Date)
+        - column_id: Total Daily Total Comments
+        - column_id: Total Daily Total Favourites
+        - column_id: Total Daily Total Replies
+        - column_id: Total Daily Total Shares
+        - column_id: Total Total Likes
+        axis_configs:
+        - x:
+          - Day(Reporting Date)
+          "y":
+          - Total Daily Total Shares
+          - Total Daily Total Favourites
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": true,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Day(Reporting Date)\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Total Shares\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Total Favourites\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"cf083939-9982-47a6-8d2d-6736f765a5ad\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Total Shares\"],\"isOpposite\": false}},{\"id\": \"0d8b131f-4246-4eba-9ff3-4c9e08314ecc\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Total Favourites\"],\"isOpposite\": true}},{\"id\": \"5ae0e5f8-8c40-4357-a177-e4e500988f23\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Reporting Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"c95d1ec4-e0e4-4d4f-a22c-4ef6f2cd615c\",\"color\": \"#48D1E0\"},{\"serieName\": \"3586fb21-d3fb-48e0-a7df-857720b89c01\",\"color\": \"#2E75F0\"},{\"serieName\": \"comment\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"reply\",\"color\": \"#82DFE9\"},{\"serieName\": \"share\",\"color\": \"#48D1E0\"},{\"serieName\": \"view\",\"color\": \"#71A1F4\"},{\"serieName\": \"download\",\"color\": \"#8C62F5\"},{\"serieName\": \"n/a\",\"color\": \"#B094F8\"},{\"serieName\": \"post\",\"color\": \"#8C62F5\"},{\"serieName\": \"click celebrate\",\"color\": \"#56D3A8\"},{\"serieName\": \"click nudge\",\"color\": \"#BF982A\"},{\"serieName\": \"click recommended action\",\"color\": \"#369FAA\"},{\"serieName\": \"2f4a0ba2-584e-45c3-951e-e6652435d95d\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Engagement graph
+    viz_guid: 8f4ae305-e077-4467-a1f5-47add1ea846c
+  - id: Viz_2
+    answer:
+      name: Content published
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      search_query: "[Content Type] [Content Type].album [Content Type].'blog post' [Content Type].event [Content Type].page [Content Code] [Content Title] [Primary Author Full Name] [Site Name] [Content First Published Date] [Content First Published Date].daily [Content Url] [Content First Published Date ISO Timezone] [Content Modified At] [Content Modified At].daily"
+      answer_columns:
+      - name: Content Code
+      - name: Content First Published Date ISO Timezone
+        custom_name: Published date and time
+        dynamic_title: Published date and time
+      - name: Content Title
+        custom_name: Content title
+        dynamic_title: Content title
+      - name: Content Type
+        custom_name: Content type
+        dynamic_title: Content type
+      - name: Content Url
+        custom_name: URL
+        dynamic_title: URL
+      - name: Day(Content First Published Date)
+        custom_name: Published date
+        dynamic_title: Published date
+      - name: Day(Content Modified At)
+        custom_name: Content edited date
+        dynamic_title: Content edited date
+      - name: Primary Author Full Name
+        custom_name: Author
+        dynamic_title: Author
+      - name: Site Name
+        custom_name: Site name
+        dynamic_title: Site name
+      table:
+        table_columns:
+        - column_id: Content Code
+          show_headline: false
+        - column_id: Content First Published Date ISO Timezone
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Content Url
+          show_headline: false
+        - column_id: Day(Content First Published Date)
+          show_headline: false
+        - column_id: Day(Content Modified At)
+          show_headline: false
+        - column_id: Primary Author Full Name
+          show_headline: false
+        - column_id: Site Name
+          show_headline: false
+        ordered_column_ids:
+        - Content Type
+        - Content Code
+        - Content Title
+        - Primary Author Full Name
+        - Site Name
+        - Day(Content First Published Date)
+        - Content Url
+        - Content First Published Date ISO Timezone
+        - Day(Content Modified At)
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Content Title\",\"Content Type\",\"Primary Author Full Name\",\"Site Name\",\"Day(Content First Published Date)\",\"Content First Published Date ISO Timezone\",\"Day(Content Modified At)\",\"Content Url\"],\"columnProperties\": [{\"columnId\": \"Content Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: SCATTER
+        chart_columns:
+        - column_id: Content Code
+        - column_id: Content First Published Date ISO Timezone
+        - column_id: Content Title
+        - column_id: Content Type
+        - column_id: Content Url
+        - column_id: Day(Content First Published Date)
+        - column_id: Day(Content Modified At)
+        - column_id: Primary Author Full Name
+        - column_id: Site Name
+        axis_configs:
+        - x:
+          - Day(Content First Published Date)
+          "y":
+          - Content First Published Date ISO Timezone
+          category:
+          - Content Type
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Content Type\",\"columnProperty\": {}},{\"columnId\": \"Day(Content First Published Date)\",\"columnProperty\": {}},{\"columnId\": \"Content Url\",\"columnProperty\": {}},{\"columnId\": \"Content First Published Date ISO Timezone\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"08b381f8-6ea1-4829-b876-84111d11fd3f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Content First Published Date ISO Timezone\"],\"isOpposite\": false}},{\"id\": \"c71bf38a-7dfe-477c-9e11-1ec53c682153\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Content First Published Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"9f8c43df-5fa7-476f-a4a0-e6f78a4f90a0\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Content published
+    viz_guid: 6b618d3a-33f2-4d28-940f-4a7f336c251c
+  - id: Viz_3
+    answer:
+      name: Views by type
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Album views
+        name: Album views
+        expr: "count_if ( [Content Type] = 'album' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Blog post views
+        name: Blog post views
+        expr: "count_if ( [Content Type] = 'blog post' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Event views
+        name: Event views
+        expr: "count_if ( [Content Type] = 'event' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Page views
+        name: Page views
+        expr: "count_if ( [Content Type] = 'page' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Page views] [formula_Album views] [formula_Event views] [formula_Blog post views] [Interaction User Full Name] [Interaction User Email] [Company Name] [Interaction User Division] [Department] [Interacted User City] [Interaction User State] [Interaction User Country] [Is Interaction Post First Publish?] = true [Interaction Type] = 'view' [Entity Type].content"
+      answer_columns:
+      - name: Album views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Blog post views
+      - name: Company Name
+        custom_name: Company Name
+        dynamic_title: Company Name
+      - name: Department
+      - name: Event views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Interacted User City
+        custom_name: City
+        dynamic_title: City
+      - name: Interaction User Country
+        custom_name: Country
+        dynamic_title: Country
+      - name: Interaction User Division
+        custom_name: Division
+        dynamic_title: Division
+      - name: Interaction User Email
+        custom_name: Email
+        dynamic_title: Email
+      - name: Interaction User Full Name
+        custom_name: User name
+        dynamic_title: User name
+      - name: Interaction User State
+        custom_name: State
+        dynamic_title: State
+      - name: Page views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Album views
+          show_headline: false
+        - column_id: Blog post views
+          show_headline: false
+        - column_id: Company Name
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Event views
+          show_headline: false
+        - column_id: Interacted User City
+          show_headline: false
+        - column_id: Interaction User Country
+          show_headline: false
+        - column_id: Interaction User Division
+          show_headline: false
+        - column_id: Interaction User Email
+          show_headline: false
+        - column_id: Interaction User Full Name
+          show_headline: false
+        - column_id: Interaction User State
+          show_headline: false
+        - column_id: Page views
+          show_headline: false
+        ordered_column_ids:
+        - Interaction User Full Name
+        - Interaction User Email
+        - Company Name
+        - Interaction User Division
+        - Department
+        - Interacted User City
+        - Interaction User State
+        - Interaction User Country
+        - Page views
+        - Album views
+        - Event views
+        - Blog post views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Page views\",\"Event views\",\"Album views\",\"Blog post views\",\"Interaction User Full Name\",\"Interaction User Email\",\"Company Name\",\"Interaction User Division\",\"Department\",\"Interacted User City\",\"Interaction User State\",\"Interaction User Country\"]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Album views
+        - column_id: Blog post views
+        - column_id: Company Name
+        - column_id: Department
+        - column_id: Event views
+        - column_id: Interacted User City
+        - column_id: Interaction User Country
+        - column_id: Interaction User Division
+        - column_id: Interaction User Email
+        - column_id: Interaction User Full Name
+        - column_id: Interaction User State
+        - column_id: Page views
+        axis_configs:
+        - x:
+          - Interaction User Country
+          "y":
+          - Page views
+          - Album views
+          - Event views
+          - Blog post views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Page views\",\"columnProperty\": {}},{\"columnId\": \"Interaction User Full Name\",\"columnProperty\": {}},{\"columnId\": \"Album views\",\"columnProperty\": {}},{\"columnId\": \"Event views\",\"columnProperty\": {}},{\"columnId\": \"Blog post views\",\"columnProperty\": {}},{\"columnId\": \"Interaction User Email\",\"columnProperty\": {}},{\"columnId\": \"Company Name\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Interaction User Country\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"a229a665-876d-40db-98d7-1856409ddb6a\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Page views\"],\"isOpposite\": false}},{\"id\": \"0a440ef2-565d-426a-9dba-bdaa5a6f9c51\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Album views\"],\"isOpposite\": true}},{\"id\": \"6e561852-8cd1-495b-a90c-f940acc0b3d1\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Event views\"],\"isOpposite\": true}},{\"id\": \"8f3a29a8-6424-42df-9d4f-da45f587bcf0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Blog post views\"],\"isOpposite\": true}},{\"id\": \"2af1158f-94d3-4d5e-b0b0-52710375cbdf\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Interaction User Country\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Views by type
+    viz_guid: 87149425-e9a7-4037-854f-d95ef7c0b657
+  - id: Viz_4
+    answer:
+      name: Apps & links usage
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Is app deleted
+        name: Is app deleted
+        expr: "if ( [Is App Deleted?] ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Total clicks
+        name: Total clicks
+        expr: "count_if ( [App Link Accessed Datetime] >= [Content start date] and [App Link Accessed Datetime] <= [Content end date] , [App Link Accessed By User Code] )"
+        was_auto_generated: false
+      - id: formula_Unique users
+        name: Unique users
+        expr: "unique_count_if ( [App Link Accessed Datetime] >= [Content start date] and [App Link Accessed Datetime] <= [Content end date] , [App Link Accessed By User Code] )"
+        was_auto_generated: false
+      search_query: "[Content Type].album [Content Type].'blog post' [Content Type].event [Content Type].page [App LInk] [App Code] [App Link Url] [Item Type] max [App Link Current Position] max [App Link Click Position] [formula_Unique users] [formula_Total clicks] [formula_Is app deleted] [Segment]"
+      answer_columns:
+      - name: App Code
+      - name: App LInk
+        custom_name: Item name
+        dynamic_title: Item name
+      - name: App Link Url
+        custom_name: Item url
+        dynamic_title: Item url
+      - name: Is app deleted
+      - name: Item Type
+        custom_name: Item type
+        dynamic_title: Item type
+      - name: Maximum App Link Click Position
+        custom_name: Item position on click
+        dynamic_title: Item position on click
+      - name: Maximum App Link Current Position
+        custom_name: Current position
+        dynamic_title: Current position
+      - name: Segment
+        custom_name: Segment name
+        dynamic_title: Segment name
+      - name: Total clicks
+      - name: Unique users
+      table:
+        table_columns:
+        - column_id: App Code
+          show_headline: false
+        - column_id: App LInk
+          show_headline: false
+        - column_id: App Link Url
+          show_headline: false
+        - column_id: Is app deleted
+          show_headline: false
+        - column_id: Item Type
+          show_headline: false
+        - column_id: Maximum App Link Click Position
+          show_headline: false
+        - column_id: Maximum App Link Current Position
+          show_headline: false
+        - column_id: Segment
+          show_headline: false
+        - column_id: Total clicks
+          show_headline: false
+        - column_id: Unique users
+          show_headline: false
+        ordered_column_ids:
+        - App LInk
+        - App Code
+        - App Link Url
+        - Item Type
+        - Is app deleted
+        - Segment
+        - Maximum App Link Current Position
+        - Maximum App Link Click Position
+        - Unique users
+        - Total clicks
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Item Type\",\"width\": 100.0},{\"columnId\": \"Is app deleted\",\"width\": 141.7681427001953}],\"showTableFooter\": true,\"orderedColumnIds\": [\"App LInk\",\"App Link Url\",\"Item Type\",\"Maximum App Link Current Position\",\"Maximum App Link Click Position\"],\"columnProperties\": [{\"columnId\": \"App Link Url\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"App Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: App Code
+        - column_id: App LInk
+        - column_id: App Link Url
+        - column_id: Is app deleted
+        - column_id: Item Type
+        - column_id: Maximum App Link Click Position
+        - column_id: Maximum App Link Current Position
+        - column_id: Segment
+        - column_id: Total clicks
+        - column_id: Unique users
+        axis_configs:
+        - x:
+          - Item Type
+          "y":
+          - Maximum App Link Current Position
+          - Maximum App Link Click Position
+          - Unique users
+          - Total clicks
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Maximum App Link Current Position\",\"columnProperty\": {}},{\"columnId\": \"Item Type\",\"columnProperty\": {}},{\"columnId\": \"Maximum App Link Click Position\",\"columnProperty\": {}},{\"columnId\": \"Unique users\",\"columnProperty\": {}},{\"columnId\": \"Total clicks\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"5e1d284c-c980-4edf-bcdf-9d288b7cefc0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Maximum App Link Current Position\"],\"isOpposite\": false}},{\"id\": \"088bbcd9-9677-444a-adff-46313bb06cba\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Maximum App Link Click Position\"],\"isOpposite\": true}},{\"id\": \"ac465698-ff45-4fec-9cde-567801cf8b20\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique users\"],\"isOpposite\": true}},{\"id\": \"23d47ae3-67c9-48d3-91fb-f2f3899e1a01\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total clicks\"],\"isOpposite\": true}},{\"id\": \"cbc8726c-7d4c-4e9c-9b12-0085b2bcfaf2\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Item Type\"]}}],\"systemSeriesColors\": [{\"serieName\": \"8e836aaa-131f-48c7-bc87-7fed39cca016\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Apps & links usage
+    viz_guid: 569856cf-19d5-4d0f-8fcc-0a33b3bdeb78
+  - id: Viz_5
+    answer:
+      name: Most popular content
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Site status
+        name: Site status
+        expr: "if ( [Is Site Active] = true ) then 'Active' else 'Inactive'"
+        was_auto_generated: false
+      - id: formula_is content deleted
+        name: is content deleted
+        expr: "if ( [Is Content Deleted?] = true ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "count_if ( [Interaction Type] = 'favourites' and [Entity Type] = 'content' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Posts
+        name: Posts
+        expr: "count_if ( [Interaction Type] in { 'post' , 'comments' } and [Entity Type] = 'Content' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "count_if ( [Interaction Type] = 'like' and [Entity Type] = 'Content' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "count_if ( [Interaction Type] = 'reply' and [Entity Type] = 'feed' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "count_if ( [Interaction Type] = 'share' and [Entity Type] = 'content' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Views
+        name: Views
+        expr: "count_if ( [Interaction Type] = 'view' and [Entity Type] = 'Content' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[Content Status] [Primary Author Full Name] [Site Name] [Content First Published Date] [Content First Published Date].daily [Content Code] [Content Title] [Content Type] [Content Url] [Content First Published Date ISO Timezone] [formula_is content deleted] [Popularity Score] [Popularity Score] > 0 sort by [Popularity Score] descending [formula_Site status] [Daily Total Views] [Daily Total Shares] [Daily Total Replies] [Daily Total Favourites] [Total Likes] [Daily Total Comments]"
+      answer_columns:
+      - name: Content Code
+      - name: Content First Published Date ISO Timezone
+        custom_name: Published date and time
+        dynamic_title: Published date and time
+      - name: Content Status
+        custom_name: Content status
+        dynamic_title: Content status
+      - name: Content Title
+      - name: Content Type
+        custom_name: Content type
+        dynamic_title: Content type
+      - name: Content Url
+        custom_name: URL
+        dynamic_title: URL
+      - name: Day(Content First Published Date)
+        custom_name: Published date
+        dynamic_title: Published date
+      - name: Primary Author Full Name
+        custom_name: Author
+        dynamic_title: Author
+      - name: Site Name
+        custom_name: Site name
+        dynamic_title: Site name
+      - name: Site status
+      - name: Total Daily Total Comments
+        custom_name: Posts
+        dynamic_title: Posts
+      - name: Total Daily Total Favourites
+        custom_name: Favourites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Favourites
+      - name: Total Daily Total Replies
+        custom_name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Replies
+      - name: Total Daily Total Shares
+        custom_name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Shares
+      - name: Total Daily Total Views
+        custom_name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Views
+      - name: Total Popularity Score
+        custom_name: Popularity score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Popularity score
+        sort_info:
+          category: DEFAULT
+      - name: Total Total Likes
+        custom_name: Reactions
+        dynamic_title: Reactions
+      - name: is content deleted
+        custom_name: Is content deleted
+        dynamic_title: Is content deleted
+      table:
+        table_columns:
+        - column_id: Content Code
+          show_headline: false
+        - column_id: Content First Published Date ISO Timezone
+          show_headline: false
+        - column_id: Content Status
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Content Url
+          show_headline: false
+        - column_id: Day(Content First Published Date)
+          show_headline: false
+        - column_id: Primary Author Full Name
+          show_headline: false
+        - column_id: Site Name
+          show_headline: false
+        - column_id: Site status
+          show_headline: false
+        - column_id: Total Daily Total Comments
+          show_headline: false
+        - column_id: Total Daily Total Favourites
+          show_headline: false
+        - column_id: Total Daily Total Replies
+          show_headline: false
+        - column_id: Total Daily Total Shares
+          show_headline: false
+        - column_id: Total Daily Total Views
+          show_headline: false
+        - column_id: Total Popularity Score
+          show_headline: false
+        - column_id: Total Total Likes
+          show_headline: false
+        - column_id: is content deleted
+          show_headline: false
+        ordered_column_ids:
+        - Content Status
+        - Primary Author Full Name
+        - Site Name
+        - Day(Content First Published Date)
+        - Content Code
+        - Content Title
+        - Content Type
+        - Content Url
+        - Content First Published Date ISO Timezone
+        - is content deleted
+        - Site status
+        - Total Popularity Score
+        - Total Daily Total Views
+        - Total Daily Total Shares
+        - Total Daily Total Replies
+        - Total Daily Total Favourites
+        - Total Total Likes
+        - Total Daily Total Comments
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Content Title\",\"Content Type\",\"Content Status\",\"is content deleted\",\"Primary Author Full Name\",\"Site Name\",\"Site status\",\"Day(Content First Published Date)\",\"Content First Published Date ISO Timezone\",\"Content Url\",\"Total Daily Total Views\",\"Total Total Likes\",\"Total Daily Total Comments\",\"Total Daily Total Replies\",\"Total Daily Total Shares\",\"Total Daily Total Favourites\",\"Total Popularity Score\",\"Content Code\"],\"columnProperties\": [{\"columnId\": \"Content Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Content Code
+        - column_id: Content First Published Date ISO Timezone
+        - column_id: Content Status
+        - column_id: Content Title
+        - column_id: Content Type
+        - column_id: Content Url
+        - column_id: Day(Content First Published Date)
+        - column_id: Primary Author Full Name
+        - column_id: Site Name
+        - column_id: Site status
+        - column_id: Total Daily Total Comments
+        - column_id: Total Daily Total Favourites
+        - column_id: Total Daily Total Replies
+        - column_id: Total Daily Total Shares
+        - column_id: Total Daily Total Views
+        - column_id: Total Popularity Score
+        - column_id: Total Total Likes
+        - column_id: is content deleted
+        axis_configs:
+        - x:
+          - Day(Content First Published Date)
+          "y":
+          - Total Popularity Score
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": true,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Day(Content First Published Date)\",\"columnProperty\": {}},{\"columnId\": \"Total Popularity Score\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"c29e8061-0548-4629-9537-b9280a019399\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Popularity Score\"],\"isOpposite\": false}},{\"id\": \"51e61a0f-a7fe-4084-9130-25527fa567d2\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Content First Published Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"c95d1ec4-e0e4-4d4f-a22c-4ef6f2cd615c\",\"color\": \"#48D1E0\"},{\"serieName\": \"3586fb21-d3fb-48e0-a7df-857720b89c01\",\"color\": \"#2E75F0\"},{\"serieName\": \"comment\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"reply\",\"color\": \"#82DFE9\"},{\"serieName\": \"share\",\"color\": \"#48D1E0\"},{\"serieName\": \"view\",\"color\": \"#71A1F4\"},{\"serieName\": \"download\",\"color\": \"#8C62F5\"},{\"serieName\": \"n/a\",\"color\": \"#B094F8\"},{\"serieName\": \"post\",\"color\": \"#8C62F5\"},{\"serieName\": \"click celebrate\",\"color\": \"#56D3A8\"},{\"serieName\": \"click nudge\",\"color\": \"#BF982A\"},{\"serieName\": \"click recommended action\",\"color\": \"#369FAA\"},{\"serieName\": \"2f4a0ba2-584e-45c3-951e-e6652435d95d\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most popular content
+    viz_guid: 80afd8f3-9faf-4375-81c2-35719f2e0703
+  - id: Viz_6
+    answer:
+      name: Least popular content
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      table_paths:
+      - id: Content_1
+        table: Content
+      formulas:
+      - id: formula_Favorites
+        name: Favorites
+        expr: "ifnull ( sum_if ( [Content_1::Reporting Date] >= [Content_1::Content start date] and [Content_1::Reporting Date] <= [Content_1::Content end date] , [Content_1::Daily Total Favourites] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Is content deleted
+        name: Is content deleted
+        expr: "if ( [Content_1::Is Content Deleted?] ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Popularity score
+        name: Popularity score
+        expr: "ifnull ( group_aggregate ( sum ( [Content_1::Popularity Score] ) , query_groups ( ) , query_filters ( ) + { [Content_1::Reporting Date] <= [Content_1::Content end date] and [Content_1::Reporting Date] >= [Content_1::Content start date] } ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Posts
+        name: Posts
+        expr: "ifnull ( sum_if ( [Content_1::Reporting Date] >= [Content_1::Content start date] and [Content_1::Reporting Date] <= [Content_1::Content end date] , [Content_1::Daily Total Posts] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "ifnull ( sum_if ( [Content_1::Reporting Date] >= [Content_1::Content start date] and [Content_1::Reporting Date] <= [Content_1::Content end date] , [Content_1::Total Likes] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "ifnull ( sum_if ( [Content_1::Reporting Date] >= [Content_1::Content start date] and [Content_1::Reporting Date] <= [Content_1::Content end date] , [Content_1::Daily Total Replies] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "ifnull ( sum_if ( [Content_1::Reporting Date] >= [Content_1::Content start date] and [Content_1::Reporting Date] <= [Content_1::Content end date] , [Content_1::Daily Total Shares] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Site status
+        name: Site status
+        expr: "if ( [Content_1::Is Site Active] = true ) then 'Active' else 'Inactive'"
+        was_auto_generated: false
+      - id: formula_Views
+        name: Views
+        expr: "ifnull ( sum_if ( [Content_1::Reporting Date] >= [Content_1::Content start date] and [Content_1::Reporting Date] <= [Content_1::Content end date] , [Content_1::Daily Total Views] ) , 0 )"
+        was_auto_generated: false
+      search_query: "[Content_1::Content Status] [Content_1::Primary Author Full Name] [Content_1::Site Name] [Content_1::Content First Published Date] [Content_1::Content First Published Date].daily [Content_1::Content Code] [Content_1::Content Title] [Content_1::Content Type] [Content_1::Content Url] [Content_1::Content First Published Date ISO Timezone] [formula_Site status] [Content_1::Is Content Site Active?].true [Content_1::Is Content Active?].true [formula_Popularity score] sort by [formula_Popularity score] [formula_Is content deleted] [formula_Views] [formula_Reactions] [formula_Posts] [formula_Shares] [formula_Replies] [formula_Favorites]"
+      answer_columns:
+      - name: Content Code
+      - name: Content First Published Date ISO Timezone
+        custom_name: Published date and time
+        dynamic_title: Published date and time
+      - name: Content Status
+        custom_name: Content status
+        dynamic_title: Content status
+      - name: Content Title
+        custom_name: Content title
+        dynamic_title: Content title
+      - name: Content Type
+        custom_name: Content type
+        dynamic_title: Content type
+      - name: Content Url
+        custom_name: URL
+        dynamic_title: URL
+      - name: Day(Content First Published Date)
+        custom_name: Published date
+        dynamic_title: Published date
+      - name: Favorites
+      - name: Is content deleted
+      - name: Popularity score
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      - name: Posts
+      - name: Primary Author Full Name
+        custom_name: Author
+        dynamic_title: Author
+      - name: Reactions
+      - name: Replies
+      - name: Shares
+      - name: Site Name
+        custom_name: Site name
+        dynamic_title: Site name
+      - name: Site status
+      - name: Views
+      table:
+        table_columns:
+        - column_id: Content Code
+          show_headline: false
+        - column_id: Content First Published Date ISO Timezone
+          show_headline: false
+        - column_id: Content Status
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Content Url
+          show_headline: false
+        - column_id: Day(Content First Published Date)
+          show_headline: false
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Is content deleted
+          show_headline: false
+        - column_id: Popularity score
+          show_headline: false
+        - column_id: Posts
+          show_headline: false
+        - column_id: Primary Author Full Name
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        - column_id: Site Name
+          show_headline: false
+        - column_id: Site status
+          show_headline: false
+        - column_id: Views
+          show_headline: false
+        ordered_column_ids:
+        - Content Status
+        - Primary Author Full Name
+        - Site Name
+        - Day(Content First Published Date)
+        - Content Code
+        - Content Title
+        - Content Type
+        - Content Url
+        - Content First Published Date ISO Timezone
+        - Site status
+        - Is content deleted
+        - Popularity score
+        - Views
+        - Reactions
+        - Posts
+        - Shares
+        - Replies
+        - Favorites
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Content Title\",\"Content Type\",\"Content Status\",\"Is content deleted\",\"Primary Author Full Name\",\"Site Name\",\"Site status\",\"Day(Content First Published Date)\",\"Content First Published Date ISO Timezone\",\"Content Url\",\"Views\",\"Reactions\",\"Posts\",\"Replies\",\"Shares\",\"Favorites\",\"Popularity score\"],\"columnProperties\": [{\"columnId\": \"Content Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Content Code
+        - column_id: Content First Published Date ISO Timezone
+        - column_id: Content Status
+        - column_id: Content Title
+        - column_id: Content Type
+        - column_id: Content Url
+        - column_id: Day(Content First Published Date)
+        - column_id: Favorites
+        - column_id: Is content deleted
+        - column_id: Popularity score
+        - column_id: Posts
+        - column_id: Primary Author Full Name
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Shares
+        - column_id: Site Name
+        - column_id: Site status
+        - column_id: Views
+        axis_configs:
+        - x:
+          - Day(Content First Published Date)
+          "y":
+          - Popularity score
+          - Views
+          - Reactions
+          - Posts
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": true,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Day(Content First Published Date)\",\"columnProperty\": {}},{\"columnId\": \"Popularity score\",\"columnProperty\": {}},{\"columnId\": \"Views\",\"columnProperty\": {}},{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Posts\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"f3ae9b06-1dee-49e5-a0bd-5ed96c70dfd9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Popularity score\"],\"isOpposite\": false}},{\"id\": \"487f416c-1889-4fdc-9f70-f1508eb04fba\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Views\"],\"isOpposite\": true}},{\"id\": \"7a9d298f-c35d-4a7e-a790-b833e2267c2d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\"],\"isOpposite\": true}},{\"id\": \"228ccb03-a095-40d8-be6f-3318823ca661\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Posts\"],\"isOpposite\": true}},{\"id\": \"1a516863-acc9-4302-871d-e88eb3a1066d\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Content First Published Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"c95d1ec4-e0e4-4d4f-a22c-4ef6f2cd615c\",\"color\": \"#48D1E0\"},{\"serieName\": \"3586fb21-d3fb-48e0-a7df-857720b89c01\",\"color\": \"#2E75F0\"},{\"serieName\": \"comment\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"reply\",\"color\": \"#82DFE9\"},{\"serieName\": \"share\",\"color\": \"#48D1E0\"},{\"serieName\": \"view\",\"color\": \"#71A1F4\"},{\"serieName\": \"download\",\"color\": \"#8C62F5\"},{\"serieName\": \"n/a\",\"color\": \"#B094F8\"},{\"serieName\": \"post\",\"color\": \"#8C62F5\"},{\"serieName\": \"click celebrate\",\"color\": \"#56D3A8\"},{\"serieName\": \"click nudge\",\"color\": \"#BF982A\"},{\"serieName\": \"click recommended action\",\"color\": \"#369FAA\"},{\"serieName\": \"2f4a0ba2-584e-45c3-951e-e6652435d95d\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least popular content
+    viz_guid: c475daf1-7047-4242-b78d-4788aa90487f
+  - id: Viz_7
+    answer:
+      name: Most viewed content
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      table_paths:
+      - id: Content_1
+        table: Content
+      formulas:
+      - id: formula_Is content deleted
+        name: Is content deleted
+        expr: "if ( [Content_1::Is Content Deleted?] ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Is site active
+        name: Is site active
+        expr: "if ( [Content_1::Is Site Active] ) then 'Active' else 'Inactive'"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "count_if ( [Content_1::Interaction Type] = 'favourites' and [Content_1::Entity Type] = 'content' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Posts
+        name: Posts
+        expr: "count_if ( [Content_1::Interaction Type] in { 'post' , 'comments' } and [Content_1::Entity Type] = 'Content' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "count_if ( [Content_1::Interaction Type] = 'like' and [Content_1::Entity Type] = 'Content' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "count_if ( [Content_1::Interaction Type] = 'reply' and [Content_1::Entity Type] = 'feed' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "count_if ( [Content_1::Interaction Type] = 'share' and [Content_1::Entity Type] = 'content' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Views
+        name: Views
+        expr: "count_if ( [Content_1::Interaction Type] = 'view' and [Content_1::Entity Type] = 'Content' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[Content_1::Content Status] [Content_1::Primary Author Full Name] [Content_1::Site Name] [Content_1::Content First Published Date] [Content_1::Content First Published Date].daily [Content_1::Content Code] [Content_1::Content Title] [Content_1::Content Type] [Content_1::Content Url] [Content_1::Content First Published Date ISO Timezone] sum [Content_1::Daily Total Views] [Content_1::Daily Total Views] > 0 sort by [Content_1::Daily Total Views] descending [formula_Is site active] [formula_Is content deleted]"
+      answer_columns:
+      - name: Content Code
+      - name: Content First Published Date ISO Timezone
+        custom_name: Published date and time
+        dynamic_title: Published date and time
+      - name: Content Status
+        custom_name: Content status
+        dynamic_title: Content status
+      - name: Content Title
+        custom_name: Content title
+        dynamic_title: Content title
+      - name: Content Type
+        custom_name: Content type
+        dynamic_title: Content type
+      - name: Content Url
+        custom_name: URL
+        dynamic_title: URL
+      - name: Day(Content First Published Date)
+        custom_name: Published date
+        dynamic_title: Published date
+      - name: Is content deleted
+      - name: Is site active
+      - name: Primary Author Full Name
+        custom_name: Author
+        dynamic_title: Author
+      - name: Site Name
+        custom_name: Site name
+        dynamic_title: Site name
+      - name: Total Daily Total Views
+        custom_name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Views
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Content Code
+          show_headline: false
+        - column_id: Content First Published Date ISO Timezone
+          show_headline: false
+        - column_id: Content Status
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Content Url
+          show_headline: false
+        - column_id: Day(Content First Published Date)
+          show_headline: false
+        - column_id: Is content deleted
+          show_headline: false
+        - column_id: Is site active
+          show_headline: false
+        - column_id: Primary Author Full Name
+          show_headline: false
+        - column_id: Site Name
+          show_headline: false
+        - column_id: Total Daily Total Views
+          show_headline: false
+        ordered_column_ids:
+        - Content Status
+        - Primary Author Full Name
+        - Site Name
+        - Day(Content First Published Date)
+        - Content Code
+        - Content Title
+        - Content Type
+        - Content Url
+        - Content First Published Date ISO Timezone
+        - Is site active
+        - Is content deleted
+        - Total Daily Total Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Content Title\",\"Content Type\",\"Content Status\",\"Is content deleted\",\"Primary Author Full Name\",\"Site Name\",\"Is site active\",\"Day(Content First Published Date)\",\"Content First Published Date ISO Timezone\",\"Content Url\",\"Total Daily Total Views\",\"Content Code\"],\"columnProperties\": [{\"columnId\": \"Content Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Content Code
+        - column_id: Content First Published Date ISO Timezone
+        - column_id: Content Status
+        - column_id: Content Title
+        - column_id: Content Type
+        - column_id: Content Url
+        - column_id: Day(Content First Published Date)
+        - column_id: Is content deleted
+        - column_id: Is site active
+        - column_id: Primary Author Full Name
+        - column_id: Site Name
+        - column_id: Total Daily Total Views
+        axis_configs:
+        - x:
+          - Day(Content First Published Date)
+          "y":
+          - Total Daily Total Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": true,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Day(Content First Published Date)\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Total Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"28ec7e27-e952-430c-b509-b7240e4a9288\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Total Views\"],\"isOpposite\": false}},{\"id\": \"ca905258-9e3b-45db-b999-85be0b401576\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Content First Published Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"c95d1ec4-e0e4-4d4f-a22c-4ef6f2cd615c\",\"color\": \"#48D1E0\"},{\"serieName\": \"3586fb21-d3fb-48e0-a7df-857720b89c01\",\"color\": \"#2E75F0\"},{\"serieName\": \"comment\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"reply\",\"color\": \"#82DFE9\"},{\"serieName\": \"share\",\"color\": \"#48D1E0\"},{\"serieName\": \"view\",\"color\": \"#71A1F4\"},{\"serieName\": \"download\",\"color\": \"#8C62F5\"},{\"serieName\": \"n/a\",\"color\": \"#B094F8\"},{\"serieName\": \"post\",\"color\": \"#8C62F5\"},{\"serieName\": \"click celebrate\",\"color\": \"#56D3A8\"},{\"serieName\": \"click nudge\",\"color\": \"#BF982A\"},{\"serieName\": \"click recommended action\",\"color\": \"#369FAA\"},{\"serieName\": \"2f4a0ba2-584e-45c3-951e-e6652435d95d\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most viewed content
+    viz_guid: 640f2305-d77d-4b8e-91c0-bf59dbd81964
+  - id: Viz_8
+    answer:
+      name: Least viewed content
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      table_paths:
+      - id: Content_1
+        table: Content
+      formulas:
+      - id: formula_Is content deleted
+        name: Is content deleted
+        expr: "if ( [Content_1::Is Content Deleted?] = true ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Is site active
+        name: Is site active
+        expr: "if ( [Content_1::Is Site Active] = true ) then 'Active' else 'Inactive'"
+        was_auto_generated: false
+      - id: formula_Total views
+        name: Total views
+        expr: "ifnull ( group_aggregate ( ifnull ( sum ( [Content_1::Daily Total Views] ) , 0 ) , query_groups ( ) , query_filters ( ) + { [Content_1::Reporting Date] <= [Content_1::Content end date] and [Content_1::Reporting Date] >= [Content_1::Content start date] } ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "count_if ( [Content_1::Interaction Type] = 'favourites' and [Content_1::Entity Type] = 'content' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Posts
+        name: Posts
+        expr: "count_if ( [Content_1::Interaction Type] in { 'post' , 'comments' } and [Content_1::Entity Type] = 'Content' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "count_if ( [Content_1::Interaction Type] = 'like' and [Content_1::Entity Type] = 'Content' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "count_if ( [Content_1::Interaction Type] = 'reply' and [Content_1::Entity Type] = 'feed' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "count_if ( [Content_1::Interaction Type] = 'share' and [Content_1::Entity Type] = 'content' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Views
+        name: Views
+        expr: "group_aggregate ( unique_count_if ( [Content_1::Interaction Type] = 'view' and [Content_1::Entity Type] = 'Content' , [Content_1::Interacted By User Code] ) , query_groups ( ) , query_filters ( ) + { [Content_1::Reporting Date] < [Content_1::Content end date] and [Content_1::Reporting Date] >= [Content_1::Content start date] } )"
+        was_auto_generated: false
+      search_query: "[Content_1::Content Status] [Content_1::Primary Author Full Name] [Content_1::Site Name] [Content_1::Content First Published Date] [Content_1::Content First Published Date].daily [Content_1::Content Code] [Content_1::Content Title] [Content_1::Content Type] [Content_1::Content Url] [Content_1::Content First Published Date ISO Timezone] [formula_Is site active] [formula_Is content deleted] [formula_Total views] sort by [formula_Total views] [Content_1::Is Content Active?].true [Content_1::Is Site Active].true"
+      answer_columns:
+      - name: Content Code
+      - name: Content First Published Date ISO Timezone
+        custom_name: Published date and time
+        dynamic_title: Published date and time
+      - name: Content Status
+        custom_name: Content status
+        dynamic_title: Content status
+      - name: Content Title
+        custom_name: Content title
+        dynamic_title: Content title
+      - name: Content Type
+        custom_name: Content type
+        dynamic_title: Content type
+      - name: Content Url
+        custom_name: URL
+        dynamic_title: URL
+      - name: Day(Content First Published Date)
+        custom_name: Published date
+        dynamic_title: Published date
+      - name: Is content deleted
+      - name: Is site active
+      - name: Primary Author Full Name
+        custom_name: Author
+        dynamic_title: Author
+      - name: Site Name
+        custom_name: Site name
+        dynamic_title: Site name
+      - name: Total views
+        custom_name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Views
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Content Code
+          show_headline: false
+        - column_id: Content First Published Date ISO Timezone
+          show_headline: false
+        - column_id: Content Status
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Content Url
+          show_headline: false
+        - column_id: Day(Content First Published Date)
+          show_headline: false
+        - column_id: Is content deleted
+          show_headline: false
+        - column_id: Is site active
+          show_headline: false
+        - column_id: Primary Author Full Name
+          show_headline: false
+        - column_id: Site Name
+          show_headline: false
+        - column_id: Total views
+          show_headline: false
+        ordered_column_ids:
+        - Content Status
+        - Primary Author Full Name
+        - Site Name
+        - Day(Content First Published Date)
+        - Content Code
+        - Content Title
+        - Content Type
+        - Content Url
+        - Content First Published Date ISO Timezone
+        - Is site active
+        - Is content deleted
+        - Total views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Content Title\",\"Content Type\",\"Content Status\",\"Is content deleted\",\"Primary Author Full Name\",\"Site Name\",\"Is site active\",\"Content First Published Date ISO Timezone\",\"Day(Content First Published Date)\",\"Content Url\",\"Total views\",\"Content Code\"],\"columnProperties\": [{\"columnId\": \"Content Code\",\"columnProperty\": {\"isHidden\": true}},{\"columnId\": \"Total views\",\"columnProperty\": {\"isHidden\": false}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Content Code
+        - column_id: Content First Published Date ISO Timezone
+        - column_id: Content Status
+        - column_id: Content Title
+        - column_id: Content Type
+        - column_id: Content Url
+        - column_id: Day(Content First Published Date)
+        - column_id: Is content deleted
+        - column_id: Is site active
+        - column_id: Primary Author Full Name
+        - column_id: Site Name
+        - column_id: Total views
+        axis_configs:
+        - x:
+          - Day(Content First Published Date)
+          "y":
+          - Total views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": true,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Day(Content First Published Date)\",\"columnProperty\": {}},{\"columnId\": \"Total views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"ad2190c7-c35d-45db-8a85-2f51f036657a\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total views\"],\"isOpposite\": false}},{\"id\": \"5640fbf2-5046-4287-ae10-a143ab1a6912\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Content First Published Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"c95d1ec4-e0e4-4d4f-a22c-4ef6f2cd615c\",\"color\": \"#48D1E0\"},{\"serieName\": \"3586fb21-d3fb-48e0-a7df-857720b89c01\",\"color\": \"#2E75F0\"},{\"serieName\": \"comment\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"reply\",\"color\": \"#82DFE9\"},{\"serieName\": \"share\",\"color\": \"#48D1E0\"},{\"serieName\": \"view\",\"color\": \"#71A1F4\"},{\"serieName\": \"download\",\"color\": \"#8C62F5\"},{\"serieName\": \"n/a\",\"color\": \"#B094F8\"},{\"serieName\": \"post\",\"color\": \"#8C62F5\"},{\"serieName\": \"click celebrate\",\"color\": \"#56D3A8\"},{\"serieName\": \"click nudge\",\"color\": \"#BF982A\"},{\"serieName\": \"click recommended action\",\"color\": \"#369FAA\"},{\"serieName\": \"2f4a0ba2-584e-45c3-951e-e6652435d95d\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: Content start date
+        value: 09/30/2025
+      dynamic_name: Least viewed content
+    viz_guid: 5f31acf0-079f-4409-a156-c3cb0b987dfa
+  - id: Viz_9
+    answer:
+      name: Most views by Department
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[Department] [Total Content Views Overall] sort by [Total Content Views Overall] descending [Total Content Views Overall] > 0"
+      answer_columns:
+      - name: Department
+      - name: Total Total Content Views Overall
+        custom_name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Views
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Department
+          show_headline: false
+        - column_id: Total Total Content Views Overall
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Total Total Content Views Overall
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Department
+        - column_id: Total Total Content Views Overall
+        axis_configs:
+        - x:
+          - Department
+          "y":
+          - Total Total Content Views Overall
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Total Total Content Views Overall\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"0f159d0d-23ed-4838-afb8-b9a83d72a073\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Total Content Views Overall\"],\"isOpposite\": false}},{\"id\": \"3f1f8ef8-e474-4399-b19b-189f0a787236\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Department\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Total Content Views Overall\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most views by Department
+    viz_guid: 0d21f6cb-f36d-4cb1-838a-2adf07e52938
+  - id: Viz_10
+    answer:
+      name: Least views by Department
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Views
+        name: Views
+        expr: "sum ( [Total Content Views Overall] )"
+        was_auto_generated: false
+      search_query: "[Department] [formula_Views] sort by [formula_Views]"
+      answer_columns:
+      - name: Department
+      - name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: ALPHA
+      table:
+        table_columns:
+        - column_id: Department
+          show_headline: false
+        - column_id: Views
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Views\",\"width\": 154.56985473632812}],\"showTableFooter\": true}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Department
+        - column_id: Views
+        axis_configs:
+        - x:
+          - Department
+          "y":
+          - Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"3991b61f-fd26-4213-a710-3d9bb03cf113\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Views\"],\"isOpposite\": false}},{\"id\": \"8a3153b3-a159-4501-a9d1-8521c251116f\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Department\"]}}],\"systemSeriesColors\": [{\"serieName\": \"dd307f25-edd3-4ff3-9067-c47774955462\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least views by Department
+    viz_guid: 4acb6564-2fa2-41fd-a135-023faa096cd3
+  - id: Viz_11
+    answer:
+      name: Least views by Location
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Views
+        name: Views
+        expr: "sum ( [Total Content Views Overall] )"
+        was_auto_generated: false
+      search_query: "[Location] [formula_Views] sort by [formula_Views]"
+      answer_columns:
+      - name: Location
+      - name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Location
+          show_headline: false
+        - column_id: Views
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Views\",\"width\": 107.56985473632812}],\"showTableFooter\": true}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Location
+        - column_id: Views
+        axis_configs:
+        - x:
+          - Location
+          "y":
+          - Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Location\",\"columnProperty\": {}},{\"columnId\": \"Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"30640c41-7d87-4581-969e-9bd7f0110425\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Views\"],\"isOpposite\": false}},{\"id\": \"f27e9b83-f6db-4d33-858c-d8873568a792\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Location\"]}}],\"systemSeriesColors\": [{\"serieName\": \"1e39b229-cb96-4307-832c-235bf4ba9b6a\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least views by Location
+    viz_guid: 98bb4723-1c11-4d31-9e9c-fed210155ba5
+  - id: Viz_12
+    answer:
+      name: Least views by Segment
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Views
+        name: Views
+        expr: "sum ( [Total Content Views Overall] )"
+        was_auto_generated: false
+      search_query: "[Segment Code] [Segment Name] [formula_Views] sort by [formula_Views] [Is Segment Enabled].true"
+      answer_columns:
+      - name: Segment Code
+      - name: Segment Name
+      - name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Segment Code
+          show_headline: false
+        - column_id: Segment Name
+          show_headline: false
+        - column_id: Views
+          show_headline: false
+        ordered_column_ids:
+        - Segment Code
+        - Segment Name
+        - Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Segment Name\",\"Segment Code\"],\"columnProperties\": [{\"columnId\": \"Segment Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Segment Code
+        - column_id: Segment Name
+        - column_id: Views
+        axis_configs:
+        - x:
+          - Segment Name
+          "y":
+          - Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Segment Name\",\"columnProperty\": {}},{\"columnId\": \"Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"001ade3b-f82a-44d0-b73c-4462d14fabaf\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Views\"],\"isOpposite\": false}},{\"id\": \"be42ad8d-6c50-4c24-ae59-1bf721195f3c\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Segment Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"954dc773-7f35-4f07-ba87-8b529a499cb8\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least views by Segment
+    viz_guid: 692fcac6-049f-4b1c-8001-8d861277a533
+  - id: Viz_13
+    answer:
+      name: Least views by User Category
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Views
+        name: Views
+        expr: "sum ( [Total Content Views Overall] )"
+        was_auto_generated: false
+      search_query: "[Category Code] [Category Name] [formula_Views] sort by [formula_Views]"
+      answer_columns:
+      - name: Category Code
+      - name: Category Name
+        custom_name: Category name
+        dynamic_title: Category name
+      - name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Category Code
+          show_headline: false
+        - column_id: Category Name
+          show_headline: false
+        - column_id: Views
+          show_headline: false
+        ordered_column_ids:
+        - Category Code
+        - Category Name
+        - Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Category Name\"],\"columnProperties\": [{\"columnId\": \"Category Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Category Code
+        - column_id: Category Name
+        - column_id: Views
+        axis_configs:
+        - x:
+          - Category Name
+          "y":
+          - Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Category Name\",\"columnProperty\": {}},{\"columnId\": \"Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"876f217f-e2ef-4be7-a258-2b6b09f359d1\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Views\"],\"isOpposite\": false}},{\"id\": \"b14e81e2-71fe-442f-ab65-55a4b697decf\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Category Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"de1a6dd3-be22-43c7-a863-ca201a299e83\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least views by User Category
+    viz_guid: 5ebee68a-f390-49ba-82c3-e25c43ba92ff
+  - id: Viz_14
+    answer:
+      name: Most views by Location
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[Total Content Views Overall] sort by [Total Content Views Overall] descending [Location] [Total Content Views Overall] > 0"
+      answer_columns:
+      - name: Location
+      - name: Total Total Content Views Overall
+        custom_name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Views
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Location
+          show_headline: false
+        - column_id: Total Total Content Views Overall
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Total Total Content Views Overall
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total Total Content Views Overall\",\"width\": 120.17636108398438}],\"showTableFooter\": true}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Location
+        - column_id: Total Total Content Views Overall
+        axis_configs:
+        - x:
+          - Location
+          "y":
+          - Total Total Content Views Overall
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Total Content Views Overall\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"4bfe0b02-8140-4946-83ad-b9a4a1ce9e55\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Total Content Views Overall\"],\"isOpposite\": false}},{\"id\": \"077e5af7-ed3a-4d19-80dc-ddb019603eb0\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Location\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Total Content Views Overall\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most views by Location
+    viz_guid: d53f8cd3-e566-4613-acbd-bb096277130b
+  - id: Viz_15
+    answer:
+      name: Most views by Segment
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[Total Content Views Overall] sort by [Total Content Views Overall] descending [Segment Code] [Segment Name] [Total Content Views Overall] > 0 [Is Segment Enabled].true"
+      answer_columns:
+      - name: Segment Code
+      - name: Segment Name
+      - name: Total Total Content Views Overall
+        custom_name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Views
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Segment Code
+          show_headline: false
+        - column_id: Segment Name
+          show_headline: false
+        - column_id: Total Total Content Views Overall
+          show_headline: false
+        ordered_column_ids:
+        - Segment Code
+        - Segment Name
+        - Total Total Content Views Overall
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total Total Content Views Overall\",\"width\": 120.17636108398438}],\"showTableFooter\": true,\"orderedColumnIds\": [\"Segment Name\",\"Total Total Content Views Overall\",\"Segment Code\"],\"columnProperties\": [{\"columnId\": \"Segment Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Segment Code
+        - column_id: Segment Name
+        - column_id: Total Total Content Views Overall
+        axis_configs:
+        - x:
+          - Segment Name
+          "y":
+          - Total Total Content Views Overall
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Total Content Views Overall\",\"columnProperty\": {}},{\"columnId\": \"Segment Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"0ec5be78-0ed8-404b-a21d-d615a30352ae\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Total Content Views Overall\"],\"isOpposite\": false}},{\"id\": \"aa22d1b3-b588-4fbf-bbc2-e72d344fe256\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Segment Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Total Content Views Overall\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most views by Segment
+    viz_guid: ba8f5b69-acc1-46e3-afe3-f9baa488f988
+  - id: Viz_16
+    answer:
+      name: Most views by User Category
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[Total Content Views Overall] sort by [Total Content Views Overall] descending [Category Code] [Category Name] [Total Content Views Overall] > 0"
+      answer_columns:
+      - name: Category Code
+      - name: Category Name
+        custom_name: Category name
+        dynamic_title: Category name
+      - name: Total Total Content Views Overall
+        custom_name: Views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Views
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Category Code
+          show_headline: false
+        - column_id: Category Name
+          show_headline: false
+        - column_id: Total Total Content Views Overall
+          show_headline: false
+        ordered_column_ids:
+        - Category Code
+        - Category Name
+        - Total Total Content Views Overall
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total Total Content Views Overall\",\"width\": 120.17636108398438}],\"showTableFooter\": true,\"orderedColumnIds\": [\"Category Name\",\"Total Total Content Views Overall\"],\"columnProperties\": [{\"columnId\": \"Category Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Category Code
+        - column_id: Category Name
+        - column_id: Total Total Content Views Overall
+        axis_configs:
+        - x:
+          - Category Name
+          "y":
+          - Total Total Content Views Overall
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_OFF\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Total Content Views Overall\",\"columnProperty\": {}},{\"columnId\": \"Category Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"adbedb2a-ce75-4bb4-bc11-b96f55c2eae2\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Total Content Views Overall\"],\"isOpposite\": false}},{\"id\": \"c52f0d0e-bb42-45cb-948c-f445c82487ee\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Category Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Total Total Content Views Overall\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most views by User Category
+    viz_guid: d349b050-8f24-4ab5-b8d9-c8a74d737e96
+  - id: Viz_17
+    answer:
+      name: Content referral sources
+      description: Referral contribution and related performance metrics
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      formulas:
+      - id: formula_Average Referrals Contribution
+        name: Average Referrals Contribution
+        expr: "count ( [Interaction Content Code] ) / unique count ( [Interaction Content Code] )"
+        was_auto_generated: false
+      - id: formula_Referral Contribution
+        name: Referral Contribution
+        expr: "count ( [Interaction Content Code] ) / group_count ( [Interaction Content Code] )"
+        was_auto_generated: false
+      search_query: "[Content Type].album [Content Type].'blog post' [Content Type].event [Content Type].page unique count [Interaction Content Code] [UTM Source Name] count [Interaction Content Code] [Interaction Type] = 'view' [Is Interaction Post First Publish?] = true [formula_Referral Contribution] [formula_Average Referrals Contribution] sort by [formula_Referral Contribution] descending"
+      answer_columns:
+      - name: Average Referrals Contribution
+        custom_name: Average referral contribution
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Average referral contribution
+      - name: Number of Interaction Content Code
+        custom_name: Interaction count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Interaction count
+      - name: Referral Contribution
+        custom_name: Referral contribution
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 2.0
+          isCategoryEditable: true
+        dynamic_title: Referral contribution
+        sort_info:
+          category: DEFAULT
+      - name: UTM Source Name
+        custom_name: Referral source
+        dynamic_title: Referral source
+      - name: Unique Number of Interaction Content Code
+        custom_name: Total content item
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total content item
+      table:
+        table_columns:
+        - column_id: Average Referrals Contribution
+          show_headline: false
+        - column_id: Number of Interaction Content Code
+          show_headline: false
+        - column_id: Referral Contribution
+          show_headline: false
+        - column_id: UTM Source Name
+          show_headline: false
+        - column_id: Unique Number of Interaction Content Code
+          show_headline: false
+        ordered_column_ids:
+        - UTM Source Name
+        - Unique Number of Interaction Content Code
+        - Number of Interaction Content Code
+        - Referral Contribution
+        - Average Referrals Contribution
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"UTM Source Name\",\"Unique Number of Interaction Content Code\",\"Number of Interaction Content Code\",\"Referral Contribution\",\"Average Referrals Contribution\"]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Average Referrals Contribution
+        - column_id: Number of Interaction Content Code
+        - column_id: Referral Contribution
+        - column_id: UTM Source Name
+        - column_id: Unique Number of Interaction Content Code
+        axis_configs:
+        - x:
+          - UTM Source Name
+          "y":
+          - Unique Number of Interaction Content Code
+          - Number of Interaction Content Code
+          - Referral Contribution
+          - Average Referrals Contribution
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"UTM Source Name\",\"columnProperty\": {}},{\"columnId\": \"Unique Number of Interaction Content Code\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Content Code\",\"columnProperty\": {}},{\"columnId\": \"Referral Contribution\",\"columnProperty\": {}},{\"columnId\": \"Average Referrals Contribution\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"20a4a064-2584-4f56-bb98-0a27bcc3fac4\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Interaction Content Code\"],\"isOpposite\": false}},{\"id\": \"6a6691a2-2469-4836-9016-71f9f644fc3e\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Content Code\"],\"isOpposite\": true}},{\"id\": \"243ab7f8-2d1f-4a63-b883-b4f26aa870de\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Referral Contribution\"],\"isOpposite\": true}},{\"id\": \"29c2806c-c517-43b9-9cee-7d301db25c21\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Average Referrals Contribution\"],\"isOpposite\": true}},{\"id\": \"f22e338b-73bc-43ae-a2a6-bf82cebe404b\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"UTM Source Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"8e836aaa-131f-48c7-bc87-7fed39cca016\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Content referral sources
+      dynamic_description: Referral contribution and related performance metrics
+    viz_guid: 8735a9d7-1476-4e49-a2e9-8b1b9b7297e8
+  - id: Viz_18
+    answer:
+      name: Most viewed intranet videos
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      search_query: "[File Code] [File Name] [File Creator Full Name] [File Created Datetime] [File Created Datetime].daily [Total Video Views] [Total Video Views] > 0 sort by [Total Video Views] descending [File Type Parent Category].video"
+      answer_columns:
+      - name: Day(File Created Datetime)
+        custom_name: File uploaded date
+        dynamic_title: File uploaded date
+      - name: File Code
+      - name: File Creator Full Name
+        custom_name: Uploader
+        dynamic_title: Uploader
+      - name: File Name
+        custom_name: File name
+        dynamic_title: File name
+      - name: Total Total Video Views
+        custom_name: Views
+        dynamic_title: Views
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Day(File Created Datetime)
+          show_headline: false
+        - column_id: File Code
+          show_headline: false
+        - column_id: File Creator Full Name
+          show_headline: false
+        - column_id: File Name
+          show_headline: false
+        - column_id: Total Total Video Views
+          show_headline: false
+        ordered_column_ids:
+        - File Code
+        - File Name
+        - File Creator Full Name
+        - Day(File Created Datetime)
+        - Total Total Video Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"File Name\",\"File Creator Full Name\",\"Day(File Created Datetime)\",\"Total Total Video Views\",\"File Code\"],\"columnProperties\": [{\"columnId\": \"File Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Day(File Created Datetime)
+        - column_id: File Code
+        - column_id: File Creator Full Name
+        - column_id: File Name
+        - column_id: Total Total Video Views
+        axis_configs:
+        - x:
+          - Day(File Created Datetime)
+          "y":
+          - Total Total Video Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"File Code\",\"columnProperty\": {}},{\"columnId\": \"File Name\",\"columnProperty\": {}},{\"columnId\": \"File Creator Full Name\",\"columnProperty\": {}},{\"columnId\": \"Day(File Created Datetime)\",\"columnProperty\": {}},{\"columnId\": \"Total Total Video Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"f236da40-584d-4568-86f9-ba7b46ba64d3\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Total Video Views\"],\"isOpposite\": false}},{\"id\": \"9a98dc78-84d6-4ad0-a2f6-bfb5d97c6780\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(File Created Datetime)\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most viewed intranet videos
+    viz_guid: 1156bcf4-cd63-4ced-8534-2de481757e75
+  - id: Viz_19
+    answer:
+      name: Least viewed intranet videos
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Views
+        name: Views
+        expr: "if ( [Total Video Views] > 0 ) then [Total Video Views] else 0"
+        was_auto_generated: false
+      search_query: "[File Code] [File Name] [File Creator Full Name] [File Created Datetime] [File Created Datetime].daily [formula_Views] sort by [formula_Views] [File Type Parent Category].video"
+      answer_columns:
+      - name: Day(File Created Datetime)
+        custom_name: File uploaded date
+        dynamic_title: File uploaded date
+      - name: File Code
+      - name: File Creator Full Name
+        custom_name: Uploader
+        dynamic_title: Uploader
+      - name: File Name
+        custom_name: File name
+        dynamic_title: File name
+      - name: Total Views
+        custom_name: Views
+        dynamic_title: Views
+        sort_info:
+          category: ALPHA
+      table:
+        table_columns:
+        - column_id: Day(File Created Datetime)
+          show_headline: false
+        - column_id: File Code
+          show_headline: false
+        - column_id: File Creator Full Name
+          show_headline: false
+        - column_id: File Name
+          show_headline: false
+        - column_id: Total Views
+          show_headline: false
+        ordered_column_ids:
+        - File Code
+        - File Name
+        - File Creator Full Name
+        - Day(File Created Datetime)
+        - Total Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"File Name\",\"File Creator Full Name\",\"Day(File Created Datetime)\",\"File Code\"],\"columnProperties\": [{\"columnId\": \"File Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Day(File Created Datetime)
+        - column_id: File Code
+        - column_id: File Creator Full Name
+        - column_id: File Name
+        - column_id: Total Views
+        axis_configs:
+        - x:
+          - Day(File Created Datetime)
+          "y":
+          - Total Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"File Code\",\"columnProperty\": {}},{\"columnId\": \"File Name\",\"columnProperty\": {}},{\"columnId\": \"File Creator Full Name\",\"columnProperty\": {}},{\"columnId\": \"Day(File Created Datetime)\",\"columnProperty\": {}},{\"columnId\": \"Total Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"8186fdb5-0d0d-44ff-af68-e1fe1f570370\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Views\"],\"isOpposite\": false}},{\"id\": \"41ea090b-fdf1-4a56-a1c4-d2efb5029489\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(File Created Datetime)\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least viewed intranet videos
+    viz_guid: 2ec35bd0-6919-4be6-b2c1-da5240c92d48
+  - id: Viz_20
+    answer:
+      name: Intranet videos
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      table_paths:
+      - id: File_1
+        table: File
+      formulas:
+      - id: formula_Total Viewers
+        name: Total Viewers
+        expr: "ifnull ( unique count ( [File_1::Native Video User Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total video views
+        name: Total video views
+        expr: "ifnull ( sum ( [File_1::Total Video Views] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total video watch time
+        name: Total video watch time
+        expr: "ifnull ( sum ( [File_1::Total Video Watch Time] ) / 3600 , 0 )"
+        was_auto_generated: false
+      - id: formula_Total videos played
+        name: Total videos played
+        expr: "ifnull ( unique count ( [File_1::Video File Code] ) , 0 )"
+        was_auto_generated: false
+      search_query: "[formula_Total Viewers] [formula_Total video views] [formula_Total video watch time] [formula_Total videos played] [File_1::File Name] [File_1::File Type Parent Category].video"
+      answer_columns:
+      - name: File Name
+        custom_name: Video title
+        dynamic_title: Video title
+      - name: Total Viewers
+        custom_name: Viewers
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Viewers
+      - name: Total video views
+        custom_name: Video views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Video views
+      - name: Total video watch time
+        custom_name: Watch time
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Watch time
+      - name: Total videos played
+        custom_name: Videos played
+        dynamic_title: Videos played
+      table:
+        table_columns:
+        - column_id: File Name
+          show_headline: false
+        - column_id: Total Viewers
+          show_headline: false
+        - column_id: Total video views
+          show_headline: false
+        - column_id: Total video watch time
+          show_headline: false
+        - column_id: Total videos played
+          show_headline: false
+        ordered_column_ids:
+        - File Name
+        - Total Viewers
+        - Total video views
+        - Total video watch time
+        - Total videos played
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"File Name\",\"Total video views\",\"Total Viewers\",\"Total video watch time\",\"Total videos played\"]}"
+      chart:
+        type: KPI
+        chart_columns:
+        - column_id: File Name
+        - column_id: Total Viewers
+        - column_id: Total video views
+        - column_id: Total video watch time
+        - column_id: Total videos played
+        axis_configs:
+        - "y":
+          - Total Viewers
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Viewers\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"7e9e652c-5a25-420e-afd9-1d5acdbc3868\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Viewers\"],\"isOpposite\": false}},{\"id\": \"dd8cb60c-c9b4-4e30-8330-01e561b9d4e9\",\"properties\": {\"axisType\": \"X\"}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Intranet videos
+    viz_guid: 2949e80e-c612-4730-8b0f-51e3d0c9930a
+  - id: Viz_21
+    answer:
+      name: Knowledge pages
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      table_paths:
+      - id: Content_1
+        table: Content
+      formulas:
+      - id: formula_Is validation expired
+        name: Is validation expired
+        expr: "if ( [Content_1::Is Validation Expired] ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Is validation required
+        name: Is validation required
+        expr: "if ( [Content_1::Is Validation Expired] ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Views
+        name: Views
+        expr: "count_if ( [Content_1::Interaction Type] = 'view' , [Content_1::Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[Content_1::Knowledge Page Content Status] != '{null}' [Content_1::Knowledge Page Content Status] [formula_Views] [Content_1::Content Title] [Content_1::Content Type] [Content_1::Primary Author Full Name] [Content_1::Site Name] [Content_1::Content First Published Date ISO Timezone] [Content_1::Content Url] [Content_1::Last Validated Datetime] [Content_1::Last Validated Datetime].detailed [Content_1::TS Expiry Datetime] [Content_1::TS Expiry Datetime].daily [formula_Is validation required] [formula_Is validation expired]"
+      answer_columns:
+      - name: Content First Published Date ISO Timezone
+        custom_name: Content first published date
+        dynamic_title: Content first published date
+      - name: Content Title
+        custom_name: Content title
+        dynamic_title: Content title
+      - name: Content Type
+        custom_name: Content type
+        dynamic_title: Content type
+      - name: Content Url
+      - name: Day(TS Expiry Datetime)
+        custom_name: Validation expired date
+        dynamic_title: Validation expired date
+      - name: Is validation expired
+      - name: Is validation required
+      - name: Knowledge Page Content Status
+        custom_name: Knowledge page status
+        dynamic_title: Knowledge page status
+      - name: Last Validated Datetime
+      - name: Primary Author Full Name
+        custom_name: Author
+        dynamic_title: Author
+      - name: Site Name
+        custom_name: Site name
+        dynamic_title: Site name
+      - name: Views
+        custom_name: Page views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Page views
+      table:
+        table_columns:
+        - column_id: Content First Published Date ISO Timezone
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Content Url
+          show_headline: false
+        - column_id: Day(TS Expiry Datetime)
+          show_headline: false
+        - column_id: Is validation expired
+          show_headline: false
+        - column_id: Is validation required
+          show_headline: false
+        - column_id: Knowledge Page Content Status
+          show_headline: false
+        - column_id: Last Validated Datetime
+          show_headline: false
+        - column_id: Primary Author Full Name
+          show_headline: false
+        - column_id: Site Name
+          show_headline: false
+        - column_id: Views
+          show_headline: false
+        ordered_column_ids:
+        - Knowledge Page Content Status
+        - Content Title
+        - Content Type
+        - Primary Author Full Name
+        - Site Name
+        - Content First Published Date ISO Timezone
+        - Content Url
+        - Last Validated Datetime
+        - Day(TS Expiry Datetime)
+        - Is validation required
+        - Is validation expired
+        - Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Content Title\",\"Content Type\",\"Primary Author Full Name\",\"Site Name\",\"Content First Published Date ISO Timezone\",\"Views\",\"Content Url\",\"Is validation required\",\"Is validation expired\",\"Knowledge Page Content Status\",\"Last Validated Datetime\",\"Day(TS Expiry Datetime)\"],\"columnProperties\": [{\"columnId\": \"Knowledge Page Content Status\",\"columnProperty\": {\"isHidden\": false}}]}"
+      chart:
+        type: ADVANCED_PIVOT_TABLE
+        chart_columns:
+        - column_id: Content First Published Date ISO Timezone
+        - column_id: Content Title
+        - column_id: Content Type
+        - column_id: Content Url
+        - column_id: Day(TS Expiry Datetime)
+        - column_id: Is validation expired
+        - column_id: Is validation required
+        - column_id: Knowledge Page Content Status
+        - column_id: Last Validated Datetime
+        - column_id: Primary Author Full Name
+        - column_id: Site Name
+        - column_id: Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"axisProperties\": [{\"id\": \"28ab4d06-a040-4cfe-a69e-4c6f2cc0d106\",\"properties\": {\"axisType\": \"X\"}}],\"systemSeriesColors\": [{\"serieName\": \"e9a76869-885e-4553-bc3a-ad3c20b3d75c\",\"color\": \"#48D1E0\"}]}"
+        custom_visual_props: "{}"
+      display_mode: TABLE_MODE
+      dynamic_name: Knowledge pages
+    viz_guid: f35a33e2-42a4-4d84-a22d-1363a598ff38
+  - id: Viz_22
+    answer:
+      name: Currently published
+      description: Total content published on the intranet since inception
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      table_paths:
+      - id: Content_1
+        table: Content
+      formulas:
+      - id: formula_Is featured
+        name: Is featured
+        expr: "if ( [Content_1::Is Content Featured?] ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Is must read
+        name: Is must read
+        expr: "if ( [Content_1::Is a Must Read?] ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Is validation expired
+        name: Is validation expired
+        expr: "if ( [Content_1::Is Validation Expired] ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Is validation required
+        name: Is validation required
+        expr: "if ( [Content_1::Is Validation Required] ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Content type
+        name: Content type
+        expr: "[Content_1::Content Type]"
+        was_auto_generated: false
+      search_query: "[Content_1::Primary Author Full Name] [Content_1::Primary Author Status] [Content_1::Content Creator Full Name] [Content_1::Site Name] [Content_1::Content Sub-Type] [Content_1::Content First Published Date] [Content_1::Content First Published Date].daily [Content_1::Content Publish End Datetime] [Content_1::Content Publish End Datetime].daily [Content_1::Content Publish Start Datetime] [Content_1::Content Publish Start Datetime].daily [Content_1::Event End Datetime] [Content_1::Event End Datetime].daily [Content_1::Event Start Datetime] [Content_1::Event Start Datetime].daily [Content_1::Content Url] [Content_1::Content Status] [Content_1::Last Validated Datetime] [Content_1::Last Validated Datetime].daily [Content_1::Content Type] [Content_1::Content Title] [Content_1::Content Status].published [Content_1::Content Status].unpublished [Content_1::Is Content Deleted?].false [Content_1::Is Site Active].true [formula_Is featured] [formula_Is must read] [formula_Is validation expired] [formula_Is validation required] [Content_1::TS Expiry Datetime] [Content_1::TS Expiry Datetime].daily"
+      answer_columns:
+      - name: Content Creator Full Name
+        custom_name: Creator
+        dynamic_title: Creator
+      - name: Content Status
+        custom_name: Content status
+        dynamic_title: Content status
+      - name: Content Sub-Type
+        custom_name: Content subtype
+        dynamic_title: Content subtype
+      - name: Content Title
+        custom_name: Content title
+        dynamic_title: Content title
+      - name: Content Type
+        custom_name: Content type
+        dynamic_title: Content type
+      - name: Content Url
+        custom_name: URL
+        dynamic_title: URL
+      - name: Day(Content First Published Date)
+        custom_name: Content first published date
+        dynamic_title: Content first published date
+      - name: Day(Content Publish End Datetime)
+        custom_name: Content publish end datetime
+        dynamic_title: Content publish end datetime
+      - name: Day(Content Publish Start Datetime)
+        custom_name: Content publish start datetime
+        dynamic_title: Content publish start datetime
+      - name: Day(Event End Datetime)
+        custom_name: Event end date
+        dynamic_title: Event end date
+      - name: Day(Event Start Datetime)
+        custom_name: Event start date
+        dynamic_title: Event start date
+      - name: Day(Last Validated Datetime)
+        custom_name: Last validated datetime
+        dynamic_title: Last validated datetime
+      - name: Day(TS Expiry Datetime)
+        custom_name: Validation expired date
+        dynamic_title: Validation expired date
+      - name: Is featured
+      - name: Is must read
+      - name: Is validation expired
+      - name: Is validation required
+      - name: Primary Author Full Name
+        custom_name: Author
+        dynamic_title: Author
+      - name: Primary Author Status
+        custom_name: Author status
+        dynamic_title: Author status
+      - name: Site Name
+        custom_name: Site name
+        dynamic_title: Site name
+      table:
+        table_columns:
+        - column_id: Content Creator Full Name
+          show_headline: false
+        - column_id: Content Status
+          show_headline: false
+        - column_id: Content Sub-Type
+          show_headline: false
+        - column_id: Content Title
+          show_headline: false
+        - column_id: Content Type
+          show_headline: false
+        - column_id: Content Url
+          show_headline: false
+        - column_id: Day(Content First Published Date)
+          show_headline: false
+        - column_id: Day(Content Publish End Datetime)
+          show_headline: false
+        - column_id: Day(Content Publish Start Datetime)
+          show_headline: false
+        - column_id: Day(Event End Datetime)
+          show_headline: false
+        - column_id: Day(Event Start Datetime)
+          show_headline: false
+        - column_id: Day(Last Validated Datetime)
+          show_headline: false
+        - column_id: Day(TS Expiry Datetime)
+          show_headline: false
+        - column_id: Is featured
+          show_headline: false
+        - column_id: Is must read
+          show_headline: false
+        - column_id: Is validation expired
+          show_headline: false
+        - column_id: Is validation required
+          show_headline: false
+        - column_id: Primary Author Full Name
+          show_headline: false
+        - column_id: Primary Author Status
+          show_headline: false
+        - column_id: Site Name
+          show_headline: false
+        ordered_column_ids:
+        - Primary Author Full Name
+        - Primary Author Status
+        - Content Creator Full Name
+        - Site Name
+        - Content Sub-Type
+        - Day(Content First Published Date)
+        - Day(Content Publish End Datetime)
+        - Day(Content Publish Start Datetime)
+        - Day(Event End Datetime)
+        - Day(Event Start Datetime)
+        - Content Url
+        - Content Status
+        - Day(Last Validated Datetime)
+        - Content Type
+        - Content Title
+        - Is featured
+        - Is must read
+        - Is validation expired
+        - Is validation required
+        - Day(TS Expiry Datetime)
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Content Title\",\"Content Type\",\"Primary Author Full Name\",\"Primary Author Status\",\"Content Creator Full Name\",\"Site Name\",\"Content Sub-Type\",\"Day(Content First Published Date)\",\"Day(Content Publish End Datetime)\",\"Day(Content Publish Start Datetime)\",\"Day(Event End Datetime)\",\"Day(Event Start Datetime)\",\"Content Url\",\"Is must read\",\"Content Status\",\"Is featured\",\"Is validation expired\",\"Is validation required\",\"Day(Last Validated Datetime)\"]}"
+      chart:
+        type: SCATTER
+        chart_columns:
+        - column_id: Content Creator Full Name
+        - column_id: Content Status
+        - column_id: Content Sub-Type
+        - column_id: Content Title
+        - column_id: Content Type
+        - column_id: Content Url
+        - column_id: Day(Content First Published Date)
+        - column_id: Day(Content Publish End Datetime)
+        - column_id: Day(Content Publish Start Datetime)
+        - column_id: Day(Event End Datetime)
+        - column_id: Day(Event Start Datetime)
+        - column_id: Day(Last Validated Datetime)
+        - column_id: Day(TS Expiry Datetime)
+        - column_id: Is featured
+        - column_id: Is must read
+        - column_id: Is validation expired
+        - column_id: Is validation required
+        - column_id: Primary Author Full Name
+        - column_id: Primary Author Status
+        - column_id: Site Name
+        axis_configs:
+        - x:
+          - Day(Content First Published Date)
+          "y":
+          - Is validation required
+          category:
+          - Primary Author Full Name
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": false,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true}}}\",\"dataFieldArea\": \"column\"},\"showStackedLabels\": true},\"columnProperties\": [{\"columnId\": \"Day(Content First Published Date)\",\"columnProperty\": {}},{\"columnId\": \"Content Title\",\"columnProperty\": {}},{\"columnId\": \"Primary Author Full Name\",\"columnProperty\": {}},{\"columnId\": \"Is validation required\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"fd373072-e933-42b0-8068-e8ece349ea3f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Is validation required\"],\"isOpposite\": false}},{\"id\": \"891d2bfc-585d-4da4-9852-f621da48dc43\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Content First Published Date)\"]}}],\"seriesColors\": [{\"serieName\": \"5971a97f-0bdd-4490-988c-35b4eacab590\",\"color\": \"#48D1E0\"},{\"serieName\": \"page\",\"color\": \"#3a86ff\"},{\"serieName\": \"album\",\"color\": \"#FFCB3D\"},{\"serieName\": \"event\",\"color\": \"#ff3d91\"},{\"serieName\": \"blog post\",\"color\": \"#8338ec\"}],\"systemSeriesColors\": [{\"serieName\": \"5971a97f-0bdd-4490-988c-35b4eacab590\",\"color\": \"#48D1E0\"},{\"serieName\": \"album\",\"color\": \"#06BF7F\"},{\"serieName\": \"blog post\",\"color\": \"#FCC838\"},{\"serieName\": \"event\",\"color\": \"#48D1E0\"},{\"serieName\": \"page\",\"color\": \"#2E75F0\"}],\"tooltipConfig\": {}}"
+      display_mode: TABLE_MODE
+      dynamic_name: Currently published
+      dynamic_description: Total content published on the intranet since inception
+    viz_guid: 5e3a0ddc-eeef-4902-be68-dd7e03c1332f
+  - id: Viz_23
+    answer:
+      name: Content views graph
+      tables:
+      - id: Content
+        name: Content
+        fqn: eeee20e8-3c78-40f9-9134-c41c86f69d78
+      search_query: "[Reporting Date] [Reporting Date].daily [Daily Total Views] [Daily Total Unique Views] sort by [Reporting Date] [Reporting Date].daily descending"
+      answer_columns:
+      - name: Day(Reporting Date)
+        custom_name: Date
+        dynamic_title: Date
+        sort_info:
+          category: DEFAULT
+      - name: Total Daily Total Unique Views
+        custom_name: Unique content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Unique content views
+      - name: Total Daily Total Views
+        custom_name: Total content views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total content views
+      table:
+        table_columns:
+        - column_id: Day(Reporting Date)
+          show_headline: false
+        - column_id: Total Daily Total Unique Views
+          show_headline: false
+        - column_id: Total Daily Total Views
+          show_headline: false
+        ordered_column_ids:
+        - Day(Reporting Date)
+        - Total Daily Total Views
+        - Total Daily Total Unique Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"orderedColumnIds\": [\"Day(Reporting Date)\",\"Total Daily Total Views\",\"Total Daily Total Unique Views\",\"aff38dd6-fbf0-4362-9ef7-3bb12bc1a4a7\",\"7a363c88-1def-4221-91f6-aa2be9c7ae45\",\"7e80fab1-66d9-417c-b6fe-43d09fc3302c\",\"d68bd4e0-2b11-40cb-b46f-d21bd66ad80c\",\"604412a0-5e7f-4309-81a4-35b43e2a1c6d\"]}"
+      chart:
+        type: LINE_STACKED_COLUMN
+        chart_columns:
+        - column_id: Day(Reporting Date)
+        - column_id: Total Daily Total Unique Views
+        - column_id: Total Daily Total Views
+        axis_configs:
+        - x:
+          - Day(Reporting Date)
+          "y":
+          - Total Daily Total Views
+          - Total Daily Total Unique Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": true,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Day(Reporting Date)\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Total Views\",\"columnProperty\": {}},{\"columnId\": \"Total Daily Total Unique Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"09bc00c5-afb3-4088-ba3c-8b49db55fa54\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Total Views\"],\"isOpposite\": false}},{\"id\": \"916f7c1c-4527-4bfe-a3c9-fa23ea295477\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Daily Total Unique Views\"],\"isOpposite\": true}},{\"id\": \"6f37b651-e8da-4674-87f1-0414d60da2a4\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Reporting Date)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"c95d1ec4-e0e4-4d4f-a22c-4ef6f2cd615c\",\"color\": \"#48D1E0\"},{\"serieName\": \"3586fb21-d3fb-48e0-a7df-857720b89c01\",\"color\": \"#2E75F0\"},{\"serieName\": \"comment\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"reply\",\"color\": \"#82DFE9\"},{\"serieName\": \"share\",\"color\": \"#48D1E0\"},{\"serieName\": \"view\",\"color\": \"#71A1F4\"},{\"serieName\": \"download\",\"color\": \"#8C62F5\"},{\"serieName\": \"n/a\",\"color\": \"#B094F8\"},{\"serieName\": \"post\",\"color\": \"#8C62F5\"},{\"serieName\": \"click celebrate\",\"color\": \"#56D3A8\"},{\"serieName\": \"click nudge\",\"color\": \"#BF982A\"},{\"serieName\": \"click recommended action\",\"color\": \"#369FAA\"},{\"serieName\": \"2f4a0ba2-584e-45c3-951e-e6652435d95d\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Content views graph
+    viz_guid: 1b31c428-d356-4750-86dd-0eb0e595c7a7
+  filters:
+  - column:
+    - Content::Tenant Code
+    - User::Tenant Code
+    - File::Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Content::Reporting Date
+    - User::Reporting Date
+    excluded_visualizations:
+    - Viz_2
+    - Viz_3
+    - Viz_4
+    - Viz_17
+    - Viz_21
+    - Viz_22
+    - Viz_8
+    - Viz_6
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Content::Content First Published Date
+    excluded_visualizations:
+    - Viz_1
+    - Viz_3
+    - Viz_4
+    - Viz_5
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_17
+    - Viz_21
+    - Viz_22
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Content::Interaction Datetime
+    excluded_visualizations:
+    - Viz_2
+    - Viz_4
+    - Viz_5
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_1
+    - Viz_21
+    - Viz_22
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Content::Company Name
+    - File::Company Name
+    - User::Company Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - File::Native Video Interaction Datetime
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 8
+      width: 6
+    - visualization_id: Viz_2
+      x: 6
+      "y": 8
+      height: 7
+      width: 6
+    - visualization_id: Viz_3
+      x: 0
+      "y": 15
+      height: 5
+      width: 12
+    - visualization_id: Viz_4
+      x: 6
+      "y": 20
+      height: 6
+      width: 6
+    - visualization_id: Viz_5
+      x: 0
+      "y": 26
+      height: 7
+      width: 6
+    - visualization_id: Viz_6
+      x: 6
+      "y": 26
+      height: 7
+      width: 6
+    - visualization_id: Viz_7
+      x: 0
+      "y": 33
+      height: 7
+      width: 6
+    - visualization_id: Viz_8
+      x: 6
+      "y": 33
+      height: 7
+      width: 6
+    - visualization_id: Viz_9
+      x: 0
+      "y": 40
+      height: 5
+      width: 6
+    - visualization_id: Viz_10
+      x: 6
+      "y": 40
+      height: 5
+      width: 6
+    - visualization_id: Viz_11
+      x: 6
+      "y": 45
+      height: 5
+      width: 6
+    - visualization_id: Viz_12
+      x: 6
+      "y": 50
+      height: 5
+      width: 6
+    - visualization_id: Viz_13
+      x: 6
+      "y": 55
+      height: 5
+      width: 6
+    - visualization_id: Viz_14
+      x: 0
+      "y": 45
+      height: 5
+      width: 6
+    - visualization_id: Viz_15
+      x: 0
+      "y": 50
+      height: 5
+      width: 6
+    - visualization_id: Viz_16
+      x: 0
+      "y": 55
+      height: 5
+      width: 6
+    - visualization_id: Viz_17
+      x: 0
+      "y": 20
+      height: 6
+      width: 6
+    - visualization_id: Viz_18
+      x: 0
+      "y": 60
+      height: 7
+      width: 6
+    - visualization_id: Viz_19
+      x: 6
+      "y": 60
+      height: 7
+      width: 6
+    - visualization_id: Viz_20
+      x: 0
+      "y": 67
+      height: 6
+      width: 6
+    - visualization_id: Viz_21
+      x: 6
+      "y": 67
+      height: 6
+      width: 6
+    - visualization_id: Viz_22
+      x: 0
+      "y": 8
+      height: 7
+      width: 6
+    - visualization_id: Viz_23
+      x: 6
+      "y": 0
+      height: 8
+      width: 6
+  parameter_overrides:
+  - key: 92b6afbc-5962-4177-a4f5-06ae5eedcf1c
+    value:
+      name: Content::Content start date
+      override_value: 10/27/2025
+  - key: 6c28f89f-bbee-4f32-b7d2-00b13a9fb105
+    value:
+      name: Content::Content end date
+      override_value: 11/25/2025
+  ordered_chips:
+  - name: Content::Tenant Code
+    type: FILTER
+  - name: Content::Reporting Date
+    type: FILTER
+  - name: Content::Content First Published Date
+    type: FILTER
+  - name: Content::Interaction Datetime
+    type: FILTER
+  - name: Content::Content start date
+    type: PARAMETER
+  - name: Content::Content end date
+    type: PARAMETER
+  - name: Content::Company Name
+    type: FILTER
+  - name: File::Native Video Interaction Datetime
+    type: FILTER

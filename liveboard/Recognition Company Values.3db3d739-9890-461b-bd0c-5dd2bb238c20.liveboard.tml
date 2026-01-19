@@ -1,0 +1,528 @@
+guid: 3db3d739-9890-461b-bd0c-5dd2bb238c20
+liveboard:
+  name: Recognition Company Values
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Total company values recognized
+      description: Total company values recognized and period-over-period change
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Total recognition
+        name: Total recognition
+        expr: "unique_count_if ( [Company Value Code] != null and date ( [Recognition Received Date] ) >= [Recognition start date] and date ( [Recognition Received Date] ) <= [Recognition end date] , [Recognition Code] )"
+        was_auto_generated: false
+      - id: formula_difference
+        name: difference
+        expr: "if ( [formula_Total company values previous period] = 0 and [formula_Total company values] != 0 ) then 100 else ifnull ( ( ( [formula_Total company values] - [formula_Total company values previous period] ) / [formula_Total company values previous period] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Total company values
+        name: Total company values
+        expr: "ifnull ( count_if ( date ( [Recognition Received Date] ) >= [Recognition start date] and date ( [Recognition Received Date] ) <= [Recognition end date] , [Company Value Code] ) , 0 )"
+        was_auto_generated: false
+      - id: formula_Total company values previous period
+        name: Total company values previous period
+        expr: "ifnull ( count_if ( date ( [Recognition Received Date] ) >= [Offset Start Date] and date ( [Recognition Received Date] ) <= [Offset End Date] , [Company Value Code] ) , 0 )"
+        was_auto_generated: false
+      search_query: "[Award Type].peer [Is Recognition Deleted?].false [formula_Total recognition] [formula_Total company values] [formula_Total company values previous period] [formula_difference]"
+      answer_columns:
+      - name: Total company values
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total company values previous period
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: difference
+      table:
+        table_columns:
+        - column_id: Total company values
+          show_headline: false
+        - column_id: Total company values previous period
+          show_headline: false
+        - column_id: Total recognition
+          show_headline: false
+        - column_id: difference
+          show_headline: false
+        ordered_column_ids:
+        - Total recognition
+        - Total company values
+        - Total company values previous period
+        - difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"orderedColumnIds\": [\"Total company values\",\"Total company values previous period\",\"difference\",\"Total recognition\"]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Total company values
+        - column_id: Total company values previous period
+        - column_id: Total recognition
+        - column_id: difference
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total recognition\",\"columnProperty\": {}},{\"columnId\": \"Total company values\",\"columnProperty\": {}},{\"columnId\": \"Total company values previous period\",\"columnProperty\": {}},{\"columnId\": \"difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"bd365289-d5c9-4575-96b8-e49d71dc2264\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total recognition\"],\"isOpposite\": false}},{\"id\": \"be3b15af-05b4-4f40-8db2-1be1be8b13d9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total company values\"],\"isOpposite\": true}},{\"id\": \"8d775b2e-6d99-4c68-9ee2-844e0efe4d74\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total company values previous period\"],\"isOpposite\": true}},{\"id\": \"32ebc4f3-1eac-4b45-b7ad-a07ba4e09225\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"difference\"],\"isOpposite\": true}},{\"id\": \"21ff0599-c6c1-42b3-84e7-7d92aff0a779\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Total recognition
+            - Total company values
+            - Total company values previous period
+            - difference
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gTW9jayBkYXRhIGZvciB0ZXN0aW5nIOKAlCByZXBsYWNlIHdpdGggVGhvdWdodFNwb3QgZGF0YQovLyBGb3JtYXQ6IFtjdXJyZW50VmFsdWUsIHByZXZpb3VzVmFsdWUsIHBlcmNlbnRDaGFuZ2UsIHN1YnRleHRdCi8vIGNvbnN0IHJhd0RhdGEgPSBbWzM0ODYsIDExMjYyLCAtNjksICJBY3Jvc3MgNzYgcmVjb2duaXRpb25zIl1dOwpjb25zdCByYXdEYXRhID0gdml6LmdldERhdGFGcm9tU2VhcmNoUXVlcnkoKS5nZXREYXRhKCkuZGF0YTsKY29uc3QgY3VycmVudFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMV0gPz8gMDsKY29uc3QgcHJldmlvdXNWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzJdID8/IDA7CmNvbnN0IHBlcmNlbnRDaGFuZ2UgPSByYXdEYXRhPy5bMF0/LlszXSA/PyAwOwpjb25zdCBzdWJ0ZXh0ID0gcmF3RGF0YT8uWzBdPy5bMF0gPz8gIiI7Cgpjb25zdCB2YWx1ZUVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImtwaS12YWx1ZSIpOwpjb25zdCBjaGFuZ2VFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktY2hhbmdlIik7CmNvbnN0IHN1YnRleHRFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktc3VidGV4dCIpOwoKdmFsdWVFbC5pbm5lclRleHQgPSBjdXJyZW50VmFsdWUudG9Mb2NhbGVTdHJpbmcoImVuLUdCIik7CnN1YnRleHRFbC5pbm5lclRleHQgPSBzdWJ0ZXh0ID4gMCA/ICJBY3Jvc3MgIiArIHN1YnRleHQgKyAiIHJlY29nbml0aW9ucyIgOiAiQWNyb3NzICIgKyBzdWJ0ZXh0ICsgIiByZWNvZ25pdGlvbiI7Cgpjb25zdCBjb2xvckNsYXNzID0gcGVyY2VudENoYW5nZSA+PSAwID8gInBvc2l0aXZlIiA6ICJuZWdhdGl2ZSI7CmNvbnN0IGRpcmVjdGlvbiA9IHBlcmNlbnRDaGFuZ2UgPj0gMCA/ICLihpEiIDogIuKGkyI7CgpjaGFuZ2VFbC5pbm5lckhUTUwgPSBgCiAgICA8ZGl2PgogICAgICA8c3BhbiBjbGFzcz0iYXJyb3cgJHtjb2xvckNsYXNzfSI+JHtkaXJlY3Rpb259PC9zcGFuPgogICAgICAgPHNwYW4gY2xhc3M9InBlcmNlbnQgJHtjb2xvckNsYXNzfSI+ICR7cGVyY2VudENoYW5nZS50b0ZpeGVkKDApfSU8L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0iY29tcGFyZSI+dnMgKCR7cHJldmlvdXNWYWx1ZX0pPC9zcGFuPgogICAgPC9kaXY+CiAgYDsK\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwgYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzAwMDsKfQoKLmtwaS1jb250YWluZXIgewogIGRpc3BsYXk6IGZsZXg7CiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKfQoKLmtwaS1tYWluIHsKICBkaXNwbGF5OiBmbGV4OwogIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgZ2FwOiA2cHg7Cn0KCiNrcGktdmFsdWUgewogIGZvbnQtc2l6ZTogNDhweDsKICBmb250LXdlaWdodDogNzAwOwogIGxpbmUtaGVpZ2h0OiAxLjE7CiAgY29sb3I6ICMwMDAwMDA7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgZ2FwOiA0cHg7Cn0KCiNrcGktY2hhbmdlIHN2ZyB7CiAgd2lkdGg6IDEwcHg7CiAgaGVpZ2h0OiAxMHB4Owp9Cgoja3BpLWNoYW5nZSAuY29tcGFyZSB7CiAgY29sb3I6ICM2YjZiNmI7Cn0KCiNrcGktc3VidGV4dCB7CiAgZm9udC1zaXplOiAxNnB4OwogIGNvbG9yOiAjNmI2YjZiOwogIG1hcmdpbi10b3A6IDRweDsKfQoKCi5wb3NpdGl2ZSwKLm5lZ2F0aXZlIHsKICBmb250LXNpemU6IDExcHg7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA0MDA7Cn0KCi5wb3NpdGl2ZSB7CiAgY29sb3I6ICMyNDg1Mjg7Cn0KCi5uZWdhdGl2ZSB7CiAgY29sb3I6ICNkMzFlMzQ7Cn0K\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBjbGFzcz0ia3BpLW1haW4iPgogICAgPHNwYW4gaWQ9ImtwaS12YWx1ZSI+PC9zcGFuPgogICAgPHNwYW4gaWQ9ImtwaS1jaGFuZ2UiPjwvc3Bhbj4KICA8L2Rpdj4KICA8ZGl2IGlkPSJrcGktc3VidGV4dCI+PC9kaXY+CjwvZGl2Pg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      dynamic_name: Total company values recognized
+      dynamic_description: Total company values recognized and period-over-period change
+    viz_guid: 552747fa-07e7-4c97-b947-9d269ebdd9f6
+  - id: Viz_2
+    answer:
+      name: Avg company values per recognition
+      description: Avg company values used per recognition
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      table_paths:
+      - id: Recognition_1
+        table: Recognition
+      formulas:
+      - id: formula_difference
+        name: difference
+        expr: "if ( [Recognition_1::Avg company values per recognition] != 0 and [formula_Avg company values per recognition previous] = 0 ) then 100 else ( ( [formula_Avg company values per recognition] - [formula_Avg company values per recognition previous] ) / [formula_Avg company values per recognition previous] ) * 100"
+        was_auto_generated: false
+      - id: formula_Avg company values per recognition
+        name: Avg company values per recognition
+        expr: "count_if ( date ( [Recognition_1::Recognition Received Date] ) >= [Recognition_1::Recognition start date] and date ( [Recognition_1::Recognition Received Date] ) <= [Recognition_1::Recognition end date] , [Recognition_1::Company Value Code] ) / unique_count_if ( [Recognition_1::Company Value Code] != null and date ( [Recognition_1::Recognition Received Date] ) >= [Recognition_1::Recognition start date] and date ( [Recognition_1::Recognition Received Date] ) <= [Recognition_1::Recognition end date] , [Recognition_1::Recognition Code] )"
+        was_auto_generated: false
+      - id: formula_Avg company values per recognition previous
+        name: Avg company values per recognition previous
+        expr: "count_if ( date ( [Recognition_1::Recognition Received Date] ) >= [Recognition_1::Offset Start Date] and date ( [Recognition_1::Recognition Received Date] ) <= [Recognition_1::Offset End Date] , [Recognition_1::Company Value Code] ) / unique_count_if ( [Recognition_1::Company Value Code] != null and date ( [Recognition_1::Recognition Received Date] ) >= [Recognition_1::Offset Start Date] and date ( [Recognition_1::Recognition Received Date] ) <= [Recognition_1::Offset End Date] , [Recognition_1::Recognition Code] )"
+        was_auto_generated: false
+      search_query: "[Recognition_1::Award Type].peer [Recognition_1::Is Recognition Deleted?].false [formula_Avg company values per recognition] [formula_Avg company values per recognition previous] [formula_difference]"
+      answer_columns:
+      - name: Avg company values per recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Avg company values per recognition previous
+      - name: difference
+      table:
+        table_columns:
+        - column_id: Avg company values per recognition
+          show_headline: false
+        - column_id: Avg company values per recognition previous
+          show_headline: false
+        - column_id: difference
+          show_headline: false
+        ordered_column_ids:
+        - Avg company values per recognition
+        - Avg company values per recognition previous
+        - difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Avg company values per recognition previous\",\"width\": 230.0},{\"columnId\": \"Avg company values per recognition\",\"width\": 218.0}]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Avg company values per recognition
+        - column_id: Avg company values per recognition previous
+        - column_id: difference
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Avg company values per recognition\",\"columnProperty\": {}},{\"columnId\": \"Avg company values per recognition previous\",\"columnProperty\": {}},{\"columnId\": \"difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"0f005e7a-0ab1-42b4-95fb-4293110ad951\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Avg company values per recognition\"],\"isOpposite\": false}},{\"id\": \"aca30dc1-d01d-4512-a35e-7dc972448cfa\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Avg company values per recognition previous\"],\"isOpposite\": true}},{\"id\": \"444bb429-a669-4083-8e8e-62ae376d2151\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"difference\"],\"isOpposite\": true}},{\"id\": \"c4c8ee06-9935-4e76-a225-6e8194298705\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Avg company values per recognition
+            - Avg company values per recognition previous
+            - difference
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gTW9jayBkYXRhIGZvciBsb2NhbCB0ZXN0aW5nCi8vIFJlcGxhY2UgdGhpcyB3aXRoIFRob3VnaHRTcG90IGRhdGEgZXh0cmFjdGlvbiBpbiB5b3VyIGVudmlyb25tZW50CmNvbnN0IHJhd0RhdGEgPSB2aXouZ2V0RGF0YUZyb21TZWFyY2hRdWVyeSgpLmdldERhdGEoKS5kYXRhOwoKY29uc3QgY3VycmVudFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMF0gPT0gbnVsbCB8fCBOdW1iZXIuaXNOYU4ocmF3RGF0YT8uWzBdPy5bMF0uX3ZhbHVlKSA/IDAgOiByYXdEYXRhPy5bMF0/LlswXS50b0ZpeGVkKDEpCmNvbnN0IHByZXZpb3VzVmFsdWUgPSByYXdEYXRhPy5bMF0/LlsxXSA9PSBudWxsIHx8IE51bWJlci5pc05hTihyYXdEYXRhPy5bMF0/LlsxXS5fdmFsdWUpID8gMCA6IHJhd0RhdGE/LlswXT8uWzFdLnRvRml4ZWQoMSkKY29uc3QgcGVyY2VudENoYW5nZSA9IHJhd0RhdGE/LlswXT8uWzJdID09IG51bGwgfHwgTnVtYmVyLmlzTmFOKHJhd0RhdGE/LlswXT8uWzJdLl92YWx1ZSkgPyAwIDogcmF3RGF0YT8uWzBdPy5bMl0KCmNvbnN0IHZhbHVlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLXZhbHVlIik7CmNvbnN0IGNoYW5nZUVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImtwaS1jaGFuZ2UiKTsKCnZhbHVlRWwuaW5uZXJUZXh0ID0gY3VycmVudFZhbHVlLnRvTG9jYWxlU3RyaW5nKCJlbi1HQiIpOwoKCmNvbnN0IGNvbG9yQ2xhc3MgPSBwZXJjZW50Q2hhbmdlID49IDAgPyAicG9zaXRpdmUiIDogIm5lZ2F0aXZlIjsKY29uc3QgZGlyZWN0aW9uID0gcGVyY2VudENoYW5nZSA+PSAwID8gIuKGkSIgOiAi4oaTIjsKCmNoYW5nZUVsLmlubmVySFRNTCA9IGAKICAgIDxkaXY+CiAgICAgIDxzcGFuIGNsYXNzPSJhcnJvdyAke2NvbG9yQ2xhc3N9Ij4ke2RpcmVjdGlvbn08L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0icGVyY2VudCAke2NvbG9yQ2xhc3N9Ij4gJHtwZXJjZW50Q2hhbmdlLnRvRml4ZWQoMCl9JTwvc3Bhbj4KICAgICAgIDxzcGFuIGNsYXNzPSJjb21wYXJlIj52cyAoJHtwcmV2aW91c1ZhbHVlfSk8L3NwYW4+CiAgICA8L2Rpdj4KICAgCiAgYDsKCg\\u003d\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzExMTsKfQoKLmtwaS1jb250YWluZXIgewogIC8qIGRpc3BsYXk6IGZsZXg7ICovCiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgYm94LXNpemluZzogYm9yZGVyLWJveDsKfQoKI2twaS12YWx1ZSB7CiAgZm9udC1zaXplOiA0OHB4OwogIGZvbnQtd2VpZ2h0OiA3MDA7CiAgY29sb3I6ICMwMDAwMDA7CiAgbGluZS1oZWlnaHQ6IDEuMTsKICBtYXJnaW4tYm90dG9tOiA0cHg7Cn0KCiNrcGktY2hhbmdlIHNwYW4gewogIGZvbnQtc2l6ZTogMTZweDsKICBsaW5lLWhlaWdodDogMS4zOwogIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgZ2FwOiA0cHg7Cn0KCiNrcGktY2hhbmdlIC5jb21wYXJlIHsKICBjb2xvcjogIzZiNmI2YjsKfQoKLnBvc2l0aXZlLAoubmVnYXRpdmUgewogIGZvbnQtc2l6ZTogMTFweDsKICBmb250LXN0eWxlOiBub3JtYWw7CiAgZm9udC13ZWlnaHQ6IDQwMDsKfQoKLnBvc2l0aXZlIHsKICBjb2xvcjogIzI0ODUyODsKfQoKLm5lZ2F0aXZlIHsKICBjb2xvcjogI2QzMWUzNDsKfQoK\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBpZD0ia3BpLXZhbHVlIj48L2Rpdj4KICA8ZGl2IGlkPSJrcGktY2hhbmdlIj48L2Rpdj4KPC9kaXY+Cg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      parameter_values:
+      - key: Recognition start date
+        value: 06/01/2025
+      dynamic_name: Avg company values per recognition
+      dynamic_description: Avg company values used per recognition
+    viz_guid: 151fffce-6aed-4940-a93b-e44674ebe751
+  - id: Viz_3
+    answer:
+      name: Recognition utilizing company values
+      description: Percentage of recognitions utilizing company values
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "[formula_Percentage] - [formula_Percentage of previous period]"
+        was_auto_generated: false
+      - id: formula_Percentage
+        name: Percentage
+        expr: "ifnull ( ( [formula_Recognition with company values] / [formula_Total recognition] ) * 100 , 0 )"
+        was_auto_generated: false
+      - id: formula_Percentage of previous period
+        name: Percentage of previous period
+        expr: "( unique_count_if ( date ( [Recognition Received Date] ) >= [Offset Start Date] and date ( [Recognition Received Date] ) <= [Offset End Date] , [Recognition Code] ) / unique_count_if ( [Company Value Code] != null and date ( [Recognition Received Date] ) >= [Offset Start Date] and date ( [Recognition Received Date] ) <= [Offset End Date] , [Recognition Code] ) ) * 100"
+        was_auto_generated: false
+      - id: formula_Recognition with company values
+        name: Recognition with company values
+        expr: "unique_count_if ( [Company Value Code] != null and date ( [Recognition Received Date] ) >= [Recognition start date] and date ( [Recognition Received Date] ) <= [Recognition end date] , [Recognition Code] )"
+        was_auto_generated: false
+      - id: formula_Total recognition
+        name: Total recognition
+        expr: "unique_count_if ( date ( [Recognition Received Date] ) >= [Recognition start date] and date ( [Recognition Received Date] ) <= [Recognition end date] , [Recognition Code] )"
+        was_auto_generated: false
+      search_query: "[Award Type].peer [formula_Total recognition] [formula_Recognition with company values] [formula_Percentage] [formula_Percentage of previous period] [Is Recognition Deleted?].false [formula_Difference]"
+      answer_columns:
+      - name: Difference
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Percentage
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Percentage of previous period
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 2.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Recognition with company values
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Difference
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        - column_id: Percentage of previous period
+          show_headline: false
+        - column_id: Recognition with company values
+          show_headline: false
+        - column_id: Total recognition
+          show_headline: false
+        ordered_column_ids:
+        - Total recognition
+        - Recognition with company values
+        - Percentage
+        - Percentage of previous period
+        - Difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Difference
+        - column_id: Percentage
+        - column_id: Percentage of previous period
+        - column_id: Recognition with company values
+        - column_id: Total recognition
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Total recognition\",\"columnProperty\": {}},{\"columnId\": \"Recognition with company values\",\"columnProperty\": {}},{\"columnId\": \"Percentage\",\"columnProperty\": {}},{\"columnId\": \"Percentage of previous period\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"9aca8bed-55fa-4ad2-918e-110f81d0848c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total recognition\"],\"isOpposite\": false}},{\"id\": \"4c518d7f-0c8f-4636-890e-3b4016399038\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Recognition with company values\"],\"isOpposite\": true}},{\"id\": \"04b807a5-8d27-4f95-8482-6a9f1ee171f2\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Percentage\"],\"isOpposite\": true}},{\"id\": \"193e83f0-0dac-45ff-a5ab-93e528f7c8b6\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Percentage of previous period\"],\"isOpposite\": true}},{\"id\": \"f683a147-d0cf-4fa2-bf8c-6f916c0da1ed\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Difference\"],\"isOpposite\": true}},{\"id\": \"cb00aca3-8777-4f25-86ea-7cf817f2955b\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_chart_config:
+        - key: basic
+          dimensions:
+          - key: fields
+            columns:
+            - Total recognition
+            - Recognition with company values
+            - Percentage
+            - Percentage of previous period
+            - Difference
+            mode: COLUMN_DRIVEN
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gTW9jayBkYXRhIGZvciB0ZXN0aW5nIOKAlCByZXBsYWNlIHdpdGggVGhvdWdodFNwb3QgZGF0YQovLyBGb3JtYXQ6IFtjdXJyZW50VmFsdWUsIHByZXZpb3VzVmFsdWUsIHBlcmNlbnRDaGFuZ2UsIHN1YnRleHRdCmNvbnN0IHJhd0RhdGEgPSB2aXouZ2V0RGF0YUZyb21TZWFyY2hRdWVyeSgpLmdldERhdGEoKS5kYXRhOwpjb25zdCBjdXJyZW50VmFsdWUgPSByYXdEYXRhPy5bMF0/LlsyXS50b0ZpeGVkKDApID8/IDA7CmNvbnN0IHByZXZpb3VzVmFsdWUgPSByYXdEYXRhPy5bMF0/LlszXSA/PyAwOwpjb25zdCBwZXJjZW50Q2hhbmdlID0gcmF3RGF0YT8uWzBdPy5bNF0gPz8gMDsKY29uc3QgdG90YWxSZWNvZ25pdGlvbiA9IHJhd0RhdGE/LlswXT8uWzBdID8/ICIiOwpjb25zdCB0b3RhbFJlY29nbml0aW9uQ1YgPSByYXdEYXRhPy5bMF0/LlsxXSA/PyAiIjsKCmNvbnN0IHZhbHVlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLXZhbHVlIik7CmNvbnN0IGNoYW5nZUVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImtwaS1jaGFuZ2UiKTsKY29uc3Qgc3VidGV4dEVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImtwaS1zdWJ0ZXh0Iik7Cgp2YWx1ZUVsLmlubmVyVGV4dCA9IGN1cnJlbnRWYWx1ZS50b0xvY2FsZVN0cmluZygiZW4tR0IiKSArICclJzsKc3VidGV4dEVsLmlubmVyVGV4dCA9IHRvdGFsUmVjb2duaXRpb24gPiAwID8gdG90YWxSZWNvZ25pdGlvbkNWICsgIiBvZiAiICsgdG90YWxSZWNvZ25pdGlvbiArICIgcmVjb2duaXRpb25zIiA6IHRvdGFsUmVjb2duaXRpb25DViArICIgb2YgIiArIHRvdGFsUmVjb2duaXRpb24gKyAiIHJlY29nbml0aW9uIjsKCmNvbnN0IGNvbG9yQ2xhc3MgPSBwZXJjZW50Q2hhbmdlID49IDAgPyAicG9zaXRpdmUiIDogIm5lZ2F0aXZlIjsKY29uc3QgZGlyZWN0aW9uID0gcGVyY2VudENoYW5nZSA+PSAwID8gIuKGkSIgOiAi4oaTIjsKCmNoYW5nZUVsLmlubmVySFRNTCA9IGAKICAgIDxkaXY+CiAgICAgIDxzcGFuIGNsYXNzPSJhcnJvdyAke2NvbG9yQ2xhc3N9Ij4ke2RpcmVjdGlvbn08L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0icGVyY2VudCAke2NvbG9yQ2xhc3N9Ij4gJHtwZXJjZW50Q2hhbmdlLnRvRml4ZWQoMCl9JTwvc3Bhbj4KICAgICAgIDxzcGFuIGNsYXNzPSJjb21wYXJlIj52cyAoJHtwcmV2aW91c1ZhbHVlfSk8L3NwYW4+CiAgICA8L2Rpdj4KICAgCiAgYDsK\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwgYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzAwMDsKfQoKLmtwaS1jb250YWluZXIgewogIGRpc3BsYXk6IGZsZXg7CiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKfQoKLmtwaS1tYWluIHsKICBkaXNwbGF5OiBmbGV4OwogIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgZ2FwOiA2cHg7Cn0KCiNrcGktdmFsdWUgewogIGZvbnQtc2l6ZTogNDhweDsKICBmb250LXdlaWdodDogNzAwOwogIGxpbmUtaGVpZ2h0OiAxLjE7CiAgY29sb3I6ICMwMDAwMDA7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgLyogZGlzcGxheTogZmxleDsgKi8KICBhbGlnbi1pdGVtczogY2VudGVyOwogIGdhcDogNHB4OwogIGZvbnQtd2VpZ2h0OiA1MDA7Cn0KCiNrcGktY2hhbmdlIC51cCB7CiAgY29sb3I6ICMyNDg1Mjg7Cn0KCiNrcGktY2hhbmdlIC5kb3duIHsKICBjb2xvcjogI2QzMWUzNDsKfQoKI2twaS1jaGFuZ2UgLmNvbXBhcmUgewogIGNvbG9yOiAjNmI2YjZiOwp9Cgoja3BpLXN1YnRleHQgewogIGZvbnQtc2l6ZTogMTZweDsKICBjb2xvcjogIzZiNmI2YjsKICBtYXJnaW4tdG9wOiA0cHg7Cn0KCi5wb3NpdGl2ZSwKLm5lZ2F0aXZlIHsKICBmb250LXNpemU6IDExcHg7CiAgZm9udC1zdHlsZTogbm9ybWFsOwogIGZvbnQtd2VpZ2h0OiA0MDA7Cn0KCi5wb3NpdGl2ZSB7CiAgY29sb3I6ICMyNDg1Mjg7Cn0KCi5uZWdhdGl2ZSB7CiAgY29sb3I6ICNkMzFlMzQ7Cn0K\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBjbGFzcz0ia3BpLW1haW4iPgogICAgPHNwYW4gaWQ9ImtwaS12YWx1ZSI+PC9zcGFuPgogICAgPHNwYW4gaWQ9ImtwaS1jaGFuZ2UiPjwvc3Bhbj4KICA8L2Rpdj4KICA8ZGl2IGlkPSJrcGktc3VidGV4dCI+PC9kaXY+CjwvZGl2Pg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\"}"
+      display_mode: CHART_MODE
+      dynamic_name: Recognition utilizing company values
+      dynamic_description: Percentage of recognitions utilizing company values
+    viz_guid: cd057985-73d6-4427-b69c-0206300989be
+  - id: Viz_4
+    answer:
+      name: Company values usage
+      description: Detailed breakdown of company values usage
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Percentage
+        name: Percentage
+        expr: "( count ( [Company Value Code] ) / group_count ( [Company Value Code] ) ) * 100"
+        was_auto_generated: false
+      search_query: "[Award Name] [Avg company values per recognition] [Company Value] [Award Type].peer [Is Recognition Deleted?].false sort by [Company Value] descending top 10 [formula_Percentage] [Company Value Name] != '{null}' [Display Name]"
+      answer_columns:
+      - name: Avg company values per recognition
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Award Name
+        custom_name: Recognition
+        dynamic_title: Recognition
+      - name: Company Value
+        custom_name: Recognition given with company values
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Recognition given with company values
+      - name: Display Name
+        custom_name: Top company value
+        dynamic_title: Top company value
+      - name: Percentage
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      table:
+        table_columns:
+        - column_id: Avg company values per recognition
+          show_headline: false
+        - column_id: Award Name
+          show_headline: false
+        - column_id: Company Value
+          show_headline: false
+        - column_id: Display Name
+          show_headline: false
+        - column_id: Percentage
+          show_headline: false
+        ordered_column_ids:
+        - Award Name
+        - Display Name
+        - Avg company values per recognition
+        - Company Value
+        - Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Company Value\",\"width\": 217.0},{\"columnId\": \"Avg company values per recognition\",\"width\": 209.0},{\"columnId\": \"Award Name\",\"width\": 219.0},{\"columnId\": \"Display Name\",\"width\": 149.0325927734375}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Award Name\",\"Display Name\",\"Avg company values per recognition\",\"Company Value\",\"Percentage\"]}"
+      chart:
+        type: SCATTER
+        chart_columns:
+        - column_id: Avg company values per recognition
+        - column_id: Award Name
+        - column_id: Company Value
+        - column_id: Display Name
+        - column_id: Percentage
+        axis_configs:
+        - x:
+          - Avg company values per recognition
+          "y":
+          - Company Value
+          category:
+          - Award Name
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Award Name\",\"columnProperty\": {}},{\"columnId\": \"Avg company values per recognition\",\"columnProperty\": {}},{\"columnId\": \"Company Value\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"1f65ff0c-220c-4f2b-948a-065539634e1f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Company Value\"],\"isOpposite\": false}},{\"id\": \"64f5c429-eaf4-475c-8f04-e07de80dea7e\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Avg company values per recognition\"]}}],\"systemSeriesColors\": [{\"serieName\": \"34e71973-a42f-4014-b672-ace83b585f7a\",\"color\": \"rgba(140,98,245,0.5)\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Company values usage
+      dynamic_description: Detailed breakdown of company values usage
+    viz_guid: 889e27be-91e8-402b-b8f9-bd77f05890f9
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_5
+    answer:
+      name: Breakdown
+      description: Recognition breakdown by company values
+      tables:
+      - id: Recognition
+        name: Recognition
+        fqn: 45ce8a8c-2c0e-4aab-9527-76430dd5f6a9
+      formulas:
+      - id: formula_Total company values
+        name: Total company values
+        expr: "count ( [Company Value Code] )"
+        was_auto_generated: false
+      - id: formula_Total Awards given
+        name: Total Awards given
+        expr: "count_if ( [Is Recognition Deleted?] = false , [Recognition Code] )"
+        was_auto_generated: false
+      search_query: "[Company name sets] [formula_Total company values] [Award Type].peer [Is Recognition Deleted?].false sort by [formula_Total company values]"
+      answer_columns:
+      - name: Company name sets
+      - name: Total company values
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        sort_info:
+          category: ALPHA
+      table:
+        table_columns:
+        - column_id: Company name sets
+          show_headline: false
+        - column_id: Total company values
+          show_headline: false
+        ordered_column_ids:
+        - Company name sets
+        - Total company values
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Company name sets\",\"width\": 206.0}],\"orderedColumnIds\": [\"Company name sets\",\"Total company values\"],\"columnProperties\": [{\"columnId\": \"Total company values\",\"columnProperty\": {\"isHidden\": false}}]}"
+      chart:
+        type: PIE
+        chart_columns:
+        - column_id: Company name sets
+        - column_id: Total company values
+        axis_configs:
+        - x:
+          - Company name sets
+          "y":
+          - Total company values
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"chartSpecific\": {\"dataFieldArea\": \"column\"},\"showStackedLabels\": true,\"allLabels\": true},\"columnProperties\": [{\"columnId\": \"fd357b08-76b7-4afd-a048-c5abafb0fd89\",\"columnProperty\": {\"dataLabels\": true}},{\"columnId\": \"ca686b44-e92a-4533-b6c7-b74fbb897e3b\",\"columnProperty\": {\"dataLabels\": true}},{\"columnId\": \"Company name sets\",\"columnProperty\": {\"dataLabels\": true}},{\"columnId\": \"Total company values\",\"columnProperty\": {\"dataLabels\": true}}],\"axisProperties\": [{\"id\": \"55110f53-bada-423b-b283-e902a8d322f3\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total company values\"],\"isOpposite\": false}},{\"id\": \"4686736e-612c-4c16-9ec6-b98477a28e04\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Company name sets\"]}}],\"seriesColors\": [{\"serieName\": \"7e030cee-3c7f-4508-a564-245b68870dd6\",\"color\": \"#06BF7F\"},{\"serieName\": \"mountain mover\",\"color\": \"#56D3A8\"},{\"serieName\": \"everyday hero\",\"color\": \"#06BF7F\"},{\"serieName\": \"crushing it\",\"color\": \"#FCD977\"},{\"serieName\": \"superstar\",\"color\": \"#FCC838\"},{\"serieName\": \"collaborator\",\"color\": \"#82DFE9\"},{\"serieName\": \"culture hero\",\"color\": \"#48D1E0\"},{\"serieName\": \"helping hand\",\"color\": \"#71A1F4\"},{\"serieName\": \"&&&&&!@#$%^&*()_+~\",\"color\": \"#721F27\"},{\"serieName\": \"&lt;b&gt;aaaaa&lt;/b&gt;\",\"color\": \"#F47E89\"},{\"serieName\": \"&lt;i&gt;&lt;b&gt;auduuendnd&lt;/b&gt;&lt;/i&gt;\",\"color\": \"#B6313E\"},{\"serieName\": \"&lt;i&gt;&lt;b&gt;auduufrdgvdendnd&lt;/b&gt;&lt;/i&gt;\",\"color\": \"#F9B3B9\"},{\"serieName\": \".test9jan\",\"color\": \"#F04152\"},{\"serieName\": \"<h2>html buttons</h2>\",\"color\": \"#2F3947\"},{\"serieName\": \"<h2>html links</h2>\",\"color\": \"#A2ACBA\"},{\"serieName\": \"a description can help to describe the value and what it means in more detail\",\"color\": \"#47515F\"},{\"serieName\": \"aaa&lt;i&gt;&lt;b&gt;auduufrdgvdendnd&lt;/b&gt;&lt;/i&gt;\",\"color\": \"#BEC6D0\"},{\"serieName\": \"adding new company\",\"color\": \"#747E8C\"},{\"serieName\": \"agility\",\"color\": \"#7A3D1F\"},{\"serieName\": \"aishma &lt;p&gt;aishma&lt;/p&gt;\",\"color\": \"#FFA97E\"},{\"serieName\": \"aishma <p>my first</p>\",\"color\": \"#C26232\"},{\"serieName\": \"aishmafinaltest &lt;button&gt;click me&lt;/button&gt;\",\"color\": \"#FFCCB3\"},{\"serieName\": \"aishma_test &lt;p&gt;my first&lt;/p&gt;\",\"color\": \"#FF8142\"},{\"serieName\": \"bharata/india&lt;i&gt;&lt;b&gt;aufffduufrdgvdendnd&lt;/b&gt;&lt;/i&gt;\",\"color\": \"#422E75\"},{\"serieName\": \"blueee\",\"color\": \"#B094F8\"},{\"serieName\": \"cv create\",\"color\": \"#6A4ABA\"},{\"serieName\": \"cv100\",\"color\": \"#D1C0FB\"},{\"serieName\": \"cv_1\",\"color\": \"#8C62F5\"},{\"serieName\": \"cv_2222\",\"color\": \"#025B3C\"},{\"serieName\": \"compvalue 2\",\"color\": \"#56D3A8\"},{\"serieName\": \"compvalue 22\",\"color\": \"#049160\"},{\"serieName\": \"company value 2\",\"color\": \"#06BF7F\"},{\"serieName\": \"company value 4\",\"color\": \"#FCD977\"},{\"serieName\": \"company value 5\",\"color\": \"#BF982A\"},{\"serieName\": \"company value c\",\"color\": \"#22636B\"},{\"serieName\": \"company value d\",\"color\": \"#82DFE9\"},{\"serieName\": \"company vlues\",\"color\": \"#B5ECF2\"},{\"serieName\": \"company vlues 2\",\"color\": \"#48D1E0\"},{\"serieName\": \"company uynivbcptn created from automation by de team on datetime\",\"color\": \"#163772\"},{\"serieName\": \"company val created from automation by de team on 2024-06-03 11:04:28\",\"color\": \"#71A1F4\"},{\"serieName\": \"company value 1\",\"color\": \"#2359B6\"},{\"serieName\": \"company value created from automation by de team on 2024-06-03 11:05:07\",\"color\": \"#ABC7F9\"},{\"serieName\": \"company value created from automation by de team on 2024-06-06 10:52:06\",\"color\": \"#721F27\"},{\"serieName\": \"company value created from automation by de team on 2024-06-10 10:42:22\",\"color\": \"#F47E89\"},{\"serieName\": \"creativity\",\"color\": \"#F9B3B9\"},{\"serieName\": \"creativity_1\",\"color\": \"#F04152\"},{\"serieName\": \"creativity_2\",\"color\": \"#2F3947\"},{\"serieName\": \"customer experience\",\"color\": \"#A2ACBA\"},{\"serieName\": \"customer focus\",\"color\": \"#47515F\"},{\"serieName\": \"de test\",\"color\": \"#BEC6D0\"},{\"serieName\": \"dedication new\",\"color\": \"#747E8C\"},{\"serieName\": \"delegation\",\"color\": \"#7A3D1F\"},{\"serieName\": \"employee experience\",\"color\": \"#C26232\"},{\"serieName\": \"empowerment\",\"color\": \"#FFCCB3\"},{\"serieName\": \"excellence\",\"color\": \"#FF8142\"},{\"serieName\": \"freny\",\"color\": \"#422E75\"},{\"serieName\": \"harshith\",\"color\": \"#B094F8\"},{\"serieName\": \"harshith test 1\",\"color\": \"#6A4ABA\"},{\"serieName\": \"harshith test 2sdfv\",\"color\": \"#D1C0FB\"},{\"serieName\": \"harshith test 3\",\"color\": \"#8C62F5\"},{\"serieName\": \"harshith test 5\",\"color\": \"#025B3C\"},{\"serieName\": \"hola sept 29--edited\",\"color\": \"#56D3A8\"},{\"serieName\": \"innovation\",\"color\": \"#9BE5CB\"},{\"serieName\": \"innovation and continuous improvement\",\"color\": \"#06BF7F\"},{\"serieName\": \"integrity\",\"color\": \"#785F1A\"},{\"serieName\": \"integrity and accountability\",\"color\": \"#FCD977\"},{\"serieName\": \"latest &lt;p&gt;my first&lt;/p&gt;\",\"color\": \"#BF982A\"},{\"serieName\": \"legacy\",\"color\": \"#FDE9AF\"},{\"serieName\": \"meenu_test <button>click me</button>\",\"color\": \"#FCC838\"},{\"serieName\": \"merge dag zeus\",\"color\": \"#22636B\"},{\"serieName\": \"new new\",\"color\": \"#82DFE9\"},{\"serieName\": \"power\",\"color\": \"#369FAA\"},{\"serieName\": \"respect\",\"color\": \"#B5ECF2\"},{\"serieName\": \"responsibility\",\"color\": \"#48D1E0\"},{\"serieName\": \"simplicity\",\"color\": \"#71A1F4\"},{\"serieName\": \"sprint together\",\"color\": \"#2359B6\"},{\"serieName\": \"sustainability\",\"color\": \"#ABC7F9\"},{\"serieName\": \"tenant archieve\",\"color\": \"#2E75F0\"},{\"serieName\": \"team work\",\"color\": \"#721F27\"},{\"serieName\": \"teamwork\",\"color\": \"#F47E89\"},{\"serieName\": \"test & and  qwerty\",\"color\": \"#B6313E\"},{\"serieName\": \"test for company values dataflow\",\"color\": \"#F04152\"},{\"serieName\": \"test3jan\",\"color\": \"#2F3947\"},{\"serieName\": \"testcompanyvaluessss\",\"color\": \"#A2ACBA\"},{\"serieName\": \"testing new test odin\",\"color\": \"#47515F\"},{\"serieName\": \"testingeditsfidinodin\",\"color\": \"#BEC6D0\"},{\"serieName\": \"testingsfid007\",\"color\": \"#747E8C\"},{\"serieName\": \"this is a test for de dataflow\",\"color\": \"#7A3D1F\"},{\"serieName\": \"transparency\",\"color\": \"#FFA97E\"},{\"serieName\": \"vpat_test &lt;button&gt;click me&lt;/button&gt;\",\"color\": \"#C26232\"},{\"serieName\": \"value 1\",\"color\": \"#FFCCB3\"},{\"serieName\": \"valuea\",\"color\": \"#FF8142\"},{\"serieName\": \"automation_company_value\",\"color\": \"#422E75\"},{\"serieName\": \"chemistry\",\"color\": \"#B094F8\"},{\"serieName\": \"comp_2\",\"color\": \"#6A4ABA\"},{\"serieName\": \"connnjj\",\"color\": \"#D1C0FB\"},{\"serieName\": \"defect retest edit\",\"color\": \"#8C62F5\"},{\"serieName\": \"edited................\",\"color\": \"#025B3C\"},{\"serieName\": \"efficiency\",\"color\": \"#56D3A8\"},{\"serieName\": \"ghnmmm\",\"color\": \"#049160\"},{\"serieName\": \"honesty\",\"color\": \"#9BE5CB\"},{\"serieName\": \"honestyrrrr\",\"color\": \"#06BF7F\"},{\"serieName\": \"honestyyyy\",\"color\": \"#785F1A\"},{\"serieName\": \"honestyyyy22222\",\"color\": \"#FCD977\"},{\"serieName\": \"jihuhuhu\",\"color\": \"#BF982A\"},{\"serieName\": \"just_updated\",\"color\": \"#FDE9AF\"},{\"serieName\": \"new test\",\"color\": \"#FCC838\"},{\"serieName\": \"new_one\",\"color\": \"#22636B\"},{\"serieName\": \"new_value\",\"color\": \"#82DFE9\"},{\"serieName\": \"ojhbvccvbnm,\",\"color\": \"#369FAA\"},{\"serieName\": \"red\",\"color\": \"#B5ECF2\"},{\"serieName\": \"sdfbdnbertberb\",\"color\": \"#48D1E0\"},{\"serieName\": \"sdvbsdvb\",\"color\": \"#163772\"},{\"serieName\": \"sdvsd sd\",\"color\": \"#71A1F4\"},{\"serieName\": \"sdvsdv\",\"color\": \"#2359B6\"},{\"serieName\": \"sdvsdvsdv\",\"color\": \"#ABC7F9\"},{\"serieName\": \"test\",\"color\": \"#2E75F0\"},{\"serieName\": \"test 1\",\"color\": \"#721F27\"},{\"serieName\": \"test title\",\"color\": \"#F47E89\"},{\"serieName\": \"test title company value test title company value test title company value test title company value\",\"color\": \"#B6313E\"},{\"serieName\": \"test-test\",\"color\": \"#F9B3B9\"},{\"serieName\": \"test123\",\"color\": \"#F04152\"},{\"serieName\": \"test_\",\"color\": \"#2F3947\"},{\"serieName\": \"test_bddfjbaslf\",\"color\": \"#A2ACBA\"},{\"serieName\": \"test_companyvalue_1\",\"color\": \"#47515F\"},{\"serieName\": \"test_companyvalue_2\",\"color\": \"#BEC6D0\"},{\"serieName\": \"test_kafka-- edited de\",\"color\": \"#747E8C\"},{\"serieName\": \"testing cv\",\"color\": \"#7A3D1F\"},{\"serieName\": \"valuecheck\",\"color\": \"#FFA97E\"},{\"serieName\": \"values of company\",\"color\": \"#C26232\"},{\"serieName\": \"zuluupdatecompanyval284\",\"color\": \"#FFCCB3\"},{\"serieName\": \"zuluupdatecompanyval606\",\"color\": \"#FF8142\"},{\"serieName\": \"company value 3\",\"color\": \"#3a86ff\"},{\"serieName\": \"company value created from automation by de team on 2024-06-06 10:47:36\",\"color\": \"#ff3d91\"},{\"serieName\": \"company value b\",\"color\": \"#ffcb3d\"},{\"serieName\": \"test value\",\"color\": \"#8338ec\"},{\"serieName\": \"company value e\",\"color\": \"#74cc31\"},{\"serieName\": \"company value a\",\"color\": \"#256799\"},{\"serieName\": \"company value created from automation by de team on 2025-04-09 15:19:17\",\"color\": \"#fb7a3c\"},{\"serieName\": \"others\",\"color\": \"#32c2cf\"}],\"systemSeriesColors\": [{\"serieName\": \"7e030cee-3c7f-4508-a564-245b68870dd6\",\"color\": \"#06BF7F\"},{\"serieName\": \"mountain mover\",\"color\": \"#56D3A8\"},{\"serieName\": \"everyday hero\",\"color\": \"#06BF7F\"},{\"serieName\": \"crushing it\",\"color\": \"#FCD977\"},{\"serieName\": \"superstar\",\"color\": \"#FCC838\"},{\"serieName\": \"collaborator\",\"color\": \"#82DFE9\"},{\"serieName\": \"culture hero\",\"color\": \"#48D1E0\"},{\"serieName\": \"helping hand\",\"color\": \"#71A1F4\"},{\"serieName\": \"others\",\"color\": \"#2E75F0\"},{\"serieName\": \"&&&&&!@#$%^&*()_+~\",\"color\": \"#721F27\"},{\"serieName\": \"&lt;b&gt;aaaaa&lt;/b&gt;\",\"color\": \"#F47E89\"},{\"serieName\": \"&lt;i&gt;&lt;b&gt;auduuendnd&lt;/b&gt;&lt;/i&gt;\",\"color\": \"#B6313E\"},{\"serieName\": \"&lt;i&gt;&lt;b&gt;auduufrdgvdendnd&lt;/b&gt;&lt;/i&gt;\",\"color\": \"#F9B3B9\"},{\"serieName\": \".test9jan\",\"color\": \"#F04152\"},{\"serieName\": \"<h2>html buttons</h2>\",\"color\": \"#2F3947\"},{\"serieName\": \"<h2>html links</h2>\",\"color\": \"#A2ACBA\"},{\"serieName\": \"a description can help to describe the value and what it means in more detail\",\"color\": \"#47515F\"},{\"serieName\": \"aaa&lt;i&gt;&lt;b&gt;auduufrdgvdendnd&lt;/b&gt;&lt;/i&gt;\",\"color\": \"#BEC6D0\"},{\"serieName\": \"adding new company\",\"color\": \"#747E8C\"},{\"serieName\": \"agility\",\"color\": \"#7A3D1F\"},{\"serieName\": \"aishma &lt;p&gt;aishma&lt;/p&gt;\",\"color\": \"#FFA97E\"},{\"serieName\": \"aishma <p>my first</p>\",\"color\": \"#C26232\"},{\"serieName\": \"aishmafinaltest &lt;button&gt;click me&lt;/button&gt;\",\"color\": \"#FFCCB3\"},{\"serieName\": \"aishma_test &lt;p&gt;my first&lt;/p&gt;\",\"color\": \"#FF8142\"},{\"serieName\": \"bharata/india&lt;i&gt;&lt;b&gt;aufffduufrdgvdendnd&lt;/b&gt;&lt;/i&gt;\",\"color\": \"#422E75\"},{\"serieName\": \"blueee\",\"color\": \"#B094F8\"},{\"serieName\": \"cv create\",\"color\": \"#6A4ABA\"},{\"serieName\": \"cv100\",\"color\": \"#D1C0FB\"},{\"serieName\": \"cv_1\",\"color\": \"#8C62F5\"},{\"serieName\": \"cv_2222\",\"color\": \"#025B3C\"},{\"serieName\": \"compvalue 2\",\"color\": \"#56D3A8\"},{\"serieName\": \"compvalue 22\",\"color\": \"#049160\"},{\"serieName\": \"company value 2\",\"color\": \"#06BF7F\"},{\"serieName\": \"company value 3\",\"color\": \"#785F1A\"},{\"serieName\": \"company value 4\",\"color\": \"#FCD977\"},{\"serieName\": \"company value 5\",\"color\": \"#BF982A\"},{\"serieName\": \"company value a\",\"color\": \"#FDE9AF\"},{\"serieName\": \"company value b\",\"color\": \"#FCC838\"},{\"serieName\": \"company value c\",\"color\": \"#22636B\"},{\"serieName\": \"company value d\",\"color\": \"#82DFE9\"},{\"serieName\": \"company value e\",\"color\": \"#369FAA\"},{\"serieName\": \"company vlues\",\"color\": \"#B5ECF2\"},{\"serieName\": \"company vlues 2\",\"color\": \"#48D1E0\"},{\"serieName\": \"company uynivbcptn created from automation by de team on datetime\",\"color\": \"#163772\"},{\"serieName\": \"company val created from automation by de team on 2024-06-03 11:04:28\",\"color\": \"#71A1F4\"},{\"serieName\": \"company value 1\",\"color\": \"#2359B6\"},{\"serieName\": \"company value created from automation by de team on 2024-06-03 11:05:07\",\"color\": \"#ABC7F9\"},{\"serieName\": \"company value created from automation by de team on 2024-06-06 10:47:36\",\"color\": \"#2E75F0\"},{\"serieName\": \"company value created from automation by de team on 2024-06-06 10:52:06\",\"color\": \"#721F27\"},{\"serieName\": \"company value created from automation by de team on 2024-06-10 10:42:22\",\"color\": \"#F47E89\"},{\"serieName\": \"company value created from automation by de team on 2025-04-09 15:19:17\",\"color\": \"#B6313E\"},{\"serieName\": \"creativity\",\"color\": \"#F9B3B9\"},{\"serieName\": \"creativity_1\",\"color\": \"#F04152\"},{\"serieName\": \"creativity_2\",\"color\": \"#2F3947\"},{\"serieName\": \"customer experience\",\"color\": \"#A2ACBA\"},{\"serieName\": \"customer focus\",\"color\": \"#47515F\"},{\"serieName\": \"de test\",\"color\": \"#BEC6D0\"},{\"serieName\": \"dedication new\",\"color\": \"#747E8C\"},{\"serieName\": \"delegation\",\"color\": \"#7A3D1F\"},{\"serieName\": \"employee experience\",\"color\": \"#C26232\"},{\"serieName\": \"empowerment\",\"color\": \"#FFCCB3\"},{\"serieName\": \"excellence\",\"color\": \"#FF8142\"},{\"serieName\": \"freny\",\"color\": \"#422E75\"},{\"serieName\": \"harshith\",\"color\": \"#B094F8\"},{\"serieName\": \"harshith test 1\",\"color\": \"#6A4ABA\"},{\"serieName\": \"harshith test 2sdfv\",\"color\": \"#D1C0FB\"},{\"serieName\": \"harshith test 3\",\"color\": \"#8C62F5\"},{\"serieName\": \"harshith test 5\",\"color\": \"#025B3C\"},{\"serieName\": \"hola sept 29--edited\",\"color\": \"#56D3A8\"},{\"serieName\": \"innovation\",\"color\": \"#9BE5CB\"},{\"serieName\": \"innovation and continuous improvement\",\"color\": \"#06BF7F\"},{\"serieName\": \"integrity\",\"color\": \"#785F1A\"},{\"serieName\": \"integrity and accountability\",\"color\": \"#FCD977\"},{\"serieName\": \"latest &lt;p&gt;my first&lt;/p&gt;\",\"color\": \"#BF982A\"},{\"serieName\": \"legacy\",\"color\": \"#FDE9AF\"},{\"serieName\": \"meenu_test <button>click me</button>\",\"color\": \"#FCC838\"},{\"serieName\": \"merge dag zeus\",\"color\": \"#22636B\"},{\"serieName\": \"new new\",\"color\": \"#82DFE9\"},{\"serieName\": \"power\",\"color\": \"#369FAA\"},{\"serieName\": \"respect\",\"color\": \"#B5ECF2\"},{\"serieName\": \"responsibility\",\"color\": \"#48D1E0\"},{\"serieName\": \"simplicity\",\"color\": \"#71A1F4\"},{\"serieName\": \"sprint together\",\"color\": \"#2359B6\"},{\"serieName\": \"sustainability\",\"color\": \"#ABC7F9\"},{\"serieName\": \"tenant archieve\",\"color\": \"#2E75F0\"},{\"serieName\": \"team work\",\"color\": \"#721F27\"},{\"serieName\": \"teamwork\",\"color\": \"#F47E89\"},{\"serieName\": \"test & and  qwerty\",\"color\": \"#B6313E\"},{\"serieName\": \"test value\",\"color\": \"#F9B3B9\"},{\"serieName\": \"test for company values dataflow\",\"color\": \"#F04152\"},{\"serieName\": \"test3jan\",\"color\": \"#2F3947\"},{\"serieName\": \"testcompanyvaluessss\",\"color\": \"#A2ACBA\"},{\"serieName\": \"testing new test odin\",\"color\": \"#47515F\"},{\"serieName\": \"testingeditsfidinodin\",\"color\": \"#BEC6D0\"},{\"serieName\": \"testingsfid007\",\"color\": \"#747E8C\"},{\"serieName\": \"this is a test for de dataflow\",\"color\": \"#7A3D1F\"},{\"serieName\": \"transparency\",\"color\": \"#FFA97E\"},{\"serieName\": \"vpat_test &lt;button&gt;click me&lt;/button&gt;\",\"color\": \"#C26232\"},{\"serieName\": \"value 1\",\"color\": \"#FFCCB3\"},{\"serieName\": \"valuea\",\"color\": \"#FF8142\"},{\"serieName\": \"automation_company_value\",\"color\": \"#422E75\"},{\"serieName\": \"chemistry\",\"color\": \"#B094F8\"},{\"serieName\": \"comp_2\",\"color\": \"#6A4ABA\"},{\"serieName\": \"connnjj\",\"color\": \"#D1C0FB\"},{\"serieName\": \"defect retest edit\",\"color\": \"#8C62F5\"},{\"serieName\": \"edited................\",\"color\": \"#025B3C\"},{\"serieName\": \"efficiency\",\"color\": \"#56D3A8\"},{\"serieName\": \"ghnmmm\",\"color\": \"#049160\"},{\"serieName\": \"honesty\",\"color\": \"#9BE5CB\"},{\"serieName\": \"honestyrrrr\",\"color\": \"#06BF7F\"},{\"serieName\": \"honestyyyy\",\"color\": \"#785F1A\"},{\"serieName\": \"honestyyyy22222\",\"color\": \"#FCD977\"},{\"serieName\": \"jihuhuhu\",\"color\": \"#BF982A\"},{\"serieName\": \"just_updated\",\"color\": \"#FDE9AF\"},{\"serieName\": \"new test\",\"color\": \"#FCC838\"},{\"serieName\": \"new_one\",\"color\": \"#22636B\"},{\"serieName\": \"new_value\",\"color\": \"#82DFE9\"},{\"serieName\": \"ojhbvccvbnm,\",\"color\": \"#369FAA\"},{\"serieName\": \"red\",\"color\": \"#B5ECF2\"},{\"serieName\": \"sdfbdnbertberb\",\"color\": \"#48D1E0\"},{\"serieName\": \"sdvbsdvb\",\"color\": \"#163772\"},{\"serieName\": \"sdvsd sd\",\"color\": \"#71A1F4\"},{\"serieName\": \"sdvsdv\",\"color\": \"#2359B6\"},{\"serieName\": \"sdvsdvsdv\",\"color\": \"#ABC7F9\"},{\"serieName\": \"test\",\"color\": \"#2E75F0\"},{\"serieName\": \"test 1\",\"color\": \"#721F27\"},{\"serieName\": \"test title\",\"color\": \"#F47E89\"},{\"serieName\": \"test title company value test title company value test title company value test title company value\",\"color\": \"#B6313E\"},{\"serieName\": \"test-test\",\"color\": \"#F9B3B9\"},{\"serieName\": \"test123\",\"color\": \"#F04152\"},{\"serieName\": \"test_\",\"color\": \"#2F3947\"},{\"serieName\": \"test_bddfjbaslf\",\"color\": \"#A2ACBA\"},{\"serieName\": \"test_companyvalue_1\",\"color\": \"#47515F\"},{\"serieName\": \"test_companyvalue_2\",\"color\": \"#BEC6D0\"},{\"serieName\": \"test_kafka-- edited de\",\"color\": \"#747E8C\"},{\"serieName\": \"testing cv\",\"color\": \"#7A3D1F\"},{\"serieName\": \"valuecheck\",\"color\": \"#FFA97E\"},{\"serieName\": \"values of company\",\"color\": \"#C26232\"},{\"serieName\": \"zuluupdatecompanyval284\",\"color\": \"#FFCCB3\"},{\"serieName\": \"zuluupdatecompanyval606\",\"color\": \"#FF8142\"}]}"
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Y29uc3QgeyBtdXplLCBnZXREYXRhRnJvbVNlYXJjaFF1ZXJ5LCBlbnYgfSA9IHZpejsKCmNvbnN0IHJhd0RhdGFNb2RlbCA9IGdldERhdGFGcm9tU2VhcmNoUXVlcnkoKTsKCi8vIEdsb2JhbCB2YXJpYWJsZSB0byBzdG9yZSB0aGUgYnJlYWtkb3duIGRhdGEKbGV0IG90aGVyQWNjb3VudHNCcmVha2Rvd24gPSAnJzsKCmNvbnN0IFJlZ2lvbkZpZWxkID0gIkRpc3BsYXkgTmFtZSI7CmNvbnN0IFNlYXJjaGVzRmllbGQgPSAiQ29tcGFueSBWYWx1ZSI7Cgpjb25zdCB0b3RhbFNlYXJjaGVzU3VtID0gcmF3RGF0YU1vZGVsLmdldEZpZWxkKFNlYXJjaGVzRmllbGQpLmRhdGEoKS5yZWR1Y2UoKGEsIGIpID0+IGEgKyBiLCAwKTsKCmZ1bmN0aW9uIGNyZWF0ZUFjY291bnRHcm91cGVkRmllbGQocm9vdERhdGEpIHsKICAgIGNvbnN0IGFjY291bnRTZWFyY2hlcyA9IHJvb3REYXRhCiAgICAgICAgLmdyb3VwQnkoW1JlZ2lvbkZpZWxkXSwgW3sgZmllbGQ6IFNlYXJjaGVzRmllbGQsIGFnZ246ICdzdW0nIH1dKQogICAgICAgIC5zb3J0KFtbU2VhcmNoZXNGaWVsZCwgJ2Rlc2MnXV0pOwogICAgCiAgICBjb25zdCBhY2NvdW50RGF0YSA9IGFjY291bnRTZWFyY2hlcy5nZXRGaWVsZChSZWdpb25GaWVsZCkuZGF0YSgpOwogICAgY29uc3Qgc2VhcmNoZXNEYXRhID0gYWNjb3VudFNlYXJjaGVzLmdldEZpZWxkKFNlYXJjaGVzRmllbGQpLmRhdGEoKTsKICAgIGNvbnN0IHRvcDdBY2NvdW50cyA9IGFjY291bnREYXRhLnNsaWNlKDAsIDcpOwogICAgY29uc3Qgb3RoZXJBY2NvdW50cyA9IGFjY291bnREYXRhLnNsaWNlKDcpOwoKICAgIGNvbnN0IG5mID0gbmV3IEludGwuTnVtYmVyRm9ybWF0KCk7CgogICAgb3RoZXJBY2NvdW50c0JyZWFrZG93biA9IG90aGVyQWNjb3VudHMubWFwKChhY2NvdW50LCBpbmRleCkgPT4gewogICAgICAgIGNvbnN0IHNlYXJjaGVzSW5kZXggPSBhY2NvdW50RGF0YS5pbmRleE9mKGFjY291bnQpOwogICAgICAgIGNvbnN0IGF3YXJkc1Rob3VzYW5kcyA9IG5mLmZvcm1hdChzZWFyY2hlc0RhdGFbc2VhcmNoZXNJbmRleF0gLyAxZTMpICsgIksiOwogICAgICAgIHJldHVybiBgJHthY2NvdW50fTogJHthd2FyZHNUaG91c2FuZHN9YDsKICAgIH0pLmpvaW4oJyB8ICcpOwoKICAgIGNvbnN0IGVuaGFuY2VkRGF0YSA9IHJvb3REYXRhLmNhbGN1bGF0ZVZhcmlhYmxlKAogICAgICAgIHsKICAgICAgICAgICAgbmFtZTogJ0FjY291bnRfR3JvdXBlZCcsCiAgICAgICAgICAgIHR5cGU6ICdkaW1lbnNpb24nCiAgICAgICAgfSwKICAgICAgICBbUmVnaW9uRmllbGRdLAogICAgICAgIGZ1bmN0aW9uKGFjY291bnQpIHsKICAgICAgICAgICAgcmV0dXJuIHRvcDdBY2NvdW50cy5pbmNsdWRlcyhhY2NvdW50KSA/IGFjY291bnQgOiAnT3RoZXJzJzsKICAgICAgICB9CiAgICApOwogICAgCiAgICByZXR1cm4gZW5oYW5jZWREYXRhOwp9Cgpjb25zdCBuZXdSb290RGF0YSA9IGNyZWF0ZUFjY291bnRHcm91cGVkRmllbGQocmF3RGF0YU1vZGVsKTsKY29uc3QgaHRtbCA9IG11emUuT3BlcmF0b3JzLmh0bWw7CmNvbnN0IG5mID0gbmV3IEludGwuTnVtYmVyRm9ybWF0KCk7CgptdXplCiAgICAuY2FudmFzKCkKICAgIC5kYXRhKG5ld1Jvb3REYXRhKQogICAgLmxheWVycyhbewogICAgICAgIG1hcms6ICdhcmMnLAogICAgICAgIGVuY29kaW5nOiB7CiAgICAgICAgICAgIGFuZ2xlOiB7CiAgICAgICAgICAgICAgICBmaWVsZDogU2VhcmNoZXNGaWVsZCwKICAgICAgICAgICAgICAgIGFnZ3JlZ2F0aW9uOiAic3VtIgogICAgICAgICAgICB9LAogICAgICAgICAgICAvLyBEYXRhIGxhYmVsIGZvcm1hdHRpbmcgaW4gdGhvdXNhbmRzIGFuZCBwZXJjZW50YWdlIHVzaW5nIEludGwuTnVtYmVyRm9ybWF0CiAgICAgICAgICAgIHRleHQ6IHsKICAgICAgICAgICAgICAgIGZpZWxkOiBTZWFyY2hlc0ZpZWxkLAogICAgICAgICAgICAgICAgYWdncmVnYXRpb246ICJzdW0iLAogICAgICAgICAgICAgICAgZm9ybWF0dGVyOiB2ID0+IHsKICAgICAgICAgICAgICAgICAgICBpZiAoIXYgfHwgIXYucmF3VmFsdWUgfHwgIXRvdGFsU2VhcmNoZXNTdW0pIHJldHVybiAiMEsgKDAlKSI7CiAgICAgICAgICAgICAgICAgICAgY29uc3QgcGVyY2VudCA9IHYucmF3VmFsdWUgLyB0b3RhbFNlYXJjaGVzU3VtOwogICAgICAgICAgICAgICAgICAgIHJldHVybiBgJHtuZi5mb3JtYXQodi5yYXdWYWx1ZSAvIDFlMyl9SyAoJHtuZi5mb3JtYXQoKHBlcmNlbnQgKiAxMDApLnRvRml4ZWQoMikpfSUpYDsKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH1dKQogICAgLmNvbG9yKCdBY2NvdW50X0dyb3VwZWQnKQogICAgLmNvbmZpZyh7CiAgICAgICAgaW50ZXJhY3Rpb246IHsKICAgICAgICAgICAgdG9vbHRpcDogewogICAgICAgICAgICAgICAgZm9ybWF0dGVyOiAoZGF0YVN0b3JlKSA9PiB7CiAgICAgICAgICAgICAgICAgICAgY29uc3QgYWNjb3VudEdyb3VwZWQgPSBkYXRhU3RvcmUuZGF0YU1vZGVsLmdldEZpZWxkKCJBY2NvdW50X0dyb3VwZWQiKS5kYXRhKClbMF07CiAgICAgICAgICAgICAgICAgICAgY29uc3QgdG90YWxBd2FyZHMgPSBkYXRhU3RvcmUuZGF0YU1vZGVsLmdldEZpZWxkKFNlYXJjaGVzRmllbGQpLmRhdGEoKVswXTsKICAgICAgICAgICAgICAgICAgICBjb25zdCBwZXJjZW50T2ZUb3RhbCA9ICgodG90YWxBd2FyZHMgLyB0b3RhbFNlYXJjaGVzU3VtKSAqIDEwMCkudG9GaXhlZCgyKTsKICAgICAgICAgICAgICAgICAgICBjb25zdCB0b3RhbEF3YXJkc1Rob3VzYW5kcyA9IG5mLmZvcm1hdCh0b3RhbEF3YXJkcyAvIDFlMykgKyAiSyI7CgogICAgICAgICAgICAgICAgICAgIGlmIChhY2NvdW50R3JvdXBlZCA9PT0gJ090aGVycycpIHsKICAgICAgICAgICAgICAgICAgICAgICAgY29uc3QgaXRlbXNMaXN0ID0gb3RoZXJBY2NvdW50c0JyZWFrZG93bjsKICAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIGh0bWxgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IHN0eWxlPSJwYWRkaW5nOiA4cHg7Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2PjxiPkFjY291bnQ6PC9iPiBPdGhlcnM8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2PjxiPlRvdGFsIEF3YXJkcyBnaXZlbjo8L2I+ICR7dG90YWxBd2FyZHNUaG91c2FuZHN9PC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdj48Yj4lIG9mIFRvdGFsIEF3YXJkczo8L2I+ICR7bmYuZm9ybWF0KHBlcmNlbnRPZlRvdGFsKX0lPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDogOHB4OyI+PGI+SW5jbHVkZXM6PC9iPjwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgc3R5bGU9Im1hcmdpbi1sZWZ0OiAxMnB4OyBmb250LXNpemU6IDEycHg7Ij4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJHtpdGVtc0xpc3R9CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgYDsKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgcmV0dXJuIGh0bWxgCiAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgc3R5bGU9InBhZGRpbmc6IDhweDsiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdj48Yj5BY2NvdW50OjwvYj4gJHthY2NvdW50R3JvdXBlZH08L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXY+PGI+VG90YWwgQXdhcmRzIGdpdmVuOjwvYj4gJHt0b3RhbEF3YXJkc1Rob3VzYW5kc308L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXY+PGI+JSBvZiBUb3RhbCBBd2FyZHM6PC9iPiAke25mLmZvcm1hdChwZXJjZW50T2ZUb3RhbCl9JTwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICBgOwogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgfSwKICAgIH0pCiAgICAubW91bnQoIiNjaGFydCIpOwo\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwgYm9keSB7CiAgICBtYXJnaW46IDA7CiAgICBwYWRkaW5nOiAwOwp9CgojY2hhcnQgewogICAgd2lkdGg6IDEwMHZ3OwogICAgaGVpZ2h0OiAxMDB2aDsKfQ\\u003d\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBpZD0iY2hhcnQiPjwvZGl2Pg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[30.03569291712228,69.9643070828777]}}\"}"
+      display_mode: CHART_MODE
+      dynamic_name: Breakdown
+      dynamic_description: Recognition breakdown by company values
+    viz_guid: 3f08d180-44c4-41d7-8a79-48d9520818ca
+  filters:
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Recognition Received Date
+    excluded_visualizations:
+    - Viz_1
+    - Viz_3
+    - Viz_2
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Receiver User Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Receiver User Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 4
+      width: 4
+    - visualization_id: Viz_2
+      x: 4
+      "y": 0
+      height: 4
+      width: 4
+    - visualization_id: Viz_3
+      x: 8
+      "y": 0
+      height: 4
+      width: 4
+    - visualization_id: Viz_4
+      x: 0
+      "y": 12
+      height: 8
+      width: 12
+    - visualization_id: Viz_5
+      x: 0
+      "y": 4
+      height: 8
+      width: 12
+  parameter_overrides:
+  - key: a4e6c70d-a279-498b-9e6d-f95df63becee
+    value:
+      name: Recognition::Recognition start date
+  - key: fd673a1e-02fa-41c0-a6b5-f4077e09cfcf
+    value:
+      name: Recognition::Recognition end date
+  ordered_chips:
+  - name: Tenant Code
+    type: FILTER
+  - name: Recognition Received Date
+    type: FILTER
+  - name: Recognition::Recognition end date
+    type: PARAMETER
+  - name: Recognition::Recognition start date
+    type: PARAMETER
+  - name: Receiver User Location
+    type: FILTER
+  - name: Receiver User Department
+    type: FILTER

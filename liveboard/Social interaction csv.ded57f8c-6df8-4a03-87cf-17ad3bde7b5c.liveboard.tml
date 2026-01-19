@@ -1,0 +1,1379 @@
+guid: ded57f8c-6df8-4a03-87cf-17ad3bde7b5c
+liveboard:
+  name: Social interaction csv
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Participant engagement activity
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Favorites
+        name: Favorites
+        expr: "count_if ( [Interaction Type] = 'favourites' , [Interaction Code] )"
+        was_auto_generated: false
+      - id: formula_Feed posts & content comments
+        name: Feed posts & content comments
+        expr: "count_if ( [Interaction Type] in { 'post' , 'comment' } , [Interaction Code] )"
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "count_if ( [Interaction Type] = 'like' , [Interaction Code] )"
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "count_if ( [Interaction Type] = 'reply' , [Interaction Code] )"
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "count_if ( [Interaction Type] = 'share' , [Interaction Code] )"
+        was_auto_generated: false
+      search_query: "sort by [Interaction Datetime] [Interaction Datetime].daily [Is System Feed?] = false [formula_Reactions] [formula_Feed posts & content comments] [formula_Replies] [formula_Shares] [formula_Favorites]"
+      answer_columns:
+      - name: Day(Interaction Datetime)
+        custom_name: Interaction date
+        dynamic_title: Interaction date
+        sort_info:
+          category: DEFAULT
+      - name: Favorites
+      - name: Feed posts & content comments
+      - name: Reactions
+      - name: Replies
+      - name: Shares
+      table:
+        table_columns:
+        - column_id: Day(Interaction Datetime)
+          show_headline: false
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Feed posts & content comments
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        ordered_column_ids:
+        - Day(Interaction Datetime)
+        - Reactions
+        - Feed posts & content comments
+        - Replies
+        - Shares
+        - Favorites
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Day(Interaction Datetime)
+        - column_id: Favorites
+        - column_id: Feed posts & content comments
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Shares
+        axis_configs:
+        - x:
+          - Day(Interaction Datetime)
+          "y":
+          - Reactions
+          - Feed posts & content comments
+          - Replies
+          - Shares
+          - Favorites
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Day(Interaction Datetime)\",\"columnProperty\": {}},{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Feed posts & content comments\",\"columnProperty\": {}},{\"columnId\": \"Replies\",\"columnProperty\": {}},{\"columnId\": \"Shares\",\"columnProperty\": {}},{\"columnId\": \"Favorites\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"98089760-7bf5-411b-bb73-fef82700f973\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\",\"Feed posts & content comments\",\"Replies\",\"Shares\",\"Favorites\"],\"isOpposite\": false}},{\"id\": \"a2efd573-c9b0-45f9-b44a-c314b6747ff7\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Interaction Datetime)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"click nudge\",\"color\": \"#B094F8\"},{\"serieName\": \"click recommended action\",\"color\": \"#8C62F5\"},{\"serieName\": \"comment\",\"color\": \"#56D3A8\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"post\",\"color\": \"#82DFE9\"},{\"serieName\": \"reply\",\"color\": \"#48D1E0\"},{\"serieName\": \"share\",\"color\": \"#71A1F4\"},{\"serieName\": \"view\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Participant engagement activity
+    viz_guid: f75f3d29-0e4b-4b18-8ed2-546b3cd11b5e
+  - id: Viz_2
+    answer:
+      name: Most engaged by Department
+      description: Highest engagement (up to 5) based on the Department  and selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Total Engagement
+        name: Total Engagement
+        expr: "[formula_Reactions] + [formula_Feed posts & content comments] + [formula_Replies] + [formula_Shares] + [formula_Favorites]"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "ifnull ( sum ( [Total Favourites] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Feed posts & content comments
+        name: Feed posts & content comments
+        expr: "ifnull ( sum ( [Total Posts] ) + sum ( [Total Comments] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "ifnull ( sum ( [Total Likes] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "ifnull ( sum ( [Total Replies] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "ifnull ( sum ( [Total Shares] ) , 0 ) "
+        was_auto_generated: false
+      search_query: "[Is System Feed?] = false [formula_Reactions] [formula_Feed posts & content comments] [formula_Replies] [formula_Shares] [formula_Favorites] [formula_Total Engagement] sort by [formula_Total Engagement] descending [formula_Total Engagement] > 0 [Department]"
+      answer_columns:
+      - name: Department
+      - name: Favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Feed posts & content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Engagement
+        custom_name: Total engagement
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total engagement
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Department
+          show_headline: false
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Feed posts & content comments
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        - column_id: Total Engagement
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Reactions
+        - Feed posts & content comments
+        - Replies
+        - Shares
+        - Favorites
+        - Total Engagement
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Department
+        - column_id: Favorites
+        - column_id: Feed posts & content comments
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Shares
+        - column_id: Total Engagement
+        axis_configs:
+        - x:
+          - Department
+          "y":
+          - Reactions
+          - Feed posts & content comments
+          - Replies
+          - Shares
+          - Favorites
+          - Total Engagement
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Feed posts & content comments\",\"columnProperty\": {}},{\"columnId\": \"Replies\",\"columnProperty\": {}},{\"columnId\": \"Shares\",\"columnProperty\": {}},{\"columnId\": \"Favorites\",\"columnProperty\": {}},{\"columnId\": \"Total Engagement\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"64b432b3-140a-44b3-8349-cc99e910ccd5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\",\"Feed posts & content comments\",\"Replies\",\"Shares\",\"Favorites\",\"Total Engagement\"],\"isOpposite\": false}},{\"id\": \"987ae82f-ea0f-4f24-94f5-98d39c22b797\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Department\"]}}],\"systemSeriesColors\": [{\"serieName\": \"click nudge\",\"color\": \"#B094F8\"},{\"serieName\": \"click recommended action\",\"color\": \"#8C62F5\"},{\"serieName\": \"comment\",\"color\": \"#56D3A8\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"post\",\"color\": \"#82DFE9\"},{\"serieName\": \"reply\",\"color\": \"#48D1E0\"},{\"serieName\": \"share\",\"color\": \"#71A1F4\"},{\"serieName\": \"view\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most engaged by Department
+      dynamic_description: Highest engagement (up to 5) based on the Department  and selected time period
+    viz_guid: 927b1036-7335-4e36-a553-75fcdc017d0e
+  - id: Viz_3
+    answer:
+      name: Least engaged by Department
+      description: Lowest engagement (up to 5) based on the Department  and selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Total Engagement
+        name: Total Engagement
+        expr: "[formula_Reactions] + [formula_Feed posts & content comments] + [formula_Replies] + [formula_Shares] + [formula_Favorites]"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "ifnull ( sum ( [Total Favourites] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Feed posts & content comments
+        name: Feed posts & content comments
+        expr: "ifnull ( sum ( [Total Posts] ) + sum ( [Total Comments] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "ifnull ( sum ( [Total Likes] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "ifnull ( sum ( [Total Replies] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "ifnull ( sum ( [Total Shares] ) , 0 ) "
+        was_auto_generated: false
+      search_query: "[formula_Reactions] [formula_Feed posts & content comments] [formula_Replies] [formula_Shares] [formula_Favorites] [formula_Total Engagement] sort by [formula_Total Engagement] [Department]"
+      answer_columns:
+      - name: Department
+      - name: Favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Feed posts & content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Engagement
+        custom_name: Total engagement
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total engagement
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Department
+          show_headline: false
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Feed posts & content comments
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        - column_id: Total Engagement
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Reactions
+        - Feed posts & content comments
+        - Replies
+        - Shares
+        - Favorites
+        - Total Engagement
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: STACKED_COLUMN
+        chart_columns:
+        - column_id: Department
+        - column_id: Favorites
+        - column_id: Feed posts & content comments
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Shares
+        - column_id: Total Engagement
+        axis_configs:
+        - x:
+          - Department
+          "y":
+          - Reactions
+          - Feed posts & content comments
+          - Replies
+          - Shares
+          - Favorites
+          - Total Engagement
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Feed posts & content comments\",\"columnProperty\": {}},{\"columnId\": \"Replies\",\"columnProperty\": {}},{\"columnId\": \"Shares\",\"columnProperty\": {}},{\"columnId\": \"Favorites\",\"columnProperty\": {}},{\"columnId\": \"Total Engagement\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"0a9e220c-3ff9-46bb-ac1a-143c395e2508\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\",\"Feed posts & content comments\",\"Replies\",\"Shares\",\"Favorites\",\"Total Engagement\"],\"isOpposite\": false}},{\"id\": \"908a81a6-a02e-48fe-8299-46aca54767d5\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Department\"]}}],\"systemSeriesColors\": [{\"serieName\": \"click nudge\",\"color\": \"#B094F8\"},{\"serieName\": \"click recommended action\",\"color\": \"#8C62F5\"},{\"serieName\": \"comment\",\"color\": \"#56D3A8\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"post\",\"color\": \"#82DFE9\"},{\"serieName\": \"reply\",\"color\": \"#48D1E0\"},{\"serieName\": \"share\",\"color\": \"#71A1F4\"},{\"serieName\": \"view\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least engaged by Department
+      dynamic_description: Lowest engagement (up to 5) based on the Department  and selected time period
+    viz_guid: a29c9e96-268d-405a-bc62-130f20303176
+  - id: Viz_4
+    answer:
+      name: Least engaged by Location
+      description: Lowest engagement (up to 5) based on the Location  and selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Total Engagement
+        name: Total Engagement
+        expr: "[formula_Reactions] + [formula_Feed posts & content comments] + [formula_Replies] + [formula_Shares] + [formula_Favorites]"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "ifnull ( sum ( [Total Favourites] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Feed posts & content comments
+        name: Feed posts & content comments
+        expr: "ifnull ( sum ( [Total Posts] ) + sum ( [Total Comments] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "ifnull ( sum ( [Total Likes] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "ifnull ( sum ( [Total Replies] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "ifnull ( sum ( [Total Shares] ) , 0 ) "
+        was_auto_generated: false
+      search_query: "[formula_Reactions] [formula_Feed posts & content comments] [formula_Replies] [formula_Shares] [formula_Favorites] [formula_Total Engagement] sort by [formula_Total Engagement] [Location]"
+      answer_columns:
+      - name: Favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Feed posts & content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Location
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Engagement
+        custom_name: Total engagement
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total engagement
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Feed posts & content comments
+          show_headline: false
+        - column_id: Location
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        - column_id: Total Engagement
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Reactions
+        - Feed posts & content comments
+        - Replies
+        - Shares
+        - Favorites
+        - Total Engagement
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Favorites
+        - column_id: Feed posts & content comments
+        - column_id: Location
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Shares
+        - column_id: Total Engagement
+        axis_configs:
+        - x:
+          - Location
+          "y":
+          - Reactions
+          - Feed posts & content comments
+          - Replies
+          - Shares
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Feed posts & content comments\",\"columnProperty\": {}},{\"columnId\": \"Replies\",\"columnProperty\": {}},{\"columnId\": \"Shares\",\"columnProperty\": {}},{\"columnId\": \"Favorites\",\"columnProperty\": {}},{\"columnId\": \"Total Engagement\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"faa650eb-0e95-4793-a965-90ed053688e5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\"],\"isOpposite\": false}},{\"id\": \"10955a68-7581-4ac5-b0dc-29f0db9306b5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Feed posts & content comments\"],\"isOpposite\": true}},{\"id\": \"127a3138-bc18-482c-9208-0f29de1cfffd\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Replies\"],\"isOpposite\": true}},{\"id\": \"63948edd-ecdc-4a29-ae52-90ada1679f27\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Shares\"],\"isOpposite\": true}},{\"id\": \"762daec6-fd76-46e6-ae20-7c77b77793b8\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Location\"]}}],\"systemSeriesColors\": [{\"serieName\": \"click nudge\",\"color\": \"#B094F8\"},{\"serieName\": \"click recommended action\",\"color\": \"#8C62F5\"},{\"serieName\": \"comment\",\"color\": \"#56D3A8\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"post\",\"color\": \"#82DFE9\"},{\"serieName\": \"reply\",\"color\": \"#48D1E0\"},{\"serieName\": \"share\",\"color\": \"#71A1F4\"},{\"serieName\": \"view\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least engaged by Location
+      dynamic_description: Lowest engagement (up to 5) based on the Location  and selected time period
+    viz_guid: 6d0d7dff-a7ff-4a32-b55c-dffe19043b23
+  - id: Viz_5
+    answer:
+      name: Most engaged by Location
+      description: Highest engagement (up to 5) based on the Department  and selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Total Engagement
+        name: Total Engagement
+        expr: "[formula_Reactions] + [formula_Feed posts & content comments] + [formula_Replies] + [formula_Shares] + [formula_Favorites]"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "ifnull ( sum ( [Total Favourites] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Feed posts & content comments
+        name: Feed posts & content comments
+        expr: "ifnull ( sum ( [Total Posts] ) + sum ( [Total Comments] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "ifnull ( sum ( [Total Likes] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "ifnull ( sum ( [Total Replies] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "ifnull ( sum ( [Total Shares] ) , 0 ) "
+        was_auto_generated: false
+      search_query: "[formula_Reactions] [formula_Feed posts & content comments] [formula_Replies] [formula_Shares] [formula_Favorites] [formula_Total Engagement] sort by [formula_Total Engagement] descending [formula_Total Engagement] > 0 [Location]"
+      answer_columns:
+      - name: Favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Feed posts & content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Location
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Engagement
+        custom_name: Total engagement
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total engagement
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Feed posts & content comments
+          show_headline: false
+        - column_id: Location
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        - column_id: Total Engagement
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Reactions
+        - Feed posts & content comments
+        - Replies
+        - Shares
+        - Favorites
+        - Total Engagement
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Favorites
+        - column_id: Feed posts & content comments
+        - column_id: Location
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Shares
+        - column_id: Total Engagement
+        axis_configs:
+        - x:
+          - Location
+          "y":
+          - Reactions
+          - Feed posts & content comments
+          - Replies
+          - Shares
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Feed posts & content comments\",\"columnProperty\": {}},{\"columnId\": \"Replies\",\"columnProperty\": {}},{\"columnId\": \"Shares\",\"columnProperty\": {}},{\"columnId\": \"Favorites\",\"columnProperty\": {}},{\"columnId\": \"Total Engagement\",\"columnProperty\": {}},{\"columnId\": \"Location\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"cf197da9-a041-4000-b2b5-e5e745a7c544\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\"],\"isOpposite\": false}},{\"id\": \"d9de7a02-7f28-44d4-9eb4-327c9c4338dd\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Feed posts & content comments\"],\"isOpposite\": true}},{\"id\": \"0691d572-cdc9-4cc0-b8f5-4ab3badf8323\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Replies\"],\"isOpposite\": true}},{\"id\": \"b2c03105-4d60-4361-af89-591f6a740ce0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Shares\"],\"isOpposite\": true}},{\"id\": \"9ae533fb-c8f7-431d-9393-217e8b53e1c0\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Location\"]}}],\"systemSeriesColors\": [{\"serieName\": \"click nudge\",\"color\": \"#B094F8\"},{\"serieName\": \"click recommended action\",\"color\": \"#8C62F5\"},{\"serieName\": \"comment\",\"color\": \"#56D3A8\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"post\",\"color\": \"#82DFE9\"},{\"serieName\": \"reply\",\"color\": \"#48D1E0\"},{\"serieName\": \"share\",\"color\": \"#71A1F4\"},{\"serieName\": \"view\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most engaged by Location
+      dynamic_description: Highest engagement (up to 5) based on the Department  and selected time period
+    viz_guid: 58f89630-4f41-4678-8301-e4caab551360
+  - id: Viz_6
+    answer:
+      name: 'Most engaged by Segment '
+      description: Highest engagement (up to 5) based on the Segment  and selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Total Engagement
+        name: Total Engagement
+        expr: "[formula_Reactions] + [formula_Feed posts & content comments] + [formula_Replies] + [formula_Shares] + [formula_Favorites]"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "ifnull ( sum ( [Total Favourites] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Feed posts & content comments
+        name: Feed posts & content comments
+        expr: "ifnull ( sum ( [Total Posts] ) + sum ( [Total Comments] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "ifnull ( sum ( [Total Likes] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "ifnull ( sum ( [Total Replies] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "ifnull ( sum ( [Total Shares] ) , 0 ) "
+        was_auto_generated: false
+      search_query: "[formula_Reactions] [formula_Feed posts & content comments] [formula_Replies] [formula_Shares] [formula_Favorites] [formula_Total Engagement] sort by [formula_Total Engagement] descending [formula_Total Engagement] > 0 [Segment Name]"
+      answer_columns:
+      - name: Favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Feed posts & content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Segment Name
+      - name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Engagement
+        custom_name: Total engagement
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total engagement
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Feed posts & content comments
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Segment Name
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        - column_id: Total Engagement
+          show_headline: false
+        ordered_column_ids:
+        - Segment Name
+        - Reactions
+        - Feed posts & content comments
+        - Replies
+        - Shares
+        - Favorites
+        - Total Engagement
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Favorites
+        - column_id: Feed posts & content comments
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Segment Name
+        - column_id: Shares
+        - column_id: Total Engagement
+        axis_configs:
+        - x:
+          - Segment Name
+          "y":
+          - Reactions
+          - Feed posts & content comments
+          - Replies
+          - Shares
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Feed posts & content comments\",\"columnProperty\": {}},{\"columnId\": \"Replies\",\"columnProperty\": {}},{\"columnId\": \"Shares\",\"columnProperty\": {}},{\"columnId\": \"Favorites\",\"columnProperty\": {}},{\"columnId\": \"Total Engagement\",\"columnProperty\": {}},{\"columnId\": \"Segment Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"ebf542c3-0472-4dfa-810a-6714b6ce3058\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\"],\"isOpposite\": false}},{\"id\": \"0fb55a8f-98bf-49f7-97fd-ef1418f2a5ab\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Feed posts & content comments\"],\"isOpposite\": true}},{\"id\": \"99bb1c68-1b9d-43b0-8e58-1e457bbe0dab\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Replies\"],\"isOpposite\": true}},{\"id\": \"386a7681-4fdf-4399-8b96-fd7aed5bcc2c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Shares\"],\"isOpposite\": true}},{\"id\": \"8c198a43-7944-4581-8915-2161cc8cd980\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Segment Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"click nudge\",\"color\": \"#B094F8\"},{\"serieName\": \"click recommended action\",\"color\": \"#8C62F5\"},{\"serieName\": \"comment\",\"color\": \"#56D3A8\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"post\",\"color\": \"#82DFE9\"},{\"serieName\": \"reply\",\"color\": \"#48D1E0\"},{\"serieName\": \"share\",\"color\": \"#71A1F4\"},{\"serieName\": \"view\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: 'Most engaged by Segment '
+      dynamic_description: Highest engagement (up to 5) based on the Segment  and selected time period
+    viz_guid: 49a65ab9-a32c-4eae-89c5-bad3e76c4399
+  - id: Viz_7
+    answer:
+      name: Most engaged by User Category
+      description: Highest engagement (up to 5) based on the User Category and selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Total Engagement
+        name: Total Engagement
+        expr: "[formula_Reactions] + [formula_Feed posts & content comments] + [formula_Replies] + [formula_Shares] + [formula_Favorites]"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "ifnull ( sum ( [Total Favourites] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Feed posts & content comments
+        name: Feed posts & content comments
+        expr: "ifnull ( sum ( [Total Posts] ) + sum ( [Total Comments] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "ifnull ( sum ( [Total Likes] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "ifnull ( sum ( [Total Replies] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "ifnull ( sum ( [Total Shares] ) , 0 ) "
+        was_auto_generated: false
+      search_query: "[Is System Feed?] = false [formula_Reactions] [formula_Feed posts & content comments] [formula_Replies] [formula_Shares] [formula_Favorites] [formula_Total Engagement] sort by [formula_Total Engagement] descending [formula_Total Engagement] > 0 [Category Name]"
+      answer_columns:
+      - name: Category Name
+      - name: Favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Feed posts & content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Engagement
+        custom_name: Total engagement
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total engagement
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Category Name
+          show_headline: false
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Feed posts & content comments
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        - column_id: Total Engagement
+          show_headline: false
+        ordered_column_ids:
+        - Category Name
+        - Reactions
+        - Feed posts & content comments
+        - Replies
+        - Shares
+        - Favorites
+        - Total Engagement
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Category Name
+        - column_id: Favorites
+        - column_id: Feed posts & content comments
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Shares
+        - column_id: Total Engagement
+        axis_configs:
+        - x:
+          - Category Name
+          "y":
+          - Reactions
+          - Feed posts & content comments
+          - Replies
+          - Shares
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Feed posts & content comments\",\"columnProperty\": {}},{\"columnId\": \"Replies\",\"columnProperty\": {}},{\"columnId\": \"Shares\",\"columnProperty\": {}},{\"columnId\": \"Favorites\",\"columnProperty\": {}},{\"columnId\": \"Total Engagement\",\"columnProperty\": {}},{\"columnId\": \"Category Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"1686735b-4845-439e-9a6c-a0d26445bc47\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\"],\"isOpposite\": false}},{\"id\": \"74e00331-c6ed-4d76-a595-36657cbb76f5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Feed posts & content comments\"],\"isOpposite\": true}},{\"id\": \"815022a2-30bc-4166-ac24-f64b5e8479ae\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Replies\"],\"isOpposite\": true}},{\"id\": \"41cfd113-8d51-46ef-b5ab-3b53af10701f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Shares\"],\"isOpposite\": true}},{\"id\": \"b834f68e-ff36-46b3-a5e9-a0e055f3bae4\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Category Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"click nudge\",\"color\": \"#B094F8\"},{\"serieName\": \"click recommended action\",\"color\": \"#8C62F5\"},{\"serieName\": \"comment\",\"color\": \"#56D3A8\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"post\",\"color\": \"#82DFE9\"},{\"serieName\": \"reply\",\"color\": \"#48D1E0\"},{\"serieName\": \"share\",\"color\": \"#71A1F4\"},{\"serieName\": \"view\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most engaged by User Category
+      dynamic_description: Highest engagement (up to 5) based on the User Category and selected time period
+    viz_guid: 09e310a0-2372-4c14-a46b-81ad198bf86d
+  - id: Viz_8
+    answer:
+      name: Least engaged by Segment
+      description: Lowest engagement (up to 5) based on the Segment and selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Total Engagement
+        name: Total Engagement
+        expr: "[formula_Reactions] + [formula_Feed posts & content comments] + [formula_Replies] + [formula_Shares] + [formula_Favorites]"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "ifnull ( sum ( [Total Favourites] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Feed posts & content comments
+        name: Feed posts & content comments
+        expr: "ifnull ( sum ( [Total Posts] ) + sum ( [Total Comments] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "ifnull ( sum ( [Total Likes] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "ifnull ( sum ( [Total Replies] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "ifnull ( sum ( [Total Shares] ) , 0 ) "
+        was_auto_generated: false
+      search_query: "[formula_Reactions] [formula_Feed posts & content comments] [formula_Replies] [formula_Shares] [formula_Favorites] [formula_Total Engagement] sort by [formula_Total Engagement] [Segment Name]"
+      answer_columns:
+      - name: Favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Feed posts & content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Segment Name
+      - name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Engagement
+        custom_name: Total engagement
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total engagement
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Feed posts & content comments
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Segment Name
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        - column_id: Total Engagement
+          show_headline: false
+        ordered_column_ids:
+        - Segment Name
+        - Reactions
+        - Feed posts & content comments
+        - Replies
+        - Shares
+        - Favorites
+        - Total Engagement
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Favorites
+        - column_id: Feed posts & content comments
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Segment Name
+        - column_id: Shares
+        - column_id: Total Engagement
+        axis_configs:
+        - x:
+          - Segment Name
+          "y":
+          - Reactions
+          - Feed posts & content comments
+          - Replies
+          - Shares
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Feed posts & content comments\",\"columnProperty\": {}},{\"columnId\": \"Replies\",\"columnProperty\": {}},{\"columnId\": \"Shares\",\"columnProperty\": {}},{\"columnId\": \"Favorites\",\"columnProperty\": {}},{\"columnId\": \"Total Engagement\",\"columnProperty\": {}},{\"columnId\": \"Segment Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"814783b9-1811-49be-9a49-ec84bb3b9abb\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\"],\"isOpposite\": false}},{\"id\": \"24da4499-8bdb-491d-805b-8159871b25f0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Feed posts & content comments\"],\"isOpposite\": true}},{\"id\": \"44f87632-8f8d-4e45-abf7-4d1d2cc28b89\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Replies\"],\"isOpposite\": true}},{\"id\": \"7676e9a3-733d-4bdd-9f93-6f6813ebd875\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Shares\"],\"isOpposite\": true}},{\"id\": \"f501c95f-0a6d-4336-8748-b67d892bbe0d\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Segment Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"click nudge\",\"color\": \"#B094F8\"},{\"serieName\": \"click recommended action\",\"color\": \"#8C62F5\"},{\"serieName\": \"comment\",\"color\": \"#56D3A8\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"post\",\"color\": \"#82DFE9\"},{\"serieName\": \"reply\",\"color\": \"#48D1E0\"},{\"serieName\": \"share\",\"color\": \"#71A1F4\"},{\"serieName\": \"view\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least engaged by Segment
+      dynamic_description: Lowest engagement (up to 5) based on the Segment and selected time period
+    viz_guid: b880c56b-ea82-41f4-a30e-502ef4482653
+  - id: Viz_9
+    answer:
+      name: Least engaged by User Category
+      description: Lowest engagement (up to 5) based on the User Category and selected time period
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Total Engagement
+        name: Total Engagement
+        expr: "[formula_Reactions] + [formula_Feed posts & content comments] + [formula_Replies] + [formula_Shares] + [formula_Favorites]"
+        was_auto_generated: false
+      - id: formula_Favorites
+        name: Favorites
+        expr: "ifnull ( sum ( [Total Favourites] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Feed posts & content comments
+        name: Feed posts & content comments
+        expr: "ifnull ( sum ( [Total Posts] ) + sum ( [Total Comments] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Reactions
+        name: Reactions
+        expr: "ifnull ( sum ( [Total Likes] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Replies
+        name: Replies
+        expr: "ifnull ( sum ( [Total Replies] ) , 0 ) "
+        was_auto_generated: false
+      - id: formula_Shares
+        name: Shares
+        expr: "ifnull ( sum ( [Total Shares] ) , 0 ) "
+        was_auto_generated: false
+      search_query: "[formula_Reactions] [formula_Feed posts & content comments] [formula_Replies] [formula_Shares] [formula_Favorites] [formula_Total Engagement] sort by [formula_Total Engagement] [Category Name]"
+      answer_columns:
+      - name: Category Name
+      - name: Favorites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Feed posts & content comments
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Replies
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Shares
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+      - name: Total Engagement
+        custom_name: Total engagement
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total engagement
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Category Name
+          show_headline: false
+        - column_id: Favorites
+          show_headline: false
+        - column_id: Feed posts & content comments
+          show_headline: false
+        - column_id: Reactions
+          show_headline: false
+        - column_id: Replies
+          show_headline: false
+        - column_id: Shares
+          show_headline: false
+        - column_id: Total Engagement
+          show_headline: false
+        ordered_column_ids:
+        - Category Name
+        - Reactions
+        - Feed posts & content comments
+        - Replies
+        - Shares
+        - Favorites
+        - Total Engagement
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false}"
+      chart:
+        type: BAR
+        chart_columns:
+        - column_id: Category Name
+        - column_id: Favorites
+        - column_id: Feed posts & content comments
+        - column_id: Reactions
+        - column_id: Replies
+        - column_id: Shares
+        - column_id: Total Engagement
+        axis_configs:
+        - x:
+          - Category Name
+          "y":
+          - Reactions
+          - Feed posts & content comments
+          - Replies
+          - Shares
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Reactions\",\"columnProperty\": {}},{\"columnId\": \"Feed posts & content comments\",\"columnProperty\": {}},{\"columnId\": \"Replies\",\"columnProperty\": {}},{\"columnId\": \"Shares\",\"columnProperty\": {}},{\"columnId\": \"Favorites\",\"columnProperty\": {}},{\"columnId\": \"Total Engagement\",\"columnProperty\": {}},{\"columnId\": \"Category Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"b2707686-bc59-4003-a89b-7af7bab5aade\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Reactions\"],\"isOpposite\": false}},{\"id\": \"e52f73a3-af21-4e01-8325-5cc1ce89316a\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Feed posts & content comments\"],\"isOpposite\": true}},{\"id\": \"0d51b4dc-e8d2-49a5-9ede-94ff9aa7f97b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Replies\"],\"isOpposite\": true}},{\"id\": \"fd0fb25b-6181-49d4-9e9b-2d48cfde430c\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Shares\"],\"isOpposite\": true}},{\"id\": \"30be1427-731c-4198-ab2b-0289af3cf04f\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Category Name\"]}}],\"systemSeriesColors\": [{\"serieName\": \"click nudge\",\"color\": \"#B094F8\"},{\"serieName\": \"click recommended action\",\"color\": \"#8C62F5\"},{\"serieName\": \"comment\",\"color\": \"#56D3A8\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCD977\"},{\"serieName\": \"like\",\"color\": \"#FCC838\"},{\"serieName\": \"post\",\"color\": \"#82DFE9\"},{\"serieName\": \"reply\",\"color\": \"#48D1E0\"},{\"serieName\": \"share\",\"color\": \"#71A1F4\"},{\"serieName\": \"view\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least engaged by User Category
+      dynamic_description: Lowest engagement (up to 5) based on the User Category and selected time period
+    viz_guid: 340f858b-1a2d-407a-b52b-d1e3d178a88d
+  filters:
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Interaction Datetime
+    excluded_visualizations:
+    - Viz_3
+    - Viz_4
+    - Viz_8
+    - Viz_9
+    - Viz_2
+    - Viz_5
+    - Viz_6
+    - Viz_7
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Category Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Company Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Segment Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Reporting Date
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 6
+      width: 12
+    - visualization_id: Viz_2
+      x: 0
+      "y": 6
+      height: 5
+      width: 6
+    - visualization_id: Viz_3
+      x: 6
+      "y": 6
+      height: 5
+      width: 6
+    - visualization_id: Viz_4
+      x: 6
+      "y": 11
+      height: 5
+      width: 6
+    - visualization_id: Viz_5
+      x: 0
+      "y": 11
+      height: 5
+      width: 6
+    - visualization_id: Viz_6
+      x: 0
+      "y": 16
+      height: 4
+      width: 6
+    - visualization_id: Viz_7
+      x: 0
+      "y": 20
+      height: 5
+      width: 6
+    - visualization_id: Viz_8
+      x: 6
+      "y": 16
+      height: 4
+      width: 6
+    - visualization_id: Viz_9
+      x: 6
+      "y": 20
+      height: 5
+      width: 6
+  ordered_chips:
+  - name: Tenant Code
+    type: FILTER
+  - name: Interaction Datetime
+    type: FILTER
+  - name: Department
+    type: FILTER
+  - name: Location
+    type: FILTER
+  - name: Category Name
+    type: FILTER
+  - name: Company Name
+    type: FILTER
+  - name: Segment Name
+    type: FILTER
+  - name: Reporting Date
+    type: FILTER
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "false"
+    - name: hide_group_description
+      value: "false"
+    - name: hide_group_tile_description
+      value: "false"
+    - name: hide_tile_description
+      value: "false"
+    - name: kpi_hero_font_size
+      value: M

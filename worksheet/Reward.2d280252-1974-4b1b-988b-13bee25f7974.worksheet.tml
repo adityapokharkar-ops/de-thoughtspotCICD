@@ -1,0 +1,398 @@
+guid: 2d280252-1974-4b1b-988b-13bee25f7974
+model:
+  name: Reward
+  model_tables:
+  - name: VW_USER_REWARDS_AS_IS
+    alias: User Reward
+    fqn: 371a7512-78af-4c2d-b201-356b8e35e7a7
+    joins:
+    - with: Award Instance
+      'on': '[VW_USER_REWARDS_AS_IS::AWARD_CODE] = [VW_AWARD_INSTANCE_AS_IS::AWARD_CODE] AND [VW_USER_REWARDS_AS_IS::TENANT_CODE] = [VW_AWARD_INSTANCE_AS_IS::TENANT_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Giver User
+      'on': '[VW_USER_REWARDS_AS_IS::TENANT_CODE] = [user_view::TENANT_CODE] AND [VW_USER_REWARDS_AS_IS::GIVER_USER_CODE] = [user_view::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Transaction
+      'on': '[VW_USER_REWARDS_AS_IS::TRANSACTION_GROUP_CODE] = [VW_TRANSACTION::TRANSACTION_GROUP_CODE] AND [VW_USER_REWARDS_AS_IS::TENANT_CODE] = [VW_TRANSACTION::TENANT_CODE] AND [VW_USER_REWARDS_AS_IS::RECEIVER_USER_CODE] = [VW_TRANSACTION::USER_CODE]'
+      type: INNER
+      cardinality: ONE_TO_ONE
+  - name: VW_TRANSACTION
+    alias: Transaction
+    fqn: abd06bfb-92a9-44f6-8ab9-08f018adedc0
+    joins:
+    - with: Reward Item
+      'on': '[VW_TRANSACTION::REWARD_ITEM_CODE] = [VW_REWARD_ITEM_AS_IS::CODE] AND [VW_TRANSACTION::TENANT_CODE] = [VW_REWARD_ITEM_AS_IS::TENANT_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Reward Transaction Status
+      'on': '[VW_TRANSACTION::REWARD_TRANSACTION_STATUS_CODE] = [VW_REF_REWARD_TRANSACTION_STATUS_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Tenant Details
+      'on': '[VW_TRANSACTION::TENANT_CODE] = [VW_TENANT_DETAILS_AS_IS::TENANT_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Transaction Type
+      'on': '[VW_TRANSACTION::TRANSACTION_TYPE_CODE] = [VW_REF_TRANSACTION_TYPE_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: User
+      'on': '[VW_TRANSACTION::TENANT_CODE] = [VW_USER_AS_IS::TENANT_CODE] AND [VW_TRANSACTION::USER_CODE] = [VW_USER_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_USER_AS_IS
+    alias: User
+    fqn: 38306036-94a8-4c22-a7f8-64d6c854732e
+    joins:
+    - with: User Manager
+      'on': '[VW_USER_AS_IS::MANAGER_CODE] = [Reciever manager::CODE] AND [VW_USER_AS_IS::TENANT_CODE] = [Reciever manager::TENANT_CODE]'
+      type: LEFT_OUTER
+      cardinality: MANY_TO_ONE
+    - with: User Status
+      'on': '[VW_USER_AS_IS::STATUS_CODE] = [VW_REF_USER_STATUS_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: user_view
+    alias: Giver User
+    fqn: 56be525d-731a-4815-ad40-aca23c029d85
+    joins:
+    - with: Giver User Status
+      'on': '[user_view::STATUS_CODE] = [Author User Status::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Giver manager
+      'on': '[user_view::TENANT_CODE] = [Giver manager::TENANT_CODE] AND [user_view::MANAGER_CODE] = [Giver manager::CODE]'
+      type: LEFT_OUTER
+      cardinality: MANY_TO_ONE
+  - name: VW_REF_TRANSACTION_TYPE_AS_IS
+    alias: Transaction Type
+    fqn: 5778f3c8-3f07-449a-9ccf-f121fea5ed05
+  - name: VW_REF_REWARD_TRANSACTION_STATUS_AS_IS
+    alias: Reward Transaction Status
+    fqn: 8463559c-6942-41e1-bc38-8fc87abc32d2
+  - name: VW_REWARD_ITEM_AS_IS
+    alias: Reward Item
+    fqn: c1ed6241-41f7-43f3-9584-3834e6f42b51
+  - name: VW_AWARD_INSTANCE_AS_IS
+    alias: Award Instance
+    fqn: e23a723c-62db-4eeb-b12a-4f764231d520
+    joins:
+    - with: Award Type
+      'on': '[VW_AWARD_INSTANCE_AS_IS::AWARD_TYPE_CODE] = [VW_REF_AWARD_TYPE_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_REF_AWARD_TYPE_AS_IS
+    alias: Award Type
+    fqn: d4b3fc55-9a7a-4624-81eb-53d11b28b586
+  - name: VW_TENANT_DETAILS_AS_IS
+    alias: Tenant Details
+    fqn: 65fb81cb-a0c0-4a36-a972-9308693f7b1a
+    joins:
+    - with: User Adoption
+      'on': '[VW_TENANT_DETAILS_AS_IS::TENANT_CODE] = [User Adoption::TENANT_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_DAILY_USER_ADOPTION
+    alias: Daily User Adoption
+    fqn: cff4017a-92b3-4814-bb96-d65d1e8b74e6
+    joins:
+    - with: User
+      'on': '[VW_DAILY_USER_ADOPTION::USER_CODE] = [VW_USER_AS_IS::CODE] AND [VW_DAILY_USER_ADOPTION::TENANT_CODE] = [VW_USER_AS_IS::TENANT_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: Giver manager
+    fqn: 66da877c-ea00-475b-8293-f472f53f3816
+  - name: Reciever manager
+    alias: User Manager
+    fqn: 5eca4517-c78d-4594-9308-148e26dd6c90
+  - name: VW_REF_USER_STATUS_AS_IS
+    alias: User Status
+    fqn: b2e4ddbf-9eba-4cc2-a3a3-9b2e03b0d117
+  - name: Author User Status
+    alias: Giver User Status
+    fqn: 3cfd1ca9-5308-4e42-b8ef-44384ef3e387
+  - name: User Adoption
+    fqn: 2e3a4cef-d715-4695-bfde-67e47097fca3
+  formulas:
+  - id: formula_Offset End Date
+    name: Offset End Date
+    expr: add_days ( [Reward end date] , - ( diff_days ( [Reward end date] , [Reward start date] ) + 1 ) )
+  - id: formula_Offset Start Date
+    name: Offset Start Date
+    expr: add_days ( [Reward start date] , - ( diff_days ( [Reward end date] , [Reward start date] ) + 1 ) )
+  columns:
+  - name: Giver User Code
+    column_id: User Reward::GIVER_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Reward Item Description
+    column_id: Reward Item::REWARD_ITEM_DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Transaction Code
+    column_id: Transaction::CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Offset Start Date
+    formula_id: formula_Offset Start Date
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Offset End Date
+    formula_id: formula_Offset End Date
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Adoption User Code
+    column_id: User Adoption::USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Adoption Reporting Date
+    column_id: User Adoption::REPORTING_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Base Currency
+    column_id: Transaction::BASE_CURRENCY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Transaction Amount Base Currency
+    column_id: Transaction::TRANSACTION_AMOUNT_BASE_CURRENCY
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: User Status
+    column_id: User Status::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: User Manager Email
+    column_id: User Manager::EMAIL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: User Manager Profile Url
+    column_id: User Manager::PROFILE_URL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver Manager Profile Url
+    column_id: Giver manager::PROFILE_URL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver Manager Email
+    column_id: Giver manager::EMAIL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Email
+    column_id: User::EMAIL
+    properties:
+      column_type: ATTRIBUTE
+  - name: Profile Image Url Original
+    column_id: User::PROFILE_IMAGE_URL_ORIGINAL
+    properties:
+      column_type: ATTRIBUTE
+  - name: Division
+    column_id: User::DIVISION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Segment Name
+    column_id: User::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Pay Currency
+    column_id: User::PAY_CURRENCY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Giver User Division
+    column_id: Giver User::DIVISION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver User Email
+    column_id: Giver User::EMAIL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver User Is Manager
+    column_id: Giver User::IS_MANAGER
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver User Manager Name
+    column_id: Giver User::MANAGER_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver User Pay Currency
+    column_id: Giver User::PAY_CURRENCY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver User Profile Image Url Original
+    column_id: Giver User::PROFILE_IMAGE_URL_ORIGINAL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver User Segment Name
+    column_id: Giver User::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver User Name
+    column_id: Giver User::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Transaction Group Code
+    column_id: User Reward::TRANSACTION_GROUP_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Reward Received Datetime
+    column_id: User Reward::RECEIVED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Department
+    column_id: User::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+  - name: Location
+    column_id: User::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Manager Name
+    column_id: User::MANAGER_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Allowance Points Balance
+    column_id: Daily User Adoption::ALLOWANCE_POINTS_BALANCE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Award Name
+    column_id: Award Instance::AWARD_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Daily Adoption Reporting Date
+    column_id: Daily User Adoption::REPORTING_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Daily Adoption User Code
+    column_id: Daily User Adoption::USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Tenant Code
+    column_id: Tenant Details::TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Receiver User Code
+    column_id: User Reward::RECEIVER_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Giver Has Allowance
+    column_id: User Reward::GIVER_HAS_ALLOWANCE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Transaction Points
+    column_id: Transaction::TRANSACTION_POINTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Transaction Direction
+    column_id: Transaction::TRANSACTION_DIRECTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Transaction Datetime
+    column_id: Transaction::TRANSACTION_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Transaction Status
+    column_id: Reward Transaction Status::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Award Type
+    column_id: Award Type::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Transaction Type
+    column_id: Transaction Type::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Transaction User Code
+    column_id: Transaction::USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: User Name
+    column_id: User::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is Manager
+    column_id: User::IS_MANAGER
+    properties:
+      column_type: ATTRIBUTE
+  - name: Giver User Location
+    column_id: Giver User::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver User Department
+    column_id: Giver User::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Transaction Amount Usd
+    column_id: Transaction::TRANSACTION_AMOUNT_USD
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Giver User Profile Url
+    column_id: Giver User::PROFILE_URL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Giver User Status
+    column_id: Giver User Status::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: User Adoption Location
+    column_id: User Adoption::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: User Adoption Department
+    column_id: User Adoption::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: User Code
+    column_id: User::CODE
+    properties:
+      column_type: ATTRIBUTE
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
+    spotter_config:
+      is_spotter_enabled: false
+  parameters:
+  - id: 68e80780-f171-47a7-be87-13dd178086e1
+    name: Reward end date
+    data_type: DATE
+    default_value: 11/13/2025
+    description: ''
+  - id: 52c6a7ae-ac13-4427-bd20-eb9ff86f5cf6
+    name: Reward start date
+    data_type: DATE
+    default_value: 11/01/2025
+    description: ''

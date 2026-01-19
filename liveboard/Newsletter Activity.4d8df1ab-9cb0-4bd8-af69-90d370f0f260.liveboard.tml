@@ -1,0 +1,451 @@
+guid: 4d8df1ab-9cb0-4bd8-af69-90d370f0f260
+liveboard:
+  name: Newsletter Activity
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: Newsletter sent
+      description: Total newsletters sent in the selected time period
+      tables:
+      - id: Newsletter
+        name: Newsletter
+        fqn: 11a1e30f-da87-4e1d-a81c-d84ec1e715ff
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "if ( [formula_Newsletter Sent Previous Period] = 0 and [formula_Total Newsletter Sent] != 0 ) then 100 else safe_divide ( ( [formula_Total Newsletter Sent] - [formula_Newsletter Sent Previous Period] ) , [formula_Newsletter Sent Previous Period] ) * 100"
+        was_auto_generated: false
+      - id: formula_Newsletter Sent Previous Period
+        name: Newsletter Sent Previous Period
+        expr: "unique_count_if ( [Is Archived?] = false and date ( [Sent At] ) >= [Offset Start Date] and date ( [Sent At] ) <= [Offset End Date]  , [Newsletter Code] )"
+        was_auto_generated: false
+      - id: formula_Total Newsletter Sent
+        name: Total Newsletter Sent
+        expr: "unique_count_if ( [Is Archived?] = false and date ( [Sent At] ) >= [Newsletter sent start date] and date ( [Sent At] ) <= [Newsletter sent end date] , [Newsletter Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Total Newsletter Sent] [formula_Newsletter Sent Previous Period] [formula_Difference]"
+      answer_columns:
+      - name: Difference
+      - name: Newsletter Sent Previous Period
+      - name: Total Newsletter Sent
+      table:
+        table_columns:
+        - column_id: Difference
+          show_headline: false
+        - column_id: Newsletter Sent Previous Period
+          show_headline: false
+        - column_id: Total Newsletter Sent
+          show_headline: false
+        ordered_column_ids:
+        - Total Newsletter Sent
+        - Newsletter Sent Previous Period
+        - Difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Total Newsletter Sent\",\"columnProperty\": {}}]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Difference
+        - column_id: Newsletter Sent Previous Period
+        - column_id: Total Newsletter Sent
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Total Newsletter Sent\",\"columnProperty\": {}},{\"columnId\": \"Measure names\",\"columnProperty\": {}},{\"columnId\": \"Measure values\",\"columnProperty\": {}},{\"columnId\": \"Newsletter Sent Previous Period\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"ea9d0571-184e-4bff-aae8-cbf7231eaeba\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Newsletter Sent\"],\"isOpposite\": false}},{\"id\": \"ec8c0be3-c7fb-4f65-bb03-2174daa7065d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Newsletter Sent Previous Period\"],\"isOpposite\": true}},{\"id\": \"fcdf635e-162d-48f7-95a6-8c2851af4ca5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Difference\"],\"isOpposite\": true}},{\"id\": \"115905de-8a81-465b-822e-5cb2a006c7c3\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gTW9jayBkYXRhIGZvciBsb2NhbCB0ZXN0aW5nCi8vIFJlcGxhY2UgdGhpcyB3aXRoIFRob3VnaHRTcG90IGRhdGEgZXh0cmFjdGlvbiBpbiB5b3VyIGVudmlyb25tZW50Ci8vIGNvbnN0IHJhd0RhdGEgPSBbWzg3LCAyNDEsIC02NF1dOyAvLyBbY3VycmVudFZhbHVlLCBwcmV2aW91c1ZhbHVlLCBwZXJjZW50Q2hhbmdlXQpjb25zdCByYXdEYXRhID0gdml6LmdldERhdGFGcm9tU2VhcmNoUXVlcnkoKS5nZXREYXRhKCkuZGF0YTsKY29uc3QgY3VycmVudFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMF0gPz8gMDsKY29uc3QgcHJldmlvdXNWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzFdID8/IDA7CmNvbnN0IHBlcmNlbnRDaGFuZ2UgPSByYXdEYXRhPy5bMF0/LlsyXSA/PyAwOwoKY29uc3QgdmFsdWVFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktdmFsdWUiKTsKY29uc3QgY2hhbmdlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLWNoYW5nZSIpOwoKdmFsdWVFbC5pbm5lclRleHQgPSBjdXJyZW50VmFsdWUudG9Mb2NhbGVTdHJpbmcoImVuLUdCIik7Cgpjb25zdCBjb2xvckNsYXNzID0gcGVyY2VudENoYW5nZSA+PSAwID8gInBvc2l0aXZlIiA6ICJuZWdhdGl2ZSI7CmNvbnN0IGRpcmVjdGlvbiA9IHBlcmNlbnRDaGFuZ2UgPj0gMCA/ICLihpEiIDogIuKGkyI7CgpjaGFuZ2VFbC5pbm5lckhUTUwgPSBgCiAgICA8ZGl2PgogICAgICA8c3BhbiBjbGFzcz0iYXJyb3cgJHtjb2xvckNsYXNzfSI+JHtkaXJlY3Rpb259PC9zcGFuPgogICAgICAgPHNwYW4gY2xhc3M9InBlcmNlbnQgJHtjb2xvckNsYXNzfSI+ICR7cGVyY2VudENoYW5nZS50b0ZpeGVkKDApfSU8L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0iY29tcGFyZSI+dnMgKCR7cHJldmlvdXNWYWx1ZX0pPC9zcGFuPgogICAgPC9kaXY+CiAgIAogIGA7Cgo\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzExMTsKfQoKLmtwaS1jb250YWluZXIgewogIC8qIGRpc3BsYXk6IGZsZXg7ICovCiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgYm94LXNpemluZzogYm9yZGVyLWJveDsKfQoKI2twaS12YWx1ZSB7CiAgZm9udC1zaXplOiA0OHB4OwogIGZvbnQtd2VpZ2h0OiA3MDA7CiAgY29sb3I6ICMwMDAwMDA7CiAgbGluZS1oZWlnaHQ6IDEuMTsKICBtYXJnaW4tYm90dG9tOiA0cHg7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICBnYXA6IDRweDsKfQoKI2twaS1jaGFuZ2UgLnVwIHsKICBjb2xvcjogIzI0ODUyODsKfQoKI2twaS1jaGFuZ2UgLmRvd24gewogIGNvbG9yOiAjZDMxZTM0Owp9Cgoja3BpLWNoYW5nZSAuY29tcGFyZSB7CiAgY29sb3I6ICM2YjZiNmI7Cn0KCgoucG9zaXRpdmUsCi5uZWdhdGl2ZSB7CiAgZm9udC1zaXplOiAxMXB4OwogIGZvbnQtc3R5bGU6IG5vcm1hbDsKICBmb250LXdlaWdodDogNDAwOwp9CgoucG9zaXRpdmUgewogIGNvbG9yOiAjMjQ4NTI4Owp9CgoubmVnYXRpdmUgewogIGNvbG9yOiAjZDMxZTM0Owp9Cg\\u003d\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBpZD0ia3BpLXZhbHVlIj48L2Rpdj4KICA8ZGl2IGlkPSJrcGktY2hhbmdlIj48L2Rpdj4KPC9kaXY+Cg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\",\"axisVisualProps\":{},\"columnVisualProps\":{},\"dataLabelVisualProps\":{},\"tooltipVisualProps\":{},\"legendVisualProps\":{},\"displayVisualProps\":{}}"
+      display_mode: CHART_MODE
+      dynamic_name: Newsletter sent
+      dynamic_description: Total newsletters sent in the selected time period
+    viz_guid: 960edd9b-5117-4764-ad83-41e941766930
+  - id: Viz_2
+    answer:
+      name: Sent newsletters
+      description: Details of newsletter sent (up to 10) in the selected time period
+      tables:
+      - id: Newsletter
+        name: Newsletter
+        fqn: 11a1e30f-da87-4e1d-a81c-d84ec1e715ff
+      search_query: "[Sent At] [Sent At].daily [Recipient Audience Type] [Open Rate] [Click-through Rate] [Total Number of Recipients] sort by [Sent At] [Sent At].daily descending [Is Archived?].false top 10 [Newsletter Url] [Recipient Audiences]"
+      answer_columns:
+      - name: Click-through Rate
+        custom_name: Click-through rate
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+        dynamic_title: Click-through rate
+      - name: Day(Sent At)
+        custom_name: Date sent
+        dynamic_title: Date sent
+      - name: Newsletter Url
+        custom_name: Name
+      - name: Open Rate
+        custom_name: Open rate
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+      - name: Recipient Audience Type
+        custom_name: Recipient audience type
+      - name: Recipient Audiences
+        custom_name: Recipient audience(s)
+        dynamic_title: Recipient audience(s)
+      - name: Total Number of Recipients
+        custom_name: Total number of recipients
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+            removeTrailingZeroes: false
+          isCategoryEditable: true
+        dynamic_title: Total number of recipients
+      table:
+        table_columns:
+        - column_id: Click-through Rate
+          show_headline: false
+        - column_id: Day(Sent At)
+          show_headline: false
+        - column_id: Newsletter Url
+          show_headline: false
+        - column_id: Open Rate
+          show_headline: false
+        - column_id: Recipient Audience Type
+          show_headline: false
+        - column_id: Recipient Audiences
+          show_headline: false
+        - column_id: Total Number of Recipients
+          show_headline: false
+        ordered_column_ids:
+        - Day(Sent At)
+        - Recipient Audience Type
+        - Newsletter Url
+        - Recipient Audiences
+        - Open Rate
+        - Click-through Rate
+        - Total Number of Recipients
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"wrapTableHeader\": true,\"showTableFooter\": false,\"orderedColumnIds\": [\"Newsletter Url\",\"Day(Sent At)\",\"Recipient Audience Type\",\"Recipient Audiences\",\"Total Number of Recipients\",\"Open Rate\",\"Click-through Rate\"],\"columnProperties\": [{\"columnId\": \"Day(Sent At)\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"Recipient Audience Type\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"Open Rate\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"Click-through Rate\",\"columnProperty\": {\"isHidden\": false}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Click-through Rate
+        - column_id: Day(Sent At)
+        - column_id: Newsletter Url
+        - column_id: Open Rate
+        - column_id: Recipient Audience Type
+        - column_id: Recipient Audiences
+        - column_id: Total Number of Recipients
+        axis_configs:
+        - x:
+          - Day(Sent At)
+          "y":
+          - Open Rate
+          - Click-through Rate
+          - Total Number of Recipients
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Day(Sent At)\",\"columnProperty\": {}},{\"columnId\": \"Recipient Audience Type\",\"columnProperty\": {}},{\"columnId\": \"Open Rate\",\"columnProperty\": {}},{\"columnId\": \"Click-through Rate\",\"columnProperty\": {}},{\"columnId\": \"Total Number of Recipients\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"18756cd0-ec6f-44c7-9fa8-9821bb90a176\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Open Rate\"],\"isOpposite\": false}},{\"id\": \"b1128bfa-86bb-41bd-bde8-26ee8c8bbf7d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Click-through Rate\"],\"isOpposite\": true}},{\"id\": \"85044f66-ca14-450d-afb2-b8dea4b0d58e\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Number of Recipients\"],\"isOpposite\": true}},{\"id\": \"cc43c595-7f7e-4c5c-b1df-10eda1c1c00f\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Sent At)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"Open Rate\",\"color\": \"#48D1E0\"},{\"serieName\": \"Click-through Rate\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Sent newsletters
+      dynamic_description: Details of newsletter sent (up to 10) in the selected time period
+    viz_guid: c521d88d-1501-4586-9fe9-4c1752a33e53
+    action_object_associations:
+    - action_name: download csv
+      context: PRIMARY
+      enabled: true
+  - id: Viz_3
+    answer:
+      name: Performance
+      description: "Newsletter performance - send volume, open rate and click-through rate  over time"
+      tables:
+      - id: Newsletter
+        name: Newsletter
+        fqn: 11a1e30f-da87-4e1d-a81c-d84ec1e715ff
+      search_query: "[Sent At] [Sent At].daily unique count [Newsletter Code] [Open Rate] [Click-through Rate] [Is Archived?].false"
+      answer_columns:
+      - name: Click-through Rate
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+      - name: Day(Sent At)
+        custom_name: Sent at
+        dynamic_title: Sent at
+      - name: Open Rate
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 1.0
+          isCategoryEditable: true
+      - name: Unique Number of Newsletter Code
+        custom_name: Newsletters sent
+        dynamic_title: Newsletters sent
+      table:
+        table_columns:
+        - column_id: Click-through Rate
+          show_headline: false
+        - column_id: Day(Sent At)
+          show_headline: false
+        - column_id: Open Rate
+          show_headline: false
+        - column_id: Unique Number of Newsletter Code
+          show_headline: false
+        ordered_column_ids:
+        - Day(Sent At)
+        - Unique Number of Newsletter Code
+        - Open Rate
+        - Click-through Rate
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: LINE_STACKED_COLUMN
+        chart_columns:
+        - column_id: Click-through Rate
+        - column_id: Day(Sent At)
+        - column_id: Open Rate
+        - column_id: Unique Number of Newsletter Code
+        axis_configs:
+        - x:
+          - Day(Sent At)
+          "y":
+          - Unique Number of Newsletter Code
+        - x:
+          - Day(Sent At)
+          "y":
+          - Open Rate
+          - Click-through Rate
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"visibleSeriesNames\": [\"Unique Number of Newsletter Code\",\"Click-through Rate\",\"Open Rate\"],\"gridLines\": {\"xGridlineEnabled\": false,\"yGridlineEnabled\": false},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"isStackedAsPercent\": false,\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"customProps\": \"{\\\"tileType\\\":null,\\\"advancedProperties\\\":{\\\"tooltip\\\":{\\\"enabled\\\":true,\\\"borderWidth\\\":\\\"1\\\",\\\"opacity\\\":\\\"\\\",\\\"label\\\":{},\\\"value\\\":{}},\\\"regression\\\":{\\\"lineWidth\\\":\\\"\\\"},\\\"gridlines\\\":{\\\"xAxis\\\":{},\\\"yAxis\\\":{}},\\\"answerLevelSettings\\\":{\\\"chart\\\":{\\\"backgroundStyle\\\":null},\\\"plotArea\\\":{\\\"backgroundStyle\\\":null},\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"\\\",\\\"connectingLines\\\":false}},\\\"showLabel\\\":true,\\\"showComparison\\\":true,\\\"showSparkline\\\":true,\\\"showAnalyseChangeCta\\\":true,\\\"showAnomalies\\\":null,\\\"customCompare\\\":null}\",\"pivotSummariesState\": {}},\"allLabels\": false,\"dataSize\": 20000.0,\"legendPosition\": \"BOTTOM_LEGEND\"},\"columnProperties\": [{\"columnId\": \"Day(Sent At)\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Unique Number of Newsletter Code\",\"columnProperty\": {\"dataLabels\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":null,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Open Rate\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":true,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}},{\"columnId\": \"Click-through Rate\",\"columnProperty\": {\"customProps\": \"{\\\"advancedProperties\\\":{\\\"dataLabels\\\":{\\\"align\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"\\\",\\\"borderColor\\\":\\\"\\\",\\\"borderWidth\\\":\\\"1\\\",\\\"filter\\\":null,\\\"maxCharacters\\\":\\\"\\\",\\\"style\\\":{\\\"isLinked\\\":false,\\\"linkedTo\\\":null}},\\\"enableMarkers\\\":true,\\\"lineStyle\\\":null,\\\"markerStyle\\\":null}}\"}}],\"axisProperties\": [{\"id\": \"c292ea7c-d723-454f-8596-050dd53a4bca\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Unique Number of Newsletter Code\"],\"isOpposite\": true,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}},{\"id\": \"a368f538-30ca-4acf-b6e6-4e1796de4c90\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Sent At)\"],\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}},{\"id\": \"9c6359e2-3861-459a-abfa-e12c390bcec0\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Click-through Rate\",\"Open Rate\"],\"format\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 0.0},\"isCategoryEditable\": true},\"yAxisRange\": {\"min\": 0.0,\"max\": 1.0},\"isOpposite\": false,\"customProps\": \"{\\\"advancedProperties\\\":{\\\"axisSettings\\\":{\\\"visible\\\":true,\\\"axisName\\\":{\\\"isLinked\\\":false,\\\"isAxisNameVisible\\\":true}},\\\"labels\\\":{\\\"isLinked\\\":false,\\\"enabled\\\":true,\\\"maxCharacters\\\":\\\"\\\"},\\\"ticks\\\":{\\\"showTicks\\\":false,\\\"tickWidth\\\":\\\"1\\\",\\\"tickLength\\\":\\\"5\\\",\\\"tickColor\\\":\\\"#5E5E5E\\\"}}}\"}}],\"seriesColors\": [{\"serieName\": \"Unique Number of Newsletter Code\",\"color\": \"#3A86FF\"},{\"serieName\": \"Open Rate\",\"color\": \"#FF3D91\"},{\"serieName\": \"Click-through Rate\",\"color\": \"#FCCB3D\"}],\"systemSeriesColors\": [{\"serieName\": \"Unique Number of Newsletter Code\",\"color\": \"#3A86FF\"},{\"serieName\": \"b9308df5-06dd-4869-ab7d-6a1ab169a0a2\",\"color\": \"#FF3D91\"},{\"serieName\": \"acd64412-a2e5-47d7-bb33-e0e91de9e87d\",\"color\": \"#FCCB3D\"},{\"serieName\": \"Open Rate\",\"color\": \"#2E75F0\"},{\"serieName\": \"Click-through Rate\",\"color\": \"#FCC838\"}]}"
+      display_mode: CHART_MODE
+      dynamic_name: Performance
+      dynamic_description: "Newsletter performance - send volume, open rate and click-through rate  over time"
+    viz_guid: fb00ccf4-da4d-442b-ba00-ac8a0b5f9c62
+  - id: Viz_4
+    answer:
+      name: Average open rate
+      description: Average open rate of all newsletters sent in the selected time period
+      tables:
+      - id: Newsletter
+        name: Newsletter
+        fqn: 11a1e30f-da87-4e1d-a81c-d84ec1e715ff
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "round ( if ( [formula_Open Rate Previous Period] = 0 and [formula_Open Rate Current Period] != 0 ) then 100 else safe_divide ( ( [formula_Open Rate Current Period] - [formula_Open Rate Previous Period] ) , [formula_Open Rate Previous Period] ) * 100 , .1 )"
+        was_auto_generated: false
+      - id: formula_Open Rate Current Period
+        name: Open Rate Current Period
+        expr: "least ( round ( safe_divide ( unique_count_if ( [Interaction Type Code] = 'NLIT002' and [Is Archived?] = false and date ( [Sent At] ) >= [Newsletter sent start date] and date ( [Sent At] ) <= [Newsletter sent end date] , concat ( [Newsletter Code] , [Newsletter Recipient Code] ) ) , unique_count_if ( [Interaction Type Code] = 'NLIT001' and [Is Archived?] = false and date ( [Sent At] ) >= [Newsletter sent start date] and date ( [Sent At] ) <= [Newsletter sent end date] , concat ( [Newsletter Code] , [Newsletter Recipient Code] ) ) ) * 100 , .1 ) , 100 )"
+        was_auto_generated: false
+      - id: formula_Open Rate Previous Period
+        name: Open Rate Previous Period
+        expr: "least ( round ( safe_divide ( unique_count_if ( [Interaction Type Code] = 'NLIT002' and [Is Archived?] = false and date ( [Sent At] ) >= [Offset Start Date] and date ( [Sent At] ) <= [Offset End Date] , concat ( [Newsletter Code] , [Newsletter Recipient Code] ) ) , unique_count_if ( [Interaction Type Code] = 'NLIT001' and [Is Archived?] = false and date ( [Sent At] ) >= [Offset Start Date] and date ( [Sent At] ) <= [Offset End Date] , concat ( [Newsletter Code] , [Newsletter Recipient Code] ) ) ) * 100 , .1 ) , 100 )"
+        was_auto_generated: false
+      search_query: "[formula_Open Rate Current Period] [formula_Open Rate Previous Period] [formula_Difference]"
+      answer_columns:
+      - name: Difference
+      - name: Open Rate Current Period
+        format:
+          category: PERCENTAGE
+          percentageFormatConfig:
+            decimals: 2.0
+          isCategoryEditable: true
+      - name: Open Rate Previous Period
+      table:
+        table_columns:
+        - column_id: Difference
+          show_headline: false
+        - column_id: Open Rate Current Period
+          show_headline: false
+        - column_id: Open Rate Previous Period
+          show_headline: false
+        ordered_column_ids:
+        - Open Rate Current Period
+        - Open Rate Previous Period
+        - Difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"columnProperties\": [{\"columnId\": \"Open Rate Current Period\",\"columnProperty\": {}}]}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Difference
+        - column_id: Open Rate Current Period
+        - column_id: Open Rate Previous Period
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Open Rate Current Period\",\"columnProperty\": {}},{\"columnId\": \"Measure names\",\"columnProperty\": {}},{\"columnId\": \"Measure values\",\"columnProperty\": {}},{\"columnId\": \"Open Rate Previous Period\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"050ea6bd-e106-4f4d-b2e4-2715d5c9978b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Open Rate Current Period\"],\"isOpposite\": false}},{\"id\": \"29dfff6d-5e54-4fae-9f8b-30c7f4e465f4\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Open Rate Previous Period\"],\"isOpposite\": true}},{\"id\": \"94e48675-7969-44d4-940f-20f4e18aa791\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Difference\"],\"isOpposite\": true}},{\"id\": \"eb005479-90a7-4922-917e-751f4434d569\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gTW9jayBkYXRhIGZvciBsb2NhbCB0ZXN0aW5nCi8vIFJlcGxhY2UgdGhpcyB3aXRoIFRob3VnaHRTcG90IGRhdGEgZXh0cmFjdGlvbiBpbiB5b3VyIGVudmlyb25tZW50Ci8vIGNvbnN0IHJhd0RhdGEgPSBbWzg3LCAyNDEsIC02NF1dOyAvLyBbY3VycmVudFZhbHVlLCBwcmV2aW91c1ZhbHVlLCBwZXJjZW50Q2hhbmdlXQpjb25zdCByYXdEYXRhID0gdml6LmdldERhdGFGcm9tU2VhcmNoUXVlcnkoKS5nZXREYXRhKCkuZGF0YTsKY29uc3QgY3VycmVudFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMF0gPz8gMDsKY29uc3QgcHJldmlvdXNWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzFdID8/IDA7CmNvbnN0IHBlcmNlbnRDaGFuZ2UgPSByYXdEYXRhPy5bMF0/LlsyXSA/PyAwOwoKY29uc3QgdmFsdWVFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktdmFsdWUiKTsKY29uc3QgY2hhbmdlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLWNoYW5nZSIpOwoKdmFsdWVFbC5pbm5lclRleHQgPSBjdXJyZW50VmFsdWUudG9Mb2NhbGVTdHJpbmcoImVuLUdCIikgKyIlIjsKCmNvbnN0IGNvbG9yQ2xhc3MgPSBwZXJjZW50Q2hhbmdlID49IDAgPyAicG9zaXRpdmUiIDogIm5lZ2F0aXZlIjsKY29uc3QgZGlyZWN0aW9uID0gcGVyY2VudENoYW5nZSA+PSAwID8gIuKGkSIgOiAi4oaTIjsKCmNoYW5nZUVsLmlubmVySFRNTCA9IGAKICAgIDxkaXY+CiAgICAgIDxzcGFuIGNsYXNzPSJhcnJvdyAke2NvbG9yQ2xhc3N9Ij4ke2RpcmVjdGlvbn08L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0icGVyY2VudCAke2NvbG9yQ2xhc3N9Ij4gJHtwZXJjZW50Q2hhbmdlLnRvRml4ZWQoMCl9JTwvc3Bhbj4KICAgICAgIDxzcGFuIGNsYXNzPSJjb21wYXJlIj52cyAoJHtwcmV2aW91c1ZhbHVlfSUpPC9zcGFuPgogICAgPC9kaXY+CiAgIAogIGA7Cgo\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzExMTsKfQoKLmtwaS1jb250YWluZXIgewogIC8qIGRpc3BsYXk6IGZsZXg7ICovCiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgYm94LXNpemluZzogYm9yZGVyLWJveDsKfQoKI2twaS12YWx1ZSB7CiAgZm9udC1zaXplOiA0OHB4OwogIGZvbnQtd2VpZ2h0OiA3MDA7CiAgY29sb3I6ICMwMDAwMDA7CiAgbGluZS1oZWlnaHQ6IDEuMTsKICBtYXJnaW4tYm90dG9tOiA0cHg7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICBnYXA6IDRweDsKfQoKI2twaS1jaGFuZ2UgLnVwIHsKICBjb2xvcjogIzI0ODUyODsKfQoKI2twaS1jaGFuZ2UgLmRvd24gewogIGNvbG9yOiAjZDMxZTM0Owp9Cgoja3BpLWNoYW5nZSAuY29tcGFyZSB7CiAgY29sb3I6ICM2YjZiNmI7Cn0KCgoucG9zaXRpdmUsCi5uZWdhdGl2ZSB7CiAgZm9udC1zaXplOiAxMXB4OwogIGZvbnQtc3R5bGU6IG5vcm1hbDsKICBmb250LXdlaWdodDogNDAwOwp9CgoucG9zaXRpdmUgewogIGNvbG9yOiAjMjQ4NTI4Owp9CgoubmVnYXRpdmUgewogIGNvbG9yOiAjZDMxZTM0Owp9Cg\\u003d\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBpZD0ia3BpLXZhbHVlIj48L2Rpdj4KICA8ZGl2IGlkPSJrcGktY2hhbmdlIj48L2Rpdj4KPC9kaXY+Cg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\",\"axisVisualProps\":{},\"columnVisualProps\":{},\"dataLabelVisualProps\":{},\"tooltipVisualProps\":{},\"legendVisualProps\":{},\"displayVisualProps\":{}}"
+      display_mode: CHART_MODE
+      dynamic_name: Average open rate
+      dynamic_description: Average open rate of all newsletters sent in the selected time period
+    viz_guid: a78552dd-4ff6-4f43-b110-8dbb9ac36809
+  - id: Viz_5
+    answer:
+      name: Average click-through rate
+      description: Average click-through rate of all newsletters sent in the selected time period
+      tables:
+      - id: Newsletter
+        name: Newsletter
+        fqn: 11a1e30f-da87-4e1d-a81c-d84ec1e715ff
+      formulas:
+      - id: formula_Difference
+        name: Difference
+        expr: "round ( ( if ( [formula_Click-through Rate Previous Period] = 0 and [formula_Click-through Rate Current Period] != 0 ) then 100 else safe_divide ( ( [formula_Click-through Rate Current Period] - [formula_Click-through Rate Previous Period] ) , [formula_Click-through Rate Previous Period] ) * 100 ) , .1 )"
+        was_auto_generated: false
+      - id: formula_Click-through Rate Current Period
+        name: Click-through Rate Current Period
+        expr: "least ( round ( safe_divide ( unique_count_if ( [Interaction Type Code] = 'NLIT004' and [Is Archived?] = false and date ( [Sent At] ) >= [Newsletter sent start date] and date ( [Sent At] ) <= [Newsletter sent end date] , concat ( [Newsletter Code] , [Newsletter Recipient Code] ) ) , unique_count_if ( [Interaction Type Code] = 'NLIT001' and [Is Archived?] = false and date ( [Sent At] ) >= [Newsletter sent start date] and date ( [Sent At] ) <= [Newsletter sent end date] , concat ( [Newsletter Code] , [Newsletter Recipient Code] ) ) ) * 100 , .1 ) , 100 )"
+        was_auto_generated: false
+      - id: formula_Click-through Rate Previous Period
+        name: Click-through Rate Previous Period
+        expr: "least ( round ( safe_divide ( unique_count_if ( [Interaction Type Code] = 'NLIT004' and [Is Archived?] = false and date ( [Sent At] ) >= [Offset Start Date] and date ( [Sent At] ) <= [Offset End Date] , concat ( [Newsletter Code] , [Newsletter Recipient Code] ) ) , unique_count_if ( [Interaction Type Code] = 'NLIT001' and [Is Archived?] = false and date ( [Sent At] ) >= [Offset Start Date] and date ( [Sent At] ) <= [Offset End Date] , concat ( [Newsletter Code] , [Newsletter Recipient Code] ) ) ) * 100 , .1 ) , 100 )"
+        was_auto_generated: false
+      search_query: "[formula_Click-through Rate Current Period] [formula_Click-through Rate Previous Period] [formula_Difference]"
+      answer_columns:
+      - name: Click-through Rate Current Period
+      - name: Click-through Rate Previous Period
+      - name: Difference
+      table:
+        table_columns:
+        - column_id: Click-through Rate Current Period
+          show_headline: false
+        - column_id: Click-through Rate Previous Period
+          show_headline: false
+        - column_id: Difference
+          show_headline: false
+        ordered_column_ids:
+        - Click-through Rate Current Period
+        - Click-through Rate Previous Period
+        - Difference
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\"}"
+      chart:
+        type: MUZE_STUDIO
+        chart_columns:
+        - column_id: Click-through Rate Current Period
+        - column_id: Click-through Rate Previous Period
+        - column_id: Difference
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Measure names\",\"columnProperty\": {}},{\"columnId\": \"Measure values\",\"columnProperty\": {}},{\"columnId\": \"Click-through Rate Current Period\",\"columnProperty\": {}},{\"columnId\": \"Click-through Rate Previous Period\",\"columnProperty\": {}},{\"columnId\": \"Difference\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"3c66a350-d1e0-430d-9ffc-1fc070e27fd9\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Click-through Rate Current Period\"],\"isOpposite\": false}},{\"id\": \"05ef55d4-de1d-42d4-bd94-ddf01f95d558\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Click-through Rate Previous Period\"],\"isOpposite\": true}},{\"id\": \"076feda7-396d-4c04-a3d4-a12da3003f05\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Difference\"],\"isOpposite\": true}},{\"id\": \"8eccb39e-a544-429a-ba06-6185a646a02e\",\"properties\": {\"axisType\": \"X\"}}]}"
+        custom_visual_props: "{\"clientState\":\"{\\\"version\\\":1,\\\"playground\\\":{\\\"version\\\":\\\"v1\\\",\\\"code\\\":{\\\"jsCodeBase64\\\":\\\"Ly8gTW9jayBkYXRhIGZvciBsb2NhbCB0ZXN0aW5nCi8vIFJlcGxhY2UgdGhpcyB3aXRoIFRob3VnaHRTcG90IGRhdGEgZXh0cmFjdGlvbiBpbiB5b3VyIGVudmlyb25tZW50Ci8vIGNvbnN0IHJhd0RhdGEgPSBbWzg3LCAyNDEsIC02NF1dOyAvLyBbY3VycmVudFZhbHVlLCBwcmV2aW91c1ZhbHVlLCBwZXJjZW50Q2hhbmdlXQpjb25zdCByYXdEYXRhID0gdml6LmdldERhdGFGcm9tU2VhcmNoUXVlcnkoKS5nZXREYXRhKCkuZGF0YTsKY29uc3QgY3VycmVudFZhbHVlID0gcmF3RGF0YT8uWzBdPy5bMF0gPz8gMDsKY29uc3QgcHJldmlvdXNWYWx1ZSA9IHJhd0RhdGE/LlswXT8uWzFdID8/IDA7CmNvbnN0IHBlcmNlbnRDaGFuZ2UgPSByYXdEYXRhPy5bMF0/LlsyXSA/PyAwOwoKY29uc3QgdmFsdWVFbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJrcGktdmFsdWUiKTsKY29uc3QgY2hhbmdlRWwgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgia3BpLWNoYW5nZSIpOwoKdmFsdWVFbC5pbm5lclRleHQgPSBjdXJyZW50VmFsdWUudG9Mb2NhbGVTdHJpbmcoImVuLUdCIikgKyIlIjsKCmNvbnN0IGNvbG9yQ2xhc3MgPSBwZXJjZW50Q2hhbmdlID49IDAgPyAicG9zaXRpdmUiIDogIm5lZ2F0aXZlIjsKY29uc3QgZGlyZWN0aW9uID0gcGVyY2VudENoYW5nZSA+PSAwID8gIuKGkSIgOiAi4oaTIjsKCmNoYW5nZUVsLmlubmVySFRNTCA9IGAKICAgIDxkaXY+CiAgICAgIDxzcGFuIGNsYXNzPSJhcnJvdyAke2NvbG9yQ2xhc3N9Ij4ke2RpcmVjdGlvbn08L3NwYW4+CiAgICAgICA8c3BhbiBjbGFzcz0icGVyY2VudCAke2NvbG9yQ2xhc3N9Ij4gJHtwZXJjZW50Q2hhbmdlLnRvRml4ZWQoMCl9JTwvc3Bhbj4KICAgICAgIDxzcGFuIGNsYXNzPSJjb21wYXJlIj52cyAoJHtwcmV2aW91c1ZhbHVlfSUpPC9zcGFuPgogICAgPC9kaXY+CiAgIAogIGA7Cgo\\u003d\\\",\\\"cssCodeBase64\\\":\\\"aHRtbCwKYm9keSB7CiAgbWFyZ2luOiAwOwogIHBhZGRpbmc6IDA7CiAgb3ZlcmZsb3c6IGhpZGRlbjsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgZm9udC1mYW1pbHk6ICJJbnRlciIsIHN5c3RlbS11aSwgc2Fucy1zZXJpZjsKICBjb2xvcjogIzExMTsKfQoKLmtwaS1jb250YWluZXIgewogIC8qIGRpc3BsYXk6IGZsZXg7ICovCiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICBhbGlnbi1pdGVtczogZmxleC1zdGFydDsKICBoZWlnaHQ6IDEwMCU7CiAgd2lkdGg6IDEwMCU7CiAgYm94LXNpemluZzogYm9yZGVyLWJveDsKfQoKI2twaS12YWx1ZSB7CiAgZm9udC1zaXplOiA0OHB4OwogIGZvbnQtd2VpZ2h0OiA3MDA7CiAgY29sb3I6ICMwMDAwMDA7CiAgbGluZS1oZWlnaHQ6IDEuMTsKICBtYXJnaW4tYm90dG9tOiA0cHg7Cn0KCiNrcGktY2hhbmdlIHNwYW57CiAgZm9udC1zaXplOiAxNnB4OwogIGxpbmUtaGVpZ2h0OiAxLjM7CiAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICBnYXA6IDRweDsKfQoKI2twaS1jaGFuZ2UgLnVwIHsKICBjb2xvcjogIzI0ODUyODsKfQoKI2twaS1jaGFuZ2UgLmRvd24gewogIGNvbG9yOiAjZDMxZTM0Owp9Cgoja3BpLWNoYW5nZSAuY29tcGFyZSB7CiAgY29sb3I6ICM2YjZiNmI7Cn0KCgoucG9zaXRpdmUsCi5uZWdhdGl2ZSB7CiAgZm9udC1zaXplOiAxMXB4OwogIGZvbnQtc3R5bGU6IG5vcm1hbDsKICBmb250LXdlaWdodDogNDAwOwp9CgoucG9zaXRpdmUgewogIGNvbG9yOiAjMjQ4NTI4Owp9CgoubmVnYXRpdmUgewogIGNvbG9yOiAjZDMxZTM0Owp9Cg\\u003d\\u003d\\\",\\\"htmlCodeBase64\\\":\\\"PGRpdiBjbGFzcz0ia3BpLWNvbnRhaW5lciI+CiAgPGRpdiBpZD0ia3BpLXZhbHVlIj48L2Rpdj4KICA8ZGl2IGlkPSJrcGktY2hhbmdlIj48L2Rpdj4KPC9kaXY+Cg\\u003d\\u003d\\\"},\\\"splitSizes\\\":[55,45]}}\",\"axisVisualProps\":{},\"columnVisualProps\":{},\"dataLabelVisualProps\":{},\"tooltipVisualProps\":{},\"legendVisualProps\":{},\"displayVisualProps\":{}}"
+      display_mode: CHART_MODE
+      dynamic_name: Average click-through rate
+      dynamic_description: Average click-through rate of all newsletters sent in the selected time period
+    viz_guid: 9ba7a121-7f63-4c59-8527-d7c4aad8255f
+  filters:
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Recipient Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Recipient Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Newsletter Mapping User Code
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Sent At
+    excluded_visualizations:
+    - Viz_1
+    - Viz_4
+    - Viz_5
+    is_mandatory: false
+    date_filter:
+      type: LAST_N_PERIOD
+      number: 30
+      oper: =
+      date_period: DAY
+    display_name: ""
+  - column:
+    - Newsletter Category
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Delivery System Type
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 4
+      width: 4
+    - visualization_id: Viz_2
+      x: 0
+      "y": 11
+      height: 10
+      width: 12
+    - visualization_id: Viz_3
+      x: 0
+      "y": 4
+      height: 7
+      width: 12
+    - visualization_id: Viz_4
+      x: 4
+      "y": 0
+      height: 4
+      width: 4
+    - visualization_id: Viz_5
+      x: 8
+      "y": 0
+      height: 4
+      width: 4
+  parameter_overrides:
+  - key: 9a013034-b3c0-4831-bb8c-eb13e487442c
+    value:
+      name: Newsletter::Newsletter sent end date
+      override_value: 07/01/2024
+  - key: 5f0ee477-1baf-47f4-976d-9a1bd68ee66c
+    value:
+      name: Newsletter::Newsletter sent start date
+      override_value: 05/01/2024
+  ordered_chips:
+  - name: Tenant Code
+    type: FILTER
+  - name: Recipient Department
+    type: FILTER
+  - name: Recipient Location
+    type: FILTER
+  - name: Newsletter::Newsletter sent end date
+    type: PARAMETER
+  - name: Newsletter::Newsletter sent start date
+    type: PARAMETER
+  - name: Newsletter Mapping User Code
+    type: FILTER
+  - name: Sent At
+    type: FILTER
+  - name: Newsletter Category
+    type: FILTER
+  - name: Delivery System Type
+    type: FILTER
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "false"
+    - name: hide_group_description
+      value: "false"
+    - name: hide_group_tile_description
+      value: "false"
+    - name: hide_tile_description
+      value: "false"
+    - name: kpi_hero_font_size
+      value: M

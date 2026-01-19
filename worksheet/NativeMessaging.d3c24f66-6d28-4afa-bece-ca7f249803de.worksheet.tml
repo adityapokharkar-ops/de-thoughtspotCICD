@@ -1,0 +1,551 @@
+guid: d3c24f66-6d28-4afa-bece-ca7f249803de
+model:
+  name: NativeMessaging
+  model_tables:
+  - name: VW_CHAT_CONVERSATIONS_AS_IS
+    alias: Chat Conversation
+    fqn: 8fc2d758-b9a1-412e-9370-f6397990a11e
+    joins:
+    - with: Chat Call
+      'on': '[VW_CHAT_CONVERSATIONS_AS_IS::CODE] = [VW_CHAT_CALLS_AS_IS::CONVERSATION_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Chat Conversation Access Type
+      'on': '[VW_CHAT_CONVERSATIONS_AS_IS::ACCESS_TYPE_CODE] = [VW_REF_CHAT_ACCESS_TYPE_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Chat Conversation Type
+      'on': '[VW_CHAT_CONVERSATIONS_AS_IS::CONVERSATION_TYPE_CODE] = [VW_REF_CHAT_CONVERSATION_TYPE_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Conversation Members
+      'on': '[VW_CHAT_CONVERSATIONS_AS_IS::CODE] = [VW_CHAT_CONVERSATION_MEMBERS_AS_IS::CONVERSATION_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Message
+      'on': '[VW_CHAT_CONVERSATIONS_AS_IS::CODE] = [VW_CHAT_MESSAGE_AS_IS::MESSAGE_CONVERSATION_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: VW_TENANT_INFORMATION
+      'on': '[VW_CHAT_CONVERSATIONS_AS_IS::TENANT_CODE] = [VW_TENANT_INFORMATION::CODE]'
+      type: RIGHT_OUTER
+      cardinality: MANY_TO_ONE
+  - name: VW_CHAT_MESSAGE_AS_IS
+    alias: Message
+    fqn: 632898cd-8f75-4cce-b925-7fe42c60c695
+    joins:
+    - with: Message Creator User Details
+      'on': '[VW_CHAT_MESSAGE_AS_IS::MESSAGE_SENT_BY_CODE] = [VW_USER_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Message Sender User Details
+      'on': '[VW_CHAT_MESSAGE_AS_IS::MESSAGE_SENT_BY_CODE] = [VW_USER_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Message Type
+      'on': '[VW_CHAT_MESSAGE_AS_IS::MESSAGE_TYPE_CODE] = [VW_REF_CHAT_MESSAGE_TYPE_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_USER_AS_IS
+    alias: Message Sender User Details
+    fqn: 38306036-94a8-4c22-a7f8-64d6c854732e
+  - name: VW_CHAT_CALLS_AS_IS
+    alias: Chat Call
+    fqn: 64fcc432-026f-425e-9d22-6c1c73a41938
+    joins:
+    - with: Call Attendees
+      'on': '[VW_CHAT_CALLS_AS_IS::CODE] = [VW_CHAT_CALL_ATTENDEES_AS_IS::CALL_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_CHAT_CONVERSATION_MEMBERS_AS_IS
+    alias: Conversation Members
+    fqn: cb11cf51-49ff-489a-82f3-9519600529c0
+    joins:
+    - with: Conversation Member Role
+      'on': '[VW_CHAT_CONVERSATION_MEMBERS_AS_IS::MEMBER_ROLE_TYPE_CODE] = [VW_REF_CHAT_MEMBER_ROLE_TYPE_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Conversation Members User Details
+      'on': '[VW_CHAT_CONVERSATION_MEMBERS_AS_IS::USER_CODE] = [VW_USER_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_USER_AS_IS
+    alias: Conversation Members User Details
+    fqn: 38306036-94a8-4c22-a7f8-64d6c854732e
+    joins:
+    - with: Conversation Members User Status
+      'on': '[VW_USER_AS_IS::STATUS_CODE] = [VW_REF_USER_STATUS_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_CHAT_CALL_ATTENDEES_AS_IS
+    alias: Call Attendees
+    fqn: 9236e456-1c30-4d60-bafa-3f2749910c8a
+    joins:
+    - with: Call Attendees User Details
+      'on': '[VW_CHAT_CALL_ATTENDEES_AS_IS::USER_CODE] = [VW_USER_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_USER_AS_IS
+    alias: Call Attendees User Details
+    fqn: 38306036-94a8-4c22-a7f8-64d6c854732e
+    joins:
+    - with: Call Attendees User Status
+      'on': '[VW_USER_AS_IS::STATUS_CODE] = [VW_REF_USER_STATUS_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_REF_USER_STATUS_AS_IS
+    alias: Call Attendees User Status
+    fqn: b2e4ddbf-9eba-4cc2-a3a3-9b2e03b0d117
+  - name: VW_REF_CHAT_MEMBER_ROLE_TYPE_AS_IS
+    alias: Conversation Member Role
+    fqn: 074b77b9-85e5-47aa-a427-73a4e84a46b8
+  - name: VW_USER_AS_IS
+    alias: Message Creator User Details
+    fqn: 38306036-94a8-4c22-a7f8-64d6c854732e
+    joins:
+    - with: Message Creator User Status
+      'on': '[VW_USER_AS_IS::STATUS_CODE] = [VW_REF_USER_STATUS_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_REF_USER_STATUS_AS_IS
+    alias: Message Creator User Status
+    fqn: b2e4ddbf-9eba-4cc2-a3a3-9b2e03b0d117
+  - name: VW_REF_CHAT_MESSAGE_TYPE_AS_IS
+    alias: Message Type
+    fqn: 248e618b-aaaf-41b8-8f55-6b001c4979f6
+  - name: VW_REF_USER_STATUS_AS_IS
+    alias: Conversation Members User Status
+    fqn: b2e4ddbf-9eba-4cc2-a3a3-9b2e03b0d117
+  - name: VW_REF_CHAT_ACCESS_TYPE_AS_IS
+    alias: Chat Conversation Access Type
+    fqn: f4b6d5de-aaa5-403e-8ff1-9f018247282e
+  - name: VW_REF_CHAT_CONVERSATION_TYPE_AS_IS
+    alias: Chat Conversation Type
+    fqn: 30e5936d-d8f2-47a8-945a-40635feae9b9
+  - name: VW_TENANT_INFORMATION
+    fqn: b5f84a35-1de7-47c2-9e0a-756418bbd681
+  columns:
+  - name: Message Creator User Status
+    description: This attribute represents the information of the type of conversation
+    column_id: Message Creator User Status::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sent By Code
+    column_id: Message::MESSAGE_SENT_BY_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Tenant Code
+    description: This attribute represents the information of the tenant code description of the chat conversation
+    column_id: VW_TENANT_INFORMATION::CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Chat Conversation Type
+    description: This attribute represents the information of the type of chat conversation, e.g., group or direct.
+    column_id: Chat Conversation Type::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Type
+    description: This attribute represents the information of the type of message, e.g. ,user or system.
+    column_id: Message Type::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Parent Message Code
+    description: This attribute represents the information of e parent Message Code
+    column_id: Message::PARENT_MESSAGE_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member User Status
+    description: This attribute represents the information of the type of conversation
+    column_id: Conversation Members User Status::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Inactive Date
+    description: This attribute represents the information of the date of inactivity of the user who was a part of the conversation
+    column_id: Conversation Members::INACTIVE_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Conversation Member Active Date
+    description: This attribute represents the information of the date of initial activity of the user who was a part of the conversation
+    column_id: Conversation Members::ACTIVE_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Message Creator City
+    description: This attribute represents the information of the city of the user who send the message
+    column_id: Message Creator User Details::CITY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Company Name
+    description: This attribute represents the information of company name of the user who have created the Message
+    column_id: Message Creator User Details::COMPANY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Country
+    description: This attribute represents the information of the country of the user who send the message
+    column_id: Message Creator User Details::COUNTRY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Department
+    description: This attribute represents the information of the department of the user who send the message
+    column_id: Message Creator User Details::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Division
+    description: This attribute represents the information of the division of the user who is a part of the conversation
+    column_id: Message Creator User Details::DIVISION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Full Name
+    description: This attribute represents the information of the full name of the user who send the message
+    column_id: Message Creator User Details::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Location
+    description: This attribute represents the information of the location of the user who is a part of the conversation
+    column_id: Message Creator User Details::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Segment Code
+    description: This attribute represents the information of segment code of the user who have created the Message
+    column_id: Message Creator User Details::SEGMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Segment Name
+    description: This attribute represents the information of segment name of the user who have created the Message
+    column_id: Message Creator User Details::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator State
+    description: This attribute represents the information of the state of the user who joined the call
+    column_id: Message Creator User Details::STATE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Title
+    description: This attribute represents the information of title of the user who have created the Message
+    column_id: Message Creator User Details::TITLE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Category Code
+    description: This attribute represents the information of the category code of the user who is a part of the conversation
+    column_id: Message Creator User Details::USER_CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Creator Category Name
+    description: This attribute represents the information of the category name of the user who is a part of the conversation
+    column_id: Message Creator User Details::USER_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Joined Datetime
+    description: This attribute represents the information of date of when a user joined the call
+    column_id: Call Attendees::CALL_JOINED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Total Call Time Consumption
+    description: This attribute represents the information of total time of the call a user joined
+    column_id: Call Attendees::TOTAL_TIME_CONSUMPTION
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Call Attendee City
+    description: This attribute represents the information of the city of the user who send the message
+    column_id: Call Attendees User Details::CITY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Company Name
+    description: This attribute represents the information of company name of the user who have created the Message
+    column_id: Call Attendees User Details::COMPANY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Country
+    description: This attribute represents the information of the country of the user who send the message
+    column_id: Call Attendees User Details::COUNTRY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Department
+    description: This attribute represents the information of the department of the user who send the message
+    column_id: Call Attendees User Details::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Division
+    description: This attribute represents the information of the division of the user who is a part of the conversation
+    column_id: Call Attendees User Details::DIVISION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Location
+    description: This attribute represents the information of the location of the user who joined the call
+    column_id: Call Attendees User Details::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee State
+    description: This attribute represents the information of the state of the user who joined the call
+    column_id: Call Attendees User Details::STATE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Title
+    description: This attribute represents the information of title of the user who have created the Message
+    column_id: Call Attendees User Details::TITLE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Category Code
+    description: This attribute represents the information of the category code of the user who is a part of the conversation
+    column_id: Call Attendees User Details::USER_CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Category Name
+    description: This attribute represents the information of the category name of the user who is a part of the conversation
+    column_id: Call Attendees User Details::USER_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Segment Code
+    description: This attribute represents the information of segment code of the user who have created the Message
+    column_id: Call Attendees User Details::SEGMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Segment Name
+    description: This attribute represents the information of segment name of the user who have created the Message
+    column_id: Call Attendees User Details::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Duration
+    description: This attribute represents the information of the call duration
+    column_id: Chat Call::CALL_DURATION
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Call End Datetime
+    description: This attribute represents the information of the call end datetime
+    column_id: Chat Call::CALL_END_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Call Start Datetime
+    description: This attribute represents the information of the call start datetime
+    column_id: Chat Call::CALL_START_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Conversation Member City
+    description: This attribute represents the information of the city of the user who send the message
+    column_id: Conversation Members User Details::CITY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Company Name
+    description: This attribute represents the information of company name of the user who have created the Message
+    column_id: Conversation Members User Details::COMPANY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Country
+    description: This attribute represents the information of the country of the user who send the message
+    column_id: Conversation Members User Details::COUNTRY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Department
+    description: This attribute represents the information of the department of the user who send the message
+    column_id: Conversation Members User Details::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Division
+    description: This attribute represents the information of the division of the user who is a part of the conversation
+    column_id: Conversation Members User Details::DIVISION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Full Name
+    description: This attribute represents the information of the full name of the user who send the message
+    column_id: Conversation Members User Details::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Location
+    description: This attribute represents the information of the location of the user who is a part of the conversation
+    column_id: Conversation Members User Details::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Segment Code
+    description: This attribute represents the information of segment code of the user who have created the Message
+    column_id: Conversation Members User Details::SEGMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Segment Name
+    description: This attribute represents the information of segment name of the user who have created the Message
+    column_id: Conversation Members User Details::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member State
+    description: This attribute represents the information of the state of the user who joined the call
+    column_id: Conversation Members User Details::STATE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Category Code
+    description: This attribute represents the information of the category code of the user who is a part of the conversation
+    column_id: Conversation Members User Details::USER_CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Category Name
+    description: This attribute represents the information of the category name of the user who is a part of the conversation
+    column_id: Conversation Members User Details::USER_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendee Full Name
+    description: This attribute represents the information of the full name of the user who send the message
+    column_id: Call Attendees User Details::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is Message Deleted?
+    description: This attribute represents the information of whether a message is deleted or not
+    column_id: Message::IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Deleted Note
+    description: This attribute represents the information of the note when the message is deleted
+    column_id: Message::DELETED_NOTE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is Message Saved?
+    description: This attribute represents the information of whether a message is save or not
+    column_id: Message::IS_MESSAGE_SAVED
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is Message Modified?
+    description: This attribute represents the information of whether a message is modified or not
+    column_id: Message::IS_MESSAGE_MODIFIED
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Reply Count
+    description: This attribute represents the information of the total replies on a message
+    column_id: Message::MESSAGE_REPLY_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Message Report Count
+    description: This attribute represents the information of the number of times a message was reported
+    column_id: Message::MESSAGE_REPORT_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Message Sent Datetime
+    description: This attribute represents the information of the time when the message was sent
+    column_id: Message::MESSAGE_SENT_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Total Message Reaction Count
+    description: This attribute represents the information of the total reactions on a message
+    column_id: Message::TOTAL_REACTION_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Message Sender City
+    description: This attribute represents the information of the city of the user who send the message
+    column_id: Message Sender User Details::CITY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Company Name
+    description: This attribute represents the information of company name of the user who have created the Message
+    column_id: Message Sender User Details::COMPANY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Country
+    description: This attribute represents the information of the country of the user who send the message
+    column_id: Message Sender User Details::COUNTRY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Department
+    description: This attribute represents the information of the department of the user who send the message
+    column_id: Message Sender User Details::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Division
+    description: This attribute represents the information of the division of the user who is a part of the conversation
+    column_id: Message Sender User Details::DIVISION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Location
+    description: This attribute represents the information of the location of the user who is a part of the conversation
+    column_id: Message Sender User Details::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender State
+    description: This attribute represents the information of the state of the user who joined the call
+    column_id: Message Sender User Details::STATE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Segment Code
+    description: This attribute represents the information of segment code of the user who have created the Message
+    column_id: Message Sender User Details::SEGMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Segment Name
+    description: This attribute represents the information of segment name of the user who have created the Message
+    column_id: Message Sender User Details::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Title
+    description: This attribute represents the information of title of the user who have created the Message
+    column_id: Message Sender User Details::TITLE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Category Code
+    description: This attribute represents the information of the category code of the user who is a part of the conversation
+    column_id: Message Sender User Details::USER_CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Category Name
+    description: This attribute represents the information of the category name of the user who is a part of the conversation
+    column_id: Message Sender User Details::USER_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Message Sender Full Name
+    description: This attribute represents the information of the full name of the user who send the message
+    column_id: Message Sender User Details::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Call Attendees User Satuts
+    description: This attribute represents the information of the type of conversation
+    column_id: Call Attendees User Status::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Chat Conversation Admin Count
+    description: This attribute represents the information of the total admins in a chat conversation
+    column_id: Chat Conversation::ADMIN_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Chat Conversation Description
+    description: This attribute represents the information of the type of conversation
+    column_id: Chat Conversation::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Chat Conversation Member Count
+    description: This attribute represents the information of the total members in the conversation
+    column_id: Chat Conversation::MEMBER_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Chat Conversation Name
+    description: This attribute represents the information of the name of the chat conversation
+    column_id: Chat Conversation::NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Conversation Member Role
+    description: This attribute represents the information of the type of conversation
+    column_id: Conversation Member Role::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Chat Conversation Access Type
+    description: This attribute represents the information of the type of access in the chat conversation, e.g. , public or private
+    column_id: Chat Conversation Access Type::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
+    spotter_config:
+      is_spotter_enabled: false
