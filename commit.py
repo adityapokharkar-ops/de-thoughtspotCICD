@@ -52,7 +52,7 @@ def commit_call(Bearer_token):
             {"type": "CONNECTION"},
             {"type": "LOGICAL_RELATIONSHIP"}
         ],
-            "tag_identifiers": ["analytics"],
+            "tag_identifiers": ["test"],
     }
     try:
         response = requests.post(metadata_search_url, headers=headers, data=json.dumps(payload_commit))
