@@ -1,4 +1,4 @@
-name: ThoughtSpot Commit Action
+name: Commit TMLs to Test Branch
 
 on:
   workflow_dispatch:   # One-click manual trigger
