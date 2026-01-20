@@ -1,4 +1,4 @@
-name: Deploy TMLs to ThoughtSpot
+name: Deploy TMLs to perf
 
 on:
   workflow_dispatch:   # Manual one-click run
