@@ -23,4 +23,4 @@ jobs:
 
       - name: Deploy TMLs
         run: |
-          python deploy.py
+          python migt-deploy.py
