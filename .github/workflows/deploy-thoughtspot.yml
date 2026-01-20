@@ -1,4 +1,4 @@
-name: Deploy ThoughtSpot TMLs
+name: Merge Branches
 
 on:
   workflow_dispatch:
