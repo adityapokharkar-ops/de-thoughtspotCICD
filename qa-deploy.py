@@ -15,7 +15,7 @@ def deploy_auth():
         "username": "aditya.pokharkar@simpplr.com",
         "auto_create": False,
         "password": "Planet@107",
-        "secret_key": "4775671a-6327-4954-be4d-84c147f059b3"
+        "secret_key": "e962e58e-506e-4436-af3c-0cbdb41e12d1"
     }
     try:
         response = requests.post(deploy_auth_url, headers=headers, data=json.dumps(payload))
