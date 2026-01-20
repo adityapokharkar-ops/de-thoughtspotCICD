@@ -1,0 +1,19 @@
+guid: 631a9817-8643-4ef1-87eb-0898d37f86e3
+connection:
+  name: Snowflake
+  type: RDBMS_SNOWFLAKE
+  authentication_type: SERVICE_ACCOUNT
+  properties:
+  - key: database
+    value: "${SNOWFLAKE_DATABASE_NAME}"
+  - key: password
+    value: "${SNOWFLAKE_PASSWORD}"
+  - key: role
+    value: "${SNOWFLAKE_ROLE}"
+  - key: accountName
+    value: "${SNOWFLAKE_ACCOUNT_NAME}"
+  - key: warehouse
+    value: "${SNOWFLAKE_WAREHOUSE}"
+  - key: user
+    value: "${SNOWFLAKE_USER_NAME}"
+  description: ""
