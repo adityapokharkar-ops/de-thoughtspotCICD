@@ -1,0 +1,65 @@
+guid: 8fc2d758-b9a1-412e-9370-f6397990a11e
+table:
+  name: VW_CHAT_CONVERSATIONS_AS_IS
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_CHAT_CONVERSATIONS_AS_IS
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: NAME
+    db_column_name: NAME
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DESCRIPTION
+    db_column_name: DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: CONVERSATION_TYPE_CODE
+    db_column_name: CONVERSATION_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ACCESS_TYPE_CODE
+    db_column_name: ACCESS_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: MEMBER_COUNT
+    db_column_name: MEMBER_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: ADMIN_COUNT
+    db_column_name: ADMIN_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
