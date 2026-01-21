@@ -12,6 +12,9 @@ on:
       merge_migt:
         description: "Merge test into migt"
         type: boolean
+      merge_migration:
+        description: "Merge test into migration"
+        type: boolean 
 
 jobs:
   merge:
@@ -48,3 +51,10 @@ jobs:
           git checkout migt
           git merge origin/test --no-ff
           git push origin migt
+
+      - name: Merge test into migration
+        if: ${{ inputs.merge_migration }}
+        run: |
+          git checkout migration
+          git merge origin/test --no-ff
+          git push origin migration
