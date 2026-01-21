@@ -1,0 +1,14 @@
+guid: c2aba5f5-0e37-4dbe-9196-a440a056fa1c
+sql_view:
+  name: test view
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  sql_query: "select 1 as col\nunion \nselect 2 as col"
+  sql_view_columns:
+  - name: COL
+    sql_output_column: COL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
