@@ -1,0 +1,551 @@
+guid: 65fb81cb-a0c0-4a36-a972-9308693f7b1a
+table:
+  name: VW_TENANT_DETAILS_AS_IS
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_TENANT_DETAILS_AS_IS
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    description: Tenant code
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ACCOUNT_CODE
+    db_column_name: ACCOUNT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DATA_SOURCE_CODE
+    db_column_name: DATA_SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DOMAIN_URL
+    db_column_name: DOMAIN_URL
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: CAN_DISPLAY_BIRTHDATE
+    db_column_name: CAN_DISPLAY_BIRTHDATE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: CAN_DISPLAY_JOINING_DATE
+    db_column_name: CAN_DISPLAY_JOINING_DATE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_PEOPLE_CATEGORY_ENABLED
+    db_column_name: IS_PEOPLE_CATEGORY_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_PAGE_ENABLED
+    db_column_name: IS_PAGE_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_EVENT_ENABLED
+    db_column_name: IS_EVENT_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_ALBUM_ENABLED
+    db_column_name: IS_ALBUM_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_BLOG_ENABLED
+    db_column_name: IS_BLOG_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_FILE_ENABLED
+    db_column_name: IS_FILE_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_SMART_WRITING_ENABLED
+    db_column_name: IS_SMART_WRITING_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_SMART_ANSWER_ENABLED
+    db_column_name: IS_SMART_ANSWER_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_ORG_CHART_ENABLED
+    db_column_name: IS_ORG_CHART_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: VALIDATION_PERIOD_IN_MONTH
+    db_column_name: VALIDATION_PERIOD_IN_MONTH
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: IS_FEED_ENABLED
+    db_column_name: IS_FEED_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: APP_NAME
+    db_column_name: APP_NAME
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: PEOPLE_CATEGORY_SINGULAR_NAME
+    db_column_name: PEOPLE_CATEGORY_SINGULAR_NAME
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: PEOPLE_CATEGORY_PLURAL_NAME
+    db_column_name: PEOPLE_CATEGORY_PLURAL_NAME
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_SEGMENT_ENABLED
+    db_column_name: IS_SEGMENT_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_SOCIAL_CAMPAIGN_ENABLED
+    db_column_name: IS_SOCIAL_CAMPAIGN_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: CUSTOMER_SEGMENT_CODE
+    db_column_name: CUSTOMER_SEGMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ALLOWED_LICENSES
+    db_column_name: ALLOWED_LICENSES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: USED_LICENSES
+    db_column_name: USED_LICENSES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: IS_MOBILE_PROMOTION_ENABLED
+    db_column_name: IS_MOBILE_PROMOTION_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_NATIV_APP_ENABLED
+    db_column_name: IS_NATIV_APP_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_LOGIN_FROM_GENERIC_APP_ENABLED
+    db_column_name: IS_LOGIN_FROM_GENERIC_APP_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_BRANDED_APP_DISTRIBUTION_ENABLED
+    db_column_name: IS_BRANDED_APP_DISTRIBUTION_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_MOBILE_APP_ACCESS_ENABLED
+    db_column_name: IS_MOBILE_APP_ACCESS_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_RECOGNITION_ENABLED
+    db_column_name: IS_RECOGNITION_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_EMPLOYEE_LISTENING_ENABLED
+    db_column_name: IS_EMPLOYEE_LISTENING_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_REWARDS_ENABLED
+    db_column_name: IS_REWARDS_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_REWARDS_ALLOWANCE_ENABLED
+    db_column_name: IS_REWARDS_ALLOWANCE_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: COMPANY_VALUES_MODE_CODE
+    db_column_name: COMPANY_VALUES_MODE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_MULTILINGUAL_MODEL_ENABLED
+    db_column_name: IS_MULTILINGUAL_MODEL_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: BRANDING_INFO
+    db_column_name: BRANDING_INFO
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SALESFORCE_CRM_ACCOUNT_ID
+    db_column_name: SALESFORCE_CRM_ACCOUNT_ID
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: APP_VERSION
+    db_column_name: APP_VERSION
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ACCOUNT_NAME
+    db_column_name: ACCOUNT_NAME
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ACCOUNT_SEGMENT
+    db_column_name: ACCOUNT_SEGMENT
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ACCOUNT_SALES_SEGMENT
+    db_column_name: ACCOUNT_SALES_SEGMENT
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ACCOUNT_MARKET_SEGMENT
+    db_column_name: ACCOUNT_MARKET_SEGMENT
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ACCOUNT_LAUNCH_DATETIME
+    db_column_name: ACCOUNT_LAUNCH_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: TOTAL_ARR
+    db_column_name: TOTAL_ARR
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: SIMPPLR_NET_ARR
+    db_column_name: SIMPPLR_NET_ARR
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: ACCOUNT_REGION
+    db_column_name: ACCOUNT_REGION
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ACCOUNT_INDUSTRY
+    db_column_name: ACCOUNT_INDUSTRY
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: INDUSTRY_SECTOR
+    db_column_name: INDUSTRY_SECTOR
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: INDUSTRY_GROUP
+    db_column_name: INDUSTRY_GROUP
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ACCOUNT_CREATION_DATETIME
+    db_column_name: ACCOUNT_CREATION_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: HEALTH_SCORE
+    db_column_name: HEALTH_SCORE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_PERSONALIZED_CONTENT_EMAILS_ENABLED
+    db_column_name: IS_PERSONALIZED_CONTENT_EMAILS_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_SIMPPLR_EMAIL_ENABLED
+    db_column_name: IS_SIMPPLR_EMAIL_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: SENDER_EMAIL_ADDRESS
+    db_column_name: SENDER_EMAIL_ADDRESS
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: INSTANCE_TYPE_CODE
+    db_column_name: INSTANCE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_AUTO_GOVERNANCE_ENABLED
+    db_column_name: IS_AUTO_GOVERNANCE_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: LANGUAGES_ENABLED
+    db_column_name: LANGUAGES_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_LAUNCHPAD_ENABLED
+    db_column_name: IS_LAUNCHPAD_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_SIMPPLR_AI_ENABLED
+    db_column_name: IS_SIMPPLR_AI_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_CUSTOM_THEME_ENABLED
+    db_column_name: IS_CUSTOM_THEME_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: EMPLOYEE_NEWSLETTER_ARR
+    db_column_name: EMPLOYEE_NEWSLETTER_ARR
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: EMPLOYEE_RECOGNITION_ARR
+    db_column_name: EMPLOYEE_RECOGNITION_ARR
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: EMPLOYEE_LISTENING_ARR
+    db_column_name: EMPLOYEE_LISTENING_ARR
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: IS_ONBOARDING_SETTING_ENABLED
+    db_column_name: IS_ONBOARDING_SETTING_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: ONBOARDING_SITE_SETTING_CODE
+    db_column_name: ONBOARDING_SITE_SETTING_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ONBOARDING_SITE_LIST_SETTING_CODE
+    db_column_name: ONBOARDING_SITE_LIST_SETTING_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: NATIVE_VIDEO_ARR
+    db_column_name: NATIVE_VIDEO_ARR
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: HAS_NEWSLETTER_SUBSCRIBED
+    db_column_name: HAS_NEWSLETTER_SUBSCRIBED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: HAS_VIDEO_SUBSCRIBED
+    db_column_name: HAS_VIDEO_SUBSCRIBED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: HAS_REWARDS_SUBSCRIBED
+    db_column_name: HAS_REWARDS_SUBSCRIBED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: HAS_RECOGNITION_SUBSCRIBED
+    db_column_name: HAS_RECOGNITION_SUBSCRIBED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: HAS_CHAT_SUBSCRIBED
+    db_column_name: HAS_CHAT_SUBSCRIBED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: HAS_REDEMPTION_SUBSCRIBED
+    db_column_name: HAS_REDEMPTION_SUBSCRIBED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: HAS_EMPLOYEE_LISTENING_SUBSCRIBED
+    db_column_name: HAS_EMPLOYEE_LISTENING_SUBSCRIBED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: HAS_ENTERPRISE_SEARCH_SUBSCRIBED
+    db_column_name: HAS_ENTERPRISE_SEARCH_SUBSCRIBED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: HAS_CORE_APPLICATION_SUBSCRIBED
+    db_column_name: HAS_CORE_APPLICATION_SUBSCRIBED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: CHAT_CALL_QUOTA_RENEWAL_DATE
+    db_column_name: CHAT_CALL_QUOTA_RENEWAL_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: CHAT_CALL_QUOTA_CONSUMED_MINUTES
+    db_column_name: CHAT_CALL_QUOTA_CONSUMED_MINUTES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: CHAT_CALL_QUOTA_TOTAL_MINUTES
+    db_column_name: CHAT_CALL_QUOTA_TOTAL_MINUTES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: CHAT_CALL_QUOTA_MAX_PARTICIPANTS
+    db_column_name: CHAT_CALL_QUOTA_MAX_PARTICIPANTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: IS_CHAT_CALL_QUOTA_EXCEEDED
+    db_column_name: IS_CHAT_CALL_QUOTA_EXCEEDED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  rls_rules:
+    tables:
+    - name: VW_TENANT_DETAILS_AS_IS
+      fqn: 65fb81cb-a0c0-4a36-a972-9308693f7b1a
+    table_paths:
+    - id: VW_TENANT_DETAILS_AS_IS_1
+      table: VW_TENANT_DETAILS_AS_IS
+      column:
+      - TENANT_CODE
+    rules:
+    - name: Tenant code
+      expr: "ts_groups = [VW_TENANT_DETAILS_AS_IS_1::TENANT_CODE]"
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
