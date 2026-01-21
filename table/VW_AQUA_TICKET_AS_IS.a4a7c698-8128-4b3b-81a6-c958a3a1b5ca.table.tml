@@ -1,0 +1,444 @@
+guid: a4a7c698-8128-4b3b-81a6-c958a3a1b5ca
+table:
+  name: VW_AQUA_TICKET_AS_IS
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_AQUA_TICKET_AS_IS
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TICKET_CODE
+    db_column_name: TICKET_CODE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TICKET_REFERENCE_NUMBER
+    db_column_name: TICKET_REFERENCE_NUMBER
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SOURCE_TYPE_CODE
+    db_column_name: SOURCE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SOURCE_CODE
+    db_column_name: SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: WORKSPACE_CODE
+    db_column_name: WORKSPACE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SUBJECT
+    db_column_name: SUBJECT
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DESCRIPTION
+    db_column_name: DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: STATUS_CODE
+    db_column_name: STATUS_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: POSITION
+    db_column_name: POSITION
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: POSITION_STATUS_CODE
+    db_column_name: POSITION_STATUS_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: STATUS_POSITION
+    db_column_name: STATUS_POSITION
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: POSITION_PREVIOUS_STATUS_CODE
+    db_column_name: POSITION_PREVIOUS_STATUS_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: POSITION_LAST_MOVED_DATETIME
+    db_column_name: POSITION_LAST_MOVED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: POSITION_LAST_MOVED_BY_CODE
+    db_column_name: POSITION_LAST_MOVED_BY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SEVERITY_CODE
+    db_column_name: SEVERITY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TAGS
+    db_column_name: TAGS
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: REQUESTER_USER_CODE
+    db_column_name: REQUESTER_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: REQUESTED_FOR_USER_CODE
+    db_column_name: REQUESTED_FOR_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ASSIGNMENT_AGENT_USER_CODE
+    db_column_name: ASSIGNMENT_AGENT_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ASSIGNMENT_AGENT_GROUP_CODE
+    db_column_name: ASSIGNMENT_AGENT_GROUP_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ASSIGNMENT_AGENT_GROUP_NAME
+    db_column_name: ASSIGNMENT_AGENT_GROUP_NAME
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: MERGE_TO
+    db_column_name: MERGE_TO
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: MERGE_BY_USER_CODE
+    db_column_name: MERGE_BY_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: MERGE_DATETIME
+    db_column_name: MERGE_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: MERGE_NOTE
+    db_column_name: MERGE_NOTE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SOURCE_PLATFORM_CODE
+    db_column_name: SOURCE_PLATFORM_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: URGENCY_CODE
+    db_column_name: URGENCY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IMPACT_CODE
+    db_column_name: IMPACT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: PLANNED_START_DATE
+    db_column_name: PLANNED_START_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE
+  - name: PLANNED_END_DATE
+    db_column_name: PLANNED_END_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE
+  - name: PLANNED_ESTIMATED_EFFORT
+    db_column_name: PLANNED_ESTIMATED_EFFORT
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SLA_POLICY_CODE
+    db_column_name: SLA_POLICY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SLA_IS_DEFAULT_POLICY
+    db_column_name: SLA_IS_DEFAULT_POLICY
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: SLA_RESPONSE_TARGET_TIME_MS
+    db_column_name: SLA_RESPONSE_TARGET_TIME_MS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: SLA_RESPONSE_DUE_DATETIME
+    db_column_name: SLA_RESPONSE_DUE_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: SLA_RESPONSE_STATUS_CODE
+    db_column_name: SLA_RESPONSE_STATUS_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SLA_RESPONSE_BREACHED
+    db_column_name: SLA_RESPONSE_BREACHED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: SLA_RESPONSE_TIME_SPENT_MINUTES
+    db_column_name: SLA_RESPONSE_TIME_SPENT_MINUTES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: SLA_RESPONSE_ACHIEVED_DATETIME
+    db_column_name: SLA_RESPONSE_ACHIEVED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: SLA_RESOLUTION_TARGET_TIME_MS
+    db_column_name: SLA_RESOLUTION_TARGET_TIME_MS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: SLA_RESOLUTION_DUE_DATETIME
+    db_column_name: SLA_RESOLUTION_DUE_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: SLA_RESOLUTION_STATUS_CODE
+    db_column_name: SLA_RESOLUTION_STATUS_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SLA_RESOLUTION_BREACHED
+    db_column_name: SLA_RESOLUTION_BREACHED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: SLA_RESOLUTION_TIME_SPENT_MINUTES
+    db_column_name: SLA_RESOLUTION_TIME_SPENT_MINUTES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: SLA_RESOLUTION_ACHIEVED_DATETIME
+    db_column_name: SLA_RESOLUTION_ACHIEVED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: SLA_ESCALATION_ENABLED
+    db_column_name: SLA_ESCALATION_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: SLA_OPERATIONAL_HOURS_CODE
+    db_column_name: SLA_OPERATIONAL_HOURS_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SLA_IS_PAUSED
+    db_column_name: SLA_IS_PAUSED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: SLA_PAUSE_HISTORY
+    db_column_name: SLA_PAUSE_HISTORY
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TIME_TRACKING_TOTAL_TIME
+    db_column_name: TIME_TRACKING_TOTAL_TIME
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TIME_TRACKING_BILLABLE_TIME
+    db_column_name: TIME_TRACKING_BILLABLE_TIME
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TIME_TRACKING_ENTRIES
+    db_column_name: TIME_TRACKING_ENTRIES
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: METRICS_AGENT_WORK_TIME_MS
+    db_column_name: METRICS_AGENT_WORK_TIME_MS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: METRICS_FIRST_RESPONSE_DATETIME
+    db_column_name: METRICS_FIRST_RESPONSE_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: METRICS_PAUSED_TIME_MS
+    db_column_name: METRICS_PAUSED_TIME_MS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: METRICS_RESOLUTION_DATETIME
+    db_column_name: METRICS_RESOLUTION_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: METRICS_TOTAL_TIME_MS
+    db_column_name: METRICS_TOTAL_TIME_MS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: METRICS_WORKING_TIME_MS
+    db_column_name: METRICS_WORKING_TIME_MS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: IS_DELETED
+    db_column_name: IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: TICKET_CREATED_DATETIME
+    db_column_name: TICKET_CREATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: TICKET_MODIFIED_DATETIME
+    db_column_name: TICKET_MODIFIED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: TICKET_CREATED_BY_CODE
+    db_column_name: TICKET_CREATED_BY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TICKET_MODIFIED_BY_CODE
+    db_column_name: TICKET_MODIFIED_BY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TICKET_DELETED_DATETIME
+    db_column_name: TICKET_DELETED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  properties:
+    spotter_config:
+      is_spotter_enabled: false

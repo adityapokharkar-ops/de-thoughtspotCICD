@@ -1,0 +1,119 @@
+guid: 69bee7f9-19c2-4afb-9b3d-a5fb826a05fd
+model:
+  name: Monthly Tenant Adoption Snapshot
+  model_tables:
+  - name: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT
+    fqn: cfb6165b-b510-435f-a1f8-df1e94a4e731
+    joins:
+    - with: Active Users
+      'on': '[VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::REPORTING_MONTH] = [Active Users::FIRST_DAY_OF_MONTH] AND [VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::TENANT_CODE] = [Active Users::TENANT_CODE]'
+      type: INNER
+      cardinality: ONE_TO_ONE
+  - name: VW_TENANT_DETAILS_AS_IS
+    fqn: 65fb81cb-a0c0-4a36-a972-9308693f7b1a
+    joins:
+    - with: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT
+      'on': '[VW_TENANT_DETAILS_AS_IS::TENANT_CODE] = [VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::TENANT_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: Active Users
+    fqn: 074107cb-c69d-4be9-a020-91ff49de512f
+  columns:
+  - name: Total Posts
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::TOTAL_POSTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Logged In User Count
+    column_id: Active Users::LOGGED_IN_USER_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: User Count
+    column_id: Active Users::USER_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Replies
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::TOTAL_REPLIES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Comments
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::TOTAL_COMMENTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Likes
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::TOTAL_LIKES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Shares
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::TOTAL_SHARES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Reporting Month
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::REPORTING_MONTH
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Unique Logins Overall
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::UNIQUE_LOGINS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Active Users
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::TOTAL_ACTIVE_USERS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Users Viewed Content
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::USERS_VIEWED_CONTENT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Content Views Overall
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::TOTAL_CONTENT_VIEWS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Content Published Overall
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::CONTENT_PUBLISHED_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Contributors Overall
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::CONTRIBUTORS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Participants Overall
+    column_id: VW_MONTHLY_TENANT_ADOPTION_SNAPSHOT::PARTICIPANTS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Tenant Code
+    column_id: VW_TENANT_DETAILS_AS_IS::TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
+    spotter_config:
+      is_spotter_enabled: false

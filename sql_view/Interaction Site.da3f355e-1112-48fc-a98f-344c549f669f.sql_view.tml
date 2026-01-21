@@ -1,0 +1,328 @@
+guid: da3f355e-1112-48fc-a98f-344c549f669f
+sql_view:
+  name: Interaction Site
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  sql_query: "SELECT v1.*, description from UDL.VW_SITE_AS_IS AS v1\nINNER JOIN udl.VW_REF_SITE_TYPE_AS_IS AS v2 \nON v1.site_type_code=v2.code"
+  sql_view_columns:
+  - name: ID
+    sql_output_column: ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: CODE
+    sql_output_column: CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: TENANT_CODE
+    sql_output_column: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: DATA_SOURCE_CODE
+    sql_output_column: DATA_SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: STAGING_ID
+    sql_output_column: STAGING_ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: SITE_NAME
+    sql_output_column: SITE_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SITE_DESCRIPTION
+    sql_output_column: SITE_DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SITE_CREATED_BY_CODE
+    sql_output_column: SITE_CREATED_BY_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SITE_CREATED_DATETIME
+    sql_output_column: SITE_CREATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SITE_UPDATED_BY_CODE
+    sql_output_column: SITE_UPDATED_BY_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SITE_UPDATED_DATETIME
+    sql_output_column: SITE_UPDATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CAROUSEL_LAYOUT_TYPE_CODE
+    sql_output_column: CAROUSEL_LAYOUT_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: FILE_STORAGE_TYPE_CODE
+    sql_output_column: FILE_STORAGE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: LANDING_PAGE_TYPE_CODE
+    sql_output_column: LANDING_PAGE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: MS_TEAM_SITE_MANAGER_CODE
+    sql_output_column: MS_TEAM_SITE_MANAGER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SITE_CATEGORY_CODE
+    sql_output_column: SITE_CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SLACK_SITE_MANAGER_CODE
+    sql_output_column: SLACK_SITE_MANAGER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: POPULARITY_INDEX
+    sql_output_column: POPULARITY_INDEX
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: ARE_COMMENTS_ALLOWED
+    sql_output_column: ARE_COMMENTS_ALLOWED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CAN_FOLLOW
+    sql_output_column: CAN_FOLLOW
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: PUBLIC_CONTRIBUTION_ALLOWED
+    sql_output_column: PUBLIC_CONTRIBUTION_ALLOWED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: HAS_COVER_IMAGE_ENABLED
+    sql_output_column: HAS_COVER_IMAGE_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: HAS_ALBUMS
+    sql_output_column: HAS_ALBUMS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: HAS_EVENTS
+    sql_output_column: HAS_EVENTS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: HAS_ACTIVE_FEED
+    sql_output_column: HAS_ACTIVE_FEED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: HAS_PAGES
+    sql_output_column: HAS_PAGES
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_FEED_ENABLED
+    sql_output_column: IS_FEED_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_SITE_ACTIVE
+    sql_output_column: IS_SITE_ACTIVE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: OVERALL_IS_SITE_ACTIVE
+    sql_output_column: OVERALL_IS_SITE_ACTIVE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_DELETED
+    sql_output_column: IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: DELETED_DATETIME
+    sql_output_column: DELETED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_ALERT_ENABLED
+    sql_output_column: IS_ALERT_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_FEATURE_SITE
+    sql_output_column: IS_FEATURE_SITE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_MUST_READ_ENABLED
+    sql_output_column: IS_MUST_READ_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_MEMBERSHIP_AUTO_APPROVED
+    sql_output_column: IS_MEMBERSHIP_AUTO_APPROVED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_BROADCAST_ONLY
+    sql_output_column: IS_BROADCAST_ONLY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_FILE_UPLOAD_ENABLED
+    sql_output_column: IS_FILE_UPLOAD_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_NEWSLETTER_ALLOWED
+    sql_output_column: IS_NEWSLETTER_ALLOWED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_MS_TEAM_COMMENT_ENABLED
+    sql_output_column: IS_MS_TEAM_COMMENT_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_MS_TEAM_INTEGRATION_ENABLED
+    sql_output_column: IS_MS_TEAM_INTEGRATION_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_QA_ENABLED
+    sql_output_column: IS_QA_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_SLACK_COMMENT_ENABLED
+    sql_output_column: IS_SLACK_COMMENT_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_SLACK_INTEGRATION_ENABLED
+    sql_output_column: IS_SLACK_INTEGRATION_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_SLACK_POST_ENABLED
+    sql_output_column: IS_SLACK_POST_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SLACK_CHANNEL_NAME
+    sql_output_column: SLACK_CHANNEL_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_LEADERCAST_ENABLED
+    sql_output_column: IS_LEADERCAST_ENABLED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SHOW_IN_SIMPPLR
+    sql_output_column: SHOW_IN_SIMPPLR
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SITE_URL
+    sql_output_column: SITE_URL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: ICON_IMAGE_URL
+    sql_output_column: ICON_IMAGE_URL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: COVER_IMAGE_URL_ORIGINAL
+    sql_output_column: COVER_IMAGE_URL_ORIGINAL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: PUBLIC_IMAGE_URL
+    sql_output_column: PUBLIC_IMAGE_URL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: ACTIVE_FLAG
+    sql_output_column: ACTIVE_FLAG
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: ACTIVE_DATE
+    sql_output_column: ACTIVE_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: INACTIVE_DATE
+    sql_output_column: INACTIVE_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CREATED_BY
+    sql_output_column: CREATED_BY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CREATED_DATETIME
+    sql_output_column: CREATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: UPDATED_BY
+    sql_output_column: UPDATED_BY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: UPDATED_DATETIME
+    sql_output_column: UPDATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CREATED_BATCH_RUN_ID
+    sql_output_column: CREATED_BATCH_RUN_ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UPDATED_BATCH_RUN_ID
+    sql_output_column: UPDATED_BATCH_RUN_ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: HASH_VALUE
+    sql_output_column: HASH_VALUE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SITE_TYPE_CODE
+    sql_output_column: SITE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: DESCRIPTION
+    sql_output_column: DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX

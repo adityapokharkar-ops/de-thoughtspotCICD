@@ -1,0 +1,28 @@
+guid: 56d5364d-38a8-46a1-a101-6841dbf7151c
+sql_view:
+  name: Newsletter Recipient
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  sql_query: "SELECT tenant_code, newsletter_code, recipient_type_code, listagg(recipient_entity_name, ',\\n') as recipients from udl.VW_NEWSLETTER_RECIPIENT group by tenant_code, newsletter_code, recipient_type_code"
+  sql_view_columns:
+  - name: TENANT_CODE
+    sql_output_column: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: NEWSLETTER_CODE
+    sql_output_column: NEWSLETTER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: RECIPIENT_TYPE_CODE
+    sql_output_column: RECIPIENT_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: RECIPIENTS
+    sql_output_column: RECIPIENTS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX

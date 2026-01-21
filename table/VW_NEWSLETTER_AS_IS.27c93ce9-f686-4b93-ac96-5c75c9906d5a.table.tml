@@ -1,0 +1,235 @@
+guid: 27c93ce9-f686-4b93-ac96-5c75c9906d5a
+table:
+  name: VW_NEWSLETTER_AS_IS
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_NEWSLETTER_AS_IS
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: NAME
+    db_column_name: NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SUBJECT
+    db_column_name: SUBJECT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SENDER_ADDRESS
+    db_column_name: SENDER_ADDRESS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SEND_AS_EMAIL
+    db_column_name: SEND_AS_EMAIL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: BOOL
+  - name: SEND_AS_SMS
+    db_column_name: SEND_AS_SMS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: BOOL
+  - name: SEND_AS_MS_TEAMS_MESSAGE
+    db_column_name: SEND_AS_MS_TEAMS_MESSAGE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: BOOL
+  - name: SEND_AS_SLACK_MESSAGE
+    db_column_name: SEND_AS_SLACK_MESSAGE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: BOOL
+  - name: SEND_AS_INTRANET
+    db_column_name: SEND_AS_INTRANET
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: BOOL
+  - name: SCHEDULED_AT
+    db_column_name: SCHEDULED_AT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: SENT_AT
+    db_column_name: SENT_AT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: NEWSLETTER_CREATED_BY_CODE
+    db_column_name: NEWSLETTER_CREATED_BY_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: NEWSLETTER_UPDATED_BY_CODE
+    db_column_name: NEWSLETTER_UPDATED_BY_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: NEWSLETTER_CREATED_DATETIME
+    db_column_name: NEWSLETTER_CREATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: NEWSLETTER_UPDATED_DATETIME
+    db_column_name: NEWSLETTER_UPDATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: STATUS_CODE
+    db_column_name: STATUS_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: CATEGORY_CODE
+    db_column_name: CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TEMPLATE_CODE
+    db_column_name: TEMPLATE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: THEME_CODE
+    db_column_name: THEME_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_ARCHIVED
+    db_column_name: IS_ARCHIVED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: BOOL
+  - name: SEND_AS_TIMEZONE_AWARE_SCHEDULE
+    db_column_name: SEND_AS_TIMEZONE_AWARE_SCHEDULE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: BOOL
+  - name: REPLY_TO_EMAIL_ADDRESS
+    db_column_name: REPLY_TO_EMAIL_ADDRESS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: RECIPIENT_INFO
+    db_column_name: RECIPIENT_INFO
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: RECIPIENT_TYPE_CODE
+    db_column_name: RECIPIENT_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_DELETED
+    db_column_name: IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: BOOL
+  - name: DELETED_NOTE
+    db_column_name: DELETED_NOTE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DELETED_DATETIME
+    db_column_name: DELETED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: RECIPIENT_NAME
+    db_column_name: RECIPIENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ACTUAL_DELIVERY_SYSTEM_TYPE
+    db_column_name: ACTUAL_DELIVERY_SYSTEM_TYPE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  rls_rules:
+    tables:
+    - name: VW_NEWSLETTER_AS_IS
+      fqn: 27c93ce9-f686-4b93-ac96-5c75c9906d5a
+    table_paths:
+    - id: VW_NEWSLETTER_AS_IS_1
+      table: VW_NEWSLETTER_AS_IS
+      column:
+      - TENANT_CODE
+    rules:
+    - name: Tenant Id
+      expr: "ts_groups = [VW_NEWSLETTER_AS_IS_1::TENANT_CODE]"
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
