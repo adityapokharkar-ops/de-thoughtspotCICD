@@ -18,3 +18,63 @@ Traceback (most recent call last):
   File "/Users/aditya.pokharkar/Documents/de-thoughtspotCICD/venv/lib/python3.14/site-packages/requests/models.py", line 1026, in raise_for_status
     raise HTTPError(http_error_msg, response=self)
 requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy
+2026-01-21 17:35:33,478 | INFO | Auth API called
+2026-01-21 17:35:33,480 | INFO | Auth response status : 200
+2026-01-21 17:35:33,480 | INFO | Successfully logged in
+2026-01-21 17:35:33,480 | INFO | Bearer token received
+2026-01-21 17:35:33,480 | INFO | ===================================================
+2026-01-21 17:35:35,872 | INFO | Deploy API called
+2026-01-21 17:35:35,873 | INFO | Deploy branch        : migt
+2026-01-21 17:35:35,873 | INFO | Deploy status code   : 500
+2026-01-21 17:35:35,873 | INFO | Deploy response body : {"error":{"message":{"debug":{"code":15000,"incident_id_guid":"a1e334d3-7cbb-420e-9127-2abffc663dab","debug":"The local branch 'migt-org-982784215' does not exist for the remote branch 'migt'."}}}}
+2026-01-21 17:35:35,873 | ERROR | DEPLOY FAILED ❌
+2026-01-21 17:35:35,873 | ERROR | Status Code   : 500
+2026-01-21 17:35:35,873 | ERROR | Response Body : {"error":{"message":{"debug":{"code":15000,"incident_id_guid":"a1e334d3-7cbb-420e-9127-2abffc663dab","debug":"The local branch 'migt-org-982784215' does not exist for the remote branch 'migt'."}}}}
+2026-01-21 17:35:35,874 | ERROR | 500 Server Error: Internal Server Error for url: https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy
+Traceback (most recent call last):
+  File "/Users/aditya.pokharkar/Documents/de-thoughtspotCICD/migt-deploy.py", line 103, in deploy_call
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aditya.pokharkar/Documents/de-thoughtspotCICD/venv/lib/python3.14/site-packages/requests/models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy
+2026-01-21 17:39:15,443 | INFO | Auth API called
+2026-01-21 17:39:15,443 | INFO | Auth response status : 200
+2026-01-21 17:39:15,443 | INFO | Successfully logged in
+2026-01-21 17:39:15,443 | INFO | Bearer token received
+2026-01-21 17:39:15,443 | INFO | ===================================================
+2026-01-21 17:39:17,644 | INFO | Deploy API called
+2026-01-21 17:39:17,645 | INFO | Deploy branch        : migt
+2026-01-21 17:39:17,645 | INFO | Deploy status code   : 500
+2026-01-21 17:39:17,645 | INFO | Deploy response body : {"error":{"message":{"debug":{"code":15000,"incident_id_guid":"8ccdd888-1570-41df-9613-ff92945b2a4c","debug":"The local branch 'migt-org-982784215' does not exist for the remote branch 'migt'."}}}}
+2026-01-21 17:39:17,645 | ERROR | DEPLOY FAILED ❌
+2026-01-21 17:39:17,645 | ERROR | Status Code   : 500
+2026-01-21 17:39:17,646 | ERROR | Response Body : {"error":{"message":{"debug":{"code":15000,"incident_id_guid":"8ccdd888-1570-41df-9613-ff92945b2a4c","debug":"The local branch 'migt-org-982784215' does not exist for the remote branch 'migt'."}}}}
+2026-01-21 17:39:17,646 | ERROR | 500 Server Error: Internal Server Error for url: https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy
+Traceback (most recent call last):
+  File "/Users/aditya.pokharkar/Documents/de-thoughtspotCICD/migt-deploy.py", line 103, in deploy_call
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aditya.pokharkar/Documents/de-thoughtspotCICD/venv/lib/python3.14/site-packages/requests/models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy
+2026-01-21 17:45:04,582 | INFO | Auth API called
+2026-01-21 17:45:04,583 | INFO | Auth response status : 200
+2026-01-21 17:45:04,583 | INFO | Successfully logged in
+2026-01-21 17:45:04,584 | INFO | Bearer token received
+2026-01-21 17:45:04,584 | INFO | ===================================================
+2026-01-21 17:45:07,209 | INFO | Deploy API called
+2026-01-21 17:45:07,209 | INFO | Deploy branch        : migt
+2026-01-21 17:45:07,209 | INFO | Deploy status code   : 500
+2026-01-21 17:45:07,210 | INFO | Deploy response body : {"error":{"message":{"debug":{"code":15000,"incident_id_guid":"9f21db8a-a94a-4ed1-8ced-3357cd332b21","debug":"The local branch 'migt-org-982784215' does not exist for the remote branch 'migt'."}}}}
+2026-01-21 17:45:07,210 | ERROR | DEPLOY FAILED ❌
+2026-01-21 17:45:07,210 | ERROR | Status Code   : 500
+2026-01-21 17:45:07,210 | ERROR | Response Body : {"error":{"message":{"debug":{"code":15000,"incident_id_guid":"9f21db8a-a94a-4ed1-8ced-3357cd332b21","debug":"The local branch 'migt-org-982784215' does not exist for the remote branch 'migt'."}}}}
+2026-01-21 17:45:07,211 | ERROR | 500 Server Error: Internal Server Error for url: https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy
+Traceback (most recent call last):
+  File "/Users/aditya.pokharkar/Documents/de-thoughtspotCICD/migt-deploy.py", line 103, in deploy_call
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/aditya.pokharkar/Documents/de-thoughtspotCICD/venv/lib/python3.14/site-packages/requests/models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy
