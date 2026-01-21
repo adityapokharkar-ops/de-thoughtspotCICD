@@ -1,0 +1,63 @@
+guid: 7ac361c8-70bb-4bf7-a72f-fc77c5914412
+table:
+  name: VW_NEWSLETTER_RECIPIENT
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_NEWSLETTER_RECIPIENT
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: NEWSLETTER_CODE
+    db_column_name: NEWSLETTER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: RECIPIENT_ENTITY_CODE
+    db_column_name: RECIPIENT_ENTITY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: RECIPIENT_ENTITY_NAME
+    db_column_name: RECIPIENT_ENTITY_NAME
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: RECIPIENT_COUNT
+    db_column_name: RECIPIENT_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: INCLUDE_FOLLOWERS
+    db_column_name: INCLUDE_FOLLOWERS
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: RECIPIENT_TYPE_CODE
+    db_column_name: RECIPIENT_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
