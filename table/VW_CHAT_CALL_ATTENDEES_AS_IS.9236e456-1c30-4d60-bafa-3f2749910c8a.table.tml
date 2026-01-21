@@ -1,0 +1,71 @@
+guid: 9236e456-1c30-4d60-bafa-3f2749910c8a
+table:
+  name: VW_CHAT_CALL_ATTENDEES_AS_IS
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_CHAT_CALL_ATTENDEES_AS_IS
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DATA_SOURCE_CODE
+    db_column_name: DATA_SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: CALL_CODE
+    db_column_name: CALL_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: USER_CODE
+    db_column_name: USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: EVENT_TYPE_CODE
+    db_column_name: EVENT_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: EVENT_DATETIME
+    db_column_name: EVENT_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: CALL_JOINED_DATETIME
+    db_column_name: CALL_JOINED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: TOTAL_TIME_CONSUMPTION
+    db_column_name: TOTAL_TIME_CONSUMPTION
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
