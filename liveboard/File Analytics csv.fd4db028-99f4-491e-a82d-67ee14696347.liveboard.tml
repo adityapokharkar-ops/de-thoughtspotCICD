@@ -1,0 +1,1217 @@
+guid: fd4db028-99f4-491e-a82d-67ee14696347
+liveboard:
+  name: File Analytics csv
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: File views and engagement
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Total FIle Downloads
+        name: Total FIle Downloads
+        expr: "count_if ( [Interaction Type] = 'download' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Total File Favourites
+        name: Total File Favourites
+        expr: "count_if ( [Interaction Type] = 'favourites' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Total File Likes
+        name: Total File Likes
+        expr: "count_if ( [Interaction Type] = 'like' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Total File Views
+        name: Total File Views
+        expr: "count_if ( [Interaction Type] = 'view' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Unique File Downloads
+        name: Unique File Downloads
+        expr: "unique_count_if ( [Interaction Type] = 'download' , concat ( [File Interaction Code] , [Interacted By User Code] ) )"
+        was_auto_generated: false
+      - id: formula_Unique File Views
+        name: Unique File Views
+        expr: "unique_count_if ( [Interaction Type] = 'view' , concat ( [File Interaction Code] , [Interacted By User Code] ) )"
+        was_auto_generated: false
+      search_query: "[Interaction Datetime].daily [Interaction Datetime] [formula_Total File Views] [formula_Total FIle Downloads] [formula_Total File Likes] [formula_Total File Favourites] [formula_Unique File Views] [formula_Unique File Downloads] sort by [Interaction Datetime] [Interaction Datetime].daily"
+      answer_columns:
+      - name: Day(Interaction Datetime)
+        custom_name: Interaction datetime
+        dynamic_title: Interaction datetime
+        sort_info:
+          category: DEFAULT
+      - name: Total FIle Downloads
+        custom_name: Total fIle downloads
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total fIle downloads
+      - name: Total File Favourites
+        custom_name: Total file favourites
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total file favourites
+      - name: Total File Likes
+        custom_name: Total file reactions
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total file reactions
+      - name: Total File Views
+        custom_name: Total file views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total file views
+      - name: Unique File Downloads
+        custom_name: Unique file downloads
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Unique file downloads
+      - name: Unique File Views
+        custom_name: Unique file views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Unique file views
+      table:
+        table_columns:
+        - column_id: Day(Interaction Datetime)
+          show_headline: false
+        - column_id: Total FIle Downloads
+          show_headline: false
+        - column_id: Total File Favourites
+          show_headline: false
+        - column_id: Total File Likes
+          show_headline: false
+        - column_id: Total File Views
+          show_headline: false
+        - column_id: Unique File Downloads
+          show_headline: false
+        - column_id: Unique File Views
+          show_headline: false
+        ordered_column_ids:
+        - Day(Interaction Datetime)
+        - Total File Views
+        - Total FIle Downloads
+        - Total File Likes
+        - Total File Favourites
+        - Unique File Views
+        - Unique File Downloads
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Day(Interaction Datetime)\",\"Total File Views\",\"Unique File Views\",\"Total FIle Downloads\",\"Unique File Downloads\",\"Total File Likes\",\"Total File Favourites\"]}"
+      chart:
+        type: LINE_STACKED_COLUMN
+        chart_columns:
+        - column_id: Day(Interaction Datetime)
+        - column_id: Total FIle Downloads
+        - column_id: Total File Favourites
+        - column_id: Total File Likes
+        - column_id: Total File Views
+        - column_id: Unique File Downloads
+        - column_id: Unique File Views
+        axis_configs:
+        - x:
+          - Day(Interaction Datetime)
+          "y":
+          - Total File Views
+          - Total FIle Downloads
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": true,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Day(Interaction Datetime)\",\"columnProperty\": {}},{\"columnId\": \"Total File Views\",\"columnProperty\": {}},{\"columnId\": \"Total FIle Downloads\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"f2c88a88-345d-43f3-aac4-ecae56ab946e\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total File Views\"],\"isOpposite\": false}},{\"id\": \"28cffead-c694-420b-9c0b-37ecfc523464\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total FIle Downloads\"],\"isOpposite\": true}},{\"id\": \"df83f628-0a8c-4e22-9e8a-e49d9b184c80\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Interaction Datetime)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"b5630f53-2d6d-4e6c-b5a0-b8f16720b1c4\",\"color\": \"#48D1E0\"},{\"serieName\": \"1fe2e605-ae9a-4d73-8225-dc8d1aeb7256\",\"color\": \"#2E75F0\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCC838\"},{\"serieName\": \"view\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 06/01/2025
+      dynamic_name: File views and engagement
+    viz_guid: 19c52320-17df-46a7-ac4c-8fb37a02b8f1
+  - id: Viz_2
+    answer:
+      name: Distribution of views by file category
+      description: Breakdown of views by each file category
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Audio views
+        name: Audio views
+        expr: "count_if ( [Interaction Type] = 'view' and [File Type Parent Category] = 'audio' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Document Views
+        name: Document Views
+        expr: "count_if ( [Interaction Type] = 'view' and [File Type Parent Category] = 'document' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Image Views
+        name: Image Views
+        expr: "count_if ( [Interaction Type] = 'view' and [File Type Parent Category] = 'image' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Other Views
+        name: Other Views
+        expr: "count_if ( [Interaction Type] = 'view' and [File Type Parent Category] = 'other' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Video Views
+        name: Video Views
+        expr: "count_if ( [Interaction Type] = 'view' and [File Type Parent Category] = 'video' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Views
+        name: Views
+        expr: "count_if ( [Interaction Type] = 'view' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Image Views] [formula_Video Views] [formula_Other Views] [formula_Document Views] [Interaction User Full Name] [Department] [Interaction User Email] [Interaction User City] [Company Name] [Interaction User Division] [Interaction User State] [formula_Views] [formula_Views] > 0 [formula_Audio views] [Interaction User Country]"
+      answer_columns:
+      - name: Audio views
+      - name: Company Name
+        custom_name: Company name
+        dynamic_title: Company name
+      - name: Department
+      - name: Document Views
+        custom_name: Document views
+        dynamic_title: Document views
+      - name: Image Views
+        custom_name: Image views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Image views
+      - name: Interaction User City
+        custom_name: City
+        dynamic_title: City
+      - name: Interaction User Country
+        custom_name: Country
+        dynamic_title: Country
+      - name: Interaction User Division
+        custom_name: Division
+        dynamic_title: Division
+      - name: Interaction User Email
+        custom_name: Email
+        dynamic_title: Email
+      - name: Interaction User Full Name
+        custom_name: Full name
+        dynamic_title: Full name
+      - name: Interaction User State
+        custom_name: State
+        dynamic_title: State
+      - name: Other Views
+        custom_name: Other views
+        dynamic_title: Other views
+      - name: Video Views
+        custom_name: Video views
+        dynamic_title: Video views
+      - name: Views
+        custom_name: Total views (exclude)
+        dynamic_title: Total views (exclude)
+      table:
+        table_columns:
+        - column_id: Audio views
+          show_headline: false
+        - column_id: Company Name
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Document Views
+          show_headline: false
+        - column_id: Image Views
+          show_headline: false
+        - column_id: Interaction User City
+          show_headline: false
+        - column_id: Interaction User Country
+          show_headline: false
+        - column_id: Interaction User Division
+          show_headline: false
+        - column_id: Interaction User Email
+          show_headline: false
+        - column_id: Interaction User Full Name
+          show_headline: false
+        - column_id: Interaction User State
+          show_headline: false
+        - column_id: Other Views
+          show_headline: false
+        - column_id: Video Views
+          show_headline: false
+        - column_id: Views
+          show_headline: false
+        ordered_column_ids:
+        - Interaction User Full Name
+        - Department
+        - Interaction User Email
+        - Interaction User City
+        - Company Name
+        - Interaction User Division
+        - Interaction User State
+        - Interaction User Country
+        - Image Views
+        - Video Views
+        - Other Views
+        - Document Views
+        - Views
+        - Audio views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"Image Views\",\"Video Views\",\"Document Views\",\"Audio views\",\"Other Views\",\"Interaction User Full Name\",\"Department\",\"Interaction User Email\",\"Interaction User City\",\"Company Name\",\"Interaction User Division\",\"Interaction User State\",\"Views\"],\"columnProperties\": [{\"columnId\": \"Views\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Audio views
+        - column_id: Company Name
+        - column_id: Department
+        - column_id: Document Views
+        - column_id: Image Views
+        - column_id: Interaction User City
+        - column_id: Interaction User Country
+        - column_id: Interaction User Division
+        - column_id: Interaction User Email
+        - column_id: Interaction User Full Name
+        - column_id: Interaction User State
+        - column_id: Other Views
+        - column_id: Video Views
+        - column_id: Views
+        axis_configs:
+        - x:
+          - Interaction User State
+          "y":
+          - Image Views
+          - Video Views
+          - Other Views
+          - Document Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": true,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Image Views\",\"columnProperty\": {}},{\"columnId\": \"Video Views\",\"columnProperty\": {}},{\"columnId\": \"Other Views\",\"columnProperty\": {}},{\"columnId\": \"Document Views\",\"columnProperty\": {}},{\"columnId\": \"Interaction User State\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"b360aa8b-aef8-4796-ba40-5c7e57179ab5\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Image Views\"],\"isOpposite\": false}},{\"id\": \"1148d41e-1b7b-4344-b3a4-a51378918988\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Video Views\"],\"isOpposite\": true}},{\"id\": \"67c35d31-1656-4b01-9955-9e5a38407f2a\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Other Views\"],\"isOpposite\": true}},{\"id\": \"5ad80abb-0779-4e73-bfc5-f119a037a6ee\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Document Views\"],\"isOpposite\": true}},{\"id\": \"979bb641-5046-4c3e-9ea2-b1722ebc3c57\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Interaction User State\"]}}],\"systemSeriesColors\": [{\"serieName\": \"b5630f53-2d6d-4e6c-b5a0-b8f16720b1c4\",\"color\": \"#48D1E0\"},{\"serieName\": \"1fe2e605-ae9a-4d73-8225-dc8d1aeb7256\",\"color\": \"#2E75F0\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCC838\"},{\"serieName\": \"view\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 06/01/2025
+      dynamic_name: Distribution of views by file category
+      dynamic_description: Breakdown of views by each file category
+    viz_guid: e10e3a09-e534-4b5c-8737-ad4bafc94a6f
+  - id: Viz_3
+    answer:
+      name: Distrubution of downloads by file category
+      description: Breakdown of downloads by each file category
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Audio Downloads
+        name: Audio Downloads
+        expr: "count_if ( [Interaction Type] = 'download' and [File Type Parent Category] = 'audio' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Document Downloads
+        name: Document Downloads
+        expr: "count_if ( [Interaction Type] = 'download' and [File Type Parent Category] = 'document' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Downloads
+        name: Downloads
+        expr: "count_if ( [Interaction Type] = 'download' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Image Downloads
+        name: Image Downloads
+        expr: "count_if ( [Interaction Type] = 'download' and [File Type Parent Category] = 'image' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Other Downloads
+        name: Other Downloads
+        expr: "count_if ( [Interaction Type] = 'download' and [File Type Parent Category] = 'other' , [Interacted By User Code] )"
+        was_auto_generated: false
+      - id: formula_Video Downloads
+        name: Video Downloads
+        expr: "count_if ( [Interaction Type] = 'download' and [File Type Parent Category] = 'video' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Image Downloads] [formula_Video Downloads] [formula_Other Downloads] [formula_Document Downloads] [Interaction User Full Name] [Interaction User Email] [Department] [Interaction User City] [Interaction User Country] [Company Name] [Interaction User Division] [Interaction User State] [formula_Downloads] [formula_Downloads] > 0 [formula_Audio Downloads]"
+      answer_columns:
+      - name: Audio Downloads
+        custom_name: Audio downloads
+        dynamic_title: Audio downloads
+      - name: Company Name
+        custom_name: Company name
+        dynamic_title: Company name
+      - name: Department
+      - name: Document Downloads
+        custom_name: Document downloads
+        dynamic_title: Document downloads
+      - name: Downloads
+        custom_name: Total downloads (exclude)
+        dynamic_title: Total downloads (exclude)
+      - name: Image Downloads
+        custom_name: Image downloads
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Image downloads
+      - name: Interaction User City
+        custom_name: City
+        dynamic_title: City
+      - name: Interaction User Country
+        custom_name: Country
+        dynamic_title: Country
+      - name: Interaction User Division
+        custom_name: Division
+        dynamic_title: Division
+      - name: Interaction User Email
+        custom_name: Email
+        dynamic_title: Email
+      - name: Interaction User Full Name
+        custom_name: Full name
+        dynamic_title: Full name
+      - name: Interaction User State
+        custom_name: State
+        dynamic_title: State
+      - name: Other Downloads
+        custom_name: Other downloads
+        dynamic_title: Other downloads
+      - name: Video Downloads
+        custom_name: Video downloads
+        dynamic_title: Video downloads
+      table:
+        table_columns:
+        - column_id: Audio Downloads
+          show_headline: false
+        - column_id: Company Name
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Document Downloads
+          show_headline: false
+        - column_id: Downloads
+          show_headline: false
+        - column_id: Image Downloads
+          show_headline: false
+        - column_id: Interaction User City
+          show_headline: false
+        - column_id: Interaction User Country
+          show_headline: false
+        - column_id: Interaction User Division
+          show_headline: false
+        - column_id: Interaction User Email
+          show_headline: false
+        - column_id: Interaction User Full Name
+          show_headline: false
+        - column_id: Interaction User State
+          show_headline: false
+        - column_id: Other Downloads
+          show_headline: false
+        - column_id: Video Downloads
+          show_headline: false
+        ordered_column_ids:
+        - Interaction User Full Name
+        - Interaction User Email
+        - Department
+        - Interaction User City
+        - Interaction User Country
+        - Company Name
+        - Interaction User Division
+        - Interaction User State
+        - Image Downloads
+        - Video Downloads
+        - Other Downloads
+        - Document Downloads
+        - Downloads
+        - Audio Downloads
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": false,\"orderedColumnIds\": [\"Image Downloads\",\"Video Downloads\",\"Document Downloads\",\"Audio Downloads\",\"Other Downloads\",\"Interaction User Full Name\",\"Interaction User Email\",\"Department\",\"Interaction User City\",\"Interaction User Country\",\"Company Name\",\"Interaction User Division\",\"Interaction User State\",\"Downloads\"],\"columnProperties\": [{\"columnId\": \"Downloads\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Audio Downloads
+        - column_id: Company Name
+        - column_id: Department
+        - column_id: Document Downloads
+        - column_id: Downloads
+        - column_id: Image Downloads
+        - column_id: Interaction User City
+        - column_id: Interaction User Country
+        - column_id: Interaction User Division
+        - column_id: Interaction User Email
+        - column_id: Interaction User Full Name
+        - column_id: Interaction User State
+        - column_id: Other Downloads
+        - column_id: Video Downloads
+        axis_configs:
+        - x:
+          - Interaction User State
+          "y":
+          - Image Downloads
+          - Video Downloads
+          - Other Downloads
+          - Document Downloads
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {\"xGridlineEnabled\": true,\"yGridlineEnabled\": true},\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Image Downloads\",\"columnProperty\": {}},{\"columnId\": \"Video Downloads\",\"columnProperty\": {}},{\"columnId\": \"Other Downloads\",\"columnProperty\": {}},{\"columnId\": \"Document Downloads\",\"columnProperty\": {}},{\"columnId\": \"Interaction User State\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"d2a6a7d4-7d65-46a1-aec7-0f67df19aecb\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Image Downloads\"],\"isOpposite\": false}},{\"id\": \"13abe4fc-83d8-4495-9293-0b4294cf7303\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Video Downloads\"],\"isOpposite\": true}},{\"id\": \"49136471-a75d-4fe2-b848-007d7880b842\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Other Downloads\"],\"isOpposite\": true}},{\"id\": \"3340503e-3e02-4ff4-b222-fedafa5a911d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Document Downloads\"],\"isOpposite\": true}},{\"id\": \"c9951a6c-f116-4c39-82a6-f7cde7701a86\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Interaction User State\"]}}],\"systemSeriesColors\": [{\"serieName\": \"b5630f53-2d6d-4e6c-b5a0-b8f16720b1c4\",\"color\": \"#48D1E0\"},{\"serieName\": \"1fe2e605-ae9a-4d73-8225-dc8d1aeb7256\",\"color\": \"#2E75F0\"},{\"serieName\": \"download\",\"color\": \"#06BF7F\"},{\"serieName\": \"favourites\",\"color\": \"#FCC838\"},{\"serieName\": \"view\",\"color\": \"#48D1E0\"}]}"
+      display_mode: TABLE_MODE
+      parameter_values:
+      - key: File end date
+        value: 06/30/2025
+      - key: File start date
+        value: 06/01/2025
+      dynamic_name: Distrubution of downloads by file category
+      dynamic_description: Breakdown of downloads by each file category
+    viz_guid: ad681b48-8620-4589-a6c1-ef8832e2fa13
+  - id: Viz_4
+    answer:
+      name: Most viewed files
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_File Url
+        name: File Url
+        expr: "if ( [File Type Parent Category] = 'Video' ) then concat ( [Domain Url] , \"/file_preview/\" , [File Code] , \"?provider=native_video\" ) else if ( [File Type Parent Category] != 'Video' ) then concat ( [Domain Url] , \"/file_preview/\" , [File Code] ) else null"
+        was_auto_generated: false
+      - id: formula_Is file deleted
+        name: Is file deleted
+        expr: "if ( [Is File Deleted?] = true ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Total Views
+        name: Total Views
+        expr: "count_if ( [Interaction Type] = 'view' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Total Views] [formula_Total Views] > 0 [File Code] [File Type Parent Category] [File Creator Full Name] [File Created Datetime] [File Created Datetime].daily [File Name] sort by [formula_Total Views] descending [formula_File Url] [formula_Is file deleted]"
+      answer_columns:
+      - name: Day(File Created Datetime)
+        custom_name: File uploaded date
+        dynamic_title: File uploaded date
+      - name: File Code
+      - name: File Creator Full Name
+        custom_name: File author
+        dynamic_title: File author
+      - name: File Name
+        custom_name: File name
+        dynamic_title: File name
+      - name: File Type Parent Category
+        custom_name: File type
+        dynamic_title: File type
+      - name: File Url
+        custom_name: File url
+        dynamic_title: File url
+      - name: Is file deleted
+      - name: Total Views
+        custom_name: Total views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total views
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Day(File Created Datetime)
+          show_headline: false
+        - column_id: File Code
+          show_headline: false
+        - column_id: File Creator Full Name
+          show_headline: false
+        - column_id: File Name
+          show_headline: false
+        - column_id: File Type Parent Category
+          show_headline: false
+        - column_id: File Url
+          show_headline: false
+        - column_id: Is file deleted
+          show_headline: false
+        - column_id: Total Views
+          show_headline: false
+        ordered_column_ids:
+        - File Code
+        - File Type Parent Category
+        - File Creator Full Name
+        - Day(File Created Datetime)
+        - File Name
+        - File Url
+        - Is file deleted
+        - Total Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"File Code\",\"File Name\",\"File Type Parent Category\",\"File Creator Full Name\",\"Day(File Created Datetime)\",\"Total Views\"],\"columnProperties\": [{\"columnId\": \"File Code\",\"columnProperty\": {\"isHidden\": false}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Day(File Created Datetime)
+        - column_id: File Code
+        - column_id: File Creator Full Name
+        - column_id: File Name
+        - column_id: File Type Parent Category
+        - column_id: File Url
+        - column_id: Is file deleted
+        - column_id: Total Views
+        axis_configs:
+        - x:
+          - Day(File Created Datetime)
+          "y":
+          - Total Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Views\",\"columnProperty\": {}},{\"columnId\": \"Day(File Created Datetime)\",\"columnProperty\": {}},{\"columnId\": \"File Type Parent Category\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"27e8d509-6b9f-4b40-99f1-577a9e2d5a09\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Views\"],\"isOpposite\": false}},{\"id\": \"f3929660-99bd-4e29-b3f3-c4512367cdac\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(File Created Datetime)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"ce788917-cace-4a46-ad08-72b037c1a23d\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most viewed files
+    viz_guid: c00a6f5c-90e3-4018-8cf7-0f41f6f879b5
+  - id: Viz_5
+    answer:
+      name: Least viewed files
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Is file deleted
+        name: Is file deleted
+        expr: "if ( [Is File Deleted?] = true ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Total Views
+        name: Total Views
+        expr: "group_aggregate ( count ( [Interacted By User Code] ) , query_groups ( ) , query_filters ( ) + { [Interaction Datetime] >= [File start date] and [Interaction Datetime] <= [File end date] and [Interaction Type] = 'view' and [Interaction Entity type] = 'file' } ) "
+        was_auto_generated: false
+      search_query: "[File Code] [File Type Parent Category] [File Creator Full Name] [File Created Datetime] [File Created Datetime].daily [File Preview Url] [File Name] [formula_Is file deleted] [formula_Total Views] sort by [formula_Total Views]"
+      answer_columns:
+      - name: Day(File Created Datetime)
+        custom_name: File uploaded date
+        dynamic_title: File uploaded date
+      - name: File Code
+      - name: File Creator Full Name
+        custom_name: File author
+        dynamic_title: File author
+      - name: File Name
+        custom_name: File name
+        dynamic_title: File name
+      - name: File Preview Url
+        custom_name: File url
+        dynamic_title: File url
+      - name: File Type Parent Category
+        custom_name: File type
+        dynamic_title: File type
+      - name: Is file deleted
+      - name: Total Views
+        custom_name: Total views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total views
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Day(File Created Datetime)
+          show_headline: false
+        - column_id: File Code
+          show_headline: false
+        - column_id: File Creator Full Name
+          show_headline: false
+        - column_id: File Name
+          show_headline: false
+        - column_id: File Preview Url
+          show_headline: false
+        - column_id: File Type Parent Category
+          show_headline: false
+        - column_id: Is file deleted
+          show_headline: false
+        - column_id: Total Views
+          show_headline: false
+        ordered_column_ids:
+        - File Code
+        - File Type Parent Category
+        - File Creator Full Name
+        - Day(File Created Datetime)
+        - File Preview Url
+        - File Name
+        - Is file deleted
+        - Total Views
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"File Type Parent Category\",\"File Creator Full Name\",\"Day(File Created Datetime)\"],\"columnProperties\": [{\"columnId\": \"File Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Day(File Created Datetime)
+        - column_id: File Code
+        - column_id: File Creator Full Name
+        - column_id: File Name
+        - column_id: File Preview Url
+        - column_id: File Type Parent Category
+        - column_id: Is file deleted
+        - column_id: Total Views
+        axis_configs:
+        - x:
+          - Day(File Created Datetime)
+          "y":
+          - Total Views
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Day(File Created Datetime)\",\"columnProperty\": {}},{\"columnId\": \"File Type Parent Category\",\"columnProperty\": {}},{\"columnId\": \"Is file deleted\",\"columnProperty\": {}},{\"columnId\": \"File Code\",\"columnProperty\": {}},{\"columnId\": \"Total Views\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"1066f3ff-e403-41ce-b034-a0c112c9248d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Views\"],\"isOpposite\": false}},{\"id\": \"06ef234d-28cb-4d9f-8bf0-c860e9e52010\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(File Created Datetime)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"ce788917-cace-4a46-ad08-72b037c1a23d\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least viewed files
+    viz_guid: 7c602aa8-df56-4149-9593-a7be99ad0717
+  - id: Viz_6
+    answer:
+      name: Least downloaded files
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_FIle Url
+        name: FIle Url
+        expr: "if ( [File Type Parent Category] = 'Video' ) then concat ( [Domain Url] , \"/file_preview/\" , [File Code] , \"?provider=native_video\" ) else if ( [File Type Parent Category] != 'Video' ) then concat ( [Domain Url] , \"/file_preview/\" , [File Code] ) else null"
+        was_auto_generated: false
+      - id: formula_Is file deleted
+        name: Is file deleted
+        expr: "if ( [Is File Deleted?] = true ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Total Downloads
+        name: Total Downloads
+        expr: "group_aggregate ( count ( [Interacted By User Code] ) , query_groups ( ) , query_filters ( ) + { [Interaction Datetime] >= [File start date] and [Interaction Datetime] <= [File end date] and [Interaction Type] = 'download' and [Interaction Entity type] = 'file' } )"
+        was_auto_generated: false
+      search_query: "[File Code] [File Type Parent Category] [File Creator Full Name] [File Created Datetime] [File Created Datetime].daily [File Name] [formula_FIle Url] [formula_Is file deleted] [formula_Total Downloads] sort by [formula_Total Downloads]"
+      answer_columns:
+      - name: Day(File Created Datetime)
+        custom_name: File uploaded date
+        dynamic_title: File uploaded date
+      - name: FIle Url
+        custom_name: FIle url
+        dynamic_title: FIle url
+      - name: File Code
+      - name: File Creator Full Name
+        custom_name: File author
+        dynamic_title: File author
+      - name: File Name
+        custom_name: File name
+        dynamic_title: File name
+      - name: File Type Parent Category
+        custom_name: File type
+        dynamic_title: File type
+      - name: Is file deleted
+      - name: Total Downloads
+        custom_name: Total downloads
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total downloads
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Day(File Created Datetime)
+          show_headline: false
+        - column_id: FIle Url
+          show_headline: false
+        - column_id: File Code
+          show_headline: false
+        - column_id: File Creator Full Name
+          show_headline: false
+        - column_id: File Name
+          show_headline: false
+        - column_id: File Type Parent Category
+          show_headline: false
+        - column_id: Is file deleted
+          show_headline: false
+        - column_id: Total Downloads
+          show_headline: false
+        ordered_column_ids:
+        - File Code
+        - File Type Parent Category
+        - File Creator Full Name
+        - Day(File Created Datetime)
+        - File Name
+        - FIle Url
+        - Is file deleted
+        - Total Downloads
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"File Name\",\"File Type Parent Category\",\"File Creator Full Name\",\"Day(File Created Datetime)\"],\"columnProperties\": [{\"columnId\": \"File Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Day(File Created Datetime)
+        - column_id: FIle Url
+        - column_id: File Code
+        - column_id: File Creator Full Name
+        - column_id: File Name
+        - column_id: File Type Parent Category
+        - column_id: Is file deleted
+        - column_id: Total Downloads
+        axis_configs:
+        - x:
+          - Day(File Created Datetime)
+          "y":
+          - Total Downloads
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Day(File Created Datetime)\",\"columnProperty\": {}},{\"columnId\": \"File Type Parent Category\",\"columnProperty\": {}},{\"columnId\": \"Total Downloads\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"4071f22b-6886-48fd-8711-3f710299c4d7\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Downloads\"],\"isOpposite\": false}},{\"id\": \"1a7bb4eb-fe46-419d-8e54-3fde3f98c4fd\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(File Created Datetime)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"ce788917-cace-4a46-ad08-72b037c1a23d\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least downloaded files
+    viz_guid: 0a4887fd-2340-4843-b1f8-a03eb8ab41a8
+  - id: Viz_7
+    answer:
+      name: Most downloaded files
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_File Url
+        name: File Url
+        expr: "if ( [File Type Parent Category] = 'Video' ) then concat ( [Domain Url] , \"/file_preview/\" , [File Code] , \"?provider=native_video\" ) else if ( [File Type Parent Category] != 'Video' ) then concat ( [Domain Url] , \"/file_preview/\" , [File Code] ) else null"
+        was_auto_generated: false
+      - id: formula_Is file deleted
+        name: Is file deleted
+        expr: "if ( [Is File Deleted?] = true ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Total Downloads
+        name: Total Downloads
+        expr: "count_if ( [Interaction Type] = 'download' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Total Downloads] [formula_Total Downloads] > 0 [File Code] [File Type Parent Category] [File Creator Full Name] [File Created Datetime] [File Created Datetime].daily sort by [formula_Total Downloads] descending [File Name] [formula_File Url] [formula_Is file deleted]"
+      answer_columns:
+      - name: Day(File Created Datetime)
+        custom_name: File uploaded date
+        dynamic_title: File uploaded date
+      - name: File Code
+      - name: File Creator Full Name
+        custom_name: File Author
+        dynamic_title: File Author
+      - name: File Name
+        custom_name: File name
+        dynamic_title: File name
+      - name: File Type Parent Category
+        custom_name: File type
+        dynamic_title: File type
+      - name: File Url
+        custom_name: File url
+        dynamic_title: File url
+      - name: Is file deleted
+      - name: Total Downloads
+        custom_name: Total downloads
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total downloads
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Day(File Created Datetime)
+          show_headline: false
+        - column_id: File Code
+          show_headline: false
+        - column_id: File Creator Full Name
+          show_headline: false
+        - column_id: File Name
+          show_headline: false
+        - column_id: File Type Parent Category
+          show_headline: false
+        - column_id: File Url
+          show_headline: false
+        - column_id: Is file deleted
+          show_headline: false
+        - column_id: Total Downloads
+          show_headline: false
+        ordered_column_ids:
+        - File Code
+        - File Type Parent Category
+        - File Creator Full Name
+        - Day(File Created Datetime)
+        - File Name
+        - File Url
+        - Is file deleted
+        - Total Downloads
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"File Name\",\"File Type Parent Category\",\"File Creator Full Name\",\"Day(File Created Datetime)\",\"Total Downloads\"],\"columnProperties\": [{\"columnId\": \"File Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Day(File Created Datetime)
+        - column_id: File Code
+        - column_id: File Creator Full Name
+        - column_id: File Name
+        - column_id: File Type Parent Category
+        - column_id: File Url
+        - column_id: Is file deleted
+        - column_id: Total Downloads
+        axis_configs:
+        - x:
+          - Day(File Created Datetime)
+          "y":
+          - Total Downloads
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Downloads\",\"columnProperty\": {}},{\"columnId\": \"Day(File Created Datetime)\",\"columnProperty\": {}},{\"columnId\": \"File Type Parent Category\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"27e8d509-6b9f-4b40-99f1-577a9e2d5a09\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Downloads\"],\"isOpposite\": false}},{\"id\": \"f3929660-99bd-4e29-b3f3-c4512367cdac\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(File Created Datetime)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"ce788917-cace-4a46-ad08-72b037c1a23d\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most downloaded files
+    viz_guid: 46c32e55-05f7-449e-82be-5cfe8f790ce6
+  - id: Viz_8
+    answer:
+      name: Least reacted files
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_File Url
+        name: File Url
+        expr: "if ( [File Type Parent Category] = 'Video' ) then concat ( [Domain Url] , \"/file_preview/\" , [File Code] , \"?provider=native_video\" ) else if ( [File Type Parent Category] != 'Video' ) then concat ( [Domain Url] , \"/file_preview/\" , [File Code] ) else null"
+        was_auto_generated: false
+      - id: formula_Is file deleted
+        name: Is file deleted
+        expr: "if ( [Is File Deleted?] = true ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Total Likes
+        name: Total Likes
+        expr: "group_aggregate ( count ( [Interacted By User Code] ) , query_groups ( ) , query_filters ( ) + { [Interaction Datetime] >= [File start date] and [Interaction Datetime] <= [File end date] and [Interaction Type] = 'like' and [Interaction Entity type] = 'file' } )"
+        was_auto_generated: false
+      search_query: "[File Code] [File Type Parent Category] [File Creator Full Name] [File Created Datetime] [File Created Datetime].daily [File Name] [formula_File Url] [formula_Is file deleted] [formula_Total Likes] sort by [formula_Total Likes]"
+      answer_columns:
+      - name: Day(File Created Datetime)
+        custom_name: File uploaded date
+        dynamic_title: File uploaded date
+      - name: File Code
+      - name: File Creator Full Name
+        custom_name: File author
+        dynamic_title: File author
+      - name: File Name
+        custom_name: File name
+        dynamic_title: File name
+      - name: File Type Parent Category
+        custom_name: File type
+        dynamic_title: File type
+      - name: File Url
+        custom_name: File url
+        dynamic_title: File url
+      - name: Is file deleted
+      - name: Total Likes
+        custom_name: Total reacted
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total reacted
+        sort_info:
+          category: ALPHA
+      table:
+        table_columns:
+        - column_id: Day(File Created Datetime)
+          show_headline: false
+        - column_id: File Code
+          show_headline: false
+        - column_id: File Creator Full Name
+          show_headline: false
+        - column_id: File Name
+          show_headline: false
+        - column_id: File Type Parent Category
+          show_headline: false
+        - column_id: File Url
+          show_headline: false
+        - column_id: Is file deleted
+          show_headline: false
+        - column_id: Total Likes
+          show_headline: false
+        ordered_column_ids:
+        - File Code
+        - File Type Parent Category
+        - File Creator Full Name
+        - Day(File Created Datetime)
+        - File Name
+        - File Url
+        - Is file deleted
+        - Total Likes
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"File Name\",\"File Type Parent Category\",\"File Creator Full Name\",\"Day(File Created Datetime)\"],\"columnProperties\": [{\"columnId\": \"File Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Day(File Created Datetime)
+        - column_id: File Code
+        - column_id: File Creator Full Name
+        - column_id: File Name
+        - column_id: File Type Parent Category
+        - column_id: File Url
+        - column_id: Is file deleted
+        - column_id: Total Likes
+        axis_configs:
+        - x:
+          - Day(File Created Datetime)
+          "y":
+          - Total Likes
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Day(File Created Datetime)\",\"columnProperty\": {}},{\"columnId\": \"File Type Parent Category\",\"columnProperty\": {}},{\"columnId\": \"Total Likes\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"2bc24489-79c9-4ec0-ac46-da858569413b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Likes\"],\"isOpposite\": false}},{\"id\": \"bf27ff4d-5fb6-4318-bfd9-1b19c543c2a9\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(File Created Datetime)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"ce788917-cace-4a46-ad08-72b037c1a23d\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Least reacted files
+    viz_guid: c1467831-69b1-44a4-aad7-61c2e7e672a6
+  - id: Viz_9
+    answer:
+      name: Most reacted files
+      tables:
+      - id: File
+        name: File
+        fqn: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+      formulas:
+      - id: formula_Is file deleted
+        name: Is file deleted
+        expr: "if ( [Is File Deleted?] = true ) then 'true' else 'false'"
+        was_auto_generated: false
+      - id: formula_Total Likes
+        name: Total Likes
+        expr: "count_if ( [Interaction Type] = 'like' , [Interacted By User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Total Likes] [formula_Total Likes] > 0 [File Code] [File Type Parent Category] [File Creator Full Name] [File Created Datetime] [File Created Datetime].daily sort by [formula_Total Likes] descending [File Name] [File Preview Url] [formula_Is file deleted]"
+      answer_columns:
+      - name: Day(File Created Datetime)
+        custom_name: File uploaded date
+        dynamic_title: File uploaded date
+      - name: File Code
+      - name: File Creator Full Name
+        custom_name: File author
+        dynamic_title: File author
+      - name: File Name
+        custom_name: File name
+        dynamic_title: File name
+      - name: File Preview Url
+        custom_name: File url
+        dynamic_title: File url
+      - name: File Type Parent Category
+        custom_name: File type
+        dynamic_title: File type
+      - name: Is file deleted
+      - name: Total Likes
+        custom_name: Total reacted
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total reacted
+        sort_info:
+          category: DEFAULT
+      table:
+        table_columns:
+        - column_id: Day(File Created Datetime)
+          show_headline: false
+        - column_id: File Code
+          show_headline: false
+        - column_id: File Creator Full Name
+          show_headline: false
+        - column_id: File Name
+          show_headline: false
+        - column_id: File Preview Url
+          show_headline: false
+        - column_id: File Type Parent Category
+          show_headline: false
+        - column_id: Is file deleted
+          show_headline: false
+        - column_id: Total Likes
+          show_headline: false
+        ordered_column_ids:
+        - File Code
+        - File Type Parent Category
+        - File Creator Full Name
+        - Day(File Created Datetime)
+        - File Name
+        - File Preview Url
+        - Is file deleted
+        - Total Likes
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"showTableFooter\": true,\"orderedColumnIds\": [\"File Name\",\"File Type Parent Category\",\"File Creator Full Name\",\"Day(File Created Datetime)\",\"Total Likes\"],\"columnProperties\": [{\"columnId\": \"File Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Day(File Created Datetime)
+        - column_id: File Code
+        - column_id: File Creator Full Name
+        - column_id: File Name
+        - column_id: File Preview Url
+        - column_id: File Type Parent Category
+        - column_id: Is file deleted
+        - column_id: Total Likes
+        axis_configs:
+        - x:
+          - Day(File Created Datetime)
+          "y":
+          - Total Likes
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"Total Likes\",\"columnProperty\": {}},{\"columnId\": \"Day(File Created Datetime)\",\"columnProperty\": {}},{\"columnId\": \"File Type Parent Category\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"27e8d509-6b9f-4b40-99f1-577a9e2d5a09\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total Likes\"],\"isOpposite\": false}},{\"id\": \"f3929660-99bd-4e29-b3f3-c4512367cdac\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(File Created Datetime)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"ce788917-cace-4a46-ad08-72b037c1a23d\",\"color\": \"#8C62F5\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Most reacted files
+    viz_guid: ff65b3f1-7ab1-41ae-ac8a-e64701907a62
+  filters:
+  - column:
+    - Interaction Datetime
+    excluded_visualizations:
+    - Viz_5
+    - Viz_6
+    - Viz_8
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Location
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Segment Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Category Name
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 8
+      width: 12
+    - visualization_id: Viz_2
+      x: 0
+      "y": 8
+      height: 8
+      width: 6
+    - visualization_id: Viz_3
+      x: 6
+      "y": 8
+      height: 8
+      width: 6
+    - visualization_id: Viz_4
+      x: 0
+      "y": 16
+      height: 7
+      width: 6
+    - visualization_id: Viz_5
+      x: 6
+      "y": 16
+      height: 7
+      width: 6
+    - visualization_id: Viz_6
+      x: 6
+      "y": 23
+      height: 8
+      width: 6
+    - visualization_id: Viz_7
+      x: 0
+      "y": 23
+      height: 8
+      width: 6
+    - visualization_id: Viz_8
+      x: 6
+      "y": 31
+      height: 7
+      width: 6
+    - visualization_id: Viz_9
+      x: 0
+      "y": 31
+      height: 7
+      width: 6
+  parameter_overrides:
+  - key: b5f1b251-d9ec-47a6-bf15-0913083268f2
+    value:
+      name: File::File start date
+      override_value: 10/05/2025
+  - key: 18559a68-63bd-4986-8f2f-c17015d87d5e
+    value:
+      name: File::File end date
+      override_value: 11/04/2025
+  ordered_chips:
+  - name: Interaction Datetime
+    type: FILTER
+  - name: Department
+    type: FILTER
+  - name: Location
+    type: FILTER
+  - name: Segment Name
+    type: FILTER
+  - name: Category Name
+    type: FILTER
+  - name: Tenant Code
+    type: FILTER
+  - name: File::File start date
+    type: PARAMETER
+  - name: File::File end date
+    type: PARAMETER
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "false"
+    - name: hide_group_description
+      value: "true"
+    - name: hide_group_tile_description
+      value: "true"
+    - name: hide_tile_description
+      value: "true"
