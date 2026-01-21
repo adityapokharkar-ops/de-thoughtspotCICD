@@ -35,7 +35,7 @@ def deploy_auth():
         "username": "aditya.pokharkar@simpplr.com",
         "auto_create": False,
         "password": "Planet@107",
-        "secret_key": "4775671a-6327-4954-be4d-84c147f059b3"
+        "secret_key": "511464d0-ef88-48d7-895c-69d422bdcc9c"
     }
 
     try:
