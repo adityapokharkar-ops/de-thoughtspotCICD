@@ -1,0 +1,30 @@
+guid: 074107cb-c69d-4be9-a020-91ff49de512f
+sql_view:
+  name: Active Users
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  sql_query: "SELECT \n    v1.tenant_code,DATE_TRUNC('MONTH', REPORTING_DATE)  AS first_day_of_month,\n    COUNT(DISTINCT case when HAS_LOGGED_IN=true then user_code end) as logged_in_user_count,\n    COUNT(DISTINCT user_code) as user_count\nFROM UDL.VW_DAILY_USER_ADOPTION AS v\nINNER JOIN UDL.VW_USER_AS_IS AS v1\n    ON v1.code = v.user_code\nWHERE STATUS_CODE = 'US001'\nGROUP BY 1,2"
+  sql_view_columns:
+  - name: TENANT_CODE
+    sql_output_column: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: FIRST_DAY_OF_MONTH
+    sql_output_column: FIRST_DAY_OF_MONTH
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: LOGGED_IN_USER_COUNT
+    sql_output_column: LOGGED_IN_USER_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: USER_COUNT
+    sql_output_column: USER_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
