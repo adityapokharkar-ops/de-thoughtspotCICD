@@ -1,0 +1,577 @@
+guid: d16c0c2d-7738-4dd6-9e18-76b9aa53390f
+table:
+  name: VW_MONTHLY_TENANT_ADOPTION
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_MONTHLY_TENANT_ADOPTION
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: REPORTING_MONTH
+    db_column_name: REPORTING_MONTH
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: CUSTOMER_SEGMENT_CODE
+    db_column_name: CUSTOMER_SEGMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: INSTANCE_TYPE_CODE
+    db_column_name: INSTANCE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: VARCHAR
+  - name: UNIQUE_CONTENT_VIEWS_WEB
+    db_column_name: UNIQUE_CONTENT_VIEWS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_CONTENT_VIEWS_MOBILE
+    db_column_name: UNIQUE_CONTENT_VIEWS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_CONTENT_VIEWS_OVERALL
+    db_column_name: UNIQUE_CONTENT_VIEWS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_WEB
+    db_column_name: TOTAL_CONTENT_VIEWS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_MOBILE
+    db_column_name: TOTAL_CONTENT_VIEWS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_OVERALL
+    db_column_name: TOTAL_CONTENT_VIEWS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_LOGINS_WEB
+    db_column_name: UNIQUE_LOGINS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_LOGINS_MOBILE
+    db_column_name: UNIQUE_LOGINS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_LOGINS_MOBILE_DEVICE
+    db_column_name: UNIQUE_LOGINS_MOBILE_DEVICE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_LOGINS_OVERALL
+    db_column_name: UNIQUE_LOGINS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_LOGINS_WEB
+    db_column_name: TOTAL_LOGINS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_LOGINS_MOBILE
+    db_column_name: TOTAL_LOGINS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_LOGINS_MOBILE_DEVICE
+    db_column_name: TOTAL_LOGINS_MOBILE_DEVICE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_LOGINS_OVERALL
+    db_column_name: TOTAL_LOGINS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: CONTENT_PUBLISHED_WEB
+    db_column_name: CONTENT_PUBLISHED_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: CONTENT_PUBLISHED_MOBILE
+    db_column_name: CONTENT_PUBLISHED_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: CONTENT_PUBLISHED_OVERALL
+    db_column_name: CONTENT_PUBLISHED_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: CONTRIBUTORS_WEB
+    db_column_name: CONTRIBUTORS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: CONTRIBUTORS_MOBILE
+    db_column_name: CONTRIBUTORS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: CONTRIBUTORS_OVERALL
+    db_column_name: CONTRIBUTORS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: PARTICIPANTS_WEB
+    db_column_name: PARTICIPANTS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: PARTICIPANTS_MOBILE
+    db_column_name: PARTICIPANTS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: PARTICIPANTS_OVERALL
+    db_column_name: PARTICIPANTS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: OBSERVERS_WEB
+    db_column_name: OBSERVERS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: OBSERVERS_MOBILE
+    db_column_name: OBSERVERS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: OBSERVERS_OVERALL
+    db_column_name: OBSERVERS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: USERS_VIEWED_CONTENT
+    db_column_name: USERS_VIEWED_CONTENT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_USERS
+    db_column_name: TOTAL_ACTIVE_USERS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: USED_LICENSES
+    db_column_name: USED_LICENSES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_LICENSES
+    db_column_name: TOTAL_LICENSES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_LIKES
+    db_column_name: TOTAL_LIKES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_COMMENTS
+    db_column_name: TOTAL_COMMENTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_POSTS
+    db_column_name: TOTAL_POSTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_REPLIES
+    db_column_name: TOTAL_REPLIES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SHARES
+    db_column_name: TOTAL_SHARES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_PAGE_PUBLISHED
+    db_column_name: TOTAL_PAGE_PUBLISHED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_EVENT_PUBLISHED
+    db_column_name: TOTAL_EVENT_PUBLISHED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_BLOG_PUBLISHED
+    db_column_name: TOTAL_BLOG_PUBLISHED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ALBUM_PUBLISHED
+    db_column_name: TOTAL_ALBUM_PUBLISHED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_NEWS_PUBLISHED
+    db_column_name: TOTAL_NEWS_PUBLISHED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_MUST_READ_CONTENT_PUBLISHED
+    db_column_name: TOTAL_MUST_READ_CONTENT_PUBLISHED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_PUBLISHED_ON_HOME_CAROUSEL
+    db_column_name: TOTAL_CONTENT_PUBLISHED_ON_HOME_CAROUSEL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SOCIAL_CAMPAIGN_CREATED
+    db_column_name: TOTAL_SOCIAL_CAMPAIGN_CREATED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_NEWSLETTER_CREATED
+    db_column_name: TOTAL_NEWSLETTER_CREATED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_NATIVE_VIDEO_CREATED
+    db_column_name: TOTAL_NATIVE_VIDEO_CREATED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SITE_CONTENT_PUBLISHED
+    db_column_name: TOTAL_SITE_CONTENT_PUBLISHED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SOCIAL_CAMPAIGN_SHARES
+    db_column_name: TOTAL_SOCIAL_CAMPAIGN_SHARES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_RECOGNITION
+    db_column_name: TOTAL_RECOGNITION
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_RECOGNITION_GIVERS
+    db_column_name: TOTAL_RECOGNITION_GIVERS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_RECOGNITION_RECEIVERS
+    db_column_name: TOTAL_RECOGNITION_RECEIVERS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_RECURRING_AWARDS_DISTRIBUTED
+    db_column_name: TOTAL_RECURRING_AWARDS_DISTRIBUTED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_USERS_WITH_PROFILE_IMAGE
+    db_column_name: TOTAL_ACTIVE_USERS_WITH_PROFILE_IMAGE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_USERS_WITH_BIRTH_DATE
+    db_column_name: TOTAL_ACTIVE_USERS_WITH_BIRTH_DATE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_USERS_WITH_ABOUT_INFO
+    db_column_name: TOTAL_ACTIVE_USERS_WITH_ABOUT_INFO
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_USERS_WITH_PHONE_NUMBER
+    db_column_name: TOTAL_ACTIVE_USERS_WITH_PHONE_NUMBER
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SITES
+    db_column_name: TOTAL_SITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_SITES
+    db_column_name: TOTAL_ACTIVE_SITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_NEWSLETTER_PUBLISHED
+    db_column_name: TOTAL_NEWSLETTER_PUBLISHED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_ENGAGEMENT_OVERALL
+    db_column_name: UNIQUE_ENGAGEMENT_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: MOBILE_APP_ONLY
+    db_column_name: MOBILE_APP_ONLY
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: MOBILE_BROWSER_ONLY
+    db_column_name: MOBILE_BROWSER_ONLY
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SEARCHES_OVERALL
+    db_column_name: TOTAL_SEARCHES_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_SEARCH_USERS_OVERALL
+    db_column_name: UNIQUE_SEARCH_USERS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SEARCHES_WITHOUT_RESULT
+    db_column_name: TOTAL_SEARCHES_WITHOUT_RESULT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: SEARCH_DOCUMENT_SIZE_MB
+    db_column_name: SEARCH_DOCUMENT_SIZE_MB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: SEARCH_CTR_TOP_3_COUNT
+    db_column_name: SEARCH_CTR_TOP_3_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: SEARCH_TOTAL_CLICKS
+    db_column_name: SEARCH_TOTAL_CLICKS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
