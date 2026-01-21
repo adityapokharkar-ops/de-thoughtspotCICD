@@ -1,0 +1,745 @@
+guid: 8366bda8-222e-4862-9ac5-cdac41b64cf5
+model:
+  name: File
+  description: File Analytics Datamodel
+  model_tables:
+  - name: VW_FILE_AS_IS
+    alias: File
+    fqn: 60e04cd9-0f68-4ab2-b85f-3f284aacb1bf
+    joins:
+    - with: File Creator Details
+      'on': '[VW_FILE_AS_IS::FILE_CREATED_BY] = [File Creator Details::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: File Mapping
+      'on': '[VW_FILE_AS_IS::CODE] = [File Mapping::FILE_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+    - with: Interaction
+      'on': '[VW_FILE_AS_IS::CODE] = [VW_INTERACTION::FILE_CODE] AND [VW_FILE_AS_IS::TENANT_CODE] = [VW_INTERACTION::TENANT_CODE]'
+      type: LEFT_OUTER
+      cardinality: ONE_TO_MANY
+    - with: Native Video Interaction
+      'on': '[VW_FILE_AS_IS::CODE] = [VW_NATIVE_VIDEO_INTERACTION::FILE_CODE] AND [VW_FILE_AS_IS::TENANT_CODE] = [VW_NATIVE_VIDEO_INTERACTION::TENANT_CODE]'
+      type: LEFT_OUTER
+      cardinality: ONE_TO_MANY
+    - with: Site
+      'on': '[VW_FILE_AS_IS::SITE_CODE] = [VW_SITE_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Tenant Details
+      'on': '[VW_FILE_AS_IS::TENANT_CODE] = [VW_TENANT_DETAILS_AS_IS::TENANT_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: filter_options
+      'on': '[VW_FILE_AS_IS::ACTIVE_FLAG] = [filter_options::TRUE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: DATE_DIM
+    alias: Interaction Date Dim
+    fqn: 8c47a455-3610-4ea2-bf05-fdce683ef536
+    joins:
+    - with: Interaction
+      'on': '[DATE_DIM::DATE] = [VW_INTERACTION::INTERACTION_DATETIME]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: file_type
+    fqn: a8ea1227-072a-49b1-a487-e74fc04d17ac
+  - name: VW_INTERACTION
+    alias: Interaction
+    fqn: 6f0f3599-22ca-4738-8bd2-038b0e3cfb7f
+    joins:
+    - with: Interaction Site
+      'on': '[VW_INTERACTION::SITE_CODE] = [Interaction Site::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Interaction User Details
+      'on': '[VW_INTERACTION::INTERACTED_BY_USER_CODE] = [Interaction User Details::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Site Participant Details
+      'on': '[VW_INTERACTION::INTERACTED_BY_USER_CODE] = [VW_MEMBER_FOLLOWER_OTHER::USER_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: Author User Status
+    alias: File Creator Details Status
+    fqn: 3cfd1ca9-5308-4e42-b8ef-44384ef3e387
+  - name: VW_MEMBER_FOLLOWER_OTHER
+    alias: Site Participant Details
+    fqn: de911c73-20ab-4b42-b8b0-e711127d1543
+  - name: Interaction User Details
+    fqn: 0b489297-d507-4734-979a-1839a6c85974
+  - name: File Mapping
+    fqn: 1ebd325f-9d3d-463d-b9de-69c389c26e76
+  - name: VW_TENANT_DETAILS_AS_IS
+    alias: Tenant Details
+    fqn: 65fb81cb-a0c0-4a36-a972-9308693f7b1a
+  - name: VW_SITE_AS_IS
+    alias: Site
+    fqn: 6d6e115b-0c82-4e62-9118-fc190203d1e9
+    joins:
+    - with: Membership Detail
+      'on': '[VW_SITE_AS_IS::CODE] = [VW_SITE_PARTICIPANTS_AS_IS::SITE_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+    - with: Site Category
+      'on': '[VW_SITE_AS_IS::SITE_CATEGORY_CODE] = [VW_SITE_CATEGORY_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: Site Type
+      'on': '[VW_SITE_AS_IS::SITE_TYPE_CODE] = [VW_REF_SITE_TYPE_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_NATIVE_VIDEO_INTERACTION
+    alias: Native Video Interaction
+    fqn: 77d88ced-b166-4eaa-9349-a761cc600964
+  - name: VW_SITE_PARTICIPANTS_AS_IS
+    alias: Membership Detail
+    fqn: b2722dd8-098b-4234-8609-16d478a16996
+    joins:
+    - with: File Member Details
+      'on': '[VW_SITE_PARTICIPANTS_AS_IS::USER_CODE] = [File Member Details::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_REF_INTERACTION_TYPE_AS_IS
+    alias: Interaction Type
+    fqn: c47dc0c3-241a-4152-9321-8eb8ef4c6a93
+    joins:
+    - with: Interaction
+      'on': '[VW_REF_INTERACTION_TYPE_AS_IS::CODE] = [VW_INTERACTION::INTERACTION_TYPE_CODE]'
+      type: RIGHT_OUTER
+      cardinality: ONE_TO_MANY
+  - name: VW_REF_FILE_TYPE_AS_IS
+    alias: Ref File Type
+    fqn: 604b4ad8-275d-444e-b9b3-2a17577cdabd
+    joins:
+    - with: File
+      'on': '[VW_REF_FILE_TYPE_AS_IS::CODE] = [VW_FILE_AS_IS::FILE_TYPE_CODE]'
+      type: RIGHT_OUTER
+      cardinality: ONE_TO_MANY
+    - with: file_type
+      'on': '[VW_REF_FILE_TYPE_AS_IS::PARENT_CATEGORY] = [file_type::FILE_TYPE]'
+      type: LEFT_OUTER
+      cardinality: MANY_TO_ONE
+  - name: view_options
+    fqn: 614c791a-fa45-4be5-b299-a617c69f82e8
+    joins:
+    - with: File
+      'on': '[view_options::TRUE] = [VW_FILE_AS_IS::ACTIVE_FLAG]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_REF_SITE_TYPE_AS_IS
+    alias: Site Type
+    fqn: e7fd46cf-6e44-4ca2-9ad9-4f6b314f6147
+  - name: VW_SITE_CATEGORY_AS_IS
+    alias: Site Category
+    fqn: f9df5d04-482e-4ee6-b6f3-094a8f59667c
+  - name: VW_REF_ENTITY_AS_IS
+    alias: Entity Type
+    fqn: afdaf7e1-6e8e-4d35-a01a-4a97633b406d
+    joins:
+    - with: Interaction
+      'on': '[VW_REF_ENTITY_AS_IS::CODE] = [VW_INTERACTION::INTERACTION_ENTITY_CODE]'
+      type: RIGHT_OUTER
+      cardinality: ONE_TO_MANY
+  - name: filter_options
+    fqn: 15781957-4a71-42cc-afff-cd4c25bb0685
+  - name: Interaction Site
+    fqn: da3f355e-1112-48fc-a98f-344c549f669f
+  - name: File Member Details
+    fqn: 66228be6-e45d-4d4a-92eb-9d5d2a104f3c
+  - name: File Creator Details
+    fqn: b594a27f-b0b7-4024-b798-3e63140f1067
+    joins:
+    - with: File Creator Details Status
+      'on': '[File Creator Details::STATUS_CODE] = [Author User Status::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  formulas:
+  - id: formula_File Downloads
+    name: File Downloads
+    expr: if ( [Interaction::FILE_CODE] != 'n/a' and [Interaction Type::DESCRIPTION] = 'download' ) then [Interaction::INTERACTED_BY_USER_CODE] else null
+  - id: formula_File Hyperlink
+    name: File Hyperlink
+    expr: concat ( '<span style="color:gray;font-size:smaller;">' , [Ref File Type::PARENT_CATEGORY] , '</span><br>' , '{caption}' , [File::FILE_NAME] , '{/caption}' , [Tenant Details::DOMAIN_URL] , '/file_preview/' , [File::CODE] )
+  - id: formula_File Modal Url
+    name: File Modal Url
+    expr: if ( [Tenant Details::DATA_SOURCE_CODE] = 'DS002' ) then ( if ( [Ref File Type::PARENT_CATEGORY] = 'Video' ) then concat ( '<span style="color:gray;font-size:smaller;">' , [Ref File Type::PARENT_CATEGORY] , '</span>' , '<br>' , concat ( "{caption}" , [File::FILE_NAME] , "{/caption}" , [Tenant Details::DOMAIN_URL] , "/file_preview/" , [File::CODE] , "?provider=native_video" ) ) else concat ( '<span style="color:gray;font-size:smaller;">' , [Ref File Type::PARENT_CATEGORY] , '</span><br>' , '{caption}' , [File::FILE_NAME] , '{/caption}' , [Tenant Details::DOMAIN_URL] , '/file_preview/' , [File::CODE] ) ) else ( if ( [Ref File Type::PARENT_CATEGORY] = 'Video' ) then concat ( '<span style="color:gray;font-size:smaller;">' , [Ref File Type::PARENT_CATEGORY] , '</span>' , '<br>' , concat ( "{caption}" , [File::FILE_NAME] , "{/caption}" , [Tenant Details::DOMAIN_URL] , "/apex/simpplr__app?u=/video/" , [File::PROVIDER_FILE_CODE] , "&fileId=" , [File::PROVIDER_FILE_CODE] , "&provider=native_video" ) ) else concat ( '<span style="color:gray;font-size:smaller;">' , [Ref File Type::PARENT_CATEGORY] , '</span><br>' , '{caption}' , [File::FILE_NAME] , '{/caption}' , [Tenant Details::DOMAIN_URL] , '/file_preview/' , [File::CODE] ) )
+  - id: formula_File Name Category Text
+    name: File Name Category Text
+    expr: concat ( '<span style="color:gray;font-size:smaller;">' , [Ref File Type::PARENT_CATEGORY] , '</span>' , '<br>' , [File::FILE_NAME] , '</a>' )
+  - id: formula_Interaction Count
+    name: Interaction Count
+    expr: count ( [Interaction::INTERACTED_BY_USER_CODE] )
+  - id: formula_Interaction Datetime
+    name: Interaction Datetime
+    expr: if ( [Interaction::INTERACTION_DATETIME] = [Interaction::INTERACTION_DATETIME] ) then [Interaction::INTERACTION_DATETIME] else null
+  - id: formula_Unique Views
+    name: Unique Views
+    expr: if ( [Interaction Type::DESCRIPTION] = 'view' and [Interaction::FILE_CODE] != 'n/a' ) then concat ( [Interaction::FILE_CODE] , [Interaction::INTERACTED_BY_USER_CODE] ) else null
+  filters:
+  - column:
+    - Is File Directory?
+    oper: in
+    values:
+    - 'false'
+  - column:
+    - File Storage Type Code
+    oper: not in
+    values:
+    - fss005
+  columns:
+  - name: File Code
+    description: This attribute represents the unique identifier of the file code.
+    column_id: File::CODE
+    properties:
+      column_type: ATTRIBUTE
+      custom_order:
+      - k
+      - h
+  - name: Interaction Count
+    description: This attribute represents the information of the Interaction Count.
+    formula_id: formula_Interaction Count
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: File Name Category
+    description: This attribute represents the information of the category name where the file was uploaded. For example, Screenshot123 and above it will display Image, meaning it is an image.
+    formula_id: formula_File Name Category Text
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction Datetime
+    description: This attribute represents the information of the datetime when the interaction was done.
+    formula_id: formula_Interaction Datetime
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Url
+    description: This attribute represents the information of the preview url of the file.  For example, when someone clicks on it , the link that opens up is of the file for the site or feed or to which the file was first uploaded.
+    formula_id: formula_File Hyperlink
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Unique Views
+    description: This attribute represents the information used to count unique views on a file.
+    formula_id: formula_Unique Views
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Downloads
+    formula_id: formula_File Downloads
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Modal Url
+    formula_id: formula_File Modal Url
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Native Video Interaction Datetime
+    column_id: Native Video Interaction::INTERACTION_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Total Video Views
+    column_id: Native Video Interaction::TOTAL_VIEWS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Video Watch Time
+    column_id: Native Video Interaction::TOTAL_WATCH_TIME
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Native Video User Code
+    column_id: Native Video Interaction::USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: File Mapping Code
+    description: This attribute represents the Company Name of user who interacted with the file.
+    column_id: File Mapping::FILE_MAPPING_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File First Association
+    column_id: File Mapping::IS_FIRST_ASSOCIATION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction Site Type
+    column_id: Interaction Site::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction User City
+    description: This attribute represents the City of user who interacted with the file.
+    column_id: Interaction User Details::CITY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Company Name
+    description: This attribute represents the Company Name of user who interacted with the file.
+    column_id: Interaction User Details::COMPANY_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction User Country
+    description: This attribute represents the Country of user who interacted with the file.
+    column_id: Interaction User Details::COUNTRY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction User Email
+    description: This attribute represents the Email of user who interacted with the file.
+    column_id: Interaction User Details::EMAIL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction User Division
+    description: This attribute represents the Division of user who interacted with the file.
+    column_id: Interaction User Details::DIVISION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Department
+    description: This attribute represents the Department of user who interacted with the file.
+    column_id: Interaction User Details::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction User Full Name
+    description: This attribute represents the Full Name of user who interacted with the file.
+    column_id: Interaction User Details::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Location
+    description: This attribute represents the Location of user who interacted with the file.
+    column_id: Interaction User Details::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction User State
+    description: This attribute represents the State of user who interacted with the file.
+    column_id: Interaction User Details::STATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction User Segment Code
+    description: This attribute represents the Segment Code of user who interacted with the file.
+    column_id: Interaction User Details::SEGMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Segment Name
+    description: This attribute represents the Segment Name of user who interacted with the file.
+    column_id: Interaction User Details::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction User Category Code
+    description: This attribute represents the User Category Code of user who interacted with the file.
+    column_id: Interaction User Details::USER_CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Category Name
+    description: This attribute represents the User Category Name of user who interacted with the file.
+    column_id: Interaction User Details::USER_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Type All
+    description: This attribute represents the File Type
+    column_id: file_type::FILE_TYPE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Storage Type Code
+    description: This attribute represents the information of the Storage Type Code for the file storage. For example, FSS002,FSS004, etc.
+    column_id: File::FILE_STORAGE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: File Member City
+    description: This attribute represents the City of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::CITY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Company Name
+    description: This attribute represents the Company Name of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::COMPANY_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Country
+    description: This attribute represents the Country of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::COUNTRY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Department
+    description: This attribute represents the Department of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Division
+    description: This attribute represents the Division of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::DIVISION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Email
+    description: This attribute represents the Email of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::EMAIL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Full Name
+    description: This attribute represents the Full Name of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Location
+    description: This attribute represents the Location of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member State
+    description: This attribute represents the State of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::STATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Segment Code
+    description: This attribute represents the Segment Code of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::SEGMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Segment Name
+    description: This attribute represents the Segment Name of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Job Title
+    description: This attribute represents the Job Title of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::TITLE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Category Code
+    description: This attribute represents the Category Code of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::USER_CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Member Category Name
+    description: This attribute represents the Category Name of user in respect to the Site where the file was uploaded.
+    column_id: File Member Details::USER_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator City
+    description: This attribute represents the City of user who created the file.
+    column_id: File Creator Details::CITY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator Company Name
+    description: This attribute represents the Company Name of user who created the file.
+    column_id: File Creator Details::COMPANY_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator Full Name
+    description: This attribute represents the Full Name of user who created the file.
+    column_id: File Creator Details::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator Location
+    description: This attribute represents the Location of user who created the file.
+    column_id: File Creator Details::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator Segment Code
+    description: This attribute represents the Segment Code of user who created the file.
+    column_id: File Creator Details::SEGMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator Segment Name
+    description: This attribute represents the Segment Name of user who created the file.
+    column_id: File Creator Details::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator State
+    description: This attribute represents the state of user who created the file.
+    column_id: File Creator Details::STATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator Title
+    description: This attribute represents the job title of user who created the file.
+    column_id: File Creator Details::TITLE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator Category Code
+    description: This attribute represents the category code of user who created the file.
+    column_id: File Creator Details::USER_CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator Category Name
+    description: This attribute represents the category name of user who created the file.
+    column_id: File Creator Details::USER_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator Department
+    description: This attribute represents the department of user who created the file.
+    column_id: File Creator Details::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Creator Division
+    description: This attribute represents the division of user who created the file.
+    column_id: File Creator Details::DIVISION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Site Category
+    description: This attribute represents the information of the category of the site. For example, uncategorized, locations, employee resource groups, etc.
+    column_id: Site Category::SITE_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Interaction Entity type
+    description: This attribute represents the information of the entity type of the interaction. For example, site, content or feed.
+    column_id: Entity Type::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: View Option
+    description: This attribute represents the information of the user-level filter options like department, location, category, or segment. Once a particular filter is selected, like the department, it will display the list of all departments.
+    column_id: view_options::VIEW_OPTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Preview Url
+    description: This attribute represents the information of the url for previewing the file.
+    column_id: File::PREVIEW_URL
+    properties:
+      column_type: ATTRIBUTE
+  - name: Interaction Type
+    description: This attribute represents the information of the type of interaction done (view, like, share, download, favourite, etc.).
+    column_id: Interaction Type::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: File Interaction Code
+    description: This attribute represents the information of the file code where the interaction was done.
+    column_id: Interaction::FILE_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Interacted By User Code
+    description: This attribute represents the unique identifier of user who performed interaction on file.
+    column_id: Interaction::INTERACTED_BY_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Ref Interaction Datetime
+    description: This attribute represents the information of the datetime when the interaction was done.
+    column_id: Interaction::INTERACTION_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction Type Code
+    description: This attribute represents the information of the interaction type code (view, like, share, etc.).
+    column_id: Interaction::INTERACTION_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is Interaction Deleted?
+    description: This attribute represents the information of whether the interaction has been deleted.
+    column_id: Interaction::IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is System Feed?
+    description: This attribute represents the information of whether the interaction was system-generated.
+    column_id: Interaction::IS_SYSTEM_FEED
+    properties:
+      column_type: ATTRIBUTE
+  - name: Interaction Tenant Code
+    description: This attribute represents the information of the tenant code for the interaction.
+    column_id: Interaction::TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is Site Membership Deleted?
+    description: This attribute represents the information of whether the user has been removed from the Site where the file was uploaded.
+    column_id: Membership Detail::IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+  - name: Site Code
+    description: This attribute represents the information of the site code where the file was uploaded.
+    column_id: Site::CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is File Site Deleted?
+    description: This attribute represents the information of whether the site where the file was uploaded is deleted.
+    column_id: Site::IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is File Site Active?
+    description: This attribute represents the information of whether the site where the file was uploaded is active.
+    column_id: Site::IS_SITE_ACTIVE
+    properties:
+      column_type: ATTRIBUTE
+  - name: File Site Name
+    description: This attribute represents the information of the site name where the file was uploaded.
+    column_id: Site::SITE_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Member Role
+    description: This attribute represents the information of the membership role of the user on the site.
+    column_id: Site Participant Details::MEMBER_ROLE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Site Role
+    description: This attribute represents the information of the site role of the user for the site.
+    column_id: Site Participant Details::SITE_ROLE_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: File Created Datetime
+    description: This attribute represents the information of the datetime when the file was created.
+    column_id: File::FILE_CREATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: File Name
+    description: This attribute represents the information of the file name.
+    column_id: File::FILE_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is File Deleted?
+    description: This attribute represents the information of whether the file is deleted.
+    column_id: File::IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is System File?
+    description: This attribute represents the information of whether the file is system-generated.
+    column_id: File::IS_SYSTEM_FILE
+    properties:
+      column_type: ATTRIBUTE
+  - name: File Tenant Code
+    description: This attribute represents the unique identifier of tenant code of the file.
+    column_id: File::TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: File Category
+    description: This attribute represents the information of the file category (e.g., docs, har, document, image, audio, video, etc.).
+    column_id: Ref File Type::CATEGORY
+    properties:
+      column_type: ATTRIBUTE
+  - name: File Type Parent Category
+    description: This attribute represents the information of the parent category of the file (e.g., document, image, audio, video, etc.).
+    column_id: Ref File Type::PARENT_CATEGORY
+    properties:
+      column_type: ATTRIBUTE
+  - name: Filter Options
+    description: This attribute represents the information of the user-level filter options like department, location, user category, or segment.
+    column_id: filter_options::FILTER_OPTIONS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Is File Directory?
+    description: This attribute represents the information of whether the file is a directory.
+    column_id: File::IS_DIRECTORY
+    properties:
+      column_type: ATTRIBUTE
+  - name: File Creator Details Status
+    description: This attribute represents the status of user who created the file
+    column_id: File Creator Details Status::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Site Type
+    description: This attribute represents the Site Type of the Site on which the File has been uploaded, eg, Public, Private or Unlisted.
+    column_id: Site Type::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: File Mapping Entity
+    description: This attribute represents the Entity to which the File belongs, eg, Site, Content or Feed.
+    column_id: File Mapping::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Domain Url
+    column_id: Tenant Details::DOMAIN_URL
+    properties:
+      column_type: ATTRIBUTE
+  - name: Tenant Code
+    column_id: Tenant Details::TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Video File Code
+    column_id: Native Video Interaction::FILE_CODE
+    properties:
+      column_type: ATTRIBUTE
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
+    spotter_config:
+      is_spotter_enabled: true
+  parameters:
+  - id: ca9d9c69-379e-4788-a7ad-2a72e366d680
+    name: DynamicFilter
+    data_type: CHAR
+    default_value: Department
+    list_config:
+      list_choice:
+      - value: Department
+      - value: Location
+    description: ''
+  - id: 18559a68-63bd-4986-8f2f-c17015d87d5e
+    name: File end date
+    data_type: DATE
+    default_value: 06/26/2025
+    description: ''
+  - id: b5f1b251-d9ec-47a6-bf15-0913083268f2
+    name: File start date
+    data_type: DATE
+    default_value: 05/28/2025
+    description: ''
+  - id: 8cf0034e-054a-44fd-a848-1a1bce2b8bbe
+    name: FromDateParam
+    data_type: DATE
+    default_value: 05/24/2025
+    description: ''
+  - id: 723e6b87-aff7-42f2-85f0-cd12853bf79d
+    name: Period
+    data_type: CHAR
+    default_value: Last 30 Days
+    list_config:
+      list_choice:
+      - value: Last 7 Days
+        display_name: Last 7 Days
+      - value: Last 30 Days
+        display_name: Last 30 Days
+      - value: Last 90 Days
+        display_name: Last 90 Days
+      - value: Custom
+        display_name: Custom
+    description: ''
+  - id: 0f8c0f48-33c2-49c9-89be-fe944a555dcb
+    name: ToDateParam
+    data_type: DATE
+    default_value: 06/26/2025
+    description: ''
