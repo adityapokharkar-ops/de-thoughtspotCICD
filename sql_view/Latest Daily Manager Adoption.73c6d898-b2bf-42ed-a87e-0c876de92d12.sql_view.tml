@@ -1,0 +1,197 @@
+guid: 73c6d898-b2bf-42ed-a87e-0c876de92d12
+sql_view:
+  name: Latest Daily Manager Adoption
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  sql_query: "With DAILY_MANAGER_ADOPTION AS (\nSELECT tab1.*,\nCONCAT(tab1.total_direct_reports,tab1.sort_weight) AS sort,\nCASE WHEN DAYOFWEEK(tab1.reporting_date) = 1 AND WEEK(tab1.reporting_date) <> WEEK(tab2.LATEST_REPORTING_DATE)\n     OR reporting_date = tab2.LATEST_REPORTING_DATE THEN true \n     ELSE false END AS week_check,\nCASE WHEN tab1.reporting_date = LAST_DAY(tab1.reporting_date) OR reporting_date = tab2.LATEST_REPORTING_DATE THEN true \n     ELSE false END AS month_check,\nCASE WHEN tab1.reporting_date = LAST_DAY(tab1.reporting_date,year) OR reporting_date = tab2.LATEST_REPORTING_DATE THEN true \n     ELSE false END AS year_check,\nCASE WHEN tab1.reporting_date = tab2.LATEST_REPORTING_DATE THEN true ELSE false END AS is_latest_reporting_date,\nCASE WHEN tab1.reporting_date < tab2.LATEST_REPORTING_DATE AND               \n     tab1.reporting_date > tab2.LATEST_REPORTING_DATE - (31 + (CURRENT_DATE - tab2.LATEST_REPORTING_DATE)) THEN true\n     ELSE false END as offset_date_check\nFROM\n(SELECT dm.*, \nCASE WHEN dm.team_status_code='MTS003' THEN 3\nWHEN dm.team_status_code='MTS002' THEN 2\nWHEN dm.team_status_code='MTS001' THEN 1\nEND AS sort_weight\nFROM \"UDL\".\"VW_DAILY_MANAGER_ADOPTION\" dm) as tab1\nJOIN \n(SELECT MAX(REPORTING_DATE)as LATEST_REPORTING_DATE\nfrom UDL.VW_DAILY_MANAGER_ADOPTION \nWHERE REPORTING_DATE <= CURRENT_DATE) as tab2)\n\nSELECT * FROM DAILY_MANAGER_ADOPTION\nWHERE is_latest_reporting_date"
+  sql_view_columns:
+  - name: ID
+    sql_output_column: ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: CODE
+    sql_output_column: CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: REPORTING_DATE
+    sql_output_column: REPORTING_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: TENANT_CODE
+    sql_output_column: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: USER_CODE
+    sql_output_column: USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: TOTAL_DIRECT_REPORTS
+    sql_output_column: TOTAL_DIRECT_REPORTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_DIRECT_REPORTS_LOGIN
+    sql_output_column: TOTAL_DIRECT_REPORTS_LOGIN
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_DIRECT_REPORTS_ACTIVE_MUST_READ
+    sql_output_column: TOTAL_DIRECT_REPORTS_ACTIVE_MUST_READ
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_DIRECT_REPORTS_ACTIVE_MUST_READ_ACK
+    sql_output_column: TOTAL_DIRECT_REPORTS_ACTIVE_MUST_READ_ACK
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_DIRECT_REPORTS_RECEIVED_RECOGNITION
+    sql_output_column: TOTAL_DIRECT_REPORTS_RECEIVED_RECOGNITION
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_DIRECT_REPORTS_PROFILE_COMPLETENESS
+    sql_output_column: TOTAL_DIRECT_REPORTS_PROFILE_COMPLETENESS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_DIRECT_REPORTS_VIEWED_CONTENT
+    sql_output_column: TOTAL_DIRECT_REPORTS_VIEWED_CONTENT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_DIRECT_REPORTS_ACTIVE
+    sql_output_column: TOTAL_DIRECT_REPORTS_ACTIVE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_DIRECT_REPORTS_INACTIVE
+    sql_output_column: TOTAL_DIRECT_REPORTS_INACTIVE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_DIRECT_REPORTS_SOMEWHAT
+    sql_output_column: TOTAL_DIRECT_REPORTS_SOMEWHAT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_MY_TEAM_VIEWS
+    sql_output_column: TOTAL_MY_TEAM_VIEWS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_MY_TEAMS_USER_SCORE
+    sql_output_column: TOTAL_MY_TEAMS_USER_SCORE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TEAM_STATUS_CODE
+    sql_output_column: TEAM_STATUS_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: TEAM_STATUS_SCORE
+    sql_output_column: TEAM_STATUS_SCORE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: HAS_VIEWED_MY_TEAM
+    sql_output_column: HAS_VIEWED_MY_TEAM
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: HAS_USED_RECOMMENDED_ACTION
+    sql_output_column: HAS_USED_RECOMMENDED_ACTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: TOTAL_RECOMMENDED_ACTION_SENT
+    sql_output_column: TOTAL_RECOMMENDED_ACTION_SENT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: ENGAGEMENT_SCORE
+    sql_output_column: ENGAGEMENT_SCORE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: CREATED_DATETIME
+    sql_output_column: CREATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CREATED_BATCH_RUN_ID
+    sql_output_column: CREATED_BATCH_RUN_ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UPDATED_DATETIME
+    sql_output_column: UPDATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: UPDATED_BATCH_RUN_ID
+    sql_output_column: UPDATED_BATCH_RUN_ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: SORT_WEIGHT
+    sql_output_column: SORT_WEIGHT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: SORT
+    sql_output_column: SORT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: WEEK_CHECK
+    sql_output_column: WEEK_CHECK
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: MONTH_CHECK
+    sql_output_column: MONTH_CHECK
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: YEAR_CHECK
+    sql_output_column: YEAR_CHECK
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_LATEST_REPORTING_DATE
+    sql_output_column: IS_LATEST_REPORTING_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: OFFSET_DATE_CHECK
+    sql_output_column: OFFSET_DATE_CHECK
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX

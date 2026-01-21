@@ -1,0 +1,49 @@
+guid: 7f65f561-c5cb-4569-8626-f98726479169
+table:
+  name: VW_REF_LANGUAGE_AS_IS
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_REF_LANGUAGE_AS_IS
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ISO3_CODE
+    db_column_name: ISO3_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ISO2_CODE
+    db_column_name: ISO2_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DESCRIPTION
+    db_column_name: DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DESCRIPTION_MULTILANG
+    db_column_name: DESCRIPTION_MULTILANG
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_SUPPORTED_BY_APP
+    db_column_name: IS_SUPPORTED_BY_APP
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  properties:
+    spotter_config:
+      is_spotter_enabled: false

@@ -1,0 +1,92 @@
+guid: 8243cc66-befd-4dca-a78e-2c447d09394f
+table:
+  name: VW_USER_AWARDS_AS_IS
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_USER_AWARDS_AS_IS
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: AWARD_CODE
+    db_column_name: AWARD_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: RECEIVER_USER_CODE
+    db_column_name: RECEIVER_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: GIVER_USER_CODE
+    db_column_name: GIVER_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: RECEIVED_DATE
+    db_column_name: RECEIVED_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: FEED_CODE
+    db_column_name: FEED_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_RECOGNISED_BY_MANAGER
+    db_column_name: IS_RECOGNISED_BY_MANAGER
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: RECOGNITION_CODE
+    db_column_name: RECOGNITION_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DOMAIN_URL
+    db_column_name: DOMAIN_URL
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_DELETED
+    db_column_name: IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: MESSAGE
+    db_column_name: MESSAGE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: GIVER_HAS_ALLOWANCE
+    db_column_name: GIVER_HAS_ALLOWANCE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  properties:
+    spotter_config:
+      is_spotter_enabled: false

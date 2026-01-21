@@ -1,0 +1,525 @@
+guid: 2e3a4cef-d715-4695-bfde-67e47097fca3
+sql_view:
+  name: User Adoption
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  sql_query: |-
+    SELECT v.*,
+    ua.department, ua.location
+    FROM UDL.VW_DAILY_USER_ADOPTION AS v
+    JOIN UDL.VW_USER_AS_IS ua on v.user_code = ua.code
+  sql_view_columns:
+  - name: ID
+    sql_output_column: ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: DATA_SOURCE_CODE
+    sql_output_column: DATA_SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CODE
+    sql_output_column: CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: REPORTING_DATE
+    sql_output_column: REPORTING_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: TENANT_CODE
+    sql_output_column: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: USER_CODE
+    sql_output_column: USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_USER_ACTIVE
+    sql_output_column: IS_USER_ACTIVE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: HAS_LOGGED_IN
+    sql_output_column: HAS_LOGGED_IN
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_CONTRIBUTOR
+    sql_output_column: IS_CONTRIBUTOR
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_PARTICIPANT
+    sql_output_column: IS_PARTICIPANT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_OBSERVER
+    sql_output_column: IS_OBSERVER
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: TOTAL_LOGINS_WEB
+    sql_output_column: TOTAL_LOGINS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_LOGINS_MOBILE
+    sql_output_column: TOTAL_LOGINS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_LOGINS_MOBILE_BROWSER
+    sql_output_column: TOTAL_LOGINS_MOBILE_BROWSER
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_LOGINS_MOBILE_DEVICE
+    sql_output_column: TOTAL_LOGINS_MOBILE_DEVICE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_LOGINS_DESKTOP
+    sql_output_column: TOTAL_LOGINS_DESKTOP
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_LOGINS_OVERALL
+    sql_output_column: TOTAL_LOGINS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UNIQUE_IOS_LOGINS
+    sql_output_column: UNIQUE_IOS_LOGINS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UNIQUE_ANDROID_LOGINS
+    sql_output_column: UNIQUE_ANDROID_LOGINS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: IS_BOTH_IOS_AND_ANDROID_LOGIN
+    sql_output_column: IS_BOTH_IOS_AND_ANDROID_LOGIN
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: UNIQUE_PAGE_VIEWS_WEB
+    sql_output_column: UNIQUE_PAGE_VIEWS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UNIQUE_PAGE_VIEWS_MOBILE
+    sql_output_column: UNIQUE_PAGE_VIEWS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UNIQUE_PAGE_VIEWS_OVERALL
+    sql_output_column: UNIQUE_PAGE_VIEWS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_PAGE_VIEWS_WEB
+    sql_output_column: TOTAL_PAGE_VIEWS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_PAGE_VIEWS_MOBILE
+    sql_output_column: TOTAL_PAGE_VIEWS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_PAGE_VIEWS_OVERALL
+    sql_output_column: TOTAL_PAGE_VIEWS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UNIQUE_CONTENT_VIEWS_WEB
+    sql_output_column: UNIQUE_CONTENT_VIEWS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UNIQUE_CONTENT_VIEWS_MOBILE
+    sql_output_column: UNIQUE_CONTENT_VIEWS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UNIQUE_CONTENT_VIEWS_OVERALL
+    sql_output_column: UNIQUE_CONTENT_VIEWS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_CONTENT_VIEWS_WEB
+    sql_output_column: TOTAL_CONTENT_VIEWS_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_CONTENT_VIEWS_MOBILE
+    sql_output_column: TOTAL_CONTENT_VIEWS_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_CONTENT_VIEWS_OVERALL
+    sql_output_column: TOTAL_CONTENT_VIEWS_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: CONTENT_PUBLISHED_WEB
+    sql_output_column: CONTENT_PUBLISHED_WEB
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: CONTENT_PUBLISHED_MOBILE
+    sql_output_column: CONTENT_PUBLISHED_MOBILE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: CONTENT_PUBLISHED_OVERALL
+    sql_output_column: CONTENT_PUBLISHED_OVERALL
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_LIKES
+    sql_output_column: TOTAL_LIKES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_COMMENTS
+    sql_output_column: TOTAL_COMMENTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_POSTS
+    sql_output_column: TOTAL_POSTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_REPLIES
+    sql_output_column: TOTAL_REPLIES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_SHARES
+    sql_output_column: TOTAL_SHARES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_CONTENT_LIKES
+    sql_output_column: TOTAL_CONTENT_LIKES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_FEED_LIKES
+    sql_output_column: TOTAL_FEED_LIKES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_REPLY_LIKES
+    sql_output_column: TOTAL_REPLY_LIKES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_FAVOURITES
+    sql_output_column: TOTAL_FAVOURITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_CONTENT_FAVOURITES
+    sql_output_column: TOTAL_CONTENT_FAVOURITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_FEED_FAVOURITES
+    sql_output_column: TOTAL_FEED_FAVOURITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_SITE_FAVOURITES
+    sql_output_column: TOTAL_SITE_FAVOURITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_PROFILE_FAVOURITES
+    sql_output_column: TOTAL_PROFILE_FAVOURITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_FILE_FAVOURITES
+    sql_output_column: TOTAL_FILE_FAVOURITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_COMMENT_REPLIES
+    sql_output_column: TOTAL_COMMENT_REPLIES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_FEED_REPLIES
+    sql_output_column: TOTAL_FEED_REPLIES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_CONTENT_SHARES
+    sql_output_column: TOTAL_CONTENT_SHARES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_FEED_SHARES
+    sql_output_column: TOTAL_FEED_SHARES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_PROFILE_VIEWS
+    sql_output_column: TOTAL_PROFILE_VIEWS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_LIKES_RECEIVED
+    sql_output_column: TOTAL_LIKES_RECEIVED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_FAVOURITES_RECEIVED
+    sql_output_column: TOTAL_FAVOURITES_RECEIVED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_SHARES_RECEIVED
+    sql_output_column: TOTAL_SHARES_RECEIVED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_REPLIES_RECEIVED
+    sql_output_column: TOTAL_REPLIES_RECEIVED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_PROFILE_VIEWS_RECEIVED
+    sql_output_column: TOTAL_PROFILE_VIEWS_RECEIVED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_UNLIKES
+    sql_output_column: TOTAL_UNLIKES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_COMMENTS_DELETED
+    sql_output_column: TOTAL_COMMENTS_DELETED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_REPLIES_DELETED
+    sql_output_column: TOTAL_REPLIES_DELETED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_POSTS_DELETED
+    sql_output_column: TOTAL_POSTS_DELETED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: MANAGER_CODE
+    sql_output_column: MANAGER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: ACTIVE_MUST_READS_ACK
+    sql_output_column: ACTIVE_MUST_READS_ACK
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: ACTIVE_MUST_READS
+    sql_output_column: ACTIVE_MUST_READS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_RECOGNITION_RECEIVED
+    sql_output_column: TOTAL_RECOGNITION_RECEIVED
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_RECOGNITION_GIVEN
+    sql_output_column: TOTAL_RECOGNITION_GIVEN
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: PROFILE_COMPLETENESS_PERCENTAGE
+    sql_output_column: PROFILE_COMPLETENESS_PERCENTAGE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: LAST_RECOGNITION_RECEIVED_DATE
+    sql_output_column: LAST_RECOGNITION_RECEIVED_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: MY_TEAMS_USER_CODE
+    sql_output_column: MY_TEAMS_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: MY_TEAMS_USER_SCORE
+    sql_output_column: MY_TEAMS_USER_SCORE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: HAS_LOGGED_IN_LAST_30_DAYS
+    sql_output_column: HAS_LOGGED_IN_LAST_30_DAYS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: HAS_VIEWED_CONTENT_IN_LAST_30_DAYS
+    sql_output_column: HAS_VIEWED_CONTENT_IN_LAST_30_DAYS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: ALLOWANCE_POINTS_IN
+    sql_output_column: ALLOWANCE_POINTS_IN
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: ALLOWANCE_POINTS_OUT
+    sql_output_column: ALLOWANCE_POINTS_OUT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: ALLOWANCE_POINTS_BALANCE
+    sql_output_column: ALLOWANCE_POINTS_BALANCE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: REWARD_POINTS_IN
+    sql_output_column: REWARD_POINTS_IN
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: REWARD_POINTS_OUT
+    sql_output_column: REWARD_POINTS_OUT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: REWARD_POINTS_BALANCE
+    sql_output_column: REWARD_POINTS_BALANCE
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: HAS_INTERACTED
+    sql_output_column: HAS_INTERACTED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: TOTAL_SEARCH
+    sql_output_column: TOTAL_SEARCH
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: TOTAL_SEARCH_CLICKTHROUGH
+    sql_output_column: TOTAL_SEARCH_CLICKTHROUGH
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: CREATED_DATETIME
+    sql_output_column: CREATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CREATED_BATCH_RUN_ID
+    sql_output_column: CREATED_BATCH_RUN_ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UPDATED_DATETIME
+    sql_output_column: UPDATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: UPDATED_BATCH_RUN_ID
+    sql_output_column: UPDATED_BATCH_RUN_ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: DEPARTMENT
+    sql_output_column: DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: LOCATION
+    sql_output_column: LOCATION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX

@@ -1,0 +1,130 @@
+guid: 632898cd-8f75-4cce-b925-7fe42c60c695
+table:
+  name: VW_CHAT_MESSAGE_AS_IS
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_CHAT_MESSAGE_AS_IS
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: MESSAGE_SENT_BY_CODE
+    db_column_name: MESSAGE_SENT_BY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: MESSAGE_CREATED_BY_CODE
+    db_column_name: MESSAGE_CREATED_BY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: MESSAGE_SENT_DATETIME
+    db_column_name: MESSAGE_SENT_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: MESSAGE_MODIFIED_DATETIME
+    db_column_name: MESSAGE_MODIFIED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: PARENT_MESSAGE_CODE
+    db_column_name: PARENT_MESSAGE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: MESSAGE_CONVERSATION_CODE
+    db_column_name: MESSAGE_CONVERSATION_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: CONVERSATION_TYPE_CODE
+    db_column_name: CONVERSATION_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_MESSAGE_SAVED
+    db_column_name: IS_MESSAGE_SAVED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_MESSAGE_MODIFIED
+    db_column_name: IS_MESSAGE_MODIFIED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: MESSAGE_TYPE_CODE
+    db_column_name: MESSAGE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: MESSAGE_REPLY_COUNT
+    db_column_name: MESSAGE_REPLY_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: MESSAGE_REPORT_COUNT
+    db_column_name: MESSAGE_REPORT_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_REACTION_COUNT
+    db_column_name: TOTAL_REACTION_COUNT
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: IS_DELETED
+    db_column_name: IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: DELETED_NOTE
+    db_column_name: DELETED_NOTE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DELETED_DATETIME
+    db_column_name: DELETED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
