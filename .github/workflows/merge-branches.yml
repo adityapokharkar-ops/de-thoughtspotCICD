@@ -15,6 +15,9 @@ on:
       merge_migration:
         description: "Merge test into migration"
         type: boolean 
+      merge_perft:
+        description: "Merge test into perft"
+        type: boolean 
 
 jobs:
   merge:
@@ -58,3 +61,10 @@ jobs:
           git checkout migration
           git merge origin/test --no-ff
           git push origin migration
+
+      - name: Merge test into perft
+        if: ${{ inputs.merge_perft }}
+        run: |
+          git checkout perft
+          git merge origin/test --no-ff
+          git push origin perft
