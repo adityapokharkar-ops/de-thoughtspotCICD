@@ -84,7 +84,7 @@ def deploy_call(Bearer_token):
 
     payload = {
         "branch_name": "perft",
-        "deploy_type": "DELTA",
+        "deploy_type": "FULL",
         "deploy_policy": "ALL_OR_NONE"
     }
 
