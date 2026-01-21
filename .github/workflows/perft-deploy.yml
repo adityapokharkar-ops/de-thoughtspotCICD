@@ -1,4 +1,4 @@
-name: Deploy TMLs to migration
+name: Deploy TMLs to perft
 
 on:
   workflow_dispatch:   # Manual one-click run
@@ -23,4 +23,4 @@ jobs:
 
       - name: Deploy TMLs
         run: |
-          python migration-deploy.py
+          python perft-deploy.py

@@ -83,7 +83,7 @@ def deploy_call(Bearer_token):
     }
 
     payload = {
-        "branch_name": "migration",
+        "branch_name": "perft",
         "deploy_type": "DELTA",
         "deploy_policy": "ALL_OR_NONE"
     }
@@ -96,7 +96,7 @@ def deploy_call(Bearer_token):
         )
 
         logger.info("Deploy API called")
-        logger.info(f"Deploy branch        : migration")
+        logger.info(f"Deploy branch        : perft")
         logger.info(f"Deploy status code   : {response.status_code}")
         logger.info(f"Deploy response body : {response.text}")
 
