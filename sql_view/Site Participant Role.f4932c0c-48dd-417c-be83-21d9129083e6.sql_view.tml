@@ -1,0 +1,22 @@
+guid: f4932c0c-48dd-417c-be83-21d9129083e6
+sql_view:
+  name: Site Participant Role
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  sql_query: |-
+    Select case when site_participant_role_code in ('SPR001','SPR002','SPR003') then 'Manager'
+    when site_participant_role_code in ('SPR001','SPR002','SPR003','SPR004','SPR005') then 'Member'
+    when site_participant_role_code in ('SPR006') then 'Follower' end as site_role ,site_participant_role_code
+    from udl.VW_SITE_PARTICIPANTS_AS_IS AS v
+  sql_view_columns:
+  - name: SITE_ROLE
+    sql_output_column: SITE_ROLE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SITE_PARTICIPANT_ROLE_CODE
+    sql_output_column: SITE_PARTICIPANT_ROLE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
