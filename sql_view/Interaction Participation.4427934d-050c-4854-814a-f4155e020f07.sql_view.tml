@@ -1,0 +1,202 @@
+guid: 4427934d-050c-4854-814a-f4155e020f07
+sql_view:
+  name: Interaction Participation
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  sql_query: select * from UDL.VW_INTERACTION AS v
+  sql_view_columns:
+  - name: ID
+    sql_output_column: ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: CODE
+    sql_output_column: CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: TENANT_CODE
+    sql_output_column: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: DATA_SOURCE_CODE
+    sql_output_column: DATA_SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: STAGING_ID
+    sql_output_column: STAGING_ID
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: INTERACTED_BY_USER_CODE
+    sql_output_column: INTERACTED_BY_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: INTERACTION_ENTITY_CODE
+    sql_output_column: INTERACTION_ENTITY_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: RECEIVER_USER_CODE
+    sql_output_column: RECEIVER_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: INTERACTION_TYPE_CODE
+    sql_output_column: INTERACTION_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: INTERACTION_DATETIME
+    sql_output_column: INTERACTION_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: UTM_SOURCE_CODE
+    sql_output_column: UTM_SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: USER_CODE
+    sql_output_column: USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SITE_CODE
+    sql_output_column: SITE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CURRENT_SITE_CODE
+    sql_output_column: CURRENT_SITE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CONTENT_CODE
+    sql_output_column: CONTENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: FEED_CODE
+    sql_output_column: FEED_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: SOCIAL_CAMPAIGN_CODE
+    sql_output_column: SOCIAL_CAMPAIGN_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: COMMENT_CODE
+    sql_output_column: COMMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: FILE_CODE
+    sql_output_column: FILE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: DEVICE_TYPE_CODE
+    sql_output_column: DEVICE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: INTERACTION_CONTENT_POST_FIRST_PUBLISH
+    sql_output_column: INTERACTION_CONTENT_POST_FIRST_PUBLISH
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_DELETED
+    sql_output_column: IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: DELETED_DATETIME
+    sql_output_column: DELETED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: DELETED_NOTE
+    sql_output_column: DELETED_NOTE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CREATED_BY
+    sql_output_column: CREATED_BY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CREATED_DATETIME
+    sql_output_column: CREATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: UPDATED_BY
+    sql_output_column: UPDATED_BY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: UPDATED_DATETIME
+    sql_output_column: UPDATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CREATED_BATCH_RUN_ID
+    sql_output_column: CREATED_BATCH_RUN_ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: UPDATED_BATCH_RUN_ID
+    sql_output_column: UPDATED_BATCH_RUN_ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: IS_DASHBOARD_VIEW
+    sql_output_column: IS_DASHBOARD_VIEW
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_SYSTEM_FEED
+    sql_output_column: IS_SYSTEM_FEED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IS_SYSTEM_INTERACTION
+    sql_output_column: IS_SYSTEM_INTERACTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: LANDING_PAGE_TYPE_CODE
+    sql_output_column: LANDING_PAGE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: PAGE_GROUP_CODE
+    sql_output_column: PAGE_GROUP_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: PAGE_DETAIL_CODE
+    sql_output_column: PAGE_DETAIL_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: FILE_VERSION
+    sql_output_column: FILE_VERSION
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: HASH_VALUE
+    sql_output_column: HASH_VALUE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
