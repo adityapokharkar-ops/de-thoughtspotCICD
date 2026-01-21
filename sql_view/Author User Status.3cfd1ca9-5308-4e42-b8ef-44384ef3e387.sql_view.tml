@@ -1,0 +1,74 @@
+guid: 3cfd1ca9-5308-4e42-b8ef-44384ef3e387
+sql_view:
+  name: Author User Status
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  sql_query: Select * from udl.VW_REF_USER_STATUS_AS_IS AS v
+  sql_view_columns:
+  - name: ID
+    sql_output_column: ID
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: CODE
+    sql_output_column: CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: DESCRIPTION
+    sql_output_column: DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: DESCRIPTION_MULTILANG
+    sql_output_column: DESCRIPTION_MULTILANG
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: ACTIVE_FLAG
+    sql_output_column: ACTIVE_FLAG
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: ACTIVE_DATE
+    sql_output_column: ACTIVE_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: INACTIVE_DATE
+    sql_output_column: INACTIVE_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CREATED_BY
+    sql_output_column: CREATED_BY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: CREATED_DATETIME
+    sql_output_column: CREATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: UPDATED_BY
+    sql_output_column: UPDATED_BY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: UPDATED_DATETIME
+    sql_output_column: UPDATED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IDENTIFIER_CORE
+    sql_output_column: IDENTIFIER_CORE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: IDENTIFIER_ZEUS
+    sql_output_column: IDENTIFIER_ZEUS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
