@@ -46,6 +46,10 @@ model:
       'on': '[VW_AQUA_TICKET_AS_IS::TICKET_REFERENCE_NUMBER] = [VW_AQUA_TICKET_TASK_AS_IS::TICKET_CODE]'
       type: INNER
       cardinality: ONE_TO_MANY
+    - with: VW_TENANT_INFORMATION
+      'on': '[VW_AQUA_TICKET_AS_IS::TENANT_CODE] = [VW_TENANT_INFORMATION::CODE]'
+      type: RIGHT_OUTER
+      cardinality: MANY_TO_ONE
   - name: VW_REF_AQUA_TICKET_PRIORITY_STATUS_AS_IS
     alias: Aqua Ticket Priority Status
     fqn: 24d6989c-d64f-492a-90b6-9c0ce11c8de1
@@ -98,6 +102,8 @@ model:
   - name: VW_REF_AQUA_TICKET_SLA_STATUS_AS_IS
     alias: Aqua Ticket SLA Response Status
     fqn: 67b4b7fe-08ce-4445-b3a6-008e61fc82c0
+  - name: VW_TENANT_INFORMATION
+    fqn: b5f84a35-1de7-47c2-9e0a-756418bbd681
   formulas:
   - id: formula_Sla Resolution Due After Today
     name: Sla Resolution Due After Today
