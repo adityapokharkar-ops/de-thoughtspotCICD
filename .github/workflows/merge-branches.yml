@@ -21,7 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # IMPORTANT for merging
+          fetch-depth: 0
 
       - name: Configure git
         run: |
@@ -32,19 +32,19 @@ jobs:
         if: ${{ inputs.merge_qa }}
         run: |
           git checkout qa
-          git merge test --no-ff
+          git merge origin/test --no-ff
           git push origin qa
 
       - name: Merge test into perf
         if: ${{ inputs.merge_perf }}
         run: |
           git checkout perf
-          git merge test --no-ff
+          git merge origin/test --no-ff
           git push origin perf
 
       - name: Merge test into migt
         if: ${{ inputs.merge_migt }}
         run: |
           git checkout migt
-          git merge test --no-ff
+          git merge origin/test --no-ff
           git push origin migt
