@@ -1,0 +1,102 @@
+guid: cba051c4-f5ab-4ced-b74a-4e2fdf0b049c
+table:
+  name: VW_ALLOWANCE_CONFIGURATION_AS_IS
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_ALLOWANCE_CONFIGURATION_AS_IS
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ALLOWANCE_CONFIGURATION_CODE
+    db_column_name: ALLOWANCE_CONFIGURATION_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DATA_SOURCE_CODE
+    db_column_name: DATA_SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ALLOWANCE_TYPE_CODE
+    db_column_name: ALLOWANCE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: USER_CODE
+    db_column_name: USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: AUDIENCE_CODE
+    db_column_name: AUDIENCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ALLOWANCE_POINTS
+    db_column_name: ALLOWANCE_POINTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: PER_DIRECT_REPORTEE_POINTS
+    db_column_name: PER_DIRECT_REPORTEE_POINTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: ALLOWANCE_SUB_TYPE_CODE
+    db_column_name: ALLOWANCE_SUB_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: ALLOWANCE_DATETIME
+    db_column_name: ALLOWANCE_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: FREQUENCY
+    db_column_name: FREQUENCY
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: PRODUCT_CATEGORY_CODE
+    db_column_name: PRODUCT_CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_DELETED
+    db_column_name: IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
