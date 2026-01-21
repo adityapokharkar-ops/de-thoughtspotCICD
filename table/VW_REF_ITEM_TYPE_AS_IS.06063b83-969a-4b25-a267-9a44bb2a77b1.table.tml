@@ -1,0 +1,49 @@
+guid: 06063b83-969a-4b25-a267-9a44bb2a77b1
+table:
+  name: VW_REF_ITEM_TYPE_AS_IS
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_REF_ITEM_TYPE_AS_IS
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DESCRIPTION
+    db_column_name: DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: IS_ENABLED_FOR_CAMPAIGN
+    db_column_name: IS_ENABLED_FOR_CAMPAIGN
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_ENABLED_FOR_CAROUSEL
+    db_column_name: IS_ENABLED_FOR_CAROUSEL
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_ENABLED_FOR_INITIATIVES
+    db_column_name: IS_ENABLED_FOR_INITIATIVES
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_ENABLED_FOR_SEARCH
+    db_column_name: IS_ENABLED_FOR_SEARCH
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
