@@ -1,0 +1,186 @@
+guid: 6f0f3599-22ca-4738-8bd2-038b0e3cfb7f
+table:
+  name: VW_INTERACTION
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_INTERACTION
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TENANT_CODE
+    description: This is the tenant code
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DATA_SOURCE_CODE
+    db_column_name: DATA_SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: INTERACTED_BY_USER_CODE
+    db_column_name: INTERACTED_BY_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: INTERACTION_ENTITY_CODE
+    db_column_name: INTERACTION_ENTITY_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: RECEIVER_USER_CODE
+    db_column_name: RECEIVER_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: INTERACTION_TYPE_CODE
+    db_column_name: INTERACTION_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: INTERACTION_DATETIME
+    db_column_name: INTERACTION_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE_TIME
+  - name: UTM_SOURCE_CODE
+    db_column_name: UTM_SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: USER_CODE
+    db_column_name: USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: SITE_CODE
+    db_column_name: SITE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: CURRENT_SITE_CODE
+    db_column_name: CURRENT_SITE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: CONTENT_CODE
+    db_column_name: CONTENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: FEED_CODE
+    db_column_name: FEED_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: COMMENT_CODE
+    db_column_name: COMMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: FILE_CODE
+    db_column_name: FILE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DEVICE_TYPE_CODE
+    db_column_name: DEVICE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: INTERACTION_CONTENT_POST_FIRST_PUBLISH
+    db_column_name: INTERACTION_CONTENT_POST_FIRST_PUBLISH
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_DELETED
+    db_column_name: IS_DELETED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_DASHBOARD_VIEW
+    db_column_name: IS_DASHBOARD_VIEW
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_SYSTEM_FEED
+    db_column_name: IS_SYSTEM_FEED
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: IS_SYSTEM_INTERACTION
+    db_column_name: IS_SYSTEM_INTERACTION
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: BOOL
+  - name: LANDING_PAGE_TYPE_CODE
+    db_column_name: LANDING_PAGE_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: PAGE_GROUP_CODE
+    db_column_name: PAGE_GROUP_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: PAGE_DETAIL_CODE
+    db_column_name: PAGE_DETAIL_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: FILE_VERSION
+    db_column_name: FILE_VERSION
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: HASH_VALUE
+    db_column_name: HASH_VALUE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: INTERACTION_DATE
+    db_column_name: INTERACTION_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
