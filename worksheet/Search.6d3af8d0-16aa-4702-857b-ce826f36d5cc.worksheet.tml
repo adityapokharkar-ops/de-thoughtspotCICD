@@ -1,0 +1,272 @@
+guid: 6d3af8d0-16aa-4702-857b-ce826f36d5cc
+model:
+  name: Search
+  model_tables:
+  - name: VW_SEARCH
+    fqn: 69a05285-6f7e-4901-b135-58bada144e51
+    joins:
+    - with: VW_SEARCH_RESULT_CLICK
+      'on': '[VW_SEARCH::TENANT_CODE] = [VW_SEARCH_RESULT_CLICK::TENANT_CODE] AND [VW_SEARCH::CODE] = [VW_SEARCH_RESULT_CLICK::SEARCH_CODE]'
+      type: LEFT_OUTER
+      cardinality: MANY_TO_ONE
+    - with: VW_SEARCH_USER
+      'on': '[VW_SEARCH::TENANT_CODE] = [VW_SEARCH_USER::TENANT_CODE] AND [VW_SEARCH::SEARCH_PERFORMED_BY_USER_CODE] = [VW_SEARCH_USER::USER_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+    - with: VW_USER_AS_IS
+      'on': '[VW_SEARCH::SEARCH_PERFORMED_BY_USER_CODE] = [VW_USER_AS_IS::CODE] AND [VW_SEARCH::TENANT_CODE] = [VW_USER_AS_IS::TENANT_CODE]'
+      type: RIGHT_OUTER
+      cardinality: MANY_TO_ONE
+  - name: VW_SEARCH_RESULT_CLICK
+    fqn: 4d938f1c-8490-4567-88fb-ed73b8941c49
+    joins:
+    - with: VW_REF_ITEM_TYPE_AS_IS
+      'on': '[VW_SEARCH_RESULT_CLICK::ITEM_TYPE_CODE] = [VW_REF_ITEM_TYPE_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_USER_AS_IS
+    fqn: 38306036-94a8-4c22-a7f8-64d6c854732e
+    joins:
+    - with: VW_DAILY_USER_ADOPTION
+      'on': '[VW_USER_AS_IS::CODE] = [VW_DAILY_USER_ADOPTION::USER_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+    - with: VW_REF_USER_STATUS_AS_IS
+      'on': '[VW_USER_AS_IS::STATUS_CODE] = [VW_REF_USER_STATUS_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_REF_ITEM_TYPE_AS_IS
+    fqn: 06063b83-969a-4b25-a267-9a44bb2a77b1
+  - name: VW_REF_USER_STATUS_AS_IS
+    fqn: b2e4ddbf-9eba-4cc2-a3a3-9b2e03b0d117
+  - name: VW_TENANT_INFORMATION
+    fqn: b5f84a35-1de7-47c2-9e0a-756418bbd681
+    joins:
+    - with: VW_USER_AS_IS
+      'on': '[VW_TENANT_INFORMATION::CODE] = [VW_USER_AS_IS::TENANT_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_SEARCH_USER
+    fqn: 1498f9be-14d6-4185-8676-ce7365c0bafb
+  - name: VW_DAILY_USER_ADOPTION
+    fqn: cff4017a-92b3-4814-bb96-d65d1e8b74e6
+  formulas:
+  - id: formula_Parameter
+    name: Parameter
+    expr: if ( [User Parameter] = 'department' ) then [VW_USER_AS_IS::DEPARTMENT] else if ( [User Parameter] = 'location' ) then [VW_USER_AS_IS::LOCATION] else if ( [User Parameter] = 'segment' ) then [VW_USER_AS_IS::SEGMENT_NAME] else if ( [User Parameter] = 'user category' ) then [VW_USER_AS_IS::USER_CATEGORY_NAME] else [VW_USER_AS_IS::DEPARTMENT]
+  - id: formula_Search user parameter
+    name: Search user parameter
+    expr: if ( [User Parameter] = 'department' ) then [VW_SEARCH_USER::DEPARTMENT] else if ( [User Parameter] = 'location' ) then [VW_SEARCH_USER::LOCATION] else if ( [User Parameter] = 'segment' ) then [VW_SEARCH_USER::SEGMENT_NAME] else if ( [User Parameter] = 'user category' ) then [VW_SEARCH_USER::USER_CATEGORY_NAME] else [VW_SEARCH_USER::DEPARTMENT]
+  - id: formula_Total Active Users
+    name: Total Active Users
+    expr: unique_count_if ( [VW_DAILY_USER_ADOPTION::HAS_LOGGED_IN] = true and [VW_REF_USER_STATUS_AS_IS::DESCRIPTION] = 'Active' , [VW_DAILY_USER_ADOPTION::USER_CODE] )
+  - id: formula_Total Clickthrough
+    name: Total Clickthrough
+    expr: ifnull ( count ( [VW_SEARCH_RESULT_CLICK::SEARCH_CODE] ) , 0 )
+  - id: formula_Total Search
+    name: Total Search
+    expr: unique count ( [VW_SEARCH::CODE] )
+  - id: formula_Total Search with No Result
+    name: Total Search with No Result
+    expr: unique_count_if ( [VW_SEARCH::HAS_SEARCH_RESULT] = false , [VW_SEARCH::CODE] )
+  - id: formula_Total Search with Results
+    name: Total Search with Results
+    expr: unique_count_if ( [VW_SEARCH::HAS_SEARCH_RESULT] = true , [VW_SEARCH::CODE] )
+  columns:
+  - name: Search Result Item Type
+    description: This attribute represents the type of the item returned during a search result e.g. Content,Campaign, Newsletter, Survey, Video, People, Site, File, Tile etc..
+    column_id: VW_REF_ITEM_TYPE_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Daily Total Search
+    column_id: VW_DAILY_USER_ADOPTION::TOTAL_SEARCH
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Daily Total Search Clickthrough
+    column_id: VW_DAILY_USER_ADOPTION::TOTAL_SEARCH_CLICKTHROUGH
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Search
+    formula_id: formula_Total Search
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Clickthrough
+    formula_id: formula_Total Clickthrough
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Search with No Result
+    formula_id: formula_Total Search with No Result
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Search with Results
+    formula_id: formula_Total Search with Results
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Parameter
+    formula_id: formula_Parameter
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Search user parameter
+    formula_id: formula_Search user parameter
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Total Active Users
+    formula_id: formula_Total Active Users
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Reporting Date
+    column_id: VW_DAILY_USER_ADOPTION::REPORTING_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Daily User Code
+    column_id: VW_DAILY_USER_ADOPTION::USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Reporting Date Code
+    column_id: VW_DAILY_USER_ADOPTION::CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Search User Department
+    column_id: VW_SEARCH_USER::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Search User Location
+    column_id: VW_SEARCH_USER::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Search User Segment Name
+    column_id: VW_SEARCH_USER::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Search User Category Name
+    column_id: VW_SEARCH_USER::USER_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Description
+    column_id: VW_SEARCH_USER::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: User Code
+    description: This attribute represents the unique identifier for the user.
+    column_id: VW_USER_AS_IS::CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: User Status
+    description: This attribute represents the current status of users (e.g., Active, Inactive, etc.).
+    column_id: VW_REF_USER_STATUS_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Search Code
+    description: This attribute represents the unique identifier of search.
+    column_id: VW_SEARCH::CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Has Search Result
+    description: This attribute represents if the search has any result or not
+    column_id: VW_SEARCH::HAS_SEARCH_RESULT
+    properties:
+      column_type: ATTRIBUTE
+  - name: Search Performed By User Code
+    description: This attribute represents the type of the item returned during a search result e.g. Content,Campaign, Newsletter, Survey, Video, People, Site, File, Tile etc..
+    column_id: VW_SEARCH::SEARCH_PERFORMED_BY_USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Search Performed Datetime
+    description: This attribute represents the datetime of the search terms performed by the user.
+    column_id: VW_SEARCH::SEARCH_PERFORMED_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Search Term
+    description: This attribute represents the result of the terms searched by the user.
+    column_id: VW_SEARCH::SEARCH_TERM
+    properties:
+      column_type: ATTRIBUTE
+  - name: Search Result Code
+    description: This attribute represents the unique identifier of search result.
+    column_id: VW_SEARCH_RESULT_CLICK::CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Search Result Datetime
+    description: This attribute represents the datetime  when the search item result was clicked.
+    column_id: VW_SEARCH_RESULT_CLICK::SEARCH_RESULT_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Department
+    description: This attribute represents the user’s department in the organization.
+    column_id: VW_USER_AS_IS::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+  - name: Location
+    description: This attribute represents the geographic location of the user.
+    column_id: VW_USER_AS_IS::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Segment Name
+    description: This attribute represents the name of the segment.
+    column_id: VW_USER_AS_IS::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Segment Code
+    description: This attribute represents the code for the segment.
+    column_id: VW_USER_AS_IS::SEGMENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Category Code
+    description: This attribute represents the category code of the user.
+    column_id: VW_USER_AS_IS::USER_CATEGORY_CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: Category Name
+    description: This attribute represents the category name of the user.
+    column_id: VW_USER_AS_IS::USER_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Tenant Code
+    column_id: VW_TENANT_INFORMATION::CODE
+    properties:
+      column_type: ATTRIBUTE
+  - name: User Has Logged In
+    column_id: VW_DAILY_USER_ADOPTION::HAS_LOGGED_IN
+    properties:
+      column_type: ATTRIBUTE
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
+    spotter_config:
+      is_spotter_enabled: true
+  parameters:
+  - id: d698bc63-5bf3-4a1f-8b08-465598cb6210
+    name: User Parameter
+    data_type: CHAR
+    default_value: Department
+    list_config:
+      list_choice:
+      - value: Department
+      - value: Location
+      - value: Segment
+      - value: User Category
+    description: ''
