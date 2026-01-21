@@ -1,11 +1,28 @@
-import numpy as np
 import pandas as pd
 import os
 import requests
 import json
 import csv
-# Authentication url for Commit API Call
-def auth_call ():
+import logging
+
+# --------------------------------------------------
+# BASIC LOGGER CONFIGURATION
+# --------------------------------------------------
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+    handlers=[
+        logging.FileHandler("commit_debug.log"),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
+
+# --------------------------------------------------
+# AUTHENTICATION
+# --------------------------------------------------
+def auth_call():
     auth_url = 'https://ts.dev.simpplr.xyz/api/rest/2.0/auth/token/full'
     headers = {
         'Accept': 'application/json',
@@ -15,36 +32,50 @@ def auth_call ():
         "username": "aditya.pokharkar@simpplr.com",
         "auto_create": False,
         "password": "Planet@107",
-        "secret_key": "34ecbf78-0641-4c41-b333-0b972b3eb704"
+        "secret_key": "34ecbf78-0641-4c41-b333-0b972b3eb704",
+        "validity_time_in_sec": 600
     }
-    
+
     try:
         response = requests.post(auth_url, headers=headers, data=json.dumps(payload))
-        response.raise_for_status()  # Raises error if status >= 400
-        print(f"✅: Successfully Logged_in")
+        logger.info("Auth API called")
+        logger.info(f"Auth response status : {response.status_code}")
+        logger.debug(f"Auth response body  : {response.text}")
+        response.raise_for_status()
+        logger.info("Successfully logged in")
     except requests.exceptions.RequestException as e:
-        print(f"❌: Login Failed: {e}")
-    # Store the Bearer Token for next API calls
-    json_text=response.json()
-    json_text['token']
-    Bearer_token = json_text['token']
-    print("===================================================")
-    return Bearer_token
-Bearer_token = auth_call ()
+        logger.error("Login failed")
+        logger.error(f"Response body : {response.text}")
+        logger.exception(e)
+        raise
 
+    json_text = response.json()
+    Bearer_token = json_text['token']
+    logger.info("Bearer token received")
+    logger.info("===================================================")
+
+    return Bearer_token
+
+
+Bearer_token = auth_call()
+
+# --------------------------------------------------
+# COMMIT CALL
+# --------------------------------------------------
 def commit_call(Bearer_token):
-    # Metadata Search URL with TAG_IDENTIFIER
+
     metadata_search_url = 'https://ts.dev.simpplr.xyz/api/rest/2.0/metadata/search'
-    # Version Control API url for COMMIT
     commit_url = 'https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/branches/commit'
+
     headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': f'Bearer {Bearer_token}'
     }
+
     payload_commit = {
-            "record_offset": 0,
-            "record_size": 10000,
+        "record_offset": 0,
+        "record_size": 10000,
         "metadata": [
             {"type": "LIVEBOARD"},
             {"type": "ANSWER"},
@@ -52,53 +83,88 @@ def commit_call(Bearer_token):
             {"type": "CONNECTION"},
             {"type": "LOGICAL_RELATIONSHIP"}
         ],
-            "tag_identifiers": ["test"],
+        "tag_identifiers": ["test"]
     }
+
+    # ---------------- METADATA SEARCH ----------------
     try:
-        response = requests.post(metadata_search_url, headers=headers, data=json.dumps(payload_commit))
-        response.raise_for_status()  # Raises error if status >= 400
-        print(f"✅: Success for Metadata_Search API call")
+        response = requests.post(
+            metadata_search_url,
+            headers=headers,
+            data=json.dumps(payload_commit)
+        )
+        logger.info("Metadata search API called")
+        logger.info(f"Metadata search status : {response.status_code}")
+        logger.debug(f"Metadata search body  : {response.text}")
+        response.raise_for_status()
     except requests.exceptions.RequestException as e:
-        print(f"❌: Failure for Metadata_Search API call: {e}")
-    # Store the Response in a variable
-    json_text=response.json()
-    # Create an empty list to store metadata_information
+        logger.error("Metadata search failed")
+        logger.error(f"Response body : {response.text}")
+        logger.exception(e)
+        raise
+
+    json_text = response.json()
+    logger.info(f"Number of objects found : {len(json_text)}")
+
+    # ---------------- STORE METADATA ----------------
     metadata_id = []
     metadata_name = []
     metadata_type = []
+
     for i in json_text:
         metadata_id.append(i['metadata_id'])
         metadata_name.append(i['metadata_name'])
         metadata_type.append(i['metadata_type'])
-    # Create a dataframe and a CSV file to store the metadata information
-    df = pd.DataFrame()
-    df['metadata_id'] = metadata_id
-    df['metadata_name'] = metadata_name
-    df['metadata_type'] = metadata_type
-    df.to_csv('metadata_information.csv')
-    # Read GUIDs from CSV
-    metadata_df = pd.read_csv('metadata_information.csv')
-    metadata_df.drop(columns=['Unnamed: 0'] , inplace=True)
-    for i in range(len(metadata_df)) :
+
+    df = pd.DataFrame({
+        'metadata_id': metadata_id,
+        'metadata_name': metadata_name,
+        'metadata_type': metadata_type
+    })
+
+    df.to_csv('metadata_information.csv', index=False)
+    logger.info("Metadata CSV created")
+
+    # ---------------- COMMIT LOOP ----------------
+    for i in range(len(df)):
         guid = df['metadata_id'][i]
+
         payload = {
             "metadata": [
-                {
-                    "identifier": guid
-                }
+                {"identifier": guid}
             ],
             "delete_aware": True,
             "branch_name": "test",
             "comment": "TMLs committed to test branch"
         }
+
         try:
-            response = requests.post(commit_url, headers=headers, data=json.dumps(payload))
-            response.raise_for_status()  # Raises error if status >= 400
-            print(f"✅: Success for GUID {guid} , 'metadata_type': {df['metadata_type'][i]} , 'metadata_name': {df['metadata_name'][i]}" )
+            response = requests.post(
+                commit_url,
+                headers=headers,
+                data=json.dumps(payload)
+            )
+
+            logger.info("--------------------------------------------------")
+            logger.info(f"Committing GUID       : {guid}")
+            logger.info(f"Object Type          : {df['metadata_type'][i]}")
+            logger.info(f"Object Name          : {df['metadata_name'][i]}")
+            logger.info(f"Commit status code   : {response.status_code}")
+            logger.info(f"Commit response body : {response.text}")
+
+            response.raise_for_status()
+
+            logger.info("COMMIT SUCCESS")
+
         except requests.exceptions.RequestException as e:
-            print(e)
-            print(f"❌: Failure for GUID {guid}, 'metadata_type': {df['metadata_type'][i]}, 'metadata_name': {df['metadata_name'][i]} — Error: {e}")
-    return None
-commit_call= commit_call(Bearer_token)
+            logger.error("COMMIT FAILED")
+            logger.error(f"GUID                : {guid}")
+            logger.error(f"Status Code         : {response.status_code}")
+            logger.error(f"Response Body       : {response.text}")
+            logger.exception(e)
+
+    logger.info("===================================================")
+    logger.info("Commit process completed")
 
 
+commit_call(Bearer_token)
