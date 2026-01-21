@@ -1,0 +1,390 @@
+guid: 11a1e30f-da87-4e1d-a81c-d84ec1e715ff
+model:
+  name: Newsletter
+  model_tables:
+  - name: VW_NEWSLETTER_AS_IS
+    fqn: 27c93ce9-f686-4b93-ac96-5c75c9906d5a
+    joins:
+    - with: Newsletter Recipient
+      'on': '[VW_NEWSLETTER_AS_IS::CODE] = [Newsletter Recipient::NEWSLETTER_CODE] AND [VW_NEWSLETTER_AS_IS::TENANT_CODE] = [Newsletter Recipient::TENANT_CODE]'
+      type: INNER
+      cardinality: ONE_TO_ONE
+    - with: VW_NEWSLETTER_INTERACTION
+      'on': '[VW_NEWSLETTER_AS_IS::CODE] = [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE] AND [VW_NEWSLETTER_AS_IS::TENANT_CODE] = [VW_NEWSLETTER_INTERACTION::TENANT_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+    - with: VW_USER_NEWSLETTER_MAPPING
+      'on': '[VW_NEWSLETTER_AS_IS::CODE] = [VW_USER_NEWSLETTER_MAPPING::NEWSLETTER_CODE] AND [VW_NEWSLETTER_AS_IS::TENANT_CODE] = [VW_USER_NEWSLETTER_MAPPING::TENANT_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_NEWSLETTER_CATEGORY
+    fqn: d4a454e1-14a7-49d2-8892-83b44f8fdad4
+    joins:
+    - with: VW_NEWSLETTER_AS_IS
+      'on': '[VW_NEWSLETTER_CATEGORY::CODE] = [VW_NEWSLETTER_AS_IS::CATEGORY_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_NEWSLETTER_INTERACTION
+    fqn: 190bdcf2-05d3-4317-ace6-b474f17e9e13
+    joins:
+    - with: VW_NEWSLETTER_RECIPIENT_USER
+      'on': '[VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] = [VW_USER_AS_IS::CODE] AND [VW_NEWSLETTER_INTERACTION::TENANT_CODE] = [VW_USER_AS_IS::TENANT_CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  - name: VW_USER_NEWSLETTER_MAPPING
+    fqn: 4e68638a-bc84-4dfe-b6ba-0343e3042730
+  - name: VW_USER_AS_IS
+    alias: VW_NEWSLETTER_RECIPIENT_USER
+    fqn: 38306036-94a8-4c22-a7f8-64d6c854732e
+  - name: VW_REF_DEVICE_TYPE_AS_IS
+    fqn: 8f9e4340-2edd-46f4-ba1c-dd966720c149
+    joins:
+    - with: VW_NEWSLETTER_INTERACTION
+      'on': '[VW_REF_DEVICE_TYPE_AS_IS::CODE] = [VW_NEWSLETTER_INTERACTION::DEVICE_TYPE_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_REF_NEWSLETTER_CLICK_TYPE_AS_IS
+    fqn: 55eb89bb-40a1-46dc-b332-dc2b8361323a
+    joins:
+    - with: VW_NEWSLETTER_INTERACTION
+      'on': '[VW_REF_NEWSLETTER_CLICK_TYPE_AS_IS::CODE] = [VW_NEWSLETTER_INTERACTION::CLICK_TYPE_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_REF_NEWSLETTER_DELIVERY_SYSTEM_TYPE_AS_IS
+    fqn: 30566133-6fbd-45d5-b0d1-6f1db3254ad4
+    joins:
+    - with: VW_NEWSLETTER_INTERACTION
+      'on': '[VW_REF_NEWSLETTER_DELIVERY_SYSTEM_TYPE_AS_IS::CODE] = [VW_NEWSLETTER_INTERACTION::DELIVERY_SYSTEM_TYPE_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_REF_NEWSLETTER_BLOCK_TYPE_AS_IS
+    fqn: 357c0070-5393-4453-be96-a8db2f44b479
+    joins:
+    - with: VW_NEWSLETTER_INTERACTION
+      'on': '[VW_REF_NEWSLETTER_BLOCK_TYPE_AS_IS::CODE] = [VW_NEWSLETTER_INTERACTION::BLOCK_TYPE_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_REF_NEWSLETTER_STATUS_AS_IS
+    fqn: def3a021-4fca-4ffe-b3e2-b5257a10c838
+    joins:
+    - with: VW_NEWSLETTER_AS_IS
+      'on': '[VW_REF_NEWSLETTER_STATUS_AS_IS::CODE] = [VW_NEWSLETTER_AS_IS::STATUS_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_REF_NEWSLETTER_INTERACTION_TYPE_AS_IS
+    fqn: ff76c305-4d6c-4d54-ab82-fd1e8320236c
+    joins:
+    - with: VW_NEWSLETTER_INTERACTION
+      'on': '[VW_REF_NEWSLETTER_INTERACTION_TYPE_AS_IS::CODE] = [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: VW_REF_NEWSLETTER_RECIPIENT_TYPE_AS_IS
+    fqn: 5dfb450a-2b04-40bc-b78c-d5325a3d4bfe
+  - name: VW_TENANT_DETAILS_AS_IS
+    fqn: 65fb81cb-a0c0-4a36-a972-9308693f7b1a
+    joins:
+    - with: VW_NEWSLETTER_AS_IS
+      'on': '[VW_TENANT_DETAILS_AS_IS::TENANT_CODE] = [VW_NEWSLETTER_AS_IS::TENANT_CODE]'
+      type: INNER
+      cardinality: ONE_TO_MANY
+  - name: Newsletter Recipient
+    fqn: 56d5364d-38a8-46a1-a101-6841dbf7151c
+    joins:
+    - with: VW_REF_NEWSLETTER_RECIPIENT_TYPE_AS_IS
+      'on': '[Newsletter Recipient::RECIPIENT_TYPE_CODE] = [VW_REF_NEWSLETTER_RECIPIENT_TYPE_AS_IS::CODE]'
+      type: INNER
+      cardinality: MANY_TO_ONE
+  formulas:
+  - id: formula_Average time on Intranet hub per user
+    name: Average time on Intranet hub per user
+    expr: safe_divide ( sum ( ifnull ( [VW_NEWSLETTER_INTERACTION::TOTAL_TIME_SPENT_ON_INTRANET_HUB] , 0 ) ) , count_if  ( [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE] = 'NLIT004' , concat ( [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE] , [VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] ) ) )
+  - id: formula_Click-through Rate
+    name: Click-through Rate
+    expr: least ( safe_divide ( unique_count_if ( [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE] = 'NLIT004' , concat ( [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE] , [VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] ) ) , unique_count_if ( [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE] = 'NLIT001' , concat ( [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE] , [VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] ) ) ) , 1 )
+  - id: formula_Newsletter Url
+    name: Newsletter Url
+    expr: concat ( "{caption}" , [VW_NEWSLETTER_AS_IS::NAME] , "{/caption}" , [VW_TENANT_DETAILS_AS_IS::DOMAIN_URL] , if ( [VW_TENANT_DETAILS_AS_IS::DATA_SOURCE_CODE] = 'DS001' ) then '/apex/simpplr__app?u=' else '' , '/employee-newsletter/' , [VW_NEWSLETTER_AS_IS::CODE] )
+  - id: formula_Offset End Date
+    name: Offset End Date
+    expr: add_days ( [Newsletter sent end date]  , - ( diff_days ( [Newsletter sent end date] , [Newsletter sent start date] ) + 1 ) )
+  - id: formula_Offset Start Date
+    name: Offset Start Date
+    expr: add_days ( [Newsletter sent start date] , - ( diff_days ( [Newsletter sent end date] , [Newsletter sent start date] ) + 1 ) )
+  - id: formula_Open Rate
+    name: Open Rate
+    expr: least ( safe_divide ( unique_count_if ( [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE] = 'NLIT002' , concat ( [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE] , [VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] ) ) , unique_count_if ( [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE] = 'NLIT001' , concat ( [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE] , [VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] ) ) ) , 1 )
+  - id: formula_Total Click-through Count
+    name: Total Click-through Count
+    expr: count_if ( [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE] = 'NLIT004' , concat ( [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE]  , [VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] ) )
+  - id: formula_Total Number of Recipients
+    name: Total Number of Recipients
+    expr: unique_count_if ( [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE] = 'NLIT001' , concat ( [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE]  , [VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] ) )
+  - id: formula_Total Open Count
+    name: Total Open Count
+    expr: count_if ( [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE] = 'NLIT002' , concat ( [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE]  , [VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] ) )
+  - id: formula_Total time on Intranet hub
+    name: Total time on Intranet hub
+    expr: sum ( ifnull ( [VW_NEWSLETTER_INTERACTION::TOTAL_TIME_SPENT_ON_INTRANET_HUB] , 0 ) )
+  - id: formula_Unique Click-though Count
+    name: Unique Click-though Count
+    expr: unique_count_if ( [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE] = 'NLIT004' , concat ( [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE]  , [VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] ) )
+  - id: formula_Unique Open Count
+    name: Unique Open Count
+    expr: unique_count_if ( [VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE] = 'NLIT002' , concat ( [VW_NEWSLETTER_INTERACTION::NEWSLETTER_CODE]  , [VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE] ) )
+  columns:
+  - name: Distribution Mode
+    column_id: VW_NEWSLETTER_AS_IS::ACTUAL_DELIVERY_SYSTEM_TYPE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Open Rate
+    formula_id: formula_Open Rate
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Click-through Rate
+    formula_id: formula_Click-through Rate
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Number of Recipients
+    formula_id: formula_Total Number of Recipients
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Recipient Audience Type
+    column_id: VW_REF_NEWSLETTER_RECIPIENT_TYPE_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Newsletter Status
+    column_id: VW_REF_NEWSLETTER_STATUS_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Interaction Type
+    column_id: VW_REF_NEWSLETTER_INTERACTION_TYPE_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Delivery System Type
+    column_id: VW_REF_NEWSLETTER_DELIVERY_SYSTEM_TYPE_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Click Type
+    column_id: VW_REF_NEWSLETTER_CLICK_TYPE_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Block Type
+    column_id: VW_REF_NEWSLETTER_BLOCK_TYPE_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Device Type
+    column_id: VW_REF_DEVICE_TYPE_AS_IS::DESCRIPTION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Newsletter Recipient Code
+    column_id: VW_NEWSLETTER_INTERACTION::RECIPIENT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Interaction Type Code
+    column_id: VW_NEWSLETTER_INTERACTION::INTERACTION_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Newsletter Interaction Datetime
+    column_id: VW_NEWSLETTER_INTERACTION::INTERACTION_DATETIME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Newsletter Mapping User Code
+    column_id: VW_USER_NEWSLETTER_MAPPING::USER_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Newsletter Code
+    column_id: VW_NEWSLETTER_AS_IS::CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Newsletter Name
+    column_id: VW_NEWSLETTER_AS_IS::NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Sent At
+    column_id: VW_NEWSLETTER_AS_IS::SENT_AT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Subject
+    column_id: VW_NEWSLETTER_AS_IS::SUBJECT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Tenant Code
+    column_id: VW_NEWSLETTER_AS_IS::TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Newsletter Category
+    column_id: VW_NEWSLETTER_CATEGORY::NAME
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Block Code
+    column_id: VW_NEWSLETTER_INTERACTION::BLOCK_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Link Clicked Url
+    column_id: VW_NEWSLETTER_INTERACTION::LINK_CLICKED_URL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Recipient City
+    column_id: VW_NEWSLETTER_INTERACTION::RECIPIENT_CURRENT_CITY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Recipient Country
+    column_id: VW_NEWSLETTER_INTERACTION::RECIPIENT_CURRENT_COUNTRY
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Recipient Department
+    column_id: VW_NEWSLETTER_INTERACTION::RECIPIENT_CURRENT_DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Recipient Email
+    column_id: VW_NEWSLETTER_INTERACTION::RECIPIENT_CURRENT_EMAIL
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Recipient Location
+    column_id: VW_NEWSLETTER_INTERACTION::RECIPIENT_CURRENT_LOCATION
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Recipient Type Code
+    column_id: VW_NEWSLETTER_INTERACTION::RECIPIENT_TYPE_CODE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: User Name
+    column_id: VW_NEWSLETTER_RECIPIENT_USER::FULL_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Department
+    column_id: VW_NEWSLETTER_RECIPIENT_USER::DEPARTMENT
+    properties:
+      column_type: ATTRIBUTE
+  - name: Location
+    column_id: VW_NEWSLETTER_RECIPIENT_USER::LOCATION
+    properties:
+      column_type: ATTRIBUTE
+  - name: Segment Name
+    column_id: VW_NEWSLETTER_RECIPIENT_USER::SEGMENT_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Company Name
+    column_id: VW_NEWSLETTER_RECIPIENT_USER::COMPANY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: User Category
+    column_id: VW_NEWSLETTER_RECIPIENT_USER::USER_CATEGORY_NAME
+    properties:
+      column_type: ATTRIBUTE
+  - name: Is Archived?
+    column_id: VW_NEWSLETTER_AS_IS::IS_ARCHIVED
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Sender Address
+    column_id: VW_NEWSLETTER_AS_IS::SENDER_ADDRESS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Unique Open Count
+    formula_id: formula_Unique Open Count
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Open Count
+    formula_id: formula_Total Open Count
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Unique Click-though Count
+    formula_id: formula_Unique Click-though Count
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total Click-through Count
+    formula_id: formula_Total Click-through Count
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Total time on Intranet hub
+    formula_id: formula_Total time on Intranet hub
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Average time on Intranet hub per user
+    formula_id: formula_Average time on Intranet hub per user
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+  - name: Offset Start Date
+    formula_id: formula_Offset Start Date
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Offset End Date
+    formula_id: formula_Offset End Date
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Newsletter Url
+    formula_id: formula_Newsletter Url
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: Recipient Audiences
+    column_id: Newsletter Recipient::RECIPIENTS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  properties:
+    is_bypass_rls: false
+    join_progressive: true
+    spotter_config:
+      is_spotter_enabled: true
+  parameters:
+  - id: 71004b17-9bb7-4e77-b1bb-ba2ff6111ca9
+    name: DynamicFilter
+    data_type: CHAR
+    default_value: Department
+    list_config:
+      list_choice:
+      - value: Department
+      - value: Location
+    description: ''
+  - id: 9a013034-b3c0-4831-bb8c-eb13e487442c
+    name: Newsletter sent end date
+    data_type: DATE
+    default_value: 11/03/2025
+    description: ''
+  - id: 5f0ee477-1baf-47f4-976d-9a1bd68ee66c
+    name: Newsletter sent start date
+    data_type: DATE
+    default_value: 01/01/2024
+    description: ''
