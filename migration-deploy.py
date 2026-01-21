@@ -84,7 +84,7 @@ def deploy_call(Bearer_token):
 
     payload = {
         "branch_name": "migration",
-        "deploy_type": "DELTA",
+        "deploy_type": "FULL",
         "deploy_policy": "PARTIAL"
     }
 
