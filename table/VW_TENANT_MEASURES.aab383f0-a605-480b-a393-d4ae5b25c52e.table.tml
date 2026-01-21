@@ -1,0 +1,742 @@
+guid: aab383f0-a605-480b-a393-d4ae5b25c52e
+table:
+  name: VW_TENANT_MEASURES
+  db: "${SNOWFLAKE_DATABASE}"
+  schema: UDL
+  db_table: VW_TENANT_MEASURES
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  columns:
+  - name: CODE
+    db_column_name: CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: REPORTING_DATE
+    db_column_name: REPORTING_DATE
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: DATE
+  - name: TENANT_CODE
+    db_column_name: TENANT_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: DATA_SOURCE_CODE
+    db_column_name: DATA_SOURCE_CODE
+    properties:
+      column_type: ATTRIBUTE
+    db_column_properties:
+      data_type: VARCHAR
+  - name: TOTAL_USED_LICENSES
+    db_column_name: TOTAL_USED_LICENSES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ALLOWED_LICENSES
+    db_column_name: TOTAL_ALLOWED_LICENSES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_USERS
+    db_column_name: TOTAL_ACTIVE_USERS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_USERS_7_DAYS
+    db_column_name: TOTAL_ACTIVE_USERS_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_USERS_30_DAYS
+    db_column_name: TOTAL_ACTIVE_USERS_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_USERS_90_DAYS
+    db_column_name: TOTAL_ACTIVE_USERS_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_USERS_LOGGED_IN_7_DAYS
+    db_column_name: UNIQUE_USERS_LOGGED_IN_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_USERS_LOGGED_IN_30_DAYS
+    db_column_name: UNIQUE_USERS_LOGGED_IN_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_USERS_LOGGED_IN_90_DAYS
+    db_column_name: UNIQUE_USERS_LOGGED_IN_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_USERS_LOGGED_IN_WEB_7_DAYS
+    db_column_name: UNIQUE_USERS_LOGGED_IN_WEB_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_USERS_LOGGED__IN_WEB_30_DAYS
+    db_column_name: UNIQUE_USERS_LOGGED__IN_WEB_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_USERS_LOGGED_IN_WEB_90_DAYS
+    db_column_name: UNIQUE_USERS_LOGGED_IN_WEB_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_USERS_LOGGED_IN_MOBILE_7_DAYS
+    db_column_name: UNIQUE_USERS_LOGGED_IN_MOBILE_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_USERS_LOGGED_IN_MOBILE_30_DAYS
+    db_column_name: UNIQUE_USERS_LOGGED_IN_MOBILE_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: UNIQUE_USERS_LOGGED_IN_MOBILE_90_DAYS
+    db_column_name: UNIQUE_USERS_LOGGED_IN_MOBILE_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_PUBLISHED_7_DAYS
+    db_column_name: TOTAL_CONTENT_PUBLISHED_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_PUBLISHED_30_DAYS
+    db_column_name: TOTAL_CONTENT_PUBLISHED_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_PUBLISHED_90_DAYS
+    db_column_name: TOTAL_CONTENT_PUBLISHED_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_7_DAYS
+    db_column_name: TOTAL_CONTENT_VIEWS_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_30_DAYS
+    db_column_name: TOTAL_CONTENT_VIEWS_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_90_DAYS
+    db_column_name: TOTAL_CONTENT_VIEWS_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_WEB_7_DAYS
+    db_column_name: TOTAL_CONTENT_VIEWS_WEB_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_WEB_30_DAYS
+    db_column_name: TOTAL_CONTENT_VIEWS_WEB_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_WEB_90_DAYS
+    db_column_name: TOTAL_CONTENT_VIEWS_WEB_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_MOBILE_7_DAYS
+    db_column_name: TOTAL_CONTENT_VIEWS_MOBILE_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_MOBILE_30_DAYS
+    db_column_name: TOTAL_CONTENT_VIEWS_MOBILE_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_VIEWS_MOBILE_90_DAYS
+    db_column_name: TOTAL_CONTENT_VIEWS_MOBILE_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_SHARES_7_DAYS
+    db_column_name: TOTAL_CONTENT_SHARES_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_SHARES_30_DAYS
+    db_column_name: TOTAL_CONTENT_SHARES_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_SHARES_90_DAYS
+    db_column_name: TOTAL_CONTENT_SHARES_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_LIKES_7_DAYS
+    db_column_name: TOTAL_CONTENT_LIKES_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_LIKES_30_DAYS
+    db_column_name: TOTAL_CONTENT_LIKES_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_LIKES_90_DAYS
+    db_column_name: TOTAL_CONTENT_LIKES_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_FAVOURITES_7_DAYS
+    db_column_name: TOTAL_CONTENT_FAVOURITES_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_FAVOURITES_30_DAYS
+    db_column_name: TOTAL_CONTENT_FAVOURITES_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTENT_FAVOURITES_90_DAYS
+    db_column_name: TOTAL_CONTENT_FAVOURITES_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_COMMENTS_7_DAYS
+    db_column_name: TOTAL_COMMENTS_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_COMMENTS_30_DAYS
+    db_column_name: TOTAL_COMMENTS_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_COMMENTS_90_DAYS
+    db_column_name: TOTAL_COMMENTS_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_COMMENT_REPLIES_7_DAYS
+    db_column_name: TOTAL_COMMENT_REPLIES_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_COMMENT_REPLIES_30_DAYS
+    db_column_name: TOTAL_COMMENT_REPLIES_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_COMMENT_REPLIES_90_DAYS
+    db_column_name: TOTAL_COMMENT_REPLIES_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_POSTS_7_DAYS
+    db_column_name: TOTAL_FEED_POSTS_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_POSTS_30_DAYS
+    db_column_name: TOTAL_FEED_POSTS_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_POSTS_90_DAYS
+    db_column_name: TOTAL_FEED_POSTS_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_REPLIES_7_DAYS
+    db_column_name: TOTAL_FEED_REPLIES_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_REPLIES_30_DAYS
+    db_column_name: TOTAL_FEED_REPLIES_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_REPLIES_90_DAYS
+    db_column_name: TOTAL_FEED_REPLIES_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_LIKES_7_DAYS
+    db_column_name: TOTAL_FEED_LIKES_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_LIKES_30_DAYS
+    db_column_name: TOTAL_FEED_LIKES_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_LIKES_90_DAYS
+    db_column_name: TOTAL_FEED_LIKES_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_SHARES_7_DAYS
+    db_column_name: TOTAL_FEED_SHARES_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_SHARES_30_DAYS
+    db_column_name: TOTAL_FEED_SHARES_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_SHARES_90_DAYS
+    db_column_name: TOTAL_FEED_SHARES_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_FAVOURITES_7_DAYS
+    db_column_name: TOTAL_FEED_FAVOURITES_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_FAVOURITES_30_DAYS
+    db_column_name: TOTAL_FEED_FAVOURITES_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEED_FAVOURITES_90_DAYS
+    db_column_name: TOTAL_FEED_FAVOURITES_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_REPLY_LIKES_7_DAYS
+    db_column_name: TOTAL_REPLY_LIKES_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_REPLY_LIKES_30_DAYS
+    db_column_name: TOTAL_REPLY_LIKES_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_REPLY_LIKES_90_DAYS
+    db_column_name: TOTAL_REPLY_LIKES_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTRIBUTORS_7_DAYS
+    db_column_name: TOTAL_CONTRIBUTORS_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTRIBUTORS_30_DAYS
+    db_column_name: TOTAL_CONTRIBUTORS_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_CONTRIBUTORS_90_DAYS
+    db_column_name: TOTAL_CONTRIBUTORS_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_PARTICIPANTS_7_DAYS
+    db_column_name: TOTAL_PARTICIPANTS_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_PARTICIPANTS_30_DAYS
+    db_column_name: TOTAL_PARTICIPANTS_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_PARTICIPANTS_90_DAYS
+    db_column_name: TOTAL_PARTICIPANTS_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_OBSERVERS_7_DAYS
+    db_column_name: TOTAL_OBSERVERS_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_OBSERVERS_30_DAYS
+    db_column_name: TOTAL_OBSERVERS_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_OBSERVERS_90_DAYS
+    db_column_name: TOTAL_OBSERVERS_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_NO_LOGINS_7_DAYS
+    db_column_name: TOTAL_NO_LOGINS_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_NO_LOGINS_30_DAYS
+    db_column_name: TOTAL_NO_LOGINS_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_NO_LOGINS_90_DAYS
+    db_column_name: TOTAL_NO_LOGINS_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SITE_MANAGERS
+    db_column_name: TOTAL_SITE_MANAGERS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_DEPARTMENTS
+    db_column_name: TOTAL_ACTIVE_DEPARTMENTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_LOCATIONS
+    db_column_name: TOTAL_ACTIVE_LOCATIONS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_SEGMENTS
+    db_column_name: TOTAL_ACTIVE_SEGMENTS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_ACTIVE_USER_CATEGORIES
+    db_column_name: TOTAL_ACTIVE_USER_CATEGORIES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SITES
+    db_column_name: TOTAL_SITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_PUBLIC_SITES
+    db_column_name: TOTAL_PUBLIC_SITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_PRIVATE_SITES
+    db_column_name: TOTAL_PRIVATE_SITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_UNLISTED_SITES
+    db_column_name: TOTAL_UNLISTED_SITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SITES_CREATED_IN_LAST_7_DAYS
+    db_column_name: TOTAL_SITES_CREATED_IN_LAST_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SITES_CREATED_IN_LAST_30_DAYS
+    db_column_name: TOTAL_SITES_CREATED_IN_LAST_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_SITES_CREATED_IN_LAST_90_DAYS
+    db_column_name: TOTAL_SITES_CREATED_IN_LAST_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_FEATURED_SITES
+    db_column_name: TOTAL_FEATURED_SITES
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_LOW_ACTIVITY_SITES_7_DAYS
+    db_column_name: TOTAL_LOW_ACTIVITY_SITES_7_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_LOW_ACTIVITY_SITES_30_DAYS
+    db_column_name: TOTAL_LOW_ACTIVITY_SITES_30_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  - name: TOTAL_LOW_ACTIVITY_SITES_90_DAYS
+    db_column_name: TOTAL_LOW_ACTIVITY_SITES_90_DAYS
+    properties:
+      column_type: MEASURE
+      aggregation: SUM
+      index_type: DONT_INDEX
+    db_column_properties:
+      data_type: INT64
+  properties:
+    spotter_config:
+      is_spotter_enabled: false
