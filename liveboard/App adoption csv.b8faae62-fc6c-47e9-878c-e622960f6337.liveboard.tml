@@ -1,0 +1,1799 @@
+guid: b8faae62-fc6c-47e9-878c-e622960f6337
+liveboard:
+  name: App adoption csv
+  visualizations:
+  - id: Viz_1
+    answer:
+      name: App adoption rate - User logins
+      description: '% of total users who have logged-in to the platform during the time period selected'
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Date of last login
+        name: Date of last login
+        expr: "max ( [Reporting Date] )"
+        was_auto_generated: false
+      - id: formula_Login User
+        name: Login User
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      - id: formula_Moving Average
+        name: Moving Average
+        expr: "moving_average ( ( group_aggregate ( unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) , query_groups ( ) , query_filters ( ) ) / group_aggregate ( unique count ( [Interaction User Code] ) , { [Tenant Code] } , query_filters ( ) ) ) , 29 , 0 , [Reporting Date] )"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "( group_unique_count ( [Interaction User Code] , [Tenant Code] ) )"
+        was_auto_generated: false
+      - id: formula_User Adoption Percentage
+        name: User Adoption Percentage
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / ( group_unique_count ( [Interaction User Code] , [Tenant Code] ) )"
+        was_auto_generated: false
+      search_query: "[Full Name] [Email] [formula_Date of last login] [formula_Date of last login].daily [Company Name] [Division] [Department] [City] [State] [Country] [Has User Logged In?] = true sort by [formula_Date of last login] [formula_Date of last login].daily descending [Custom Attribute 1] [Custom Attribute 10] [Custom Attribute 11] [Custom Attribute 12] [Custom Attribute 13] [Custom Attribute 14] [Custom Attribute 15] [Custom Attribute 18] [Custom Attribute 19] [Custom Attribute 2] [Custom Attribute 20] [Custom Attribute 16] [Custom Attribute 17] [Custom Attribute 21] [Custom Attribute 22] [Custom Attribute 23] [Custom Attribute 24] [Custom Attribute 25] [Custom Attribute 3] [Custom Attribute 4] [Custom Attribute 5] [Custom Attribute 6] [Custom Attribute 7] [Custom Attribute 8] [Custom Attribute 9] [User Status].active"
+      answer_columns:
+      - name: City
+      - name: Company Name
+        custom_name: Company name
+        dynamic_title: Company name
+      - name: Country
+      - name: Custom Attribute 1
+      - name: Custom Attribute 10
+      - name: Custom Attribute 11
+      - name: Custom Attribute 12
+      - name: Custom Attribute 13
+      - name: Custom Attribute 14
+      - name: Custom Attribute 15
+      - name: Custom Attribute 16
+      - name: Custom Attribute 17
+      - name: Custom Attribute 18
+      - name: Custom Attribute 19
+      - name: Custom Attribute 2
+      - name: Custom Attribute 20
+      - name: Custom Attribute 21
+      - name: Custom Attribute 22
+      - name: Custom Attribute 23
+      - name: Custom Attribute 24
+      - name: Custom Attribute 25
+      - name: Custom Attribute 3
+      - name: Custom Attribute 4
+      - name: Custom Attribute 5
+      - name: Custom Attribute 6
+      - name: Custom Attribute 7
+      - name: Custom Attribute 8
+      - name: Custom Attribute 9
+      - name: Day(Date of last login)
+        custom_name: Date of last login
+        dynamic_title: Date of last login
+        sort_info:
+          category: DEFAULT
+      - name: Department
+      - name: Division
+      - name: Email
+      - name: Full Name
+        custom_name: Full name
+        dynamic_title: Full name
+      - name: State
+      table:
+        table_columns:
+        - column_id: City
+          show_headline: false
+        - column_id: Company Name
+          show_headline: false
+        - column_id: Country
+          show_headline: false
+        - column_id: Custom Attribute 1
+          show_headline: false
+        - column_id: Custom Attribute 10
+          show_headline: false
+        - column_id: Custom Attribute 11
+          show_headline: false
+        - column_id: Custom Attribute 12
+          show_headline: false
+        - column_id: Custom Attribute 13
+          show_headline: false
+        - column_id: Custom Attribute 14
+          show_headline: false
+        - column_id: Custom Attribute 15
+          show_headline: false
+        - column_id: Custom Attribute 16
+          show_headline: false
+        - column_id: Custom Attribute 17
+          show_headline: false
+        - column_id: Custom Attribute 18
+          show_headline: false
+        - column_id: Custom Attribute 19
+          show_headline: false
+        - column_id: Custom Attribute 2
+          show_headline: false
+        - column_id: Custom Attribute 20
+          show_headline: false
+        - column_id: Custom Attribute 21
+          show_headline: false
+        - column_id: Custom Attribute 22
+          show_headline: false
+        - column_id: Custom Attribute 23
+          show_headline: false
+        - column_id: Custom Attribute 24
+          show_headline: false
+        - column_id: Custom Attribute 25
+          show_headline: false
+        - column_id: Custom Attribute 3
+          show_headline: false
+        - column_id: Custom Attribute 4
+          show_headline: false
+        - column_id: Custom Attribute 5
+          show_headline: false
+        - column_id: Custom Attribute 6
+          show_headline: false
+        - column_id: Custom Attribute 7
+          show_headline: false
+        - column_id: Custom Attribute 8
+          show_headline: false
+        - column_id: Custom Attribute 9
+          show_headline: false
+        - column_id: Day(Date of last login)
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Division
+          show_headline: false
+        - column_id: Email
+          show_headline: false
+        - column_id: Full Name
+          show_headline: false
+        - column_id: State
+          show_headline: false
+        ordered_column_ids:
+        - Full Name
+        - Email
+        - Company Name
+        - Division
+        - Department
+        - City
+        - State
+        - Country
+        - Custom Attribute 1
+        - Custom Attribute 10
+        - Custom Attribute 11
+        - Custom Attribute 12
+        - Custom Attribute 13
+        - Custom Attribute 14
+        - Custom Attribute 15
+        - Custom Attribute 18
+        - Custom Attribute 19
+        - Custom Attribute 2
+        - Custom Attribute 20
+        - Custom Attribute 16
+        - Custom Attribute 17
+        - Custom Attribute 21
+        - Custom Attribute 22
+        - Custom Attribute 23
+        - Custom Attribute 24
+        - Custom Attribute 25
+        - Custom Attribute 3
+        - Custom Attribute 4
+        - Custom Attribute 5
+        - Custom Attribute 6
+        - Custom Attribute 7
+        - Custom Attribute 8
+        - Custom Attribute 9
+        - Day(Date of last login)
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Email\",\"width\": 334.0}],\"orderedColumnIds\": [\"Day(Date of last login)\",\"Full Name\",\"Email\",\"Company Name\",\"Division\",\"Department\",\"City\",\"State\",\"Country\",\"Custom Attribute 1\",\"Custom Attribute 2\",\"Custom Attribute 3\",\"Custom Attribute 4\",\"Custom Attribute 5\",\"Custom Attribute 6\",\"Custom Attribute 7\",\"Custom Attribute 8\",\"Custom Attribute 9\",\"Custom Attribute 10\",\"Custom Attribute 11\",\"Custom Attribute 12\",\"Custom Attribute 13\",\"Custom Attribute 14\",\"Custom Attribute 15\",\"Custom Attribute 16\",\"Custom Attribute 17\",\"Custom Attribute 18\",\"Custom Attribute 19\",\"Custom Attribute 20\",\"Custom Attribute 21\",\"Custom Attribute 22\",\"Custom Attribute 23\",\"Custom Attribute 24\",\"Custom Attribute 25\"]}"
+      chart:
+        type: SCATTER
+        chart_columns:
+        - column_id: City
+        - column_id: Company Name
+        - column_id: Country
+        - column_id: Custom Attribute 1
+        - column_id: Custom Attribute 10
+        - column_id: Custom Attribute 11
+        - column_id: Custom Attribute 12
+        - column_id: Custom Attribute 13
+        - column_id: Custom Attribute 14
+        - column_id: Custom Attribute 15
+        - column_id: Custom Attribute 16
+        - column_id: Custom Attribute 17
+        - column_id: Custom Attribute 18
+        - column_id: Custom Attribute 19
+        - column_id: Custom Attribute 2
+        - column_id: Custom Attribute 20
+        - column_id: Custom Attribute 21
+        - column_id: Custom Attribute 22
+        - column_id: Custom Attribute 23
+        - column_id: Custom Attribute 24
+        - column_id: Custom Attribute 25
+        - column_id: Custom Attribute 3
+        - column_id: Custom Attribute 4
+        - column_id: Custom Attribute 5
+        - column_id: Custom Attribute 6
+        - column_id: Custom Attribute 7
+        - column_id: Custom Attribute 8
+        - column_id: Custom Attribute 9
+        - column_id: Day(Date of last login)
+        - column_id: Department
+        - column_id: Division
+        - column_id: Email
+        - column_id: Full Name
+        - column_id: State
+        axis_configs:
+        - x:
+          - Day(Date of last login)
+          "y":
+          - Email
+          color:
+          - Custom Attribute 14
+          - Custom Attribute 19
+          - Custom Attribute 20
+          - Custom Attribute 16
+          - Custom Attribute 17
+          - Custom Attribute 24
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"showLinearRegressionLine\": false,\"chartSpecific\": {\"isStackedAsPercent\": true,\"stackedAsPercentFormat\": {\"category\": \"PERCENTAGE\",\"percentageFormatConfig\": {\"decimals\": 2.0,\"removeTrailingZeroes\": false},\"isCategoryEditable\": false},\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"8002a14b-c206-4126-a7e3-4de52218a127\",\"columnProperty\": {}},{\"columnId\": \"bf5ec83b-db7a-4431-81d9-db94ac7c1634\",\"columnProperty\": {}},{\"columnId\": \"Day(Date of last login)\",\"columnProperty\": {}},{\"columnId\": \"Email\",\"columnProperty\": {}},{\"columnId\": \"Full Name\",\"columnProperty\": {}},{\"columnId\": \"Division\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 20\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 16\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 14\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 18\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 19\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 17\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 21\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 24\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"db9c9d1c-f20c-49e4-9b18-e61c5d4db797\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Email\"],\"isOpposite\": false}},{\"id\": \"8d40a79a-c7b8-4598-a9ea-8839f950dfb8\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Day(Date of last login)\"]}}],\"systemSeriesColors\": [{\"serieName\": \"28121014-7757-4bc5-9044-d037f24485e5\",\"color\": \"#FCC838\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: App adoption rate - User logins
+      dynamic_description: '% of total users who have logged-in to the platform during the time period selected'
+    viz_guid: ae012594-d848-4aa0-841a-bcd3ba45ce26
+  - id: Viz_2
+    answer:
+      name: User engagement breakdown
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Behaviour Formula
+        name: Adoption Behaviour Formula
+        expr: "( if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 4 ) then 'Contributor' else if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 3 ) then 'Participant' else if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 2 ) then 'Observer' else if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 1 ) then 'No login' else null )"
+        was_auto_generated: false
+      - id: formula_Sorting Formula
+        name: Sorting Formula
+        expr: "( if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 4 ) then 4 else if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 3 ) then 3 else if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 2 ) then 2 else if ( group_max ( [Adoption Behaviour Preference] , [Interaction User Code] ) = 1 ) then 1 else null )"
+        was_auto_generated: false
+      search_query: "[formula_Adoption Behaviour Formula] [Full Name] [Email] [Company Name] [Division] [Department] [City] [State] [Country] [Job Title] [Custom Attribute 1] [Custom Attribute 2] [Custom Attribute 3] [Custom Attribute 4] [Custom Attribute 5] [Custom Attribute 6] [Custom Attribute 7] [Custom Attribute 8] [Custom Attribute 9] [Custom Attribute 10] [Custom Attribute 11] [Custom Attribute 12] [Custom Attribute 13] [Custom Attribute 14] [Custom Attribute 15] [Custom Attribute 16] [Custom Attribute 17] [Custom Attribute 18] [Custom Attribute 19] [Custom Attribute 20] [Custom Attribute 21] [Custom Attribute 22] [Custom Attribute 23] [Custom Attribute 24] [Custom Attribute 25] [User Status].active [formula_Sorting Formula] sort by [formula_Sorting Formula] descending [User Code]"
+      answer_columns:
+      - name: Adoption Behaviour Formula
+        custom_name: Adoption
+        dynamic_title: Adoption
+      - name: City
+      - name: Company Name
+        custom_name: Company name
+        dynamic_title: Company name
+      - name: Country
+      - name: Custom Attribute 1
+      - name: Custom Attribute 10
+      - name: Custom Attribute 11
+      - name: Custom Attribute 12
+      - name: Custom Attribute 13
+      - name: Custom Attribute 14
+      - name: Custom Attribute 15
+      - name: Custom Attribute 16
+      - name: Custom Attribute 17
+      - name: Custom Attribute 18
+      - name: Custom Attribute 19
+      - name: Custom Attribute 2
+      - name: Custom Attribute 20
+      - name: Custom Attribute 21
+      - name: Custom Attribute 22
+      - name: Custom Attribute 23
+      - name: Custom Attribute 24
+      - name: Custom Attribute 25
+      - name: Custom Attribute 3
+      - name: Custom Attribute 4
+      - name: Custom Attribute 5
+      - name: Custom Attribute 6
+      - name: Custom Attribute 7
+      - name: Custom Attribute 8
+      - name: Custom Attribute 9
+      - name: Department
+      - name: Division
+      - name: Email
+      - name: Full Name
+        custom_name: Full name
+        dynamic_title: Full name
+      - name: Job Title
+        custom_name: Job title
+        dynamic_title: Job title
+      - name: Sorting Formula
+        sort_info:
+          category: DEFAULT
+      - name: State
+      - name: User Code
+      table:
+        table_columns:
+        - column_id: Adoption Behaviour Formula
+          show_headline: false
+        - column_id: City
+          show_headline: false
+        - column_id: Company Name
+          show_headline: false
+        - column_id: Country
+          show_headline: false
+        - column_id: Custom Attribute 1
+          show_headline: false
+        - column_id: Custom Attribute 10
+          show_headline: false
+        - column_id: Custom Attribute 11
+          show_headline: false
+        - column_id: Custom Attribute 12
+          show_headline: false
+        - column_id: Custom Attribute 13
+          show_headline: false
+        - column_id: Custom Attribute 14
+          show_headline: false
+        - column_id: Custom Attribute 15
+          show_headline: false
+        - column_id: Custom Attribute 16
+          show_headline: false
+        - column_id: Custom Attribute 17
+          show_headline: false
+        - column_id: Custom Attribute 18
+          show_headline: false
+        - column_id: Custom Attribute 19
+          show_headline: false
+        - column_id: Custom Attribute 2
+          show_headline: false
+        - column_id: Custom Attribute 20
+          show_headline: false
+        - column_id: Custom Attribute 21
+          show_headline: false
+        - column_id: Custom Attribute 22
+          show_headline: false
+        - column_id: Custom Attribute 23
+          show_headline: false
+        - column_id: Custom Attribute 24
+          show_headline: false
+        - column_id: Custom Attribute 25
+          show_headline: false
+        - column_id: Custom Attribute 3
+          show_headline: false
+        - column_id: Custom Attribute 4
+          show_headline: false
+        - column_id: Custom Attribute 5
+          show_headline: false
+        - column_id: Custom Attribute 6
+          show_headline: false
+        - column_id: Custom Attribute 7
+          show_headline: false
+        - column_id: Custom Attribute 8
+          show_headline: false
+        - column_id: Custom Attribute 9
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Division
+          show_headline: false
+        - column_id: Email
+          show_headline: false
+        - column_id: Full Name
+          show_headline: false
+        - column_id: Job Title
+          show_headline: false
+        - column_id: Sorting Formula
+          show_headline: false
+        - column_id: State
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        ordered_column_ids:
+        - Adoption Behaviour Formula
+        - Full Name
+        - Email
+        - Company Name
+        - Division
+        - Department
+        - City
+        - State
+        - Country
+        - Job Title
+        - Custom Attribute 1
+        - Custom Attribute 2
+        - Custom Attribute 3
+        - Custom Attribute 4
+        - Custom Attribute 5
+        - Custom Attribute 6
+        - Custom Attribute 7
+        - Custom Attribute 8
+        - Custom Attribute 9
+        - Custom Attribute 10
+        - Custom Attribute 11
+        - Custom Attribute 12
+        - Custom Attribute 13
+        - Custom Attribute 14
+        - Custom Attribute 15
+        - Custom Attribute 16
+        - Custom Attribute 17
+        - Custom Attribute 18
+        - Custom Attribute 19
+        - Custom Attribute 20
+        - Custom Attribute 21
+        - Custom Attribute 22
+        - Custom Attribute 23
+        - Custom Attribute 24
+        - Custom Attribute 25
+        - User Code
+        - Sorting Formula
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Full Name\",\"width\": 227.0}],\"orderedColumnIds\": [\"Full Name\",\"Adoption Behaviour Formula\",\"Email\",\"Company Name\",\"Division\",\"Department\",\"City\",\"State\",\"Country\",\"Job Title\",\"Custom Attribute 1\",\"Custom Attribute 2\",\"Custom Attribute 3\",\"Custom Attribute 4\",\"Custom Attribute 5\",\"Custom Attribute 6\",\"Custom Attribute 7\",\"Custom Attribute 8\",\"Custom Attribute 9\",\"Custom Attribute 10\",\"Custom Attribute 11\",\"Custom Attribute 12\",\"Custom Attribute 13\",\"Custom Attribute 14\",\"Custom Attribute 15\",\"Custom Attribute 16\",\"Custom Attribute 17\",\"Custom Attribute 18\",\"Custom Attribute 19\",\"Custom Attribute 20\",\"Custom Attribute 21\",\"Custom Attribute 22\",\"Custom Attribute 23\",\"Custom Attribute 24\",\"Custom Attribute 25\",\"User Code\",\"Sorting Formula\"],\"columnProperties\": [{\"columnId\": \"Adoption Behaviour Formula\",\"columnProperty\": {\"isHidden\": false}},{\"columnId\": \"Sorting Formula\",\"columnProperty\": {\"isHidden\": true}},{\"columnId\": \"User Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Adoption Behaviour Formula
+        - column_id: City
+        - column_id: Company Name
+        - column_id: Country
+        - column_id: Custom Attribute 1
+        - column_id: Custom Attribute 10
+        - column_id: Custom Attribute 11
+        - column_id: Custom Attribute 12
+        - column_id: Custom Attribute 13
+        - column_id: Custom Attribute 14
+        - column_id: Custom Attribute 15
+        - column_id: Custom Attribute 16
+        - column_id: Custom Attribute 17
+        - column_id: Custom Attribute 18
+        - column_id: Custom Attribute 19
+        - column_id: Custom Attribute 2
+        - column_id: Custom Attribute 20
+        - column_id: Custom Attribute 21
+        - column_id: Custom Attribute 22
+        - column_id: Custom Attribute 23
+        - column_id: Custom Attribute 24
+        - column_id: Custom Attribute 25
+        - column_id: Custom Attribute 3
+        - column_id: Custom Attribute 4
+        - column_id: Custom Attribute 5
+        - column_id: Custom Attribute 6
+        - column_id: Custom Attribute 7
+        - column_id: Custom Attribute 8
+        - column_id: Custom Attribute 9
+        - column_id: Department
+        - column_id: Division
+        - column_id: Email
+        - column_id: Full Name
+        - column_id: Job Title
+        - column_id: Sorting Formula
+        - column_id: State
+        - column_id: User Code
+        axis_configs:
+        - x:
+          - User Code
+          "y":
+          - Sorting Formula
+          color:
+          - Custom Attribute 14
+          - Custom Attribute 16
+          - Custom Attribute 17
+          - Custom Attribute 19
+          - Custom Attribute 20
+          - Custom Attribute 24
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Adoption Behaviour Formula\",\"columnProperty\": {}},{\"columnId\": \"b211f4d7-b9c3-46b7-bb24-67fc2f234c8f\",\"columnProperty\": {}},{\"columnId\": \"2bb147b9-8369-4640-b843-b38e72b32f27\",\"columnProperty\": {}},{\"columnId\": \"Email\",\"columnProperty\": {}},{\"columnId\": \"Division\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 16\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 20\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 14\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 17\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 18\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 19\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 21\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 24\",\"columnProperty\": {}},{\"columnId\": \"User Code\",\"columnProperty\": {}},{\"columnId\": \"Sorting Formula\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"472f34b5-b0ee-42de-b3bc-c1d94920954f\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Sorting Formula\"],\"isOpposite\": false}},{\"id\": \"26500d33-1741-4c4f-845a-bf684e2cf6eb\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"a0e9a374-17b1-4f25-8588-c671fc148a1e\",\"color\": \"#2E75F0\"},{\"serieName\": \"contributor\",\"color\": \"#06BF7F\"},{\"serieName\": \"no login\",\"color\": \"#FCC838\"},{\"serieName\": \"observer\",\"color\": \"#48D1E0\"},{\"serieName\": \"participant\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: User engagement breakdown
+    viz_guid: af0dfa52-e161-47b2-b3dc-af4e9ff37852
+  - id: Viz_3
+    answer:
+      name: App web page views
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      table_paths:
+      - id: User_1
+        table: User
+      formulas:
+      - id: formula_Page feature
+        name: Page feature
+        expr: "if ( [User_1::Page Feature] = 'N/A' ) then 'Undefined' else [User_1::Page Feature]"
+        was_auto_generated: false
+      - id: formula_Page group
+        name: Page group
+        expr: "if ( [User_1::Page Grouping] = 'N/A' ) then 'Undefined' else [User_1::Page Grouping]"
+        was_auto_generated: false
+      - id: formula_Page title
+        name: Page title
+        expr: "if ( [User_1::Page Title] = 'N/A' ) then 'Undefined' else [User_1::Page Title]"
+        was_auto_generated: false
+      - id: formula_Total View Percentage
+        name: Total View Percentage
+        expr: "count ( [User_1::Interaction Code] ) / group_count ( [User_1::Interaction Code] ) * 100"
+        was_auto_generated: false
+      - id: formula_User Count
+        name: User Count
+        expr: "unique_count_if ( [User_1::User Status] = 'Active' , [User_1::Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_User Count] [User_1::Interaction Type] = 'view' count [User_1::Interaction Code] [formula_Total View Percentage] sort by count [User_1::Interaction Code] descending [formula_Page group] [formula_Page feature] [formula_Page title] [User_1::Product]"
+      answer_columns:
+      - name: Number of Interaction Code
+        custom_name: Page view count
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Page view count
+        sort_info:
+          category: DEFAULT
+      - name: Page feature
+      - name: Page group
+      - name: Page title
+      - name: Product
+      - name: Total View Percentage
+        custom_name: Percentage contribution to total page views
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Percentage contribution to total page views
+      - name: User Count
+        custom_name: Total people
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total people
+      table:
+        table_columns:
+        - column_id: Number of Interaction Code
+          show_headline: false
+        - column_id: Page feature
+          show_headline: false
+        - column_id: Page group
+          show_headline: false
+        - column_id: Page title
+          show_headline: false
+        - column_id: Product
+          show_headline: false
+        - column_id: Total View Percentage
+          show_headline: false
+        - column_id: User Count
+          show_headline: false
+        ordered_column_ids:
+        - Page group
+        - Page feature
+        - Page title
+        - Product
+        - User Count
+        - Number of Interaction Code
+        - Total View Percentage
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Number of Interaction Code\",\"width\": 182.33155822753906},{\"columnId\": \"Total View Percentage\",\"width\": 172.0}],\"showTableFooter\": true,\"orderedColumnIds\": [\"Product\",\"Page feature\",\"Page group\",\"Page title\",\"User Count\",\"Number of Interaction Code\",\"Total View Percentage\"],\"columnProperties\": [{\"columnId\": \"User Count\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Total View Percentage\",\"columnProperty\": {\"conditionalFormatting\": {}}}]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: Number of Interaction Code
+        - column_id: Page feature
+        - column_id: Page group
+        - column_id: Page title
+        - column_id: Product
+        - column_id: Total View Percentage
+        - column_id: User Count
+        axis_configs:
+        - x:
+          - Page title
+          "y":
+          - User Count
+          - Number of Interaction Code
+          - Total View Percentage
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"responsiveLayoutPreference\": \"AUTO_ON\",\"chartSpecific\": {\"pivotSummariesState\": {}}},\"columnProperties\": [{\"columnId\": \"User Count\",\"columnProperty\": {}},{\"columnId\": \"Number of Interaction Code\",\"columnProperty\": {}},{\"columnId\": \"Total View Percentage\",\"columnProperty\": {}},{\"columnId\": \"Page title\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"515e87d6-e46d-4f36-9188-23c1a5b7355b\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Count\"],\"isOpposite\": false}},{\"id\": \"b08c7277-0b55-41c7-8983-8b4059ba3d85\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Number of Interaction Code\"],\"isOpposite\": true}},{\"id\": \"eb884e5b-5a86-425f-a4d6-13b98cb7f1be\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Total View Percentage\"],\"isOpposite\": true}},{\"id\": \"69e02082-196c-4d6f-beda-d29c6766f02c\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Page title\"]}}],\"systemSeriesColors\": [{\"serieName\": \"User Count\",\"color\": \"#747E8C\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: App web page views
+    viz_guid: 9913274a-79ce-49c8-96ee-661cfb5d0b25
+  - id: Viz_4
+    answer:
+      name: Adoption leaders by Location
+      description: App adoption by location
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Percentage %
+        name: Adoption Percentage %
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / unique count ( [User Code] ) * 100"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Logged In
+        name: User Logged In
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[Location] [formula_Adoption Percentage %] [User Status].active [formula_User Logged In] [formula_Total User] sort by [formula_Adoption Percentage %] descending"
+      answer_columns:
+      - name: Adoption Percentage %
+        custom_name: Adoption rate
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Adoption rate
+        sort_info:
+          category: DEFAULT
+      - name: Location
+      - name: Total User
+        custom_name: Total user
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total user
+      - name: User Logged In
+        custom_name: User logged in
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: User logged in
+      table:
+        table_columns:
+        - column_id: Adoption Percentage %
+          show_headline: false
+        - column_id: Location
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Logged In
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Adoption Percentage %
+        - User Logged In
+        - Total User
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Adoption Percentage %\",\"width\": 193.0},{\"columnId\": \"Location\",\"width\": 208.27423095703125}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Location\",\"User Logged In\",\"Total User\",\"Adoption Percentage %\"],\"columnProperties\": [{\"columnId\": \"Location\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"User Logged In\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Total User\",\"columnProperty\": {\"conditionalFormatting\": {}}}]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Adoption Percentage %
+        - column_id: Location
+        - column_id: Total User
+        - column_id: User Logged In
+        axis_configs:
+        - x:
+          - Adoption Percentage %
+          "y":
+          - User Logged In
+          size: Total User
+          category:
+          - Location
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Location\",\"columnProperty\": {}},{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {}},{\"columnId\": \"4938cb2c-c6c1-4abb-9a6b-f38e2e5cfd94\",\"columnProperty\": {}},{\"columnId\": \"5d6c1b15-73bb-4791-b695-c6188dc71f62\",\"columnProperty\": {}},{\"columnId\": \"User Logged In\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"196f0188-5f54-4cd2-b37f-952c09bccdae\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Logged In\"],\"isOpposite\": false}},{\"id\": \"9f9c7853-a4b0-4c17-896a-33d109ec06ed\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Adoption Percentage %\"]}}],\"systemSeriesColors\": [{\"serieName\": \"User Logged In\",\"color\": \"rgba(6,191,127,0.5)\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Adoption leaders by Location
+      dynamic_description: App adoption by location
+    viz_guid: 5a8faff7-44c9-4e00-8ffc-4aaf1a40d6e2
+  - id: Viz_5
+    answer:
+      name: Adoption leaders by Department
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Percentage %
+        name: Adoption Percentage %
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / unique count ( [User Code] ) * 100"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Logged In
+        name: User Logged In
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Adoption Percentage %] [User Status].active sort by [formula_Adoption Percentage %] descending [Department] [formula_User Logged In] [formula_Total User]"
+      answer_columns:
+      - name: Adoption Percentage %
+        custom_name: Adoption rate
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Adoption rate
+        sort_info:
+          category: DEFAULT
+      - name: Department
+      - name: Total User
+        custom_name: Total user
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total user
+      - name: User Logged In
+        custom_name: User logged in
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: User logged in
+      table:
+        table_columns:
+        - column_id: Adoption Percentage %
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Logged In
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Adoption Percentage %
+        - User Logged In
+        - Total User
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Department\",\"width\": 198.0},{\"columnId\": \"Total User\",\"width\": 140.29922485351562},{\"columnId\": \"Adoption Percentage %\",\"width\": 185.1080322265625}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Department\",\"User Logged In\",\"Total User\",\"Adoption Percentage %\"],\"columnProperties\": [{\"columnId\": \"Department\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"User Logged In\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Total User\",\"columnProperty\": {\"conditionalFormatting\": {}}}]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Adoption Percentage %
+        - column_id: Department
+        - column_id: Total User
+        - column_id: User Logged In
+        axis_configs:
+        - x:
+          - Adoption Percentage %
+          "y":
+          - User Logged In
+          size: Total User
+          category:
+          - Department
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {}},{\"columnId\": \"3dbf6bd8-9485-441d-9968-67626dea55d9\",\"columnProperty\": {}},{\"columnId\": \"cdb4b20f-cc20-455a-9ded-90451562255a\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"User Logged In\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"40fd5758-3fef-4101-b51e-5277576ca553\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Logged In\"],\"isOpposite\": false}},{\"id\": \"5341da03-f12a-43bd-ad45-b12080d75f6e\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Adoption Percentage %\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Adoption leaders by Department
+    viz_guid: aaf36584-0089-4252-a712-dd848e6777e3
+  - id: Viz_6
+    answer:
+      name: Adoption laggards by Location
+      description: App adoption by location
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Percentage %
+        name: Adoption Percentage %
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / unique count ( [User Code] ) * 100"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Logged In
+        name: User Logged In
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[Location] [formula_Adoption Percentage %] [User Status].active [formula_User Logged In] [formula_Total User] sort by [formula_Adoption Percentage %]"
+      answer_columns:
+      - name: Adoption Percentage %
+        custom_name: Adoption rate
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Adoption rate
+        sort_info:
+          category: DEFAULT
+      - name: Location
+      - name: Total User
+        custom_name: Total user
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total user
+      - name: User Logged In
+        custom_name: User logged in
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: User logged in
+      table:
+        table_columns:
+        - column_id: Adoption Percentage %
+          show_headline: false
+        - column_id: Location
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Logged In
+          show_headline: false
+        ordered_column_ids:
+        - Location
+        - Adoption Percentage %
+        - User Logged In
+        - Total User
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Adoption Percentage %\",\"width\": 193.0},{\"columnId\": \"Location\",\"width\": 208.27423095703125}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Location\",\"User Logged In\",\"Total User\",\"Adoption Percentage %\"],\"columnProperties\": [{\"columnId\": \"Location\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"User Logged In\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Total User\",\"columnProperty\": {\"conditionalFormatting\": {}}}]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Adoption Percentage %
+        - column_id: Location
+        - column_id: Total User
+        - column_id: User Logged In
+        axis_configs:
+        - x:
+          - Adoption Percentage %
+          "y":
+          - User Logged In
+          size: Total User
+          category:
+          - Location
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Location\",\"columnProperty\": {}},{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {}},{\"columnId\": \"73bcd207-3f92-4cf3-883b-606d6ffd756b\",\"columnProperty\": {}},{\"columnId\": \"900f2e96-1253-4da8-a0e8-6bec7219ed3f\",\"columnProperty\": {}},{\"columnId\": \"User Logged In\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"45ca5d39-ec92-4e65-be33-411f0b968024\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Logged In\"],\"isOpposite\": false}},{\"id\": \"fd25cf48-566e-4ec5-a3c3-5584f8e8ccb2\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Adoption Percentage %\"]}}],\"systemSeriesColors\": [{\"serieName\": \"User Logged In\",\"color\": \"rgba(6,191,127,0.5)\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Adoption laggards by Location
+      dynamic_description: App adoption by location
+    viz_guid: 2c56cdfb-36af-468e-9f7f-71bfb17b335a
+  - id: Viz_7
+    answer:
+      name: Adoption laggards by Department
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Percentage %
+        name: Adoption Percentage %
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / unique count ( [User Code] ) * 100"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Logged In
+        name: User Logged In
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Adoption Percentage %] [User Status].active [Department] [formula_User Logged In] [formula_Total User] sort by [formula_Adoption Percentage %]"
+      answer_columns:
+      - name: Adoption Percentage %
+        custom_name: Adoption rate
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Adoption rate
+        sort_info:
+          category: DEFAULT
+      - name: Department
+      - name: Total User
+        custom_name: Total user
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Total user
+      - name: User Logged In
+        custom_name: User logged in
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 0.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: User logged in
+      table:
+        table_columns:
+        - column_id: Adoption Percentage %
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Logged In
+          show_headline: false
+        ordered_column_ids:
+        - Department
+        - Adoption Percentage %
+        - User Logged In
+        - Total User
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Department\",\"width\": 198.0},{\"columnId\": \"Total User\",\"width\": 140.29922485351562},{\"columnId\": \"Adoption Percentage %\",\"width\": 185.1080322265625}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Department\",\"User Logged In\",\"Total User\",\"Adoption Percentage %\"],\"columnProperties\": [{\"columnId\": \"Department\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"User Logged In\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Total User\",\"columnProperty\": {\"conditionalFormatting\": {}}}]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Adoption Percentage %
+        - column_id: Department
+        - column_id: Total User
+        - column_id: User Logged In
+        axis_configs:
+        - x:
+          - Adoption Percentage %
+          "y":
+          - User Logged In
+          size: Total User
+          category:
+          - Department
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {}},{\"columnId\": \"4bc1fe49-e142-40b6-b63e-8f097d81d9e3\",\"columnProperty\": {}},{\"columnId\": \"54ad40cf-471b-41c4-b824-f99030cd27ff\",\"columnProperty\": {}},{\"columnId\": \"Department\",\"columnProperty\": {}},{\"columnId\": \"User Logged In\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"d038d23e-4bdb-48c0-9f9f-f234d63913ff\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Logged In\"],\"isOpposite\": false}},{\"id\": \"b2229ae1-877f-406f-aff8-adbc861f1794\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Adoption Percentage %\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Adoption laggards by Department
+    viz_guid: 8d8de532-26aa-4336-996f-7684469d2497
+  - id: Viz_8
+    answer:
+      name: Adoption leaders by Segment
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Percentage %
+        name: Adoption Percentage %
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / unique count ( [User Code] ) * 100"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Logged In
+        name: User Logged In
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Adoption Percentage %] [User Status].active sort by [formula_Adoption Percentage %] descending [formula_User Logged In] [formula_Total User] [Segment Code] [Segment Name]"
+      answer_columns:
+      - name: Adoption Percentage %
+        custom_name: Adoption rate
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Adoption rate
+        sort_info:
+          category: DEFAULT
+      - name: Segment Code
+      - name: Segment Name
+        custom_name: Segment name
+        dynamic_title: Segment name
+      - name: Total User
+        custom_name: Total user
+        dynamic_title: Total user
+      - name: User Logged In
+        custom_name: User logged in
+        dynamic_title: User logged in
+      table:
+        table_columns:
+        - column_id: Adoption Percentage %
+          show_headline: false
+        - column_id: Segment Code
+          show_headline: false
+        - column_id: Segment Name
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Logged In
+          show_headline: false
+        ordered_column_ids:
+        - Segment Code
+        - Segment Name
+        - Adoption Percentage %
+        - User Logged In
+        - Total User
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total User\",\"width\": 140.29922485351562},{\"columnId\": \"Adoption Percentage %\",\"width\": 185.1080322265625}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Segment Name\",\"User Logged In\",\"Total User\",\"Adoption Percentage %\",\"Segment Code\"],\"columnProperties\": [{\"columnId\": \"Segment Code\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": true}},{\"columnId\": \"Segment Name\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}},{\"columnId\": \"User Logged In\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}},{\"columnId\": \"Total User\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}}]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Adoption Percentage %
+        - column_id: Segment Code
+        - column_id: Segment Name
+        - column_id: Total User
+        - column_id: User Logged In
+        axis_configs:
+        - x:
+          - Adoption Percentage %
+          "y":
+          - User Logged In
+          size: Total User
+          category:
+          - Segment Name
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {}},{\"columnId\": \"b0b7648a-4277-4ad1-80a4-e7631cf0691e\",\"columnProperty\": {}},{\"columnId\": \"01c31d44-af34-4d69-9821-6aeacb26a9ae\",\"columnProperty\": {}},{\"columnId\": \"User Logged In\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}},{\"columnId\": \"Segment Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"6bef4ccb-d5ee-4228-b020-168e4df1ed6d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Logged In\"],\"isOpposite\": false}},{\"id\": \"e8c4b1c2-91c4-4046-b5c0-8aa066414c07\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Adoption Percentage %\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Adoption leaders by Segment
+    viz_guid: 4fe0ce9a-a369-4251-be5d-4711f74ee7f0
+  - id: Viz_9
+    answer:
+      name: Adoption leaders by User Category
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Percentage %
+        name: Adoption Percentage %
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / unique count ( [User Code] ) * 100"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Logged In
+        name: User Logged In
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Adoption Percentage %] [User Status].active sort by [formula_Adoption Percentage %] descending [formula_User Logged In] [formula_Total User] [Category Code] [Category Name]"
+      answer_columns:
+      - name: Adoption Percentage %
+        custom_name: Adoption rate
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Adoption rate
+        sort_info:
+          category: DEFAULT
+      - name: Category Code
+      - name: Category Name
+        custom_name: User category
+        dynamic_title: User category
+      - name: Total User
+        custom_name: Total user
+        dynamic_title: Total user
+      - name: User Logged In
+        custom_name: User logged in
+        dynamic_title: User logged in
+      table:
+        table_columns:
+        - column_id: Adoption Percentage %
+          show_headline: false
+        - column_id: Category Code
+          show_headline: false
+        - column_id: Category Name
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Logged In
+          show_headline: false
+        ordered_column_ids:
+        - Category Code
+        - Category Name
+        - Adoption Percentage %
+        - User Logged In
+        - Total User
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total User\",\"width\": 140.29922485351562},{\"columnId\": \"Adoption Percentage %\",\"width\": 185.1080322265625}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Category Name\",\"User Logged In\",\"Total User\",\"Adoption Percentage %\"],\"columnProperties\": [{\"columnId\": \"Category Code\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": true}},{\"columnId\": \"Category Name\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}},{\"columnId\": \"User Logged In\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}},{\"columnId\": \"Total User\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}}]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Adoption Percentage %
+        - column_id: Category Code
+        - column_id: Category Name
+        - column_id: Total User
+        - column_id: User Logged In
+        axis_configs:
+        - x:
+          - Adoption Percentage %
+          "y":
+          - User Logged In
+          color:
+          - Category Name
+          size: Total User
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {}},{\"columnId\": \"d24af811-57a8-432a-8503-a5e988d047c0\",\"columnProperty\": {}},{\"columnId\": \"d69302d3-77b7-42fc-90bb-096091c18518\",\"columnProperty\": {}},{\"columnId\": \"User Logged In\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}},{\"columnId\": \"Category Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"566af069-637d-4531-a83b-93c048f6cc91\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Logged In\"],\"isOpposite\": false}},{\"id\": \"fcd4bad3-e6fc-4d34-8a4e-d839cb285a25\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Adoption Percentage %\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Adoption leaders by User Category
+    viz_guid: 710d246d-8a41-4ddd-a1c3-2ff800262f86
+  - id: Viz_10
+    answer:
+      name: User login frequency distribution
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Login Frequency
+        name: Login Frequency
+        expr: "if ( group_sum ( [Logged In User] , [User Code] ) < 1 ) then 'No Logins' else if ( group_sum ( [Logged In User] , [User Code] ) > 0 and group_sum ( [Logged In User] , [User Code] ) < 4 ) then '1-3 times' else if ( group_sum ( [Logged In User] , [User Code] ) > 3 and group_sum ( [Logged In User] , [User Code] ) < 8 ) then '4-7 times' else if ( group_sum ( [Logged In User] , [User Code] ) > 7 and group_sum ( [Logged In User] , [User Code] ) < 11 ) then '8-10 times' else if ( group_sum ( [Logged In User] , [User Code] ) > 10 ) then '10+ times' else null"
+        was_auto_generated: false
+      - id: formula_Sorting Formula
+        name: Sorting Formula
+        expr: "group_sum ( [Logged In User] , [User Code] )"
+        was_auto_generated: false
+      search_query: "[Full Name] [Email] [Company Name] [Division] [Department] [City] [State] [Country] [Job Title] [Custom Attribute 1] [Custom Attribute 2] [Custom Attribute 3] [Custom Attribute 4] [Custom Attribute 5] [Custom Attribute 6] [Custom Attribute 7] [Custom Attribute 8] [Custom Attribute 9] [Custom Attribute 10] [Custom Attribute 11] [Custom Attribute 12] [Custom Attribute 13] [Custom Attribute 14] [Custom Attribute 15] [Custom Attribute 16] [Custom Attribute 17] [Custom Attribute 18] [Custom Attribute 19] [Custom Attribute 20] [Custom Attribute 21] [Custom Attribute 22] [Custom Attribute 23] [Custom Attribute 24] [Custom Attribute 25] [User Status].active [formula_Login Frequency] [formula_Sorting Formula] sort by [formula_Sorting Formula] descending [User Code]"
+      answer_columns:
+      - name: City
+      - name: Company Name
+        custom_name: Company name
+        dynamic_title: Company name
+      - name: Country
+      - name: Custom Attribute 1
+      - name: Custom Attribute 10
+      - name: Custom Attribute 11
+      - name: Custom Attribute 12
+      - name: Custom Attribute 13
+      - name: Custom Attribute 14
+      - name: Custom Attribute 15
+      - name: Custom Attribute 16
+      - name: Custom Attribute 17
+      - name: Custom Attribute 18
+      - name: Custom Attribute 19
+      - name: Custom Attribute 2
+      - name: Custom Attribute 20
+      - name: Custom Attribute 21
+      - name: Custom Attribute 22
+      - name: Custom Attribute 23
+      - name: Custom Attribute 24
+      - name: Custom Attribute 25
+      - name: Custom Attribute 3
+      - name: Custom Attribute 4
+      - name: Custom Attribute 5
+      - name: Custom Attribute 6
+      - name: Custom Attribute 7
+      - name: Custom Attribute 8
+      - name: Custom Attribute 9
+      - name: Department
+      - name: Division
+      - name: Email
+      - name: Full Name
+        custom_name: Full name
+        dynamic_title: Full name
+      - name: Job Title
+        custom_name: Job title
+        dynamic_title: Job title
+      - name: Login Frequency
+        custom_name: Login frequency
+        dynamic_title: Login frequency
+      - name: Sorting Formula
+        sort_info:
+          category: DEFAULT
+      - name: State
+      - name: User Code
+      table:
+        table_columns:
+        - column_id: City
+          show_headline: false
+        - column_id: Company Name
+          show_headline: false
+        - column_id: Country
+          show_headline: false
+        - column_id: Custom Attribute 1
+          show_headline: false
+        - column_id: Custom Attribute 10
+          show_headline: false
+        - column_id: Custom Attribute 11
+          show_headline: false
+        - column_id: Custom Attribute 12
+          show_headline: false
+        - column_id: Custom Attribute 13
+          show_headline: false
+        - column_id: Custom Attribute 14
+          show_headline: false
+        - column_id: Custom Attribute 15
+          show_headline: false
+        - column_id: Custom Attribute 16
+          show_headline: false
+        - column_id: Custom Attribute 17
+          show_headline: false
+        - column_id: Custom Attribute 18
+          show_headline: false
+        - column_id: Custom Attribute 19
+          show_headline: false
+        - column_id: Custom Attribute 2
+          show_headline: false
+        - column_id: Custom Attribute 20
+          show_headline: false
+        - column_id: Custom Attribute 21
+          show_headline: false
+        - column_id: Custom Attribute 22
+          show_headline: false
+        - column_id: Custom Attribute 23
+          show_headline: false
+        - column_id: Custom Attribute 24
+          show_headline: false
+        - column_id: Custom Attribute 25
+          show_headline: false
+        - column_id: Custom Attribute 3
+          show_headline: false
+        - column_id: Custom Attribute 4
+          show_headline: false
+        - column_id: Custom Attribute 5
+          show_headline: false
+        - column_id: Custom Attribute 6
+          show_headline: false
+        - column_id: Custom Attribute 7
+          show_headline: false
+        - column_id: Custom Attribute 8
+          show_headline: false
+        - column_id: Custom Attribute 9
+          show_headline: false
+        - column_id: Department
+          show_headline: false
+        - column_id: Division
+          show_headline: false
+        - column_id: Email
+          show_headline: false
+        - column_id: Full Name
+          show_headline: false
+        - column_id: Job Title
+          show_headline: false
+        - column_id: Login Frequency
+          show_headline: false
+        - column_id: Sorting Formula
+          show_headline: false
+        - column_id: State
+          show_headline: false
+        - column_id: User Code
+          show_headline: false
+        ordered_column_ids:
+        - Full Name
+        - Email
+        - Company Name
+        - Division
+        - Department
+        - City
+        - State
+        - Country
+        - Job Title
+        - Custom Attribute 1
+        - Custom Attribute 2
+        - Custom Attribute 3
+        - Custom Attribute 4
+        - Custom Attribute 5
+        - Custom Attribute 6
+        - Custom Attribute 7
+        - Custom Attribute 8
+        - Custom Attribute 9
+        - Custom Attribute 10
+        - Custom Attribute 11
+        - Custom Attribute 12
+        - Custom Attribute 13
+        - Custom Attribute 14
+        - Custom Attribute 15
+        - Custom Attribute 16
+        - Custom Attribute 17
+        - Custom Attribute 18
+        - Custom Attribute 19
+        - Custom Attribute 20
+        - Custom Attribute 21
+        - Custom Attribute 22
+        - Custom Attribute 23
+        - Custom Attribute 24
+        - Custom Attribute 25
+        - Login Frequency
+        - User Code
+        - Sorting Formula
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Full Name\",\"width\": 227.0}],\"orderedColumnIds\": [\"Full Name\",\"Login Frequency\",\"Email\",\"Company Name\",\"Division\",\"Department\",\"City\",\"State\",\"Country\",\"Job Title\",\"Custom Attribute 1\",\"Custom Attribute 2\",\"Custom Attribute 3\",\"Custom Attribute 4\",\"Custom Attribute 5\",\"Custom Attribute 6\",\"Custom Attribute 7\",\"Custom Attribute 8\",\"Custom Attribute 9\",\"Custom Attribute 10\",\"Custom Attribute 11\",\"Custom Attribute 12\",\"Custom Attribute 13\",\"Custom Attribute 14\",\"Custom Attribute 15\",\"Custom Attribute 16\",\"Custom Attribute 17\",\"Custom Attribute 18\",\"Custom Attribute 19\",\"Custom Attribute 20\",\"Custom Attribute 21\",\"Custom Attribute 22\",\"Custom Attribute 23\",\"Custom Attribute 24\",\"Custom Attribute 25\"]}"
+      chart:
+        type: COLUMN
+        chart_columns:
+        - column_id: City
+        - column_id: Company Name
+        - column_id: Country
+        - column_id: Custom Attribute 1
+        - column_id: Custom Attribute 10
+        - column_id: Custom Attribute 11
+        - column_id: Custom Attribute 12
+        - column_id: Custom Attribute 13
+        - column_id: Custom Attribute 14
+        - column_id: Custom Attribute 15
+        - column_id: Custom Attribute 16
+        - column_id: Custom Attribute 17
+        - column_id: Custom Attribute 18
+        - column_id: Custom Attribute 19
+        - column_id: Custom Attribute 2
+        - column_id: Custom Attribute 20
+        - column_id: Custom Attribute 21
+        - column_id: Custom Attribute 22
+        - column_id: Custom Attribute 23
+        - column_id: Custom Attribute 24
+        - column_id: Custom Attribute 25
+        - column_id: Custom Attribute 3
+        - column_id: Custom Attribute 4
+        - column_id: Custom Attribute 5
+        - column_id: Custom Attribute 6
+        - column_id: Custom Attribute 7
+        - column_id: Custom Attribute 8
+        - column_id: Custom Attribute 9
+        - column_id: Department
+        - column_id: Division
+        - column_id: Email
+        - column_id: Full Name
+        - column_id: Job Title
+        - column_id: Login Frequency
+        - column_id: Sorting Formula
+        - column_id: State
+        - column_id: User Code
+        axis_configs:
+        - x:
+          - User Code
+          "y":
+          - Sorting Formula
+          color:
+          - Custom Attribute 14
+          - Custom Attribute 16
+          - Custom Attribute 17
+          - Custom Attribute 19
+          - Custom Attribute 20
+          - Custom Attribute 24
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Email\",\"columnProperty\": {}},{\"columnId\": \"Division\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 16\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 20\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 14\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 17\",\"columnProperty\": {}},{\"columnId\": \"Login Frequency\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 18\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 19\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 21\",\"columnProperty\": {}},{\"columnId\": \"Custom Attribute 24\",\"columnProperty\": {}},{\"columnId\": \"User Code\",\"columnProperty\": {}},{\"columnId\": \"Sorting Formula\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"245f98c4-6df3-4e5c-91e4-ee6d2d3a0a0d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Sorting Formula\"],\"isOpposite\": false}},{\"id\": \"d801d511-23c7-4d37-abd1-8a93f2de5191\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"User Code\"]}}],\"systemSeriesColors\": [{\"serieName\": \"a0e9a374-17b1-4f25-8588-c671fc148a1e\",\"color\": \"#2E75F0\"},{\"serieName\": \"contributor\",\"color\": \"#06BF7F\"},{\"serieName\": \"no login\",\"color\": \"#FCC838\"},{\"serieName\": \"observer\",\"color\": \"#48D1E0\"},{\"serieName\": \"participant\",\"color\": \"#2E75F0\"}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: User login frequency distribution
+    viz_guid: 372648e1-775e-46e3-b45a-cf26264b2bd5
+  - id: Viz_11
+    answer:
+      name: Adoption laggards by Segment
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Percentage %
+        name: Adoption Percentage %
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / unique count ( [User Code] ) * 100"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Logged In
+        name: User Logged In
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Adoption Percentage %] [User Status].active [formula_User Logged In] [formula_Total User] [Segment Code] [Segment Name] sort by [formula_Adoption Percentage %]"
+      answer_columns:
+      - name: Adoption Percentage %
+        custom_name: Adoption rate
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Adoption rate
+        sort_info:
+          category: DEFAULT
+      - name: Segment Code
+      - name: Segment Name
+        custom_name: Segment name
+        dynamic_title: Segment name
+      - name: Total User
+        custom_name: Total user
+        dynamic_title: Total user
+      - name: User Logged In
+        custom_name: User logged in
+        dynamic_title: User logged in
+      table:
+        table_columns:
+        - column_id: Adoption Percentage %
+          show_headline: false
+        - column_id: Segment Code
+          show_headline: false
+        - column_id: Segment Name
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Logged In
+          show_headline: false
+        ordered_column_ids:
+        - Segment Code
+        - Segment Name
+        - Adoption Percentage %
+        - User Logged In
+        - Total User
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total User\",\"width\": 140.29922485351562},{\"columnId\": \"Adoption Percentage %\",\"width\": 185.1080322265625}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Segment Name\",\"User Logged In\",\"Total User\",\"Adoption Percentage %\",\"Segment Code\"],\"columnProperties\": [{\"columnId\": \"Segment Code\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": true}},{\"columnId\": \"Segment Name\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}},{\"columnId\": \"User Logged In\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}},{\"columnId\": \"Total User\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}}]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Adoption Percentage %
+        - column_id: Segment Code
+        - column_id: Segment Name
+        - column_id: Total User
+        - column_id: User Logged In
+        axis_configs:
+        - x:
+          - Adoption Percentage %
+          "y":
+          - User Logged In
+          color:
+          - Segment Name
+          size: Total User
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {}},{\"columnId\": \"9148f5cf-8223-4394-981d-8b26c8af1169\",\"columnProperty\": {}},{\"columnId\": \"d172e896-92d8-4c65-87c3-c154c64c3acb\",\"columnProperty\": {}},{\"columnId\": \"User Logged In\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}},{\"columnId\": \"Segment Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"6bef4ccb-d5ee-4228-b020-168e4df1ed6d\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Logged In\"],\"isOpposite\": false}},{\"id\": \"e8c4b1c2-91c4-4046-b5c0-8aa066414c07\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Adoption Percentage %\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Adoption laggards by Segment
+    viz_guid: 8c034416-39c3-41e7-9319-4149ca46f682
+  - id: Viz_12
+    answer:
+      name: Adoption laggards by User Category
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      formulas:
+      - id: formula_Adoption Percentage %
+        name: Adoption Percentage %
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] ) / unique count ( [User Code] ) * 100"
+        was_auto_generated: false
+      - id: formula_Total User
+        name: Total User
+        expr: "unique count ( [User Code] )"
+        was_auto_generated: false
+      - id: formula_User Logged In
+        name: User Logged In
+        expr: "unique_count_if ( [Has User Logged In?] , [Interaction User Code] )"
+        was_auto_generated: false
+      search_query: "[formula_Adoption Percentage %] [User Status].active [formula_User Logged In] [formula_Total User] [Category Code] [Category Name] sort by [formula_Adoption Percentage %]"
+      answer_columns:
+      - name: Adoption Percentage %
+        custom_name: Adoption rate
+        format:
+          category: NUMBER
+          numberFormatConfig:
+            unit: NONE
+            decimals: 1.0
+            negativeValueFormat: PREFIX_DASH
+            toSeparateThousands: true
+          isCategoryEditable: true
+        dynamic_title: Adoption rate
+        sort_info:
+          category: DEFAULT
+      - name: Category Code
+      - name: Category Name
+        custom_name: User category
+        dynamic_title: User category
+      - name: Total User
+        custom_name: Total user
+        dynamic_title: Total user
+      - name: User Logged In
+        custom_name: User logged in
+        dynamic_title: User logged in
+      table:
+        table_columns:
+        - column_id: Adoption Percentage %
+          show_headline: false
+        - column_id: Category Code
+          show_headline: false
+        - column_id: Category Name
+          show_headline: false
+        - column_id: Total User
+          show_headline: false
+        - column_id: User Logged In
+          show_headline: false
+        ordered_column_ids:
+        - Category Code
+        - Category Name
+        - Adoption Percentage %
+        - User Logged In
+        - Total User
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Total User\",\"width\": 140.29922485351562},{\"columnId\": \"Adoption Percentage %\",\"width\": 185.1080322265625}],\"showTableFooter\": false,\"orderedColumnIds\": [\"Category Name\",\"User Logged In\",\"Total User\",\"Adoption Percentage %\"],\"columnProperties\": [{\"columnId\": \"Category Code\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": true}},{\"columnId\": \"Category Name\",\"columnProperty\": {\"conditionalFormatting\": {}}},{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}},{\"columnId\": \"User Logged In\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}},{\"columnId\": \"Total User\",\"columnProperty\": {\"conditionalFormatting\": {},\"isHidden\": false}}]}"
+      chart:
+        type: BUBBLE
+        chart_columns:
+        - column_id: Adoption Percentage %
+        - column_id: Category Code
+        - column_id: Category Name
+        - column_id: Total User
+        - column_id: User Logged In
+        axis_configs:
+        - x:
+          - Adoption Percentage %
+          "y":
+          - User Logged In
+          color:
+          - Category Name
+          size: Total User
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Adoption Percentage %\",\"columnProperty\": {}},{\"columnId\": \"741edb2a-06f0-4c76-9160-f8aece03000e\",\"columnProperty\": {}},{\"columnId\": \"9aefb944-2783-4255-8275-4b3752ffd685\",\"columnProperty\": {}},{\"columnId\": \"User Logged In\",\"columnProperty\": {}},{\"columnId\": \"Total User\",\"columnProperty\": {}},{\"columnId\": \"Category Name\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"566af069-637d-4531-a83b-93c048f6cc91\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"User Logged In\"],\"isOpposite\": false}},{\"id\": \"fcd4bad3-e6fc-4d34-8a4e-d839cb285a25\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Adoption Percentage %\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Adoption laggards by User Category
+    viz_guid: 2f9dff4c-e848-43ac-af5e-0c4d5114f5c4
+  - id: Viz_13
+    answer:
+      name: Column field mapping
+      tables:
+      - id: User
+        name: User
+        fqn: 8b6ae1f4-293d-4916-81f1-eac9053bd0db
+      search_query: "[Tenant Code] [Column Name] [Field Name] [Column Name].custom_attribute_1 [Column Name].custom_attribute_10 [Column Name].custom_attribute_11 [Column Name].custom_attribute_12 [Column Name].custom_attribute_13 [Column Name].custom_attribute_14 [Column Name].custom_attribute_15 [Column Name].custom_attribute_16 [Column Name].custom_attribute_17 [Column Name].custom_attribute_18 [Column Name].custom_attribute_19 [Column Name].custom_attribute_2 [Column Name].custom_attribute_20 [Column Name].custom_attribute_21 [Column Name].custom_attribute_22 [Column Name].custom_attribute_23 [Column Name].custom_attribute_24 [Column Name].custom_attribute_25 [Column Name].custom_attribute_3 [Column Name].custom_attribute_4 [Column Name].custom_attribute_5 [Column Name].custom_attribute_6 [Column Name].custom_attribute_7 [Column Name].custom_attribute_8 [Column Name].custom_attribute_9 [Is Field Deleted?].false [Is Field Custom?].true"
+      answer_columns:
+      - name: Column Name
+      - name: Field Name
+      - name: Tenant Code
+      table:
+        table_columns:
+        - column_id: Column Name
+          show_headline: false
+        - column_id: Field Name
+          show_headline: false
+        - column_id: Tenant Code
+          show_headline: false
+        ordered_column_ids:
+        - Tenant Code
+        - Column Name
+        - Field Name
+        client_state: ""
+        client_state_v2: "{\"tableVizPropVersion\": \"V1\",\"widthState\": [{\"columnId\": \"Tenant Code\",\"width\": 214.0}],\"orderedColumnIds\": [\"Column Name\",\"Field Name\",\"Tenant Code\"],\"columnProperties\": [{\"columnId\": \"Tenant Code\",\"columnProperty\": {\"isHidden\": true}}]}"
+      chart:
+        type: SCATTER
+        chart_columns:
+        - column_id: Column Name
+        - column_id: Field Name
+        - column_id: Tenant Code
+        axis_configs:
+        - x:
+          - Field Name
+          "y":
+          - Tenant Code
+          color:
+          - Column Name
+        client_state: ""
+        client_state_v2: "{\"version\": \"V4DOT2\",\"chartProperties\": {\"gridLines\": {},\"responsiveLayoutPreference\": \"USER_PREFERRED_ON\",\"chartSpecific\": {\"dataFieldArea\": \"column\"}},\"columnProperties\": [{\"columnId\": \"Tenant Code\",\"columnProperty\": {}},{\"columnId\": \"Column Name\",\"columnProperty\": {}},{\"columnId\": \"Field Name\",\"columnProperty\": {}},{\"columnId\": \"b60469d9-12df-4659-9b0a-4e28efb90679\",\"columnProperty\": {}},{\"columnId\": \"debd4db0-9bd3-4b3c-8cf4-318526109791\",\"columnProperty\": {}}],\"axisProperties\": [{\"id\": \"d070453c-4f93-4f5d-b0e6-76f09cc8e6f8\",\"properties\": {\"axisType\": \"Y\",\"linkedColumns\": [\"Tenant Code\"],\"isOpposite\": false}},{\"id\": \"089475f5-9663-4c84-acbf-b280bf16b3d9\",\"properties\": {\"axisType\": \"X\",\"linkedColumns\": [\"Field Name\"]}}]}"
+      display_mode: TABLE_MODE
+      dynamic_name: Column field mapping
+    viz_guid: 448d7a5f-dbb1-4f0c-af08-12fe711a4008
+  filters:
+  - column:
+    - Reporting Date
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Interaction Datetime
+    excluded_visualizations:
+    - Viz_1
+    - Viz_2
+    - Viz_4
+    - Viz_5
+    - Viz_6
+    - Viz_7
+    - Viz_8
+    - Viz_9
+    - Viz_10
+    - Viz_11
+    - Viz_12
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Location
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Department
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Category Name
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Segment Name
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  - column:
+    - Tenant Code
+    is_mandatory: false
+    is_single_value: false
+    display_name: ""
+  - column:
+    - Company Name
+    is_mandatory: false
+    is_single_value: true
+    display_name: ""
+  layout:
+    tiles:
+    - visualization_id: Viz_1
+      x: 0
+      "y": 0
+      height: 6
+      width: 6
+    - visualization_id: Viz_2
+      x: 6
+      "y": 0
+      height: 6
+      width: 6
+    - visualization_id: Viz_3
+      x: 0
+      "y": 6
+      height: 7
+      width: 6
+    - visualization_id: Viz_4
+      x: 0
+      "y": 13
+      height: 7
+      width: 6
+    - visualization_id: Viz_5
+      x: 0
+      "y": 20
+      height: 7
+      width: 6
+    - visualization_id: Viz_6
+      x: 6
+      "y": 13
+      height: 7
+      width: 6
+    - visualization_id: Viz_7
+      x: 6
+      "y": 20
+      height: 7
+      width: 6
+    - visualization_id: Viz_8
+      x: 0
+      "y": 27
+      height: 6
+      width: 6
+    - visualization_id: Viz_9
+      x: 0
+      "y": 33
+      height: 5
+      width: 6
+    - visualization_id: Viz_10
+      x: 6
+      "y": 6
+      height: 7
+      width: 6
+    - visualization_id: Viz_11
+      x: 6
+      "y": 27
+      height: 6
+      width: 6
+    - visualization_id: Viz_12
+      x: 6
+      "y": 33
+      height: 5
+      width: 6
+    - visualization_id: Viz_13
+      x: 0
+      "y": 38
+      height: 8
+      width: 12
+  ordered_chips:
+  - name: Reporting Date
+    type: FILTER
+  - name: Interaction Datetime
+    type: FILTER
+  - name: Location
+    type: FILTER
+  - name: Department
+    type: FILTER
+  - name: Category Name
+    type: FILTER
+  - name: Segment Name
+    type: FILTER
+  - name: Tenant Code
+    type: FILTER
+  - name: Company Name
+    type: FILTER
+  views:
+  - view_guid: 12a233ca-671a-47dd-bd17-6f9843fe079f
+    name: Rishab test
+    view_filters:
+    - column:
+      - Reporting Date
+      date_filter:
+        type: LAST_N_PERIOD
+        number: 90
+        oper: =
+        date_period: DAY
+    - column:
+      - Interaction Datetime
+      date_filter:
+        type: LAST_N_PERIOD
+        number: 30
+        oper: =
+        date_period: DAY
+    - column:
+      - Location
+      oper: =
+    - column:
+      - Department
+      oper: in
+      values:
+      - AWS Migration
+    - column:
+      - Category Name
+      oper: =
+    - column:
+      - Segment Name
+      oper: =
+    - column:
+      - Tenant Code
+      oper: in
+      values:
+      - 191e03de-fb5e-4b01-b9fd-faf1873292a6
+    - column:
+      - Company Name
+      oper: =
+    is_public: false
+  style:
+    style_properties:
+    - name: lb_border_type
+      value: CURVED
+    - name: lb_brand_color
+      value: LBC_A
+    - name: hide_group_title
+      value: "false"
+    - name: hide_group_description
+      value: "false"
+    - name: hide_group_tile_description
+      value: "false"
+    - name: hide_tile_description
+      value: "false"
