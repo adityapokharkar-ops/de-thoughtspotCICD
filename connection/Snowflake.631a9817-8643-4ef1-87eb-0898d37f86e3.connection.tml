@@ -5,15 +5,15 @@ connection:
   authentication_type: SERVICE_ACCOUNT
   properties:
   - key: database
-    value: "${SNOWFLAKE_DATABASE_NAME}"
+    value: SIMPPLR_COMMON_TENANT
   - key: password
-    value: "${SNOWFLAKE_PASSWORD}"
+    value: Simp!@30apr04#
   - key: role
-    value: "${SNOWFLAKE_ROLE}"
+    value: ROLE_PII_READ
   - key: accountName
-    value: "${SNOWFLAKE_ACCOUNT_NAME}"
+    value: mibhcxr-simpplr_non_prod
   - key: warehouse
-    value: "${SNOWFLAKE_WAREHOUSE}"
+    value: WH_SIMPPLR_COMMON_TENANT_REPORTING
   - key: user
-    value: "${SNOWFLAKE_USER_NAME}"
+    value: USER_DE_THOUGHTSPOT_READ
   description: ""
