@@ -1,0 +1,25 @@
+guid: 15781957-4a71-42cc-afff-cd4c25bb0685
+sql_view:
+  name: filter_options
+  connection:
+    name: Snowflake
+    fqn: 631a9817-8643-4ef1-87eb-0898d37f86e3
+  sql_query: |-
+    SELECT true,'Department' AS filter_options
+    UNION
+    SELECT true,'Location' AS filter_options
+    UNION
+    SELECT true,'User Category' AS filter_options
+    UNION
+    SELECT true,'Segment' AS filter_options
+  sql_view_columns:
+  - name: "TRUE"
+    sql_output_column: "TRUE"
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
+  - name: FILTER_OPTIONS
+    sql_output_column: FILTER_OPTIONS
+    properties:
+      column_type: ATTRIBUTE
+      index_type: DONT_INDEX
