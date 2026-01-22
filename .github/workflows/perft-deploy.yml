@@ -1,4 +1,4 @@
-name: Deploy TMLs to Perft
+name: Deploy TMLs to perft
 
 on:
   workflow_dispatch:
