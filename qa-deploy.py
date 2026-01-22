@@ -3,63 +3,133 @@ import pandas as pd
 import os
 import requests
 import json
-import csv
-# Authentication url for Deploy API call
+import logging
+
+# --------------------------------------------------
+# BASIC LOGGER CONFIGURATION
+# --------------------------------------------------
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+    handlers=[
+        logging.FileHandler("deploy_debug.log"),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
+
+# --------------------------------------------------
+# AUTHENTICATION
+# --------------------------------------------------
 def deploy_auth():
-    deploy_auth_url = 'https://ts.dev.simpplr.xyz/api/rest/2.0/auth/token/full'
+    deploy_auth_url = "https://ts.dev.simpplr.xyz/api/rest/2.0/auth/token/full"
+
     headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        "Accept": "application/json",
+        "Content-Type": "application/json"
     }
+
     payload = {
         "username": "aditya.pokharkar@simpplr.com",
         "auto_create": False,
         "password": "Planet@107",
-        "secret_key": "4775671a-6327-4954-be4d-84c147f059b3"
+        "secret_key": "4fa24e4b-00af-4b1e-920c-62f818197ab6"
     }
-    try:
-        response = requests.post(deploy_auth_url, headers=headers, data=json.dumps(payload))
-        response.raise_for_status()  # Raises error if status >= 400
-        print(f"✅_check_mark: Successfully Logged_in")
-    except requests.exceptions.RequestException as e:
-        print(f"❌: Login Failed: {e}")
-    # Store the Bearer Token fro next API calls
-    json_text=response.json()
-    json_text['token']
-    Bearer_token = json_text['token']
-    print("==========================================")
-    return Bearer_token
-Bearer_token = deploy_auth()
 
-# This url deploy all the TML files from Github(Deploy branch) to your environment
+    try:
+        response = requests.post(
+            deploy_auth_url,
+            headers=headers,
+            data=json.dumps(payload)
+        )
+
+        logger.info("Auth API called")
+        logger.info(f"Auth status code : {response.status_code}")
+        response.raise_for_status()
+
+    except requests.exceptions.RequestException as e:
+        logger.error("Authentication failed")
+        logger.error(response.text)
+        raise
+
+    token = response.json()["token"]
+    logger.info("Bearer token received")
+    logger.info("===================================")
+
+    return token
+
+
+# --------------------------------------------------
+# DEPLOY FUNCTION
+# --------------------------------------------------
 def deploy_call(Bearer_token):
-    deploy_url = 'https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy'
+
+    deploy_url = "https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy"
+
     headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer {Bearer_token}'
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {Bearer_token}"
     }
+
+    # --------------------------------------------------
+    # READ VALUES FROM GITHUB ACTIONS
+    # --------------------------------------------------
+    deploy_type = os.getenv("DEPLOY_TYPE", "DELTA")
+    deploy_policy = os.getenv("DEPLOY_POLICY", "ALL_OR_NONE")
+
+    # --------------------------------------------------
+    # VALIDATION (IMPORTANT)
+    # --------------------------------------------------
+    if deploy_type not in ["DELTA", "FULL"]:
+        raise ValueError("DEPLOY_TYPE must be DELTA or FULL")
+
+    if deploy_policy not in ["ALL_OR_NONE", "PARTIAL"]:
+        raise ValueError("DEPLOY_POLICY must be ALL_OR_NONE or PARTIAL")
+
+    # --------------------------------------------------
+    # LOG CONFIG
+    # --------------------------------------------------
+    logger.info("========== DEPLOY CONFIG ==========")
+    logger.info("Branch Name   : qa")
+    logger.info(f"Deploy Type   : {deploy_type}")
+    logger.info(f"Deploy Policy : {deploy_policy}")
+    logger.info("===================================")
+
+    # --------------------------------------------------
+    # DEPLOY PAYLOAD
+    # --------------------------------------------------
     payload = {
         "branch_name": "qa",
-        "deploy_type": "DELTA",
-        "deploy_policy": "ALL_OR_NONE"
+        "deploy_type": deploy_type,
+        "deploy_policy": deploy_policy
     }
+
     try:
-        response = requests.post(deploy_url, headers=headers, data=json.dumps(payload))
-        response.raise_for_status()  # Raises error if status >= 400
-        print(f"✅_check_mark: Successfully Deployed")
+        response = requests.post(
+            deploy_url,
+            headers=headers,
+            data=json.dumps(payload)
+        )
+
+        logger.info(f"Deploy status code   : {response.status_code}")
+        logger.info(f"Deploy response body : {response.text}")
+
+        response.raise_for_status()
+        logger.info("DEPLOY SUCCESSFUL ✅")
+
     except requests.exceptions.RequestException as e:
-        print(f"❌: Deploy Failed: {e}")
-    return None
-deploy_call = deploy_call(Bearer_token)
+        logger.error("DEPLOY FAILED ❌")
+        logger.error(response.text)
+        raise
+
+    logger.info("===================================")
 
 
-
-
-
-
-
-
-
-
-
+# --------------------------------------------------
+# MAIN
+# --------------------------------------------------
+if __name__ == "__main__":
+    token = deploy_auth()
+    deploy_call(token)
