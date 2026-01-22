@@ -3,7 +3,6 @@ import pandas as pd
 import os
 import requests
 import json
-import csv
 import logging
 
 # --------------------------------------------------
@@ -13,7 +12,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s",
     handlers=[
-        logging.FileHandler("perf_deploy_debug.log"),
+        logging.FileHandler("deploy_debug.log"),
         logging.StreamHandler()
     ]
 )
@@ -24,11 +23,11 @@ logger = logging.getLogger(__name__)
 # AUTHENTICATION
 # --------------------------------------------------
 def deploy_auth():
-    deploy_auth_url = 'https://ts.dev.simpplr.xyz/api/rest/2.0/auth/token/full'
+    deploy_auth_url = "https://ts.dev.simpplr.xyz/api/rest/2.0/auth/token/full"
 
     headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        "Accept": "application/json",
+        "Content-Type": "application/json"
     }
 
     payload = {
@@ -46,46 +45,65 @@ def deploy_auth():
         )
 
         logger.info("Auth API called")
-        logger.info(f"Auth response status : {response.status_code}")
-        logger.debug(f"Auth response body  : {response.text}")
-
+        logger.info(f"Auth status code : {response.status_code}")
         response.raise_for_status()
-        logger.info("Successfully logged in")
 
     except requests.exceptions.RequestException as e:
-        logger.error("Login failed")
-        logger.error(f"Response body : {response.text}")
-        logger.exception(e)
+        logger.error("Authentication failed")
+        logger.error(response.text)
         raise
 
-    json_text = response.json()
-    Bearer_token = json_text['token']
-
+    token = response.json()["token"]
     logger.info("Bearer token received")
-    logger.info("==========================================")
+    logger.info("===================================")
 
-    return Bearer_token
+    return token
 
-
-Bearer_token = deploy_auth()
 
 # --------------------------------------------------
-# DEPLOY CALL
+# DEPLOY FUNCTION
 # --------------------------------------------------
 def deploy_call(Bearer_token):
 
-    deploy_url = 'https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy'
+    deploy_url = "https://ts.dev.simpplr.xyz/api/rest/2.0/vcs/git/commits/deploy"
 
     headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer {Bearer_token}'
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {Bearer_token}"
     }
 
+    # --------------------------------------------------
+    # READ VALUES FROM GITHUB ACTIONS
+    # --------------------------------------------------
+    deploy_type = os.getenv("DEPLOY_TYPE", "DELTA")
+    deploy_policy = os.getenv("DEPLOY_POLICY", "ALL_OR_NONE")
+
+    # --------------------------------------------------
+    # VALIDATION (IMPORTANT)
+    # --------------------------------------------------
+    if deploy_type not in ["DELTA", "FULL"]:
+        raise ValueError("DEPLOY_TYPE must be DELTA or FULL")
+
+    if deploy_policy not in ["ALL_OR_NONE", "PARTIAL"]:
+        raise ValueError("DEPLOY_POLICY must be ALL_OR_NONE or PARTIAL")
+
+    # --------------------------------------------------
+    # LOG CONFIG
+    # --------------------------------------------------
+    logger.info("========== DEPLOY CONFIG ==========")
+    logger.info("Branch Name   : perf")
+    logger.info(f"Deploy Type   : {deploy_type}")
+    logger.info(f"Deploy Policy : {deploy_policy}")
+    logger.info("===================================")
+
+    # --------------------------------------------------
+    # DEPLOY PAYLOAD
+    # --------------------------------------------------
     payload = {
         "branch_name": "perf",
-        "deploy_type": "DELTA",
-        "deploy_policy": "ALL_OR_NONE"
+        "deploy_type": deploy_type,
+        "deploy_policy": deploy_policy
     }
 
     try:
@@ -95,8 +113,6 @@ def deploy_call(Bearer_token):
             data=json.dumps(payload)
         )
 
-        logger.info("Deploy API called")
-        logger.info("Deploy branch        : perf")
         logger.info(f"Deploy status code   : {response.status_code}")
         logger.info(f"Deploy response body : {response.text}")
 
@@ -105,13 +121,15 @@ def deploy_call(Bearer_token):
 
     except requests.exceptions.RequestException as e:
         logger.error("DEPLOY FAILED ❌")
-        logger.error(f"Status Code   : {response.status_code}")
-        logger.error(f"Response Body : {response.text}")
-        logger.exception(e)
+        logger.error(response.text)
         raise
 
-    logger.info("==========================================")
+    logger.info("===================================")
 
 
-
-deploy_call(Bearer_token)
+# --------------------------------------------------
+# MAIN
+# --------------------------------------------------
+if __name__ == "__main__":
+    token = deploy_auth()
+    deploy_call(token)
