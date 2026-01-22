@@ -1,26 +1,34 @@
-name: Deploy TMLs to perft
+name: Deploy TMLs to Perft
 
 on:
-  workflow_dispatch:   # Manual one-click run
+  workflow_dispatch:
+    inputs:
+      deploy_type:
+        description: "Select deploy type"
+        required: true
+        type: choice
+        options:
+          - DELTA
+          - FULL
+
+      deploy_policy:
+        description: "Select deploy policy"
+        required: true
+        type: choice
+        options:
+          - ALL_OR_NONE
+          - PARTIAL
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Deploy TMLs
+      - name: Run deploy
+        env:
+          DEPLOY_TYPE: ${{ github.event.inputs.deploy_type }}
+          DEPLOY_POLICY: ${{ github.event.inputs.deploy_policy }}
         run: |
           python perft-deploy.py
